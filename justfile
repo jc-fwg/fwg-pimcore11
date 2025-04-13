@@ -25,7 +25,8 @@ shell:
 cache-clear: shell
     bin/console cache:clear; bin/console pimcore:cache:clear
 
-
+git-pull-upstream:
+    git fetch upstream; git merge upstream/main --allow-unrelated-histories
 
 pim-install:
     #docker compose exec php vendor/bin/pimcore-install --mysql-host-socket=db --mysql-username=pimcore --mysql-password=pimcore --mysql-database=pimcore
