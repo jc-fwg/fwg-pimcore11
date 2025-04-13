@@ -1,8 +1,7 @@
 parameters:
     commands.create_website_settings.asset:
-        - !php/const App\Constant\WebsiteSettingConstants::ASSET_EVENT_DEFAULT_TEASER_IMAGE
+        #- !php/const App\Constant\WebsiteSettingConstants::AN_EXAMPLE
     commands.create_website_settings.checkbox:
     commands.create_website_settings.document:
-        - !php/const App\Constant\WebsiteSettingConstants::DOCUMENT_NAVIGATION_SERVICES_ROOT
     commands.create_website_settings.object:
     commands.create_website_settings.text:
