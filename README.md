@@ -1,4 +1,4 @@
-# awm-pimcore11
+# Pimcore BBX Template
 
 ## Table of Contents
 
@@ -37,3 +37,10 @@ Schritte durchlaufen und dann sollte es passen
 
 ## Login
 http://localhost/let-me-in 
+
+## Repository Upstream Setup und Usage
+### Upstream setzen
+- ```git remote add upstream git@github.com:jc-fwg/pimcore-bbx-template.git```
+### Fetch und Pull
+- ```git fetch upstream```
+- ```git merge upstream/main --allow-unrelated-histories```
