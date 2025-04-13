@@ -1,0 +1,14 @@
+pimcore:
+    documents:
+        doc_types:
+            definitions:
+                442ff021-5a4e-41f8-942e-06e916037707:
+                    name: kontakt
+                    group: CMS
+                    controller: 'App\Controller\DefaultController::contactAction'
+                    template: null
+                    type: page
+                    priority: 0
+                    creationDate: 1729883959
+                    modificationDate: 1729883973
+                    staticGeneratorEnabled: false

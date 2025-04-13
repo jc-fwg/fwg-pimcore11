@@ -1,0 +1,54 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% do pimcore_head_link().appendStylesheet(asset('static/libs/unitegallery/css/unite-gallery.css'), 'screen') %}
+{% do pimcore_head_link().appendStylesheet(asset('static/css/references.css'), 'screen') %}
+{% do pimcore_head_link().appendStylesheet(asset('static/css/material.css'), 'screen') %}
+
+{% do pimcore_head_script().offsetSetFile(200, asset('static/libs/unitegallery/js/unitegallery.min.js')) %}
+{% do pimcore_head_script().appendFile(asset('static/libs/unitegallery/themes/tiles/ug-theme-tiles.js')) %}
+
+{% set rentalObjectTitle = rentalObject.rentalObject.title %}
+{% if rentalObject.manufacturer is not null %}
+    {% set rentalObjectTitle = rentalObject.manufacturer.name ~ " " ~ rentalObjectTitle %}
+{% endif %}
+
+{% do pimcore_head_title().append(rentalObjectTitle) %}
+{% if rentalObject.rentalObject.text is not null %}
+    {% do pimcore_head_meta().appendName("description", rentalObject.rentalObject.text|raw) %}
+{% endif %}
+
+{% block teaserImage %}
+    {% if rentalObject.imageTeaser is not null %}
+        <img src="{{ rentalObject.imageTeaser.getThumbnail("teaser1600") }}" alt="{{ rentalObjectTitle }}">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid head">
+        <div class="container">
+            <h1>{{ rentalObjectTitle }}</h1>
+            {% if rentalObject.rentalObject.text is not null %}
+                <p class="text">{{ rentalObject.rentalObject.text|raw }}</p>
+            {% endif %}
+            <a href="/vermietung/" class="more">
+                <span class="glyphicon glyphicon-arrow-right"></span> {{ "rental.details.allRentals"|trans }}
+            </a>
+        </div>
+    </div>
+
+    {# GALLERY #}
+    <div class="container-fluid images">
+        <div class="container">
+            <div id="gallery" class="js-unitegallery">
+                {% for image in rentalObject.imageGallery %}
+                    <img
+                        src="{{ image.getThumbnail("rentalObjectDetailsGalleryThumbnail") }}"
+                        alt="{{ rentalObjectTitle }}"
+                        data-image="{{ image.getThumbnail("rentalObjectDetailsGallery") }}"
+                        data-description="{{ rentalObjectTitle }}"
+                    />
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

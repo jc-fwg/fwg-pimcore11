@@ -1,0 +1,23 @@
+@import "../node_modules/bootstrap/less/mixins.less";
+
+// Colors
+@color-blue-light:          #007560;
+@color-grey:                #5e5e5e;
+@color-grey-light:          #d1d1d1;
+@color-grey-dark:           #212121;
+
+// Paths & URLs
+@path-gfx:                  "/static/gfx/";
+
+// Mixins
+.border-radius(@radius: 3px) {
+    border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+}
+
+.box-shadow(@size: 5px) {
+    -webkit-box-shadow: 0px @size @size 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px @size @size 0px rgba(0,0,0,0.5);
+    box-shadow: 0px @size @size 0px rgba(0,0,0,0.5);
+}

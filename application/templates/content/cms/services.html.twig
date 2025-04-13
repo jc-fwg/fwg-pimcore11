@@ -1,0 +1,51 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% do pimcore_head_link().appendStylesheet(asset('static/css/leistungen.css'), 'screen') %}
+
+{% set documentTitle = "" %}
+{% if document is not null and document.title != ""%}
+    {% do pimcore_head_title().prepend(document.title) %}
+    {% set documentTitle = document.title %}
+{% endif %}
+
+{% if document is not null and document.description != ""%}
+    {% do pimcore_head_meta().appendName("description", document.description) %}
+{% endif %}
+
+{% block teaserImage %}
+    {% if editmode %}
+        {{ pimcore_image("teaserImage", {
+            "width": 400,
+            "title": "Teaser-Image",
+        }) }}
+    {% elseif document.editable("teaserImage") is not null %}
+        <img src="{{ document.editable("teaserImage").getThumbnail("teaser1900x900") }}" alt="{{ documentTitle }}" />
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            {# NAVIGATION #}
+            {% set menuRenderer = pimcore_nav_renderer('menu') %}
+            {% set navigationServicesRoot = pimcore_website_config('navigationServicesRoot') %}
+            {% if not navigationServicesRoot is defined or
+                (navigationServicesRoot is not pimcore_document_page and navigationServicesRoot is not pimcore_document_link)
+            %}
+                {% set navigationServicesRoot = pimcore_document(1) %}
+            {% endif %}
+
+            {% set navigationServices = pimcore_build_nav({
+                active: document,
+                root: navigationServicesRoot,
+                maxDepth: 1
+            }) %}
+            <nav id="leistungen" class="row">
+                {{ menuRenderer.renderPartial(navigationServices, 'content/cms/services-navigation.html.twig') | raw }}
+            </nav>
+            <div id="content" class="row">
+                {{ pimcore_areablock("servicesContent") }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

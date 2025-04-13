@@ -1,0 +1,32 @@
+generic:
+    categories: 'Categories'
+events:
+    details:
+        ourReferencesFromTheCategory: 'Our references from the category'
+        allReferences: 'All references'
+    list:
+        eventCategories:
+            title: Categories
+            all: All
+        editmode:
+            headlineNotEditable: 'Headline (not editable)'
+        introText:
+            name: Introtext
+            headlineCategories: 'Extract of our references from all categories'
+            headlineCategory: 'Our references from the category'
+    start:
+        headline: "Current references"
+rental:
+    details:
+        allRentals: 'All rentals'
+    list:
+        form:
+            email:
+                placeholder: 'Your e-mail address'
+            result:
+                placeholder: 'Your result'
+            button:
+                value: 'Get list'
+        headlineItems: 'Our new rental arrivals'
+    start:
+        newRentals: "New in rental"

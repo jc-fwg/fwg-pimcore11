@@ -1,0 +1,49 @@
+app:
+    generic:
+        baseData: 'Base Data'
+        bcc: 'BCC Recipients'
+        blacklist: 'Blacklist'
+        dateEnd: 'End Date'
+        dateStart: 'Start Date'
+        description: Description
+        documents: Documents
+        imageGallery: 'Image Gallery'
+        imageTeaser: 'Teaser Image'
+        location: Location
+        mailContent: 'Mail Content'
+        materialList: 'Material List'
+        materialListFile: 'Asset'
+        materialListEmailListTooltip: 'One email address per line'
+        media: 'Medien'
+        name: Name
+        orNew: 'or new'
+        redaxoArticleSliceId: 'Redaxo Article Slice ID'
+        redaxoDateCreate: 'Redaxo Create Date'
+        redaxoDateUpdate: 'Redaxo Update Date'
+        redaxoId: 'Redaxo ID'
+        redaxoSlug: 'Redaxo Slug'
+        redaxoUrl: 'Redaxo URL'
+        seoAndRedaxoData: 'SEO and Redaxo Data'
+        seoAndSitemap: 'SEO & Sitemap'
+        sitemap: Sitemap
+        sitemapStaticPages: 'Static Pages'
+        subject: Subject
+        text: Text
+        texts: Texts
+        title: Title
+    classes:
+        customer:
+            title: Customer
+            titlePlural: Customers
+        eventCategory:
+            title: Event Category
+            titlePlural: Event Categories
+        location:
+            title: Location
+            titlePlural: Locations
+        manufacturer:
+            title: Manufacturer
+            titlePlural: Manufacturers
+        rentalCategory:
+            title: 'Rental Category'
+            titlePlural: 'Rental Categories'

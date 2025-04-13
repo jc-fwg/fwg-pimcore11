@@ -1,0 +1,11 @@
+diff --git a/Command/BackupCommand.php b/Command/BackupCommand.php
+--- a/Command/BackupCommand.php
++++ b/Command/BackupCommand.php	(date 1720527352000)
+@@ -94,7 +94,6 @@
+         $ignoreFiles[] = str_replace(PIMCORE_PROJECT_ROOT.' / ', '', PIMCORE_WEB_ROOT).'/var/tmp';
+         $ignoreFiles[] = str_replace(PIMCORE_PROJECT_ROOT.' / ', '', PIMCORE_SYSTEM_TEMP_DIRECTORY);
+         $ignoreFiles[] = str_replace(PIMCORE_PROJECT_ROOT.' / ', '', PIMCORE_PRIVATE_VAR).'/sessions';
+-        $ignoreFiles[] = str_replace(PIMCORE_PROJECT_ROOT.' / ', '', PIMCORE_LOG_FILEOBJECT_DIRECTORY);
+         $ignoreFiles[] = str_replace(PIMCORE_PROJECT_ROOT.' / ', '', PIMCORE_LOG_DIRECTORY);
+         $ignoreFiles = array_map(static function($path) {
+             return '--exclude "'.$path.'"';

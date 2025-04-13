@@ -1,0 +1,26 @@
+pimcore:
+    assets:
+        image:
+            thumbnails:
+                definitions:
+                    eventDetailsGalleryThumbnail:
+                        items:
+                            -
+                                method: scaleByHeight
+                                arguments:
+                                    height: 138
+                                    forceResize: false
+                        medias: {  }
+                        name: eventDetailsGalleryThumbnail
+                        description: ''
+                        group: Events
+                        format: JPEG
+                        quality: 60
+                        highResolution: null
+                        preserveColor: false
+                        preserveMetaData: false
+                        rasterizeSVG: false
+                        downloadable: false
+                        modificationDate: 1728936734
+                        creationDate: 1728327905
+                        preserveAnimation: false

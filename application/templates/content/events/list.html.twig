@@ -1,0 +1,93 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% do pimcore_head_link().appendStylesheet(asset('static/css/list.css'), 'screen') %}
+
+{% set headlineFrontend = "events.list.introText.headlineCategories"|trans %}
+{% if
+    eventCategory is defined and
+    eventCategory is not null
+%}
+    {% set headlineFrontend = "events.list.introText.headlineCategory"|trans ~ " " ~ eventCategory.name %}
+{% endif %}
+
+{% do pimcore_head_title().prepend(headlineFrontend) %}
+
+{% if document is not null and document.description != ""%}
+    {% do pimcore_head_meta().appendName("description", document.description) %}
+{% endif %}
+
+{% block teaserImage %}
+    {% if editmode %}
+        {{ pimcore_image("teaserImage", {
+            "width": 400,
+            "title": "Teaser-Image",
+        }) }}
+    {% elseif document.editable("teaserImage") is not null %}
+        <img src="{{ document.editable("teaserImage").getThumbnail("teaser1600") }}" alt="{{ headlineFrontend }}" />
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {# HEADER #}
+    <div class="container-fluid head">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-xs-12 col-md-9 col-sm-12">
+                    <h1>
+                        {% if editmode %}
+                            {{ "events.list.editmode.headlineNotEditable"|trans }}
+                        {% else %}
+                            {{ headlineFrontend }}
+                        {% endif %}
+                    </h1>
+                    {% if editmode %}
+                        {{ pimcore_wysiwyg("introText", {
+                            "placeholder": "Introtext inklusive Überschrift (Heading 1)"
+                        }) }}
+                    {% else %}
+                        {{ document.editable("introText").data|raw }}
+                    {% endif %}
+                </div>
+                <div class="col-lg-3 col-xs-12 col-md-3 col-sm-12">
+                    <ul id="categories">
+                        <li>
+                            {{ "generic.categories"|trans }}
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </li>
+                        <li{% if eventCategory is null %} class="active"{% endif %}>
+                            <a href="/referenzen/">
+                                {{ "events.list.eventCategories.all"|trans }}
+                            </a>
+                        </li>
+                        {% for eventCategoryItem in eventCategories %}
+                            <li{% if eventCategory is not null and eventCategory.id == eventCategoryItem.oo_id %} class="active"{% endif %}><a href="/referenzen/{{ eventCategoryItem.slug }}/">{{ eventCategoryItem.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div id="categories-trigger" class="visible-xs visible-sm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# ITEMS #}
+    <div class="container-fluid images">
+        <div class="container">
+            <div id="items">
+                {% for event in events %}
+                    <a href="/referenz/{{ event.event.slug }}" data-id="{{ event.uuid }}" class="col-lg-3 col-xs-12 col-md-6 col-sm-6 item">
+                         <div class="inner">
+                            <div class="frame">
+                                {% set imageSrc = (event.imageList is not null) ? event.imageList.getThumbnail("eventList") : "/static/gfx/coming-soon.jpg" %}
+                                <img src="{{ imageSrc }}" alt="{{ event.title|join(', ') }}">
+                            </div>
+                             {% for slice in event.title %}
+                                 {% if loop.first %}<h3>{{ slice }}</h3>{% else %}<h4>{{ slice }}</h4>{% endif %}
+                             {% endfor %}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,140 @@
+parameters:
+    secret: lsMRqimn7GT9gbXcumkT4VemAjMywAhJDVYih1SBv6Q=
+
+    # Presta Sitemap bundle : sitemap dumper
+    # https://github.com/prestaconcept/PrestaSitemapBundle/blob/3.x/doc/2-configuration.md#configuring-your-application-base-url
+    router.request_context.host: artworldmedia.de
+    router.request_context.scheme: https
+
+    # customize the full path to external executables
+    # normally they are auto-detected by `which program` or auto-discovered in the configured path in
+    # System Settings -> General -> Additional $PATH variable
+    # but in general it's a good idea to have your programs in your $PATH environment variable (system wide)
+
+    #pimcore_executable_composer: php /opt/vendor/bin/composer.phar
+    #pimcore_executable_html2text: /usr/local/html2text/bin/html2text
+    #pimcore_executable_soffice: /opt/libreoffice/bin/soffice
+    #pimcore_executable_gs: /opt/ghostscript/bin/gs
+    #pimcore_executable_pdftotext: /opt/tools/pdftotext
+    #pimcore_executable_xvfb-run: /opt/tools/xvfb-run
+    #pimcore_executable_pngcrush: /opt/tools/pngcrush
+    #pimcore_executable_zopflipng: /opt/tools/zopflipng
+    #pimcore_executable_pngout: /opt/tools/pngout
+    #pimcore_executable_advpng: /opt/tools/advpng
+    #pimcore_executable_cjpeg: /opt/tools/cjpeg
+    #pimcore_executable_jpegoptim: /opt/tools/jpegoptim
+    #pimcore_executable_php: /usr/local/custom-php/bin/php
+    #pimcore_executable_nice: /opt/tools/nice
+    #pimcore_executable_nohup: /opt/tools/nohup
+    #pimcore_executable_ffmpeg: /opt/tools/ffmpeg
+    #pimcore_executable_exiftool: /opt/tools/exiftool
+    #pimcore_executable_wkhtmltoimage: /usr/local/bin/wkhtmltoimage
+    #pimcore_executable_timeout: /usr/bin/timeout
+    #pimcore_executable_facedetect: /usr/bin/facedetect
+    # graphviz
+    #pimcore_executable_dot: /usr/bin/dot
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    #
+    # CONTROLLERS
+    #
+
+    App\Controller\:
+        resource: '../src/Controller'
+        public: true
+        tags: [ 'controller.service_arguments' ]
+
+    #
+    # COMMANDS
+    #
+
+    App\Command\:
+        resource: '../src/Command/*'
+        tags: [ 'console.command' ]
+
+    App\Command\Build\CreateFoldersCommand:
+        arguments:
+            $assetFolders: '%commands.create_folders.asset%'
+            $documentFolders: '%commands.create_folders.document%'
+            $dataObjectFolders: '%commands.create_folders.dataObject%'
+
+    App\Command\Build\CreateWebsiteSettingsCommand:
+        arguments:
+            $assetWebsiteSettings: '%commands.create_website_settings.asset%'
+            $checkboxWebsiteSettings: '%commands.create_website_settings.checkbox%'
+            $documentWebsiteSettings: '%commands.create_website_settings.document%'
+            $objectWebsiteSettings: '%commands.create_website_settings.object%'
+            $textWebsiteSettings: '%commands.create_website_settings.text%'
+
+    #
+    # EVENT SUBSCRIBERS
+    #
+
+    App\EventSubscriber\:
+        resource: '../src/EventSubscriber'
+        public: true
+
+    App\EventSubscriber\PrestaSitemapEventSubscriber:
+        public: true
+        arguments:
+            $routerContext:
+                host: '%router.request_context.host%'
+                scheme: '%router.request_context.scheme%'
+
+    #
+    # OPTIONS PROVIDERS
+    #
+
+    App\OptionsProvider\:
+        resource: '../src/OptionsProvider'
+        public: true
+
+    #
+    # REPOSITORIES
+    #
+
+    App\Adapter\App\Database\Doctrine\Repository\:
+        resource: '../src/Adapter/App/Database/Doctrine/Repository'
+        public: true
+
+    App\Adapter\Redaxo\Database\Doctrine\Repository\RedaxoRepository:
+        arguments:
+            $redaxoDb: '@doctrine.dbal.redaxo_connection'
+
+    #
+    # SERVICES
+    #
+
+    App\Service\:
+        resource: '../src/Service'
+        public: true
+
+    ### Blackbit Backup & Sync Bundle
+    blackbit.backup.adapter:
+        class: League\Flysystem\Local\LocalFilesystemAdapter
+        arguments:
+            $location: './backup'
+
+
+    # Example custom templating helper
+    # App\Templating\Helper\Example:
+    #     # templating helpers need to be public as they
+    #     # are fetched from the container on demand
+    #     public: true
+    #     tags:
+    #         - { name: templating.helper, alias: fooBar }
+
+    # Example event listener for objects
+    # App\EventListener\TestListener:
+    #     tags:
+    #         - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onObjectPreUpdate }

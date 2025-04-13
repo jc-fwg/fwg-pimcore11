@@ -1,0 +1,23 @@
+parameters:
+    commands.create_folders.asset:
+        - !php/const App\Constant\FolderConstants::ASSET_EVENTS
+        - !php/const App\Constant\FolderConstants::ASSET_EVENTS_NOT_RELATED
+        - !php/const App\Constant\FolderConstants::ASSET_MATERIAL
+        - !php/const App\Constant\FolderConstants::ASSET_MATERIAL_LISTS
+        - !php/const App\Constant\FolderConstants::ASSET_WEBSITE
+    commands.create_folders.document:
+        - !php/const App\Constant\FolderConstants::DOCUMENT_ERROR
+        - !php/const App\Constant\FolderConstants::DOCUMENT_INCLUDES
+        - !php/const App\Constant\FolderConstants::DOCUMENT_META
+    commands.create_folders.dataObject:
+        - !php/const App\Constant\FolderConstants::OBJECT_EVENTS
+        - !php/const App\Constant\FolderConstants::OBJECT_EVENTS_EVENTS
+        - !php/const App\Constant\FolderConstants::OBJECT_EVENTS_EVENTS_INACTIVE
+        - !php/const App\Constant\FolderConstants::OBJECT_EVENTS_CATEGORIES
+        - !php/const App\Constant\FolderConstants::OBJECT_EVENTS_CUSTOMER
+        - !php/const App\Constant\FolderConstants::OBJECT_EVENTS_LOCATIONS
+        - !php/const App\Constant\FolderConstants::OBJECT_MATERIAL
+        - !php/const App\Constant\FolderConstants::OBJECT_MATERIAL_CATEGORIES
+        - !php/const App\Constant\FolderConstants::OBJECT_MATERIAL_MANUFACTURERS
+        - !php/const App\Constant\FolderConstants::OBJECT_MATERIAL_MATERIAL
+        - !php/const App\Constant\FolderConstants::OBJECT_MATERIAL_MATERIAL_INACTIVE

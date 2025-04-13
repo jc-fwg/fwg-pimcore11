@@ -1,0 +1,14 @@
+pimcore:
+    documents:
+        doc_types:
+            definitions:
+                5d117003-4c31-4e93-b133-eb422b1517d9:
+                    name: leistungen
+                    group: CMS
+                    controller: 'App\Controller\DefaultController::servicesAction'
+                    template: null
+                    type: page
+                    priority: 0
+                    creationDate: 1729797225
+                    modificationDate: 1729797312
+                    staticGeneratorEnabled: false

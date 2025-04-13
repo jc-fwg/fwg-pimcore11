@@ -1,0 +1,64 @@
+{% extends "layouts/layout.html.twig" %}
+
+{% do pimcore_head_link().appendStylesheet(asset("static/libs/unitegallery/css/unite-gallery.css"), "screen") %}
+{% do pimcore_head_link().appendStylesheet(asset("static/css/references.css"), "screen") %}
+
+{% do pimcore_head_script().offsetSetFile(200, asset("static/libs/unitegallery/js/unitegallery.min.js")) %}
+{% do pimcore_head_script().appendFile(asset("static/libs/unitegallery/themes/tiles/ug-theme-tiles.js")) %}
+
+{% set eventTitle = event.title|join(", ") %}
+
+{% block teaserImage %}
+    {% if event.imageTeaser is not null %}
+        <img src="{{ event.imageTeaser.getThumbnail("teaser1600") }}" alt="{{ eventTitle }}">
+    {% endif %}
+{% endblock %}
+
+{% for slice in event.title %}
+    {% do pimcore_head_title().append(slice) %}
+{% endfor %}
+{% if event.eventCategory is not null %}
+    {% do pimcore_head_title().append(event.eventCategory.name) %}
+{% endif %}
+{% if event.event.text is not null %}
+    {% do pimcore_head_meta().appendName("description", event.event.text|raw) %}
+{% endif %}
+
+{% block content %}
+    <div class="container-fluid head">
+        <div class="container">
+            {% for slice in event.title %}
+                {% if loop.first %}<h1>{{ slice }}</h1>{% else %}<h2>{{ slice }}</h2>{% endif %}
+            {% endfor %}
+
+            <p class="text">
+                {{ event.event.text|raw }}
+            </p>
+
+            {% if event.eventCategory is not null %}
+                <a href="/referenzen/{{ event.eventCategory.slug }}" class="more">
+                    <span class="glyphicon glyphicon-arrow-right"></span> {{ "events.details.ourReferencesFromTheCategory"|trans }} {{ event.eventCategory.name }}
+                </a>
+            {% endif %}
+            <a href="/referenzen" class="more">
+                <span class="glyphicon glyphicon-arrow-right"></span> {{ "events.details.allReferences"|trans }}
+            </a>
+        </div>
+    </div>
+
+    {# GALLERY #}
+    <div class="container-fluid images">
+        <div class="container">
+            <div id="gallery" class="js-unitegallery">
+                {% for image in event.imageGallery %}
+                    <img
+                        src="{{ image.getThumbnail("eventDetailsGalleryThumbnail") }}"
+                        alt="{{ eventTitle }}"
+                        data-image="{{ image.getThumbnail("eventDetailsGallery") }}"
+                        data-description="{{ eventTitle }}"
+                    />
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

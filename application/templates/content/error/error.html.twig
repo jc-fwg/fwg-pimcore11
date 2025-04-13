@@ -1,0 +1,20 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block teaserImage %}
+    {% if editmode %}
+        {{ pimcore_image("teaserImage", {
+            "width": 400,
+            "title": "Teaser-Image",
+        }) }}
+    {% elseif document.editable("teaserImage") is not null %}
+        <img src="{{ document.editable("teaserImage").getThumbnail("teaser1900x900") }}" alt="Seite nicht gefunden" />
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container page-404">
+            {{ pimcore_wysiwyg("wysiwyg") }}
+        </div>
+    </div>
+{% endblock %}

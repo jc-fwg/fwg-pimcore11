@@ -1,0 +1,322 @@
+@import "_base.less";
+
+.navbar-brand {
+
+    img {
+        width: 100px;
+    }
+}
+
+header {
+	
+    .cover {
+        .opacity(0.6);
+        position: absolute;
+        width: 100%;
+        height: auto;
+        min-width: 100%;
+        min-height: 100%;
+        background-color: #000;
+        object-fit: cover;   
+        z-index: 5;
+    }
+    
+    .covered {
+        width: 100%;
+        height: auto;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        z-index: 4;
+    }    
+    
+    .highlight {
+        position: absolute;
+        left: 50%;
+        bottom: 50%;
+        width: 450px;
+        margin: 0 0 -125px -225px;
+        color: #fff;
+        z-index: 6;
+
+        img {
+            width: 450px;
+            height: auto;
+        }
+    }
+
+    .slider {
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .carousel-control {
+            z-index: 10;
+        }
+    }
+}
+
+.container,
+.container-fluid {
+
+    &.welcome {
+        margin-top: 25px;
+    }
+
+    /* Portfolio */
+    #portfolio {
+        padding: 0 0 35px 0;
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+
+        a {
+            text-decoration: none;
+            text-align: center;
+            color: @color-grey;
+
+            img {
+                width: auto;
+                height: 50px;
+            }
+
+            h2 {
+                font-size: 18px;
+                margin: 85px 0 15px 0;
+            }
+
+            ul {
+                padding: 15px 10px 0 25px;
+                text-align: left;
+                list-style: square;
+                border-top: 1px solid @color-grey-light;
+
+                li {
+                    line-height: 24px;
+                }
+            }
+
+            &.planung-und-beratung {
+                background: url('@{path-gfx}leistungen-planung-beratung.svg') no-repeat center 10px;
+                background-size: auto 50px;
+
+                &.active,
+                &:hover {
+                    background: url('@{path-gfx}leistungen-planung-beratung-active.svg') no-repeat center 10px;
+                    background-size: auto 50px;
+                }
+            }
+
+            &.aufbau-und-abbau {
+                background: url('@{path-gfx}leistungen-aufbau-abbau.svg') no-repeat center 10px;
+                background-size: auto 50px;
+
+                &.active,
+                &:hover {
+                    background: url('@{path-gfx}leistungen-aufbau-abbau-active.svg') no-repeat center 10px;
+                    background-size: auto 50px;
+                }
+            }
+
+            &.technische-betreuung {
+                background: url('@{path-gfx}leistungen-technische-betreuung.svg') no-repeat center 10px;
+                background-size: auto 50px;
+
+                &.active,
+                &:hover {
+                    background: url('@{path-gfx}leistungen-technische-betreuung-active.svg') no-repeat center 10px;
+                    background-size: auto 50px;
+                }
+            }
+
+            &.vermietung {
+                background: url('@{path-gfx}leistungen-vermietung.svg') no-repeat center 10px;
+                background-size: auto 50px;
+
+                &.active,
+                &:hover {
+                    background: url('@{path-gfx}leistungen-vermietung-active.svg') no-repeat center 10px;
+                    background-size: auto 50px;
+                }
+            }
+        }
+    }
+
+    /* References & rental */
+    &#references,
+    &#rental {
+        padding: 35px 0;
+
+        .item {
+            margin: 15px 0 0 0;
+            text-align: center;
+            text-decoration: none;
+
+            img {
+                width: 265px;
+                height: 165px;
+                border: 1px solid #fff;
+            }
+        }
+    }
+
+    /* References */
+    &#references {
+        background: url('@{path-gfx}home-references.jpg') no-repeat center center;
+        background-size: 100% auto;
+
+        .item {
+            text-align: left;
+
+            &:nth-child(even) {
+                text-align: right;
+            }
+
+            img {
+                width: 85%;
+                max-width: 450px;
+                height: auto;
+            }
+
+            p {
+                display: inline-block;
+                padding: 5px 10px;
+                width: 85%;
+                max-width: 450px;
+                background: @color-grey-dark;
+                color: #fff;
+                text-align: left;
+            }
+        }
+    }
+
+    /* Rental */
+    &#rental {
+        .box-shadow();
+        z-index: 2;
+
+        .item {
+
+            img {
+                border: 1px solid @color-grey-dark;
+            }
+        }
+
+        .info {
+            padding: 5px 10px;
+            width: 265px;
+            height: 52px;
+            background: @color-grey-dark;
+            color: #fff;
+            margin: auto;
+        }
+    }
+
+    /* Map */
+    &#map {
+        position: relative;
+        height: 450px;
+        margin-top: 5px;
+        z-index: 1;
+        background: url('@{path-gfx}osmmap.jpg') no-repeat center center;
+        background-size: auto;
+
+        .map-wrap {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 40px;
+            margin-top: 6%;
+            display: inline-flex;
+            color: #fff;
+            border-radius: 10px;
+
+            .map-address {
+
+                b {
+                    color: #3CA487;
+                }
+
+                a {
+                    color: #fff;
+                    font-weight: bold;
+                    background-color: #266956;
+                    padding: 5px 15px;
+                    border-radius: 7px;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: #266956;
+                        background-color: #fff;
+                    }
+                }
+
+                &.map-address-right {
+                    margin-left: 70px;
+                }
+            }
+        }
+
+        .map-osm {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 2px 6px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    header {
+
+        .cover {
+            display: none;
+        }
+    }
+
+    #references,
+    #rental {
+        padding: 0 0 15px 0 !important;
+        text-align: center;
+    }
+
+    #references {
+
+        a {
+            text-align: center !important;
+        }
+    }
+
+    .container,
+    .container-fluid {
+
+        &.addresses {
+            .box-shadow();
+            padding: 0 15px;
+
+            a {
+                &.show-mobile {
+                    display: block;
+                }
+            }
+        }
+
+        /* Map */
+        &#map {
+
+            .map-wrap {
+                flex-direction: column;
+
+                .map-address {
+
+                    &.map-address-right {
+                        margin: 30px 0 0 0;
+                    }
+                }
+            }
+        }
+    }
+}

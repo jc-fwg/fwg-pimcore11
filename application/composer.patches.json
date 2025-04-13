@@ -1,0 +1,7 @@
+{
+  "patches": {
+    "blackbit_digital_commerce/pimcore-backup": {
+      "Remove usage of undefined constant": "patches/composer/blackbit_digital_commerce/pimcore-backup/remove-undefined-constant.patch"
+    }
+  }
+}

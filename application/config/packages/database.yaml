@@ -1,0 +1,20 @@
+doctrine:
+    dbal:
+        connections:
+            default:
+                host: '%env(DATABASE_HOST)%'
+                port: '%env(int:DATABASE_PORT)%'
+                user: '%env(DATABASE_USER)%'
+                password: '%env(DATABASE_PASSWORD)%'
+                dbname: '%env(DATABASE_NAME)%'
+                server_version: '%env(DATABASE_SERVER_VERSION)%'
+                mapping_types:
+                    enum: string
+                    bit: boolean
+            redaxo:
+                host: '%env(DATABASE_REDAXO_HOST)%'
+                port: '%env(DATABASE_REDAXO_PORT)%'
+                user: '%env(DATABASE_REDAXO_USER)%'
+                password: '%env(DATABASE_REDAXO_PASSWORD)%'
+                dbname: '%env(DATABASE_REDAXO_NAME)%'
+                server_version: '%env(DATABASE_REDAXO_SERVER_VERSION)%'

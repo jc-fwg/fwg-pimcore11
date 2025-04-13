@@ -1,0 +1,43 @@
+<footer class="container-fluid">
+    <div class="container">
+        <address class="col-lg-3 col-mg-3 col-sm-6 col-xs-12">
+            {{ pimcore_textarea("footerAddress", {
+                nl2br: true,
+                placehoder: "Adresse",
+            }) }}
+        </address>
+        <address class="col-lg-3 col-mg-3 col-sm-6 col-xs-12">
+            <span class="glyphicon glyphicon-earphone p-0"></span>{{ pimcore_link("footerPhone", {
+                placeholder: "Text: +49 6184 937450 / Link: tel:00496184937450",
+            }) }}
+            <br>
+            <span class="glyphicon glyphicon-print"></span>{{ pimcore_input("footerFax", {
+                placeholder: "Faxnummer",
+            }) }}<br>
+            <span class="glyphicon glyphicon-envelope"></span>{{ pimcore_link("footerEmail", {
+                placeholder: "E-Mail-Adresse",
+            }) }}
+        </address>
+        <div class="col-lg-3 col-mg-3 col-sm-6 col-xs-12 meta">
+            <a href="https://www.facebook.com/artworldmedia/" target="_blank" class="social">artworldmedia GmbH auf Facebook</a><br>
+            <a href="https://www.instagram.com/artworldmedia.de/" target="_blank" class="social instagram">artworldmedia GmbH auf Instragram</a><br>
+            <a href="/nachhaltigkeit">
+                <img src="/static/gfx/icon-nachhaltigkeit.png" alt="nachhaltigkeit" class="nav-icon">Nachhaltigkeit
+            </a><br>
+            <span class="glyphicon glyphicon-list-alt"></span><a href="/datenschutz-impressum">Datenschutz & Impressum</a><br>
+        </div>
+        <div class="col-lg-3 col-mg-3 col-sm-6 col-xs-12">
+            <div class="kmcb">
+                <a href="https://www.kkcb.de/" target="_blank">
+                    <img src="/static/gfx/logo-king-kamehameha-club-band.png" alt="King Kamehameha Club Band">
+                </a>
+                <p>Technischer Dienstleister der<br><a href="https://www.kkcb.de/" target="_blank">King Kamehameha Club Band</a></p>
+            </div>
+            <div class="ihk">
+                {{ pimcore_input("footerTraining", {
+                    placeholder: "Ausbildungsbetrieb der IHK Hanau...",
+                }) }}
+            </div>
+        </div>
+    </div>
+</footer>

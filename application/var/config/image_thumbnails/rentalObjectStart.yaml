@@ -1,0 +1,27 @@
+pimcore:
+    assets:
+        image:
+            thumbnails:
+                definitions:
+                    rentalObjectStart:
+                        items:
+                            -
+                                method: contain
+                                arguments:
+                                    width: 265
+                                    height: 165
+                                    forceResize: false
+                        medias: {  }
+                        name: rentalObjectStart
+                        description: ''
+                        group: Rental
+                        format: JPEG
+                        quality: 65
+                        highResolution: null
+                        preserveColor: false
+                        preserveMetaData: false
+                        rasterizeSVG: false
+                        downloadable: false
+                        modificationDate: 1730059367
+                        creationDate: 1729960896
+                        preserveAnimation: false

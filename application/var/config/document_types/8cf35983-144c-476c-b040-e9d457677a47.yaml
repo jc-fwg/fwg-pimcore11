@@ -1,0 +1,14 @@
+pimcore:
+    documents:
+        doc_types:
+            definitions:
+                8cf35983-144c-476c-b040-e9d457677a47:
+                    name: 2-spaltig
+                    group: CMS
+                    controller: 'App\Controller\DefaultController::cmsTwoColumnsAction'
+                    template: null
+                    type: page
+                    priority: 0
+                    creationDate: 1729743922
+                    modificationDate: 1729743962
+                    staticGeneratorEnabled: false

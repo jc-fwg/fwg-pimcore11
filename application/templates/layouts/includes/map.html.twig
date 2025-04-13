@@ -1,0 +1,35 @@
+<div class="container-fluid text-center" id="map">
+    <div class="map-wrap text-left">
+        <div class="map-address">
+            <b>{{ pimcore_input("addressLeftHeadline", {
+                    placeholder: "Titel der Adresse"
+                }) }}</b>
+            <address>
+                {{ pimcore_textarea("addressLeftData", {
+                    placeholder: "Strasse und Ort",
+                    nl2br: true,
+                }) }}
+            </address>
+            {{ pimcore_link("addressLeftGoogleMapsLink", {
+                placeholder: "Google Maps Link",
+                target: "_blank",
+            }) }}
+        </div>
+        <div class="map-address map-address-right">
+            <b>{{ pimcore_input("addressRightHeadline", {
+                    placeholder: "Titel der Adresse"
+                }) }}</b>
+            <address>
+                {{ pimcore_textarea("addressRightData", {
+                    placeholder: "Strasse und Ort",
+                    nl2br: true,
+                }) }}
+            </address>
+            {{ pimcore_link("addressRightGoogleMapsLink", {
+                placeholder: "Google Maps Link",
+                target: "_blank",
+            }) }}
+        </div>
+    </div>
+    <div class="map-osm">© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</div>
+</div>
