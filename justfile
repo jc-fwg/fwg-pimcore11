@@ -25,5 +25,9 @@ git-pull-upstream:
     git fetch upstream; git merge upstream/main --allow-unrelated-histories
 
 pim-install:
-    #docker compose exec php vendor/bin/pimcore-install --mysql-host-socket=db --mysql-username=pimcore --mysql-password=pimcore --mysql-database=pimcore
+    docker compose exec php vendor/bin/pimcore-install --mysql-host-socket=db --mysql-username=pimcore --mysql-password=pimcore --mysql-database=pimcore && \
+    docker compose exec php bin/console pimcore:bundle:install PimcoreAdminBundle && \
+    docker compose exec php bin/console pimcore:bundle:install PimcoreApplicationLoggerBundle && \
+    docker compose exec php bin/console pimcore:bundle:install PimcoreSimpleBackendSearchBundle && \
+    docker compose exec php bin/console pimcore:bundle:install PimcoreUuidBundle
 

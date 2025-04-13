@@ -1,4 +1,5 @@
 <?php
+// TODO: Delete .env.prod.local after cp
 namespace Deployer;
 
 require 'recipe/pimcore.php';
