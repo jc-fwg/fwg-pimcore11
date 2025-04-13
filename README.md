@@ -43,4 +43,4 @@ http://localhost/let-me-in
 - ```git remote add upstream git@github.com:jc-fwg/pimcore-bbx-template.git```
 ### Fetch und Pull
 - ```git fetch upstream```
-- ```git merge upstream/main```
+- ```git merge upstream/main --allow-unrelated-histories```
