@@ -2,22 +2,18 @@ import 'project.just'
 
 set dotenv-filename := "application/.env"
 
-alias du := docker-start
-alias dd := docker-down
-alias dr := docker-restart
-
 list:
     just --list
 
-docker-start:
+start:
     cd ./application; docker compose up -d
 
-docker-down:
+stop:
     cd ./application; docker compose down
 
-docker-restart:
-    just docker-down
-    just docker-start
+restart:
+    just stop
+    just start
 
 shell:
     @docker exec -it $COMPOSE_PROJECT_NAME-php-1 /bin/bash
