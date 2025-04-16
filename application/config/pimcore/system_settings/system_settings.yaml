@@ -10,6 +10,7 @@ pimcore:
             - de
         default_language: de
         debug_admin_translations: false
+        timezone: Europe/Berlin
     documents:
         versions:
             days: null

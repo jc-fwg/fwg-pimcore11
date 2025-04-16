@@ -8,6 +8,7 @@ Pimcore Version: ^11.5.4
 - [Projekt vorbereiten](#projekt-vorbereiten)
   - [.env](#env)
   - [.env.prod.local](#envprodlocal)
+  - [Anpassungen in application/config/config.yaml](#anpassungen-in-applicationconfigconfigyaml)
 - [Docker Setup](#docker-setup)
 - [Pimcore Installation](#pimcore-installation)
 - [Login](#login)
@@ -40,7 +41,14 @@ und ggf auftretende Issues auflösen.
 - ```cp .env.dist .env```
 
 ### .env.prod.local
-Wird für Prod Deployment benutzt und muss angepasst werden
+Wird für Prod Deployment benutzt und muss entsprechend angepasst werden
+
+### Anpassungen in application/config/config.yaml 
+Folgende Anpassungen sind notwendig bzw zu überprüfen:
+- ```pimcore.email.sender.name```
+- ```pimcore.email.sender.email```
+- ```pimcore.mailer.transports.main```
+- ```pimcore.pimcore_uuid.instance_identifier```
 
 ## Docker Setup
 - ```just start``` zieht Images und startet Container
@@ -62,6 +70,9 @@ Schritte durchlaufen und dann sollte es passen
 
 ## Login
 http://localhost/let-me-in
+
+- User: admin
+- Pass: admin
 
 ## Projekt Justfile
 Eigene Justfile Entries können in der ```project.just``` implementiert werden. 

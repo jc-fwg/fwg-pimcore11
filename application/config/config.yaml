@@ -84,8 +84,8 @@ pimcore:
 #        proxy_pass: ''
     email:
         sender:
-            name: 'artworld:media GmbH'
-            email: webmaster@artworldmedia.com
+            name: 'set name'
+            email: your@email.com
         return:
             name: ''
             email: ''
@@ -121,7 +121,7 @@ framework:
 #### SYMFONY MAILER TRANSPORTS
     mailer:
         transports:
-            main: "smtp://m064b8d2:m064b8d2@awmedia.kasserver.com"
+            main: "smtp://user:password@smtp.host"
 #            pimcore_newsletter: smtp://user:pass@smtp.example.com:port
 
 # pimcore_newsletter:
@@ -138,5 +138,7 @@ pimcore_admin:
     custom_admin_path_identifier: ASgUpG3R3xHyW7ASBJ49VQ6ZRDtluJe2u5471YkQGpaWvF6l6IIVeS85l0Wl
     custom_admin_route_name: pimcore_custom_admin_route
 
+# Pimcore UUID bundle
+# Set identifier for your needs. See: https://docs.pimcore.com/platform/Pimcore/Development_Tools_and_Details/UUID_Support/
 pimcore_uuid:
-    instance_identifier: 'artworldmedia'
+    instance_identifier: 'your_unique_instance_identifier'

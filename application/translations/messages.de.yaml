@@ -1,32 +1,5 @@
 generic:
     categories: 'Kategorien'
-events:
-    details:
-        ourReferencesFromTheCategory: 'Unsere Referenzen aus der Kategorie'
-        allReferences: 'Alle Referenzen'
-    list:
-        eventCategories:
-            title: Kategorien
-            all: Alle
-        editmode:
-            headlineNotEditable: 'Headline (nicht editierbar)'
-        introText:
-            name: Introtext
-            headlineCategories: 'Auszug unserer Referenzen aus allen Kategorien'
-            headlineCategory: 'Unsere Referenzen aus der Kategorie'
-    start:
-        headline: "Aktuelle Referenzen"
-rental:
-    details:
-        allRentals: 'Unser Material'
-    list:
-        form:
-            email:
-                placeholder: 'Ihre E-Mail-Adresse'
-            result:
-                placeholder: 'Ihr Ergebnis'
-            button:
-                value: 'Liste anfordern'
-        headlineItems: 'Unsere Neuzugänge in der Vermietung'
-    start:
-        newRentals: "Neu in der Vermietung"
+#some:
+#    example:
+#        howToUse: 'Ein Beispiel zur Anwendung'

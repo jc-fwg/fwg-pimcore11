@@ -3,8 +3,8 @@ parameters:
 
     # Presta Sitemap bundle : sitemap dumper
     # https://github.com/prestaconcept/PrestaSitemapBundle/blob/3.x/doc/2-configuration.md#configuring-your-application-base-url
-    router.request_context.host: artworldmedia.de
-    router.request_context.scheme: https
+#    router.request_context.host: yourdomain.de
+#    router.request_context.scheme: https
 
     # customize the full path to external executables
     # normally they are auto-detected by `which program` or auto-discovered in the configured path in
@@ -84,39 +84,12 @@ services:
         resource: '../src/EventSubscriber'
         public: true
 
-    App\EventSubscriber\PrestaSitemapEventSubscriber:
-        public: true
-        arguments:
-            $routerContext:
-                host: '%router.request_context.host%'
-                scheme: '%router.request_context.scheme%'
-
-    #
-    # OPTIONS PROVIDERS
-    #
-
-    App\OptionsProvider\:
-        resource: '../src/OptionsProvider'
-        public: true
-
     #
     # REPOSITORIES
     #
 
     App\Adapter\App\Database\Doctrine\Repository\:
         resource: '../src/Adapter/App/Database/Doctrine/Repository'
-        public: true
-
-    App\Adapter\Redaxo\Database\Doctrine\Repository\RedaxoRepository:
-        arguments:
-            $redaxoDb: '@doctrine.dbal.redaxo_connection'
-
-    #
-    # SERVICES
-    #
-
-    App\Service\:
-        resource: '../src/Service'
         public: true
 
     ### Blackbit Backup & Sync Bundle

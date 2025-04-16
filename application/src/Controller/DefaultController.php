@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
-use Pimcore\Controller\FrontendController;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends FrontendController
+class DefaultController extends BaseController
 {
     #[Template('content/cms/start.html.twig')]
     public function defaultAction(

@@ -28,4 +28,4 @@ pimcore:
             steps: 5
     email:
         debug:
-            email_addresses: webmaster@artworldmedia.com
+            email_addresses: your@debugmail.com

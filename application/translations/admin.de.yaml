@@ -1,49 +1,7 @@
 app:
     generic:
         baseData: 'Stammdaten'
-        bcc: 'BCC-Empfänger'
-        blacklist: 'Blacklist'
-        dateEnd: 'Enddatum'
-        dateStart: 'Startdatum'
-        description: Beschreibung
-        documents: Dokumente
-        imageGallery: 'Bildergalerie'
-        imageTeaser: 'Teaser Bild'
-        location: Standort
-        mailContent: 'E-Mail Inhalt'
-        materialList: 'Materialliste'
-        materialListFile: 'Asset'
-        materialListEmailListTooltip: 'Eine E-Mail-Adresse pro Zeile'
-        media: Medien
-        name: Name
-        orNew: 'oder neu'
-        redaxoArticleSliceId: 'Redaxo Article Slice ID'
-        redaxoDateCreate: 'Redaxo Anlagedatum'
-        redaxoDateUpdate: 'Redaxo Updatedatum'
-        redaxoId: 'Redaxo ID'
-        redaxoSlug: 'Redaxo Slug'
-        redaxoUrl: 'Redaxo URL'
-        seoAndRedaxoData: 'SEO und Redaxo Daten'
-        seoAndSitemap: 'SEO & Sitemap'
-        sitemap: Sitemap
-        sitemapStaticPages: 'Statische Seiten'
-        subject: Betreff
-        text: Text
-        texts: Texte
-        title: Titel
     classes:
         customer:
             title: Kunde
             titlePlural: Kunden
-        eventCategory:
-            title: Event Kategorie
-            titlePlural: Event Kategorien
-        location:
-            title: Location
-            titlePlural: Locations
-        manufacturer:
-            title: Hersteller
-            titlePlural: Hersteller
-        rentalCategory:
-            title: Mietkategorie
-            titlePlural: Mietkategorien
