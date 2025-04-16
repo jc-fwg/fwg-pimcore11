@@ -5,6 +5,8 @@ Pimcore Version: ^11.5.4
 ## Table of Contents
 
 - [Pre Requisites](#pre-requisites)
+- [Github Origin und Upstream konfigurieren](#github-origin-und-upstream-konfigurieren)
+  - [Upstream Pull](#upstream-pull)
 - [Projekt vorbereiten](#projekt-vorbereiten)
   - [.env](#env)
   - [.env.prod.local](#envprodlocal)
@@ -33,6 +35,13 @@ Durch ein ```php -v``` testen, ob die PHP Version nun eine 8.3 ist. Danach:
 - ```composer install```
 
 und ggf auftretende Issues auflösen.
+
+### Github Origin und Upstream konfigurieren
+- Origin setzen auf eigenes Repository: ```git remote add origin https://github.com/your/repository.git```
+- Upstream setzen: ```git remote add upstream git@github.com:jc-fwg/pimcore-bbx-template.git```
+
+### Upstream Pull
+```just git-pull-upstream```
 
 ## Projekt vorbereiten
 
