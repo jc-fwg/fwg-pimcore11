@@ -1,0 +1,10 @@
+set dotenv-filename := "application/.env"
+
+list:
+    just --list
+
+backup-database:
+    bin/console backup:backup --only-database
+
+cache-clear-full:
+    bin/console cache:clear; bin/console pimcore:cache:clear

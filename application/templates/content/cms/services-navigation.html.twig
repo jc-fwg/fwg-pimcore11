@@ -1,0 +1,5 @@
+{% for page in pages %}
+    <a href="{{ page.uri }}" class="col-lg-3 col-md-3 col-xs-3 {{ page.document.key }}{% if page.active %} active{% endif %}">
+        {{ page.document.title }}
+    </a>
+{% endfor %}

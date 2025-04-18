@@ -1,0 +1,7 @@
+app:
+    generic:
+        baseData: 'Base Data'
+    classes:
+        customer:
+            title: Customer
+            titlePlural: Customers

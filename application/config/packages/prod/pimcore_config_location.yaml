@@ -1,0 +1,7 @@
+pimcore:
+    config_location:
+        system_settings:
+            write_target:
+                type: 'settings-store'
+            read_target:
+                type: 'settings-store'

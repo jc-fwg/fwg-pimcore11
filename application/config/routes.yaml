@@ -1,0 +1,10 @@
+_pimcore:
+    resource: "@PimcoreCoreBundle/config/routing.yaml"
+
+pimcore_custom_admin_entry_point:
+    path: /let-me-in
+    controller: Pimcore\Bundle\CoreBundle\Controller\PublicServicesController::customAdminEntryPointAction
+
+app:
+    resource: "../src/Controller/"
+    type: annotation

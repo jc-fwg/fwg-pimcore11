@@ -1,0 +1,67 @@
+#leistungen {
+  margin-top: 25px;
+}
+#leistungen a {
+  margin: 10px 0 0 0;
+  padding: 70px 0 10px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #5e5e5e;
+}
+#leistungen a:hover {
+  text-decoration: none;
+  color: #007560;
+}
+#leistungen a.planung-und-beratung {
+  background: url('/static/gfx/leistungen-planung-beratung.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#leistungen a.planung-und-beratung.active,
+#leistungen a.planung-und-beratung:hover {
+  background: url('/static/gfx/leistungen-planung-beratung-active.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#leistungen a.aufbau-und-abbau {
+  background: url('/static/gfx/leistungen-aufbau-abbau.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#leistungen a.aufbau-und-abbau.active,
+#leistungen a.aufbau-und-abbau:hover {
+  background: url('/static/gfx/leistungen-aufbau-abbau-active.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#leistungen a.technische-betreuung {
+  background: url('/static/gfx/leistungen-technische-betreuung.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#leistungen a.technische-betreuung.active,
+#leistungen a.technische-betreuung:hover {
+  background: url('/static/gfx/leistungen-technische-betreuung-active.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#leistungen a.vermietung {
+  background: url('/static/gfx/leistungen-vermietung.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#leistungen a.vermietung.active,
+#leistungen a.vermietung:hover {
+  background: url('/static/gfx/leistungen-vermietung-active.svg') no-repeat center 10px;
+  background-size: auto 50px;
+}
+#content {
+  margin: 35px 0;
+}
+#content h1 {
+  padding: 0 0 15px 0;
+  border-bottom: 1px solid #d1d1d1;
+}
+#content h2 {
+  color: #5e5e5e;
+  font-weight: normal;
+  font-size: 20px;
+}
+@media (max-width: 767px) {
+  #content h2 {
+    font-size: 18px !important;
+  }
+}

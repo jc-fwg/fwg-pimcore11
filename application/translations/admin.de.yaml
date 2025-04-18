@@ -1,0 +1,7 @@
+app:
+    generic:
+        baseData: 'Stammdaten'
+    classes:
+        customer:
+            title: Kunde
+            titlePlural: Kunden

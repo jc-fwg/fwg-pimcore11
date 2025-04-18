@@ -1,0 +1,47 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% do pimcore_head_link().appendStylesheet(asset('static/css/kontakt.css'), 'screen') %}
+
+{% set documentTitle = "" %}
+{% if document is not null and document.title != ""%}
+    {% do pimcore_head_title().prepend(document.title) %}
+    {% set documentTitle = document.title %}
+{% endif %}
+
+{% if document is not null and document.description != ""%}
+    {% do pimcore_head_meta().appendName("description", document.description) %}
+{% endif %}
+
+{% block teaserImage %}
+    {% if editmode %}
+        {{ pimcore_image("teaserImage", {
+            "width": 400,
+            "title": "Teaser-Image",
+        }) }}
+    {% elseif document.editable("teaserImage") is not null %}
+        <img src="{{ document.editable("teaserImage").getThumbnail("teaser1900x900") }}" alt="{{ documentTitle }}" />
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid addresses">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    {{ pimcore_wysiwyg("headColumnLeft") }}
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    {# todo: Abstand bei XS verringern (h2 ausblenden?) #}
+                    {{ pimcore_wysiwyg("headColumnCenter") }}
+                    {# todo: "jetzt anrufen" Button bei XS verringern #}
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    {{ pimcore_wysiwyg("headColumnRight") }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# FOOTER #}
+    {{ pimcore_inc("/includes/map") }}
+{% endblock %}

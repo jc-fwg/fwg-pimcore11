@@ -1,0 +1,5 @@
+parameters:
+    commands.create_folders.asset:
+    commands.create_folders.document:
+    commands.create_folders.dataObject:
+        #- !php/const App\Constant\FolderConstants::OBJECT_EXAMPLE

@@ -1,0 +1,10 @@
+pimcore:
+    config_location:
+        predefined_asset_metadata:
+            write_target:
+                type: 'symfony-config'
+#        system_settings:
+#            write_target:
+#                type: 'settings-store'
+#            read_target:
+#                type: 'settings-store'

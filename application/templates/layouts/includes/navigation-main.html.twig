@@ -1,0 +1,9 @@
+<ul class="nav navbar-nav">
+    {% for page in pages %}
+        {% if page.documentType == "page" or page.documentType == "link" %}
+            <li>
+                <a href="{{ page.uri }}"{% if page.active %} class="active"{% endif %}>{{ page.title }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,7 @@
+parameters:
+    commands.create_website_settings.asset:
+        #- !php/const App\Constant\WebsiteSettingConstants::AN_EXAMPLE
+    commands.create_website_settings.checkbox:
+    commands.create_website_settings.document:
+    commands.create_website_settings.object:
+    commands.create_website_settings.text:
