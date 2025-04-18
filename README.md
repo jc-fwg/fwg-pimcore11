@@ -25,7 +25,7 @@ Pimcore Version: ^11.5.4
 - [Login](#login)
 - [Projekt Justfile](#projekt-justfile)
 - [Uberspace Deployment](#uberspace-deployment)
-  - [.env.prod.local erstellen](#envprodlocal-erstellen)
+  - [.env.prod.local erstellen und anpassen](#envprodlocal-erstellen-und-anpassen)
   - [Anpassungen in Deployment](#anpassungen-in-deployment)
   - [Deployment](#deployment)
 
@@ -164,9 +164,14 @@ Das bestehende SSH Command kann bzw sollte angepasst werden
 
 ## Uberspace Deployment
 
-### .env.prod.local erstellen
+### .env.prod.local erstellen und anpassen
 Das aktuelle Uberspace Deployment kopiert die .env.prod.local als .env auf den Uberspace.
-Die Datei existiert initial noch nicht, sollte entsprechend angelegt werden. 
+Die Datei existiert initial noch nicht, sollte entsprechend angelegt werden. Hier kann eine Kopie der .env.dist genommen werden.
+Folgende .env Vars müssen angepasst werden:
+
+- ```APP_ENV=prod```
+- ```APP_DEBUG=false```
+- ```APP_SECRET=```
 
 ### Anpassungen in Deployment
 - Daten in `deployment/uberspace.php` anpassen
