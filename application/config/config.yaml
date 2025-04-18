@@ -141,4 +141,4 @@ pimcore_admin:
 # Pimcore UUID bundle
 # Set identifier for your needs. See: https://docs.pimcore.com/platform/Pimcore/Development_Tools_and_Details/UUID_Support/
 pimcore_uuid:
-    instance_identifier: 'your_unique_instance_identifier'
+    instance_identifier: 'fwg_pimcore_11'
