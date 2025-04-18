@@ -25,9 +25,10 @@ Pimcore Version: ^11.5.4
 - [Login](#login)
 - [Projekt Justfile](#projekt-justfile)
 - [Uberspace Deployment](#uberspace-deployment)
-- [Repository Upstream Setup und Usage](#repository-upstream-setup-und-usage)
-  - [Upstream setzen](#upstream-setzen)
-  - [Fetch und Pull](#fetch-und-pull)
+  - [.env.prod.local erstellen](#envprodlocal-erstellen)
+  - [Anpassungen in Deployment](#anpassungen-in-deployment)
+  - [Deployment](#deployment)
+
 
 ## Pre Requisites
 
@@ -162,6 +163,13 @@ Das bestehende SSH Command kann bzw sollte angepasst werden
 
 
 ## Uberspace Deployment
+
+### .env.prod.local erstellen
+Das aktuelle Uberspace Deployment kopiert die .env.prod.local als .env auf den Uberspace.
+Die Datei existiert initial noch nicht, sollte entsprechend angelegt werden. 
+
+### Anpassungen in Deployment
 - Daten in `deployment/uberspace.php` anpassen
 
-```just deploy-uberspace``` zum Deployen
+### Deployment
+```just deploy-uberspace```
