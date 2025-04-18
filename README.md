@@ -5,10 +5,9 @@ Pimcore Version: ^11.5.4
 ## Table of Contents
 
 - [Pre Requisites](#pre-requisites)
-- [Github Origin und Upstream konfigurieren](#github-origin-und-upstream-konfigurieren)
-  - [Upstream Pull](#upstream-pull)
 - [Projekt vorbereiten](#projekt-vorbereiten)
-  - [.env](#env)
+  - [.env aus .dist erstellen](#env-aus-dist-erstellen)
+  - [Project Name setzen](#project-name-setzen)
   - [.env.prod.local](#envprodlocal)
   - [Anpassungen in application/config/config.yaml](#anpassungen-in-applicationconfigconfigyaml)
 - [Docker Setup](#docker-setup)
@@ -36,18 +35,15 @@ Durch ein ```php -v``` testen, ob die PHP Version nun eine 8.3 ist. Danach:
 
 und ggf auftretende Issues auflösen.
 
-### Github Origin und Upstream konfigurieren
-- Origin setzen auf eigenes Repository: ```git remote add origin https://github.com/your/repository.git```
-- Upstream setzen: ```git remote add upstream git@github.com:jc-fwg/pimcore-bbx-template.git```
+## Projekt vorbereitensx
 
-### Upstream Pull
-```just git-pull-upstream```
-
-## Projekt vorbereiten
-
-### .env
-- COMPOSE_PROJECT_NAME in .env.dist anpassen
+### .env aus .dist erstellen
 - ```cp .env.dist .env```
+
+### Project Name setzen
+Der Project Name wird in der .env gesetzt und ist wichtig für die Docker Container Names.
+
+- COMPOSE_PROJECT_NAME in .env.dist anpassen
 
 ### .env.prod.local
 Wird für Prod Deployment benutzt und muss entsprechend angepasst werden
@@ -96,8 +92,12 @@ Das bestehende SSH Command kann bzw sollte angepasst werden
 
 ## Repository Upstream Setup und Usage
 
-### Upstream setzen
-- ```git remote add upstream git@github.com:jc-fwg/pimcore-bbx-template.git```
+### Github Origin und Upstream konfigurieren
+- Origin setzen auf eigenes Repository: ```git remote add origin https://github.com/your/repository.git```
+- Upstream setzen: ```git remote add upstream git@github.com:jc-fwg/pimcore-bbx-template.git```
+
+### Upstream Fetch und Pull
+```just git-pull-upstream```
 
 ### Fetch und Pull
 - ```git fetch upstream```
