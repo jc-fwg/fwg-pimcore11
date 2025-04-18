@@ -25,6 +25,7 @@ git-pull-upstream:
     git fetch upstream; git merge upstream/main --allow-unrelated-histories
 
 pim-install:
+    docker compose exec php composer install && \
     docker compose exec php vendor/bin/pimcore-install \
     --mysql-host-socket=db \
     --mysql-host-socket=$DATABASE_HOST \
