@@ -9,12 +9,12 @@ Pimcore Version: ^11.5.4
   - [PHP 8.3.x](#php-83x)
 - [Github Prerequisites, Template Cloning, Upstream Setup](#github-prerequisites-template-cloning-upstream-setup)
   - [Eigenes Projekt Repository anlegen](#eigenes-projekt-repository-anlegen)
-  - [Origin auf euer Repository setzen](#origin-auf-euer-repository-setzen)
   - [Lokales Verzeichnis und BBX Template clonen](#lokales-verzeichnis-und-bbx-template-clonen)
   - [Git Clone per SSH](#git-clone-per-ssh)
+  - [Origin auf euer Repository setzen](#origin-auf-euer-repository-setzen)
+  - [Git initial setzen und pushen](#git-initial-setzen-und-pushen)
   - [Upstream Setup und Handling](#upstream-setup-und-handling)
   - [Upstream Fetch und Pull](#upstream-fetch-und-pull)
-- [Git Clone per SSH](#git-clone-per-ssh)
 - [Projekt vorbereiten](#projekt-vorbereiten)
   - [.env aus .dist erstellen](#env-aus-dist-erstellen)
   - [Project Name setzen](#project-name-setzen)
@@ -54,14 +54,12 @@ Durch ein ```php -v``` testen, ob die PHP Version nun eine 8.3 ist. Danach:
 
 und ggf auftretende Issues auflösen.
 
+
 ## Github Prerequisites, Template Cloning, Upstream Setup
 
 ### Eigenes Projekt Repository anlegen
 An dieser Stelle macht es Sinn, dass ihr euer eigenes Repository auf Github anlegt.
 Nein, es muss nicht zwingend Github sein. Aber ich beziehe mich darauf, weil ich damit arbeite. ;)
-
-### Origin auf euer Repository setzen
-```git remote add origin https://github.com/your/repository.git```
 
 ### Lokales Verzeichnis und BBX Template clonen
 Ihr braucht Rechte auf dem Repository und euer Public SSH Key muss hinterlegt sein. 
@@ -74,6 +72,27 @@ Am besten lokal ein Verzeichnis anlegen in der Art
 Innerhalb dieses Verzeichnisses dann Git Clone ausführen
 ```git clone git@github.com:jc-fwg/pimcore-bbx-template.git```
 
+Das dadurch angelegte Verzeichnis könnt ihr nach belieben umbenennen.
+```mv pimcore-bbx-template your-name```
+
+### Origin auf euer Repository setzen
+Wichtig! Setzt euren Remote auf SSH, sonst werdet ihr immer wieder nach User und Passwort gefragt.
+
+- ```git remote remove origin```
+- ```git remote add origin git@github.com:your/project.git```
+- ```git remote -v``` um zu prüfen, dass der Origin korrekt gesetzt wurde
+
+### Git initial setzen und pushen
+- ```rm -rf .git```
+- ```git init```
+- ```git add .```
+- ```git commit -m "Initial commit"```
+- ```git remote add origin git@github.com:your/project.git```
+- ```git push -u origin main```
+
+Es kann sein, dass die Github Oush Protection anschlägt aufgrund des Google API Private Key Examples.
+Was ihr an Optionen habt steht in der Meldung mit drin. Entscheidet selbst, wie ihr damit umgeht :)
+
 ### Upstream Setup und Handling
 Das BBX Template wird per Git als Upstream Repository behandelt.
 Somit könnt ihr immer die neuesten Änderungen vom Template ziehen und in euer Repository übernehmen.
@@ -81,6 +100,7 @@ Somit könnt ihr immer die neuesten Änderungen vom Template ziehen und in euer 
 Upstream setzen: ```git remote add upstream git@github.com:jc-fwg/pimcore-bbx-template.git```
 
 ### Upstream Fetch und Pull
+Um die neuesten Änderungen vom Upstream zu ziehen, nutzt ihr einfach just.
 ```just git-pull-upstream```
 
 
