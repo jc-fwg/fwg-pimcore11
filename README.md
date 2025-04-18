@@ -15,7 +15,6 @@ Pimcore Version: ^11.5.4
   - [Git initial setzen und pushen](#git-initial-setzen-und-pushen)
   - [Upstream Setup und Handling](#upstream-setup-und-handling)
   - [Upstream Fetch und Pull](#upstream-fetch-und-pull)
-- [Git Clone per SSH](#git-clone-per-ssh)
 - [Projekt vorbereiten](#projekt-vorbereiten)
   - [.env aus .dist erstellen](#env-aus-dist-erstellen)
   - [Project Name setzen](#project-name-setzen)
