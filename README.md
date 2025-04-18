@@ -167,7 +167,7 @@ Folgende .env Vars müssen angepasst werden:
 
 - ```APP_ENV=prod```
 - ```APP_DEBUG=false```
-- ```APP_SECRET=```
+- ```PIMCORE_DEV_MODE=false```
 
 ### Anpassungen in Deployment
 - Daten in `deployment/uberspace.php` anpassen
