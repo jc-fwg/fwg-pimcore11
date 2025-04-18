@@ -18,7 +18,6 @@ Pimcore Version: ^11.5.4
 - [Projekt vorbereiten](#projekt-vorbereiten)
   - [.env aus .dist erstellen](#env-aus-dist-erstellen)
   - [Project Name setzen](#project-name-setzen)
-  - [.env.prod.local](#envprodlocal)
   - [Anpassungen in application/config/config.yaml](#anpassungen-in-applicationconfigconfigyaml)
 - [Docker Handling](#docker-handling)
 - [Pimcore Installation](#pimcore-installation)
@@ -114,9 +113,6 @@ Um die neuesten Änderungen vom Upstream zu ziehen, nutzt ihr einfach just.
 Der Project Name wird in der .env gesetzt und ist wichtig für die Docker Container Names.
 
 - COMPOSE_PROJECT_NAME in .env.dist anpassen
-
-### .env.prod.local
-Wird für Prod Deployment benutzt und muss entsprechend angepasst werden
 
 ### Anpassungen in application/config/config.yaml 
 Folgende Anpassungen sind notwendig bzw zu überprüfen:
