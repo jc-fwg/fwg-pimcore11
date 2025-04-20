@@ -2,4 +2,6 @@ parameters:
     commands.create_folders.asset:
     commands.create_folders.document:
     commands.create_folders.dataObject:
-        #- !php/const App\Constant\FolderConstants::OBJECT_EXAMPLE
+        - !php/const App\Constant\FolderConstants::OBJECT_ACTIVITIES
+        - !php/const App\Constant\FolderConstants::OBJECT_BLOGPOSTS
+        - !php/const App\Constant\FolderConstants::OBJECT_LOCALIZING

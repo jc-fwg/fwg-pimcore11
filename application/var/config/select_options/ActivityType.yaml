@@ -1,0 +1,30 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                ActivityType:
+                    id: ActivityType
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: bike
+                            label: app.collection.activityType.bike
+                            name: bike
+                        -
+                            value: boat
+                            label: app.collection.activityType.boat
+                            name: boat
+                        -
+                            value: city
+                            label: app.collection.activityType.city
+                            name: city
+                        -
+                            value: hike
+                            label: app.collection.activityType.hike
+                            name: hike
+                        -
+                            value: trek
+                            label: app.collection.activityType.trek
+                            name: trek

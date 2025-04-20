@@ -4,7 +4,7 @@ pimcore_admin:
         color_login_screen: ''
         color_admin_interface: ''
         color_admin_interface_background: ''
-        login_screen_custom_image: ''
+        login_screen_custom_image: 'https://www.frei-weg.com/wp-content/uploads/2017/06/header_spessart.jpg'
     assets:
         hide_edit_image: false
         disable_tree_preview: true

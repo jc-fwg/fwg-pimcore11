@@ -1,0 +1,18 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                BlogPostType:
+                    id: BlogPostType
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: tour
+                            label: app.generic.tour
+                            name: tour
+                        -
+                            value: content
+                            label: app.generic.content
+                            name: content

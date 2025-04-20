@@ -1,7 +1,31 @@
 app:
     generic:
+        activityType: 'Activity Type'
         baseData: 'Base Data'
-    classes:
-        customer:
-            title: Customer
-            titlePlural: Customers
+        description: 'Description'
+        flag: 'Flag'
+        introduction: 'Introduction'
+        name: 'Name'
+        title: 'Title'
+        titleAndDescription: 'Title and Description'
+        type: 'Type'
+    collection:
+        activityType:
+            bike: 'Bike'
+            boat: 'Boat'
+            city: 'City trip'
+            hike: 'Hike'
+            trek: 'Trekking'
+    class:
+        activity:
+            title: 'Activity'
+            titlePlural: 'Activities'
+        blogPost:
+            title: 'Blogpost'
+            titlePlural: 'Blogposts'
+        country:
+            title: 'Country'
+            titlePlural: 'Countries'
+        region:
+            title: 'Region'
+            titlePlural: 'Regions'

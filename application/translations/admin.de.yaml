@@ -1,7 +1,10 @@
 app:
     generic:
         baseData: 'Stammdaten'
-    classes:
-        customer:
-            title: Kunde
-            titlePlural: Kunden
+        description: 'Description'
+        title: 'Titel'
+        titleAndDescription: 'Titel und Beschreibung'
+    class:
+        blogPost:
+            title: 'Blogpost'
+            titlePlural: 'Blogposts'
