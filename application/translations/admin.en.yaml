@@ -1,14 +1,22 @@
 app:
     generic:
         activityType: 'Activity Type'
+        altitude: 'Altitude'
         baseData: 'Base Data'
+        date: 'Date'
         description: 'Description'
+        distance: 'Distance'
+        duration: 'Duration'
         flag: 'Flag'
         introduction: 'Introduction'
+        link: 'Link'
         name: 'Name'
+        summary: 'Summary'
+        temperature: 'Temperature'
         title: 'Title'
         titleAndDescription: 'Title and Description'
         type: 'Type'
+        typeSpecific: 'Type Specific'
     collection:
         activityType:
             bike: 'Bike'
@@ -16,6 +24,22 @@ app:
             city: 'City trip'
             hike: 'Hike'
             trek: 'Trekking'
+        locationType:
+            endPoint: 'End Point'
+            startPoint: 'Start Point'
+        weather:
+            cloudy: 'Cloudy'
+            hail: 'Hail'
+            heavyRain: 'Heavy rain'
+            icy: 'Icy'
+            foggy: 'Foggy'
+            frosty: 'Frosty'
+            lightRain: 'Light rain'
+            rainy: 'Rainy'
+            snowy: 'Snowy'
+            stormy: 'Stormy'
+            sunny: 'Sunny'
+            windy: 'Windy'
     class:
         activity:
             title: 'Activity'
@@ -29,3 +53,11 @@ app:
         region:
             title: 'Region'
             titlePlural: 'Regions'
+    fieldCollection:
+        location:
+            title: 'Location'
+            titlePlural: 'Locations'
+    objectBrick:
+        activityHike:
+            title: 'Hike'
+            titlePlural: 'Hikes'

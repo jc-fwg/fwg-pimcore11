@@ -1,0 +1,18 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                LocationType:
+                    id: LocationType
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: startPoint
+                            label: app.collection.locationType.startPoint
+                            name: startPoint
+                        -
+                            value: endPoint
+                            label: app.collection.locationType.endPoint
+                            name: endPoint

@@ -1,0 +1,58 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                Weather:
+                    id: Weather
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: cloudy
+                            label: app.collection.weather.cloudy
+                            name: cloudy
+                        -
+                            value: hail
+                            label: app.collection.weather.hail
+                            name: hail
+                        -
+                            value: heavyRain
+                            label: app.collection.weather.heavyRain
+                            name: heavyRain
+                        -
+                            value: icy
+                            label: app.collection.weather.icy
+                            name: icy
+                        -
+                            value: foggy
+                            label: app.collection.weather.foggy
+                            name: foggy
+                        -
+                            value: frosty
+                            label: app.collection.weather.frosty
+                            name: frosty
+                        -
+                            value: lightRain
+                            label: app.collection.weather.lightRain
+                            name: lightRain
+                        -
+                            value: rainy
+                            label: app.collection.weather.rainy
+                            name: rainy
+                        -
+                            value: snowy
+                            label: app.collection.weather.snowy
+                            name: snowy
+                        -
+                            value: stormy
+                            label: app.collection.weather.stormy
+                            name: stormy
+                        -
+                            value: sunny
+                            label: app.collection.weather.sunny
+                            name: sunny
+                        -
+                            value: windy
+                            label: app.collection.weather.windy
+                            name: windy
