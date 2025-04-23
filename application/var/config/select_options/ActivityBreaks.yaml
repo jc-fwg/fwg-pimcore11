@@ -1,0 +1,22 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                ActivityBreaks:
+                    id: ActivityBreaks
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: none
+                            label: app.collection.activityBreak.none
+                            name: none
+                        -
+                            value: short
+                            label: app.collection.activityBreak.short
+                            name: short
+                        -
+                            value: extensive
+                            label: app.collection.activityBreak.extensive
+                            name: extensive

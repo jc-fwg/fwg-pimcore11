@@ -85,12 +85,21 @@ services:
         public: true
 
     #
+    # OPTIONS PROVIDER
+    #
+
+    App\OptionsProvider\:
+        resource: '../src/OptionsProvider'
+        public: true
+
+    #
     # REPOSITORIES
     #
 
     App\Adapter\App\Database\Doctrine\Repository\:
         resource: '../src/Adapter/App/Database/Doctrine/Repository'
         public: true
+
 
     ### Blackbit Backup & Sync Bundle
     blackbit.backup.adapter:

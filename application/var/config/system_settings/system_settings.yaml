@@ -4,8 +4,10 @@ pimcore:
         redirect_to_maindomain: false
         valid_languages:
             - de
+            - en
         fallback_languages:
             de: ''
+            en: de
         required_languages:
             - de
         default_language: de

@@ -1,0 +1,22 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                RatingOfNecessity:
+                    id: RatingOfNecessity
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: none
+                            label: app.collection.ratingOfNecessity.none
+                            name: none
+                        -
+                            value: partially
+                            label: app.collection.ratingOfNecessity.partially
+                            name: partially
+                        -
+                            value: required
+                            label: app.collection.ratingOfNecessity.required
+                            name: required

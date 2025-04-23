@@ -8,7 +8,7 @@
  * Fields Summary:
  * - activityType [select]
  * - title [input]
- * - introduction [wysiwyg]
+ * - features [multiselect]
  * - date [date]
  * - weather [select]
  * - temperature [numeric]
@@ -23,7 +23,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745349792,
+   'modificationDate' => 1745439802,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -139,9 +139,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValueGenerator' => '',
               )),
               2 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
-                 'name' => 'introduction',
-                 'title' => 'app.generic.introduction',
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
+                 'name' => 'features',
+                 'title' => 'app.generic.features',
                  'tooltip' => '',
                  'mandatory' => false,
                  'noteditable' => false,
@@ -157,11 +157,16 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'toolbarConfig' => '',
-                 'excludeFromSearchIndex' => false,
-                 'maxCharacters' => '',
+                 'maxItems' => NULL,
+                 'renderType' => 'tags',
+                 'dynamicOptions' => false,
+                 'defaultValue' => NULL,
                  'height' => '',
                  'width' => '',
+                 'defaultValueGenerator' => '',
+                 'optionsProviderType' => 'class',
+                 'optionsProviderClass' => '@App\\OptionsProvider\\FeatureOptionsProvider',
+                 'optionsProviderData' => '',
               )),
             ),
              'locked' => false,

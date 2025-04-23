@@ -1,23 +1,35 @@
 app:
     generic:
         activityType: 'Activity Type'
-        altitude: 'Altitude'
         baseData: 'Base Data'
+        breaks: 'Breaks'
         date: 'Date'
         description: 'Description'
-        distance: 'Distance'
-        duration: 'Duration'
+        distance: 'Distance (km'
+        duration: 'Duration (h)'
+        elevation: 'Elevation (m)'
+        emoji: 'Emoji'
+        features: 'Features'
         flag: 'Flag'
+        headForHeights: 'Head for Heights'
+        icon: 'Icon'
         introduction: 'Introduction'
         link: 'Link'
+        metrics: 'Metrics'
         name: 'Name'
+        gpxFile: 'GPX File'
         summary: 'Summary'
-        temperature: 'Temperature'
+        surefootedness: 'Surefootedness'
+        temperature: 'Temperature (°C)'
         title: 'Title'
         titleAndDescription: 'Title and Description'
         type: 'Type'
         typeSpecific: 'Type Specific'
     collection:
+        activityBreak:
+            none: 'none'
+            extensive: 'extensive'
+            short: 'short'
         activityType:
             bike: 'Bike'
             boat: 'Boat'
@@ -27,6 +39,10 @@ app:
         locationType:
             endPoint: 'End Point'
             startPoint: 'Start Point'
+        ratingOfNecessity:
+            none: 'none'
+            partially: 'partially'
+            required: 'required'
         weather:
             cloudy: 'Cloudy'
             hail: 'Hail'
@@ -50,6 +66,9 @@ app:
         country:
             title: 'Country'
             titlePlural: 'Countries'
+        feature:
+            title: 'Feature'
+            titlePlural: 'Features'
         region:
             title: 'Region'
             titlePlural: 'Regions'

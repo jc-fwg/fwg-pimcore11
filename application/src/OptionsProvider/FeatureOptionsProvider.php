@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\OptionsProvider;
+
+use App\Adapter\App\Database\Doctrine\Repository\FeatureRepository;
+use Exception;
+use Pimcore\Model\DataObject\ClassDefinition\Data;
+
+class FeatureOptionsProvider extends AbstractSelectOptionsProvider
+{
+    public function __construct(
+        private readonly FeatureRepository $repository,
+    ) {
+    }
+
+    /**
+     * @param array<array-key, mixed> $context
+     *
+     * @return array<int, array<string, int|string>>
+     */
+    public function getOptions(array $context, Data $fieldDefinition): array
+    {
+        try {
+            return $this->repository->findAllAsSelectOptions();
+        } catch (Exception $e) {
+            return [];
+        }
+    }
+}
