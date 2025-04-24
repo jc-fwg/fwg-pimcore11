@@ -1,40 +1,21 @@
 <?php
 
 /**
- * Inheritance: no
- * Variants: no
- * Title: app.class.country.title
- *
  * Fields Summary:
- * - name [input]
- * - flag [image]
+ * - title [input]
+ * - imageGallery [imageGallery]
  */
 
-return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
+return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
    'dao' => NULL,
-   'id' => 'country',
-   'name' => 'Country',
-   'title' => 'app.class.country.title',
-   'description' => '',
-   'creationDate' => NULL,
-   'modificationDate' => 1745515637,
-   'userOwner' => 2,
-   'userModification' => 2,
+   'key' => 'contentGallery',
    'parentClass' => '',
    'implementsInterfaces' => '',
-   'listingParentClass' => '',
-   'useTraits' => '',
-   'listingUseTraits' => '',
-   'encryption' => false,
-   'encryptedTables' => 
-  array (
-  ),
-   'allowInherit' => false,
-   'allowVariants' => false,
-   'showVariants' => false,
+   'title' => 'app.fieldCollection.contentGallery.title',
+   'group' => 'Blogpost',
    'layoutDefinitions' => 
   \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
-     'name' => 'pimcore_root',
+     'name' => NULL,
      'type' => NULL,
      'region' => NULL,
      'title' => NULL,
@@ -62,8 +43,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
         array (
           0 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-             'name' => 'name',
-             'title' => 'app.generic.name',
+             'name' => 'title',
+             'title' => 'app.generic.title',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -91,9 +72,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultValueGenerator' => '',
           )),
           1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
-             'name' => 'flag',
-             'title' => 'app.generic.flag',
+          \Pimcore\Model\DataObject\ClassDefinition\Data\ImageGallery::__set_state(array(
+             'name' => 'imageGallery',
+             'title' => 'app.generic.imageGallery',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -110,8 +91,11 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             array (
             ),
              'uploadPath' => '',
-             'width' => '',
+             'ratioX' => NULL,
+             'ratioY' => NULL,
+             'predefinedDataTemplates' => '',
              'height' => '',
+             'width' => '',
           )),
         ),
          'locked' => false,
@@ -137,44 +121,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelWidth' => 100,
      'labelAlign' => 'left',
   )),
-   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f30e.svg',
-   'group' => 'Localizing',
-   'showAppLoggerTab' => false,
-   'linkGeneratorReference' => '',
-   'previewGeneratorReference' => '',
-   'compositeIndices' => 
-  array (
-  ),
-   'showFieldLookup' => false,
-   'propertyVisibility' => 
-  array (
-    'grid' => 
-    array (
-      'id' => true,
-      'key' => false,
-      'path' => true,
-      'published' => true,
-      'modificationDate' => true,
-      'creationDate' => true,
-    ),
-    'search' => 
-    array (
-      'id' => true,
-      'key' => false,
-      'path' => true,
-      'published' => true,
-      'modificationDate' => true,
-      'creationDate' => true,
-    ),
-  ),
-   'enableGridLocking' => false,
-   'deletedDataComponents' => 
-  array (
-  ),
+   'fieldDefinitionsCache' => NULL,
    'blockedVarsForExport' => 
-  array (
-  ),
-   'fieldDefinitionsCache' => 
   array (
   ),
    'activeDispatchingEvents' => 

@@ -1,8 +1,10 @@
 app:
     generic:
         activityType: 'Activity Type'
+        anchorTitle: 'Anchor Title'
         baseData: 'Base Data'
         breaks: 'Breaks'
+        content: 'Content'
         date: 'Date'
         description: 'Description'
         distance: 'Distance (km'
@@ -11,9 +13,13 @@ app:
         emoji: 'Emoji'
         features: 'Features'
         flag: 'Flag'
+        hashtags: 'Hashtags'
         headForHeights: 'Head for Heights'
+        headline: 'Headline'
         icon: 'Icon'
+        imageGallery: 'Image Gallery'
         introduction: 'Introduction'
+        komootEmbedCode: 'Komoot Embed Code'
         link: 'Link'
         metrics: 'Metrics'
         name: 'Name'
@@ -25,6 +31,8 @@ app:
         titleAndDescription: 'Title and Description'
         type: 'Type'
         typeSpecific: 'Type Specific'
+        weather: 'Weather'
+        weatherConditions: 'Weather Conditions'
     collection:
         activityBreak:
             none: 'none'
@@ -60,6 +68,9 @@ app:
         activity:
             title: 'Activity'
             titlePlural: 'Activities'
+        author:
+            title: 'Author'
+            titlePlural: 'Authors'
         blogPost:
             title: 'Blogpost'
             titlePlural: 'Blogposts'
@@ -69,10 +80,17 @@ app:
         feature:
             title: 'Feature'
             titlePlural: 'Features'
+        hashtagSet:
+            title: 'Hashtag Set'
+            titlePlural: 'Hashtag Sets'
         region:
             title: 'Region'
             titlePlural: 'Regions'
     fieldCollection:
+        contentGallery:
+            title: 'Gallery'
+        contentWysiwyg:
+            title: 'WYSIWYG'
         location:
             title: 'Location'
             titlePlural: 'Locations'

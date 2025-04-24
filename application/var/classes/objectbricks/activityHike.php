@@ -9,6 +9,7 @@
  * - headForHeights [select]
  * - surefootedness [select]
  * - gpxFIle [manyToOneRelation]
+ * - komootEmbedCode [textarea]
  */
 
 return \Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
@@ -284,6 +285,31 @@ return \Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
             array (
             ),
              'width' => '',
+          )),
+          4 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
+             'name' => 'komootEmbedCode',
+             'title' => 'app.generic.komootEmbedCode',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'maxLength' => NULL,
+             'showCharCount' => false,
+             'excludeFromSearchIndex' => false,
+             'height' => '',
+             'width' => '100%',
           )),
         ),
          'locked' => false,

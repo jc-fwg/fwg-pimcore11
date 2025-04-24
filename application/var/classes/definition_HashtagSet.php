@@ -3,21 +3,19 @@
 /**
  * Inheritance: no
  * Variants: no
- * Title: app.class.country.title
  *
  * Fields Summary:
- * - name [input]
- * - flag [image]
+ * - hashtags [textarea]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'dao' => NULL,
-   'id' => 'country',
-   'name' => 'Country',
-   'title' => 'app.class.country.title',
+   'id' => 'hashtagSet',
+   'name' => 'HashtagSet',
+   'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745515637,
+   'modificationDate' => 1745524545,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -61,9 +59,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'children' => 
         array (
           0 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-             'name' => 'name',
-             'title' => 'app.generic.name',
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
+             'name' => 'hashtags',
+             'title' => 'app.generic.hashtags',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -79,39 +77,11 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'blockedVarsForExport' => 
             array (
             ),
-             'defaultValue' => NULL,
-             'columnLength' => 190,
-             'regex' => '',
-             'regexFlags' => 
-            array (
-            ),
-             'unique' => false,
+             'maxLength' => NULL,
              'showCharCount' => false,
-             'width' => '',
-             'defaultValueGenerator' => '',
-          )),
-          1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
-             'name' => 'flag',
-             'title' => 'app.generic.flag',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => false,
-             'index' => false,
-             'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => false,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
-             'blockedVarsForExport' => 
-            array (
-            ),
-             'uploadPath' => '',
-             'width' => '',
+             'excludeFromSearchIndex' => false,
              'height' => '',
+             'width' => '',
           )),
         ),
          'locked' => false,
@@ -137,8 +107,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelWidth' => 100,
      'labelAlign' => 'left',
   )),
-   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f30e.svg',
-   'group' => 'Localizing',
+   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f9ee.svg',
+   'group' => '',
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',
    'previewGeneratorReference' => '',

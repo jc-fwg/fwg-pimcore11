@@ -1,10 +1,100 @@
 app:
     generic:
-        baseData: 'Stammdaten'
-        description: 'Description'
+        activityType: 'Aktivitätstyp'
+        anchorTitle: 'Anker-Titel'
+        baseData: 'Basisdaten'
+        breaks: 'Pausen'
+        content: 'Inhalt'
+        date: 'Datum'
+        description: 'Beschreibung'
+        distance: 'Distanz (km)'
+        duration: 'Dauer (h)'
+        elevation: 'Höhe (m)'
+        emoji: 'Emoji'
+        features: 'Merkmale'
+        flag: 'Flagge'
+        hashtags: 'Hashtags'
+        headForHeights: 'Schwindelfreiheit'
+        headline: 'Überschrift'
+        icon: 'Symbol'
+        imageGallery: 'Bildergalerie'
+        introduction: 'Einleitung'
+        komootEmbedCode: 'Komoot-Einbettungscode'
+        link: 'Link'
+        metrics: 'Metriken'
+        name: 'Name'
+        gpxFile: 'GPX-Datei'
+        summary: 'Zusammenfassung'
+        surefootedness: 'Trittsicherheit'
+        temperature: 'Temperatur (°C)'
         title: 'Titel'
         titleAndDescription: 'Titel und Beschreibung'
+        type: 'Typ'
+        typeSpecific: 'Typspezifisch'
+        weather: 'Wetter'
+        weatherConditions: 'Wetterbedingungen'
+    collection:
+        activityBreak:
+            none: 'keine'
+            extensive: 'ausgiebig'
+            short: 'kurz'
+        activityType:
+            bike: 'Fahrrad'
+            boat: 'Boot'
+            city: 'Städtetrip'
+            hike: 'Wandern'
+            trek: 'Trekking'
+        locationType:
+            endPoint: 'Endpunkt'
+            startPoint: 'Startpunkt'
+        ratingOfNecessity:
+            none: 'keine'
+            partially: 'teilweise'
+            required: 'erforderlich'
+        weather:
+            cloudy: 'Bewölkt'
+            hail: 'Hagel'
+            heavyRain: 'Starker Regen'
+            icy: 'Eisig'
+            foggy: 'Nebelig'
+            frosty: 'Frostig'
+            lightRain: 'Leichter Regen'
+            rainy: 'Regnerisch'
+            snowy: 'Schneebedeckt'
+            stormy: 'Stürmisch'
+            sunny: 'Sonnig'
+            windy: 'Windig'
     class:
+        activity:
+            title: 'Aktivität'
+            titlePlural: 'Aktivitäten'
+        author:
+            title: 'Autor'
+            titlePlural: 'Autoren'
         blogPost:
-            title: 'Blogpost'
-            titlePlural: 'Blogposts'
+            title: 'Blogbeitrag'
+            titlePlural: 'Blogbeiträge'
+        country:
+            title: 'Land'
+            titlePlural: 'Länder'
+        feature:
+            title: 'Merkmal'
+            titlePlural: 'Merkmale'
+        hashtagSet:
+            title: 'Hashtag-Set'
+            titlePlural: 'Hashtag-Sets'
+        region:
+            title: 'Region'
+            titlePlural: 'Regionen'
+    fieldCollection:
+        contentGallery:
+            title: 'Galerie'
+        contentWysiwyg:
+            title: 'WYSIWYG'
+        location:
+            title: 'Ort'
+            titlePlural: 'Orte'
+    objectBrick:
+        activityHike:
+            title: 'Wanderung'
+            titlePlural: 'Wanderungen'
