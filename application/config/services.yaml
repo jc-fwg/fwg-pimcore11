@@ -100,6 +100,14 @@ services:
         resource: '../src/Adapter/App/Database/Doctrine/Repository'
         public: true
 
+    #
+    # SERVICES
+    #
+
+    App\Service\:
+        resource: '../src/Service'
+        public: true
+
 
     ### Blackbit Backup & Sync Bundle
     blackbit.backup.adapter:

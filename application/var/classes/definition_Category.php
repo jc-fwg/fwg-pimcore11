@@ -3,20 +3,20 @@
 /**
  * Inheritance: no
  * Variants: no
- * Title: app.class.hashtagSet.title
+ * Title: app.class.category.title
  *
  * Fields Summary:
- * - hashtags [textarea]
+ * - name [input]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'dao' => NULL,
-   'id' => 'hashtagSet',
-   'name' => 'HashtagSet',
-   'title' => 'app.class.hashtagSet.title',
+   'id' => 'category',
+   'name' => 'Category',
+   'title' => 'app.class.category.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745601985,
+   'modificationDate' => 1745601988,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -60,9 +60,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'children' => 
         array (
           0 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
-             'name' => 'hashtags',
-             'title' => 'app.generic.hashtags',
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+             'name' => 'name',
+             'title' => 'app.generic.name',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -78,11 +78,16 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'blockedVarsForExport' => 
             array (
             ),
-             'maxLength' => NULL,
+             'defaultValue' => NULL,
+             'columnLength' => 190,
+             'regex' => '',
+             'regexFlags' => 
+            array (
+            ),
+             'unique' => false,
              'showCharCount' => false,
-             'excludeFromSearchIndex' => false,
-             'height' => '',
              'width' => '',
+             'defaultValueGenerator' => '',
           )),
         ),
          'locked' => false,
@@ -94,7 +99,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'border' => false,
          'icon' => '',
          'labelWidth' => 100,
-         'labelAlign' => 'top',
+         'labelAlign' => 'left',
       )),
     ),
      'locked' => false,
@@ -108,7 +113,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelWidth' => 100,
      'labelAlign' => 'left',
   )),
-   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f9ee.svg',
+   'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/tree_structure.svg',
    'group' => '',
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',
