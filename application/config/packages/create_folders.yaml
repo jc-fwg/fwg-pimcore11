@@ -1,6 +1,7 @@
 parameters:
     commands.create_folders.asset:
         - !php/const App\Constant\FolderConstants::ASSET_BLOGPOSTS
+        - !php/const App\Constant\FolderConstants::ASSET_BLOGPOSTS_DELETED
     commands.create_folders.document:
     commands.create_folders.dataObject:
         - !php/const App\Constant\FolderConstants::OBJECT_ACTIVITIES

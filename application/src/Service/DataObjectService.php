@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Constant\FolderConstants;
 use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Service;
 use Pimcore\Model\DataObject\AbstractObject;
@@ -45,5 +46,26 @@ class DataObjectService
         );
 
         $object->setAssetsFolder($assetsFolder);
+    }
+
+    /**
+     * @throws \Pimcore\Model\Element\DuplicateFullPathException
+     */
+    public function moveAssetsFolderToTrash(Concrete $object): void
+    {
+        if (method_exists($object, 'getAssetsFolder') === false) {
+            return;
+        }
+
+        $assetsFolder = $object->getAssetsFolder();
+
+        if (!$assetsFolder instanceof Folder) {
+            return;
+        }
+
+        $parent = Folder::getByPath(FolderConstants::ASSET_BLOGPOSTS_DELETED);
+
+        $assetsFolder->setParent($parent);
+        $assetsFolder->save();
     }
 }
