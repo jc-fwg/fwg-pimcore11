@@ -23,9 +23,13 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
     {
         return [
             DataObjectEvents::PRE_ADD => [
-                ['initialNameByKey', 0],
+                ['initialNameByKey', 10],
+                ['setAssetsFolderByObjectKey', 5],
             ],
-            DataObjectEvents::POST_DELETE => [
+            DataObjectEvents::PRE_UPDATE => [
+                ['setAssetsFolderByObjectKey', 0],
+            ],
+            DataObjectEvents::PRE_DELETE => [
                 ['moveAssetsFolderToTrash', 0],
             ],
         ];
@@ -50,6 +54,21 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
         $defaultLanguage = Tool::getDefaultLanguage();
 
         $object->setName($object->getKey(), $defaultLanguage);
+    }
+
+    public function setAssetsFolderByObjectKey(DataObjectEvent $event): void
+    {
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject) {
+            return;
+        }
+
+        if (method_exists($object, 'getAssetsFolder') === false) {
+            return;
+        }
+
+        $this->dataObjectService->setAssetsFolderByObjectKey($object);
     }
 
     /**

@@ -7,6 +7,7 @@ namespace App\Service;
 use App\Constant\FolderConstants;
 use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Service;
+use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\AbstractObject;
 use Pimcore\Model\DataObject\Concrete;
 
@@ -15,16 +16,8 @@ class DataObjectService
     /**
      * @throws \Exception
      */
-    public function setAssetsFolderByObjectKey(Concrete $object, string $pathPrefix = '/'): void
+    public function setAssetsFolderByObjectKey(DataObject $object): void
     {
-        if (method_exists($object, 'getAssetsFolder') === false) {
-            return;
-        }
-
-        if (empty($object->getKey())) {
-            return;
-        }
-
         $key = Service::getValidKey($object->getKey(), AbstractObject::OBJECT_TYPE_FOLDER);
 
         $assetsFolder = $object->getAssetsFolder();
@@ -32,10 +25,14 @@ class DataObjectService
         if ($assetsFolder instanceof Folder) {
             $assetsFolder->setKey($key);
             $assetsFolder->save();
-            $object->setAssetsFolder($assetsFolder);
 
             return;
         }
+
+        $pathPrefix = match ($object->getClassId()) {
+            DataObject\BlogPost::classId() => FolderConstants::ASSET_BLOGPOSTS,
+            default => '/',
+        };
 
         $assetsFolder = Service::createFolderByPath(
             sprintf(
@@ -51,7 +48,7 @@ class DataObjectService
     /**
      * @throws \Pimcore\Model\Element\DuplicateFullPathException
      */
-    public function moveAssetsFolderToTrash(Concrete $object): void
+    public function moveAssetsFolderToTrash(DataObject $object): void
     {
         if (method_exists($object, 'getAssetsFolder') === false) {
             return;

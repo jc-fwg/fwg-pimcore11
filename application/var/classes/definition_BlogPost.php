@@ -10,8 +10,8 @@
  * - authors [multiselect]
  * - activity [manyToManyRelation]
  * - categories [manyToManyObjectRelation]
- * - assetsFolder [manyToOneRelation]
  * - imageMain [image]
+ * - assetsFolder [manyToOneRelation]
  * - imageTeaser [image]
  * - headline [input]
  * - content [fieldcollections]
@@ -29,7 +29,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.blogPost.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745604698,
+   'modificationDate' => 1745614482,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -244,12 +244,35 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'children' => 
                 array (
                   0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
+                     'name' => 'imageMain',
+                     'title' => 'app.generic.imageMain',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'uploadPath' => '',
+                     'width' => '',
+                     'height' => '',
+                  )),
+                  1 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                      'name' => 'assetsFolder',
                      'title' => 'app.generic.assetsFolder',
                      'tooltip' => '',
                      'mandatory' => false,
-                     'noteditable' => true,
+                     'noteditable' => false,
                      'index' => false,
                      'locked' => false,
                      'style' => '',
@@ -274,39 +297,12 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'assetsAllowed' => true,
                      'assetTypes' => 
                     array (
-                      0 => 
-                      array (
-                        'assetTypes' => 'folder',
-                      ),
                     ),
                      'documentsAllowed' => false,
                      'documentTypes' => 
                     array (
                     ),
                      'width' => '',
-                  )),
-                  1 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
-                     'name' => 'imageMain',
-                     'title' => 'app.generic.imageMain',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => false,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'uploadPath' => '',
-                     'width' => '',
-                     'height' => '',
                   )),
                 ),
                  'locked' => false,

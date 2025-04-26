@@ -20,6 +20,7 @@ app:
         headline: 'Headline'
         icon: 'Icon'
         imageGallery: 'Image Gallery'
+        imageMain: 'Main Image'
         imageTeaser: 'Teaser Image'
         introduction: 'Introduction'
         komootEmbedCode: 'Komoot Embed Code'
