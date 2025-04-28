@@ -1,3 +1,6 @@
+npm-run-dev:
+    cd application/; npm run dev
+
 ssh-uberspace:
     ssh uberawmediapimcore01
 

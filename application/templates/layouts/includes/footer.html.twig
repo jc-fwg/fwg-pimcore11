@@ -1,5 +1,30 @@
-<footer class="container-fluid">
-    <div class="container">
-       Footer content
+<footer class="mt-5">
+    <div class="container-fluid p-0">
+        <img id="mountains" src="{{ asset('static/gfx/mountains-optimized.svg') }}" alt="FreiWeg Outdoor Activity Blog">
+    </div>
+    <div class="container-fluid content pb-5 pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h4>{{ 'global.footer.authors'|trans }}</h4>
+{#                    <a href="#">#}
+{#                        {% for author in authors %}#}
+{#                            {% if author.authorImage is not empty %}#}
+{#                                {{ author.authorImage.thumbnail('footer-author').html({ 'imgAttributes': { 'class': 'img-fluid rounded-circle border border-cd-orange', 'alt': author.authorName }})|raw }}#}
+{#                            {% endif %}#}
+{#                        {% endfor %}#}
+{#                    </a>#}
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h4>{{ 'global.footer.outdoorbloggercodex'|trans }}</h4>
+                    <a href="#">
+                        <img id="mountains" src="{{ asset('static/gfx/outdoor-blogger-codex-logo-weiss.png') }}" class="codex-logo" alt="Outdoor Blogger Codex">
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="#"><i class="material-icons pr-2">privacy_tip</i> Datenschutz & Impressum</a><br>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>

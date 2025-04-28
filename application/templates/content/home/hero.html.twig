@@ -1,0 +1,51 @@
+<header id="hero">
+    {% if heroImage is defined and heroImage is not null %}
+        {% set heroImage = heroImage.thumbnail('home-heroimage').html({
+            'class': 'd-none',
+            'id': 'hero-background'
+        }) %}
+        {{ heroImage|raw }}
+    {% endif %}
+    <div class="hero-content">
+        <div class="container">
+            <img id="logo" class="mb-5" src="{{ asset('static/gfx/freiweg-logo.svg') }}" alt="FreiWeg Outdoor Activity Blog">
+            <div class="row pl-3">
+                <div class="topic col-md-4">
+                    <h2>Wandern</h2>
+                    <p>
+                        Sehnsucht nach Bergen, Alpen und Klamm?<br>
+                        Das Rauschen der Wasserfälle bereits in den Ohren? <br>
+                        Komm' mit auf Entdeckungsreise meiner Wanderungen!
+                    </p>
+                </div>
+                <div class="topic col-md-4">
+                    <h2>Städtereisen</h2>
+                    <p>
+                        Sehnsucht nach Bergen, Alpen und Klamm?<br>
+                        Das Rauschen der Wasserfälle bereits in den Ohren? <br>
+                        Komm' mit auf Entdeckungsreise meiner Wanderungen!
+                    </p>
+                </div>
+                <div class="topic col-md-4">
+                    <h2>Mountainbiken & Fahrradtouren</h2>
+                    <p>
+                        Sehnsucht nach Bergen, Alpen und Klamm?<br>
+                        Das Rauschen der Wasserfälle bereits in den Ohren? <br>
+                        Komm' mit auf Entdeckungsreise meiner Wanderungen!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#
+    <div class="row overlay">
+        <div class="container">
+            <h1 class="display-3">{{ pimcore_input('heroHeadline') }}.</h1>
+            {{ pimcore_wysiwyg('heroCaption') }}
+        </div>
+    </div>
+    #}
+
+</header>

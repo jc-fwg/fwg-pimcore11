@@ -46,6 +46,14 @@ services:
         public: false
 
     #
+    # CALCULATOR
+    #
+
+    App\Calculator\:
+        resource: '../src/Calculator'
+        public: true
+
+    #
     # CONTROLLERS
     #
 

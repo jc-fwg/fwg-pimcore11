@@ -8,6 +8,7 @@ use App\Service\DataObjectService;
 use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
+use Pimcore\Model\Element\DuplicateFullPathException;
 use Pimcore\Tool;
 
 class DataObjectEventSubscriber extends AbstractEventSubscriber
@@ -56,6 +57,9 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
         $object->setName($object->getKey(), $defaultLanguage);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function setAssetsFolderByObjectKey(DataObjectEvent $event): void
     {
         $object = $event->getObject();
@@ -72,7 +76,7 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
     }
 
     /**
-     * @throws \Pimcore\Model\Element\DuplicateFullPathException
+     * @throws DuplicateFullPathException
      */
     public function moveAssetsFolderToTrash(DataObjectEvent $event): void
     {

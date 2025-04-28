@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController
 {
-    #[Template('content/cms/start.html.twig')]
+    #[Template('content/home.html.twig')]
     public function defaultAction(
     ): array
     {

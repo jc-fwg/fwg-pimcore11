@@ -1,0 +1,205 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 16px;
+    background-color: #fff;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.1rem;
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: $color-cd-orange;
+    border-color: $color-cd-orange;
+}
+.btn-secondary {
+    background-color: $color-cd-green;
+    border-color: $color-cd-green;
+}
+
+.spaced {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.divider {
+    margin: 3rem 0;
+    border-top: 1px solid #bbb;
+}
+
+a {
+    color: $color-cd-green;
+
+}
+
+#hero {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+
+    /* Set a specific height */
+    height: 50vh;
+    max-height: 450px;
+
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    #logo {
+        min-width: 100px;
+        width: 12vw;
+    }
+
+    .hero-content {
+        position: absolute;
+        bottom: 5%;
+        left: 0;
+        width: 100%;
+        color: white;
+
+        h1,
+        h2 {
+            margin: 0;
+            background-color: $color-cd-orange;
+            padding: 5px 11px;
+            color: #fff;
+            display: inline-block;
+        }
+
+        h1 {
+            border-bottom: 3px solid #fff;
+        }
+
+        h2 {
+            background-color: $color-cd-green;
+        }
+
+        .topic {
+            border-left: 3px solid $color-cd-orange;
+
+            h2 {
+                font-size: 1rem;
+                text-transform: uppercase;
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    /*p {
+        @include media-breakpoint-down(lg) {
+            font-size: 18px;
+        }
+
+        @include media-breakpoint-down(md) {
+            font-size: 14px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            font-size: 12px;
+        }
+
+    }*/
+}
+
+footer {
+    color: #fff;
+
+    .content {
+        background-color: #646464;
+    }
+
+    .codex-logo {
+        height: 100px;
+        width: auto;
+    }
+
+    a {
+        color: #fff;
+
+        &:hover {
+            color: $color-cd-green;
+            text-decoration: none;
+        }
+    }
+}
+
+.border-cd-orange {
+    border-color: $color-cd-orange !important;
+}
+
+#social-bar {
+    position: fixed;
+    z-index: 10000;
+    left: 2px;
+    top: 20vh;
+    width: 50px;
+
+    a {
+        display: block;
+        border-bottom: 1px solid #fff;
+        width: 40px;
+        height: 40px;
+        background-color: $color-cd-orange;
+        color: #fff;
+        line-height: 40px;
+        text-align: center;
+
+        &:last-child {
+            border: none;
+        }
+
+        &:hover {
+            background-color: $color-cd-green;
+        }
+
+        img {
+            width: 25px;
+            height: auto;
+            fill: #fff;
+        }
+
+        .material-icons {
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+.post-list-item {
+
+    h2 {
+        margin-bottom: 1.5rem;
+    }
+
+    h3 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    &:hover {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25) !important;
+    }
+}
+
+.material-icons {
+    vertical-align: bottom;
+}

@@ -18,7 +18,7 @@
  * - metaTitle [input]
  * - metaDescription [textarea]
  * - hashtags [textarea]
- * - hashtagSets [select]
+ * - hashtagSets [multiselect]
  * - hashtagsCalculated [calculatedValue]
  */
 
@@ -29,7 +29,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.blogPost.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745614482,
+   'modificationDate' => 1745769069,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -38,13 +38,13 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'useTraits' => '',
    'listingUseTraits' => '',
    'encryption' => false,
-   'encryptedTables' => 
+   'encryptedTables' =>
   array (
   ),
    'allowInherit' => false,
    'allowVariants' => false,
    'showVariants' => false,
-   'layoutDefinitions' => 
+   'layoutDefinitions' =>
   \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
      'name' => 'pimcore_root',
      'type' => NULL,
@@ -56,9 +56,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'collapsed' => false,
      'bodyStyle' => NULL,
      'datatype' => 'layout',
-     'children' => 
+     'children' =>
     array (
-      0 => 
+      0 =>
       \Pimcore\Model\DataObject\ClassDefinition\Layout\Tabpanel::__set_state(array(
          'name' => 'Layout',
          'type' => NULL,
@@ -70,9 +70,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'collapsed' => false,
          'bodyStyle' => '',
          'datatype' => 'layout',
-         'children' => 
+         'children' =>
         array (
-          0 => 
+          0 =>
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
              'name' => 'Base Data',
              'type' => NULL,
@@ -84,9 +84,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'collapsed' => false,
              'bodyStyle' => '',
              'datatype' => 'layout',
-             'children' => 
+             'children' =>
             array (
-              0 => 
+              0 =>
               \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
                  'name' => 'blogPostType',
                  'title' => 'Blog Post Type',
@@ -102,7 +102,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
                  'defaultValue' => '',
@@ -114,7 +114,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
                  'optionsProviderData' => 'BlogPostType',
               )),
-              1 => 
+              1 =>
               \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
                  'name' => 'authors',
                  'title' => 'app.class.author.titlePlural',
@@ -130,7 +130,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
                  'maxItems' => NULL,
@@ -144,7 +144,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'optionsProviderClass' => '@App\\OptionsProvider\\AuthorOptionsProvider',
                  'optionsProviderData' => '',
               )),
-              2 => 
+              2 =>
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
                  'name' => 'activity',
                  'title' => 'app.class.activity.title',
@@ -160,12 +160,12 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
-                 'classes' => 
+                 'classes' =>
                 array (
-                  0 => 
+                  0 =>
                   array (
                     'classes' => 'Activity',
                   ),
@@ -178,18 +178,18 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'allowToClearRelation' => true,
                  'objectsAllowed' => true,
                  'assetsAllowed' => false,
-                 'assetTypes' => 
+                 'assetTypes' =>
                 array (
                 ),
                  'documentsAllowed' => false,
-                 'documentTypes' => 
+                 'documentTypes' =>
                 array (
                 ),
                  'enableTextSelection' => true,
                  'width' => '',
                  'height' => '',
               )),
-              3 => 
+              3 =>
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
                  'name' => 'categories',
                  'title' => 'app.class.category.titlePlural',
@@ -205,12 +205,12 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
-                 'classes' => 
+                 'classes' =>
                 array (
-                  0 => 
+                  0 =>
                   array (
                     'classes' => 'Category',
                   ),
@@ -223,13 +223,13 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'allowToClearRelation' => true,
                  'optimizedAdminLoading' => false,
                  'enableTextSelection' => false,
-                 'visibleFieldDefinitions' => 
+                 'visibleFieldDefinitions' =>
                 array (
                 ),
                  'width' => '',
                  'height' => '',
               )),
-              4 => 
+              4 =>
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                  'name' => 'Assets',
                  'type' => NULL,
@@ -241,9 +241,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'collapsed' => false,
                  'bodyStyle' => '',
                  'datatype' => 'layout',
-                 'children' => 
+                 'children' =>
                 array (
-                  0 => 
+                  0 =>
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
                      'name' => 'imageMain',
                      'title' => 'app.generic.imageMain',
@@ -259,14 +259,14 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'invisible' => false,
                      'visibleGridView' => false,
                      'visibleSearch' => false,
-                     'blockedVarsForExport' => 
+                     'blockedVarsForExport' =>
                     array (
                     ),
                      'uploadPath' => '',
                      'width' => '',
                      'height' => '',
                   )),
-                  1 => 
+                  1 =>
                   \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                      'name' => 'assetsFolder',
                      'title' => 'app.generic.assetsFolder',
@@ -282,10 +282,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'invisible' => false,
                      'visibleGridView' => false,
                      'visibleSearch' => false,
-                     'blockedVarsForExport' => 
+                     'blockedVarsForExport' =>
                     array (
                     ),
-                     'classes' => 
+                     'classes' =>
                     array (
                     ),
                      'displayMode' => 'grid',
@@ -295,18 +295,18 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'allowToClearRelation' => true,
                      'objectsAllowed' => false,
                      'assetsAllowed' => true,
-                     'assetTypes' => 
+                     'assetTypes' =>
                     array (
                     ),
                      'documentsAllowed' => false,
-                     'documentTypes' => 
+                     'documentTypes' =>
                     array (
                     ),
                      'width' => '',
                   )),
                 ),
                  'locked' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
                  'fieldtype' => 'fieldset',
@@ -315,7 +315,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
               )),
             ),
              'locked' => false,
-             'blockedVarsForExport' => 
+             'blockedVarsForExport' =>
             array (
             ),
              'fieldtype' => 'panel',
@@ -325,7 +325,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'top',
           )),
-          1 => 
+          1 =>
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
              'name' => 'Content',
              'type' => NULL,
@@ -337,9 +337,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'collapsed' => false,
              'bodyStyle' => '',
              'datatype' => 'layout',
-             'children' => 
+             'children' =>
             array (
-              0 => 
+              0 =>
               \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
                  'name' => 'imageTeaser',
                  'title' => 'app.generic.imageTeaser',
@@ -355,14 +355,14 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
                  'uploadPath' => '',
                  'width' => '30%',
                  'height' => '',
               )),
-              1 => 
+              1 =>
               \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
                  'name' => 'headline',
                  'title' => 'app.generic.headline',
@@ -378,13 +378,13 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
                  'defaultValue' => NULL,
                  'columnLength' => 190,
                  'regex' => '',
-                 'regexFlags' => 
+                 'regexFlags' =>
                 array (
                 ),
                  'unique' => false,
@@ -392,7 +392,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '30%',
                  'defaultValueGenerator' => '',
               )),
-              2 => 
+              2 =>
               \Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections::__set_state(array(
                  'name' => 'content',
                  'title' => '',
@@ -408,10 +408,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
-                 'allowedTypes' => 
+                 'allowedTypes' =>
                 array (
                   0 => 'contentWysiwyg',
                   1 => 'contentGallery',
@@ -426,7 +426,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
               )),
             ),
              'locked' => false,
-             'blockedVarsForExport' => 
+             'blockedVarsForExport' =>
             array (
             ),
              'fieldtype' => 'panel',
@@ -436,7 +436,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'top',
           )),
-          2 => 
+          2 =>
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Region::__set_state(array(
              'name' => 'Layout',
              'type' => NULL,
@@ -448,9 +448,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'collapsed' => false,
              'bodyStyle' => '',
              'datatype' => 'layout',
-             'children' => 
+             'children' =>
             array (
-              0 => 
+              0 =>
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
                  'name' => 'Layout',
                  'type' => NULL,
@@ -462,9 +462,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'collapsed' => false,
                  'bodyStyle' => '',
                  'datatype' => 'layout',
-                 'children' => 
+                 'children' =>
                 array (
-                  0 => 
+                  0 =>
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Meta',
                      'type' => NULL,
@@ -476,9 +476,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'collapsed' => false,
                      'bodyStyle' => '',
                      'datatype' => 'layout',
-                     'children' => 
+                     'children' =>
                     array (
-                      0 => 
+                      0 =>
                       \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
                          'name' => 'metaTitle',
                          'title' => 'app.generic.title',
@@ -494,13 +494,13 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'invisible' => false,
                          'visibleGridView' => false,
                          'visibleSearch' => false,
-                         'blockedVarsForExport' => 
+                         'blockedVarsForExport' =>
                         array (
                         ),
                          'defaultValue' => NULL,
                          'columnLength' => 190,
                          'regex' => '',
-                         'regexFlags' => 
+                         'regexFlags' =>
                         array (
                         ),
                          'unique' => false,
@@ -508,7 +508,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'width' => '100%',
                          'defaultValueGenerator' => '',
                       )),
-                      1 => 
+                      1 =>
                       \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
                          'name' => 'metaDescription',
                          'title' => 'app.generic.description',
@@ -524,7 +524,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'invisible' => false,
                          'visibleGridView' => false,
                          'visibleSearch' => false,
-                         'blockedVarsForExport' => 
+                         'blockedVarsForExport' =>
                         array (
                         ),
                          'maxLength' => 190,
@@ -535,7 +535,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                       )),
                     ),
                      'locked' => false,
-                     'blockedVarsForExport' => 
+                     'blockedVarsForExport' =>
                     array (
                     ),
                      'fieldtype' => 'fieldset',
@@ -544,7 +544,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                   )),
                 ),
                  'locked' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
                  'fieldtype' => 'panel',
@@ -554,7 +554,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'labelWidth' => 100,
                  'labelAlign' => 'left',
               )),
-              1 => 
+              1 =>
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
                  'name' => 'Layout',
                  'type' => NULL,
@@ -566,9 +566,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'collapsed' => false,
                  'bodyStyle' => '',
                  'datatype' => 'layout',
-                 'children' => 
+                 'children' =>
                 array (
-                  0 => 
+                  0 =>
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Hastags',
                      'type' => NULL,
@@ -580,9 +580,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'collapsed' => false,
                      'bodyStyle' => '',
                      'datatype' => 'layout',
-                     'children' => 
+                     'children' =>
                     array (
-                      0 => 
+                      0 =>
                       \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
                          'name' => 'hashtags',
                          'title' => '',
@@ -598,7 +598,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'invisible' => false,
                          'visibleGridView' => false,
                          'visibleSearch' => false,
-                         'blockedVarsForExport' => 
+                         'blockedVarsForExport' =>
                         array (
                         ),
                          'maxLength' => NULL,
@@ -607,8 +607,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'height' => '',
                          'width' => '',
                       )),
-                      1 => 
-                      \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+                      1 =>
+                      \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
                          'name' => 'hashtagSets',
                          'title' => 'app.class.hashtagSet.titlePlural',
                          'tooltip' => '',
@@ -623,22 +623,21 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'invisible' => false,
                          'visibleGridView' => false,
                          'visibleSearch' => false,
-                         'blockedVarsForExport' => 
+                         'blockedVarsForExport' =>
                         array (
                         ),
-                         'options' => 
-                        array (
-                        ),
-                         'defaultValue' => '',
-                         'columnLength' => 190,
+                         'maxItems' => NULL,
+                         'renderType' => 'tags',
                          'dynamicOptions' => false,
-                         'defaultValueGenerator' => '',
+                         'defaultValue' => NULL,
+                         'height' => '',
                          'width' => '100%',
-                         'optionsProviderType' => 'configure',
-                         'optionsProviderClass' => '',
+                         'defaultValueGenerator' => '',
+                         'optionsProviderType' => 'class',
+                         'optionsProviderClass' => '@App\\OptionsProvider\\HashtagSetOptionsProvider',
                          'optionsProviderData' => '',
                       )),
-                      2 => 
+                      2 =>
                       \Pimcore\Model\DataObject\ClassDefinition\Data\CalculatedValue::__set_state(array(
                          'name' => 'hashtagsCalculated',
                          'title' => '',
@@ -654,19 +653,19 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'invisible' => false,
                          'visibleGridView' => false,
                          'visibleSearch' => false,
-                         'blockedVarsForExport' => 
+                         'blockedVarsForExport' =>
                         array (
                         ),
-                         'elementType' => 'input',
-                         'calculatorType' => 'expression',
+                         'elementType' => 'textarea',
+                         'calculatorType' => 'class',
                          'calculatorExpression' => 'object.getHashtags()',
-                         'calculatorClass' => '',
+                         'calculatorClass' => '@App\\Calculator\\BlogPostHashtagsCalculator',
                          'columnLength' => 190,
                          'width' => '100%',
                       )),
                     ),
                      'locked' => false,
-                     'blockedVarsForExport' => 
+                     'blockedVarsForExport' =>
                     array (
                     ),
                      'fieldtype' => 'fieldset',
@@ -675,7 +674,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                   )),
                 ),
                  'locked' => false,
-                 'blockedVarsForExport' => 
+                 'blockedVarsForExport' =>
                 array (
                 ),
                  'fieldtype' => 'panel',
@@ -687,7 +686,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
               )),
             ),
              'locked' => false,
-             'blockedVarsForExport' => 
+             'blockedVarsForExport' =>
             array (
             ),
              'fieldtype' => 'region',
@@ -695,7 +694,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
           )),
         ),
          'locked' => false,
-         'blockedVarsForExport' => 
+         'blockedVarsForExport' =>
         array (
         ),
          'fieldtype' => 'tabpanel',
@@ -704,7 +703,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
       )),
     ),
      'locked' => false,
-     'blockedVarsForExport' => 
+     'blockedVarsForExport' =>
     array (
     ),
      'fieldtype' => 'panel',
@@ -719,13 +718,13 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',
    'previewGeneratorReference' => '',
-   'compositeIndices' => 
+   'compositeIndices' =>
   array (
   ),
    'showFieldLookup' => false,
-   'propertyVisibility' => 
+   'propertyVisibility' =>
   array (
-    'grid' => 
+    'grid' =>
     array (
       'id' => true,
       'key' => false,
@@ -734,7 +733,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
       'modificationDate' => true,
       'creationDate' => true,
     ),
-    'search' => 
+    'search' =>
     array (
       'id' => true,
       'key' => false,
@@ -745,16 +744,16 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
     ),
   ),
    'enableGridLocking' => false,
-   'deletedDataComponents' => 
+   'deletedDataComponents' =>
   array (
   ),
-   'blockedVarsForExport' => 
+   'blockedVarsForExport' =>
   array (
   ),
-   'fieldDefinitionsCache' => 
+   'fieldDefinitionsCache' =>
   array (
   ),
-   'activeDispatchingEvents' => 
+   'activeDispatchingEvents' =>
   array (
   ),
 ));

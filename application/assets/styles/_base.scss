@@ -1,0 +1,18 @@
+$color-grey-default:    #333;
+$color-cd-orange:       #ea671a;
+$color-cd-green:        #92A721;
+$color-cd-yellow:       #f7d400;
+$color-white:           #fff;
+
+// Mixins
+@mixin border-radius($radius: 3px) {
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+@mixin box-shadow($size: 5px) {
+    -webkit-box-shadow: 0px $size $size 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px $size $size 0px rgba(0,0,0,0.5);
+    box-shadow: 0px $size $size 0px rgba(0,0,0,0.5);
+}
