@@ -22,6 +22,7 @@
 
 {#            {% do pimcore_head_link({rel: "canonical", href: "https://www.mydomain.de" ~ app.request.pathinfo}, "PREPEND") %}#}
             {% do pimcore_head_link().prependStylesheet(asset("build/app.css"), "screen") %}
+            {% do pimcore_head_link().prependStylesheet(asset("static/css/libs/bootstrap-icons/font/bootstrap-icons.min.css"), "screen") %}
             {% do pimcore_head_link().prependStylesheet(asset("static/css/libs/bootstrap.min.css"), "screen") %}
 
 {#            {% do pimcore_head_script().prependFile(asset("static/js/libs/jquery.min.js")) %}#}

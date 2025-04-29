@@ -1,19 +1,11 @@
 <div id="social-bar">
-{#    {% for channel in socialChannels %}#}
-{#        {% if channel.socialChannelIcon is not empty %}#}
-{#            {% if channel.socialChannelUrl %}#}
-{#                <a href="{{ channel.socialChannelUrl.href }}" target="_blank" title="FreiWeg at {{ channel.socialChannelName }}">#}
-{#                    {% set iconImage = channel.getSocialChannelIcon() %}#}
-{#                    {% if iconImage %}#}
-{#                        {% set iconImage = iconImage.thumbnail('social-sidebar-icon').html({#}
-{#                            'class': 'img-fluid',#}
-{#                            'alt': channel.socialChannelName#}
-{#                        }) %}#}
-{#                        {{ iconImage|raw }}#}
-{#                    {% endif %}#}
-{#                </a>#}
-{#            {% endif %}#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
-    <a href="#"><i class="material-icons">email</i></a>
+    {% for channel in socialChannels %}
+        {% if channel.bootstrapIcon is not empty %}
+            {% if channel.link %}
+                <a href="{{ channel.link.href }}" target="_blank" title="{{ channel.link.title|trans }}">
+                    <i class="bi bi-{{ channel.bootstrapIcon }}"></i>
+                </a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
 </div>

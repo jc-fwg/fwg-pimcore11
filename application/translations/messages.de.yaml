@@ -1,5 +1,4 @@
-generic:
-    categories: 'Kategorien'
-#some:
-#    example:
-#        howToUse: 'Ein Beispiel zur Anwendung'
+web:
+    social:
+        email: 'E-Mail an uns'
+        instagram: 'FreiWeg auf Instagram'

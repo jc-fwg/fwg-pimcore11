@@ -6,6 +6,7 @@ app:
         assetsFolder: 'Assets Folder'
         baseData: 'Base Data'
         breaks: 'Breaks'
+        bootstrapIcon: 'Bootstrap Icon'
         content: 'Content'
         date: 'Date'
         description: 'Description'

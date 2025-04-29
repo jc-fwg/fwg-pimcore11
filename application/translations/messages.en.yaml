@@ -1,5 +1,6 @@
-generic:
-    categories: 'Categories'
+web:
+    social:
+        instagram: 'FreiWeg on Instagram'
 #some:
 #    example:
 #        howToUse: 'Some example how to use'
