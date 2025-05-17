@@ -18,7 +18,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.author.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745526640,
+   'modificationDate' => 1747494353,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -212,7 +212,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelAlign' => 'left',
   )),
    'icon' => '/bundles/pimcoreadmin/img/twemoji/1f464.svg',
-   'group' => 'BlogPost',
+   'group' => 'Blogpost',
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',
    'previewGeneratorReference' => '',
@@ -244,71 +244,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
-    0 => 
-    \Pimcore\Model\DataObject\ClassDefinition\Data\Localizedfields::__set_state(array(
-       'name' => 'localizedfields',
-       'title' => '',
-       'tooltip' => NULL,
-       'mandatory' => false,
-       'noteditable' => false,
-       'index' => false,
-       'locked' => false,
-       'style' => NULL,
-       'permissions' => NULL,
-       'fieldtype' => '',
-       'relationType' => false,
-       'invisible' => false,
-       'visibleGridView' => true,
-       'visibleSearch' => true,
-       'blockedVarsForExport' => 
-      array (
-      ),
-       'children' => 
-      array (
-        0 => 
-        \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
-           'name' => 'description',
-           'title' => 'app.generic.description',
-           'tooltip' => '',
-           'mandatory' => false,
-           'noteditable' => false,
-           'index' => false,
-           'locked' => false,
-           'style' => '',
-           'permissions' => NULL,
-           'fieldtype' => '',
-           'relationType' => false,
-           'invisible' => false,
-           'visibleGridView' => false,
-           'visibleSearch' => false,
-           'blockedVarsForExport' => 
-          array (
-          ),
-           'toolbarConfig' => '',
-           'excludeFromSearchIndex' => false,
-           'maxCharacters' => '',
-           'height' => '',
-           'width' => '',
-        )),
-      ),
-       'region' => NULL,
-       'layout' => NULL,
-       'maxTabs' => NULL,
-       'border' => false,
-       'provideSplitView' => false,
-       'tabPosition' => 'top',
-       'hideLabelsWhenTabsReached' => NULL,
-       'referencedFields' => 
-      array (
-      ),
-       'permissionView' => NULL,
-       'permissionEdit' => NULL,
-       'labelWidth' => 100,
-       'labelAlign' => 'top',
-       'width' => '',
-       'height' => '',
-       'fieldDefinitionsCache' => NULL,
-    )),
   ),
    'blockedVarsForExport' => 
   array (

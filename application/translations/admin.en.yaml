@@ -29,6 +29,8 @@ app:
         metrics: 'Metrics'
         name: 'Name'
         gpxFile: 'GPX File'
+        previewText: 'Preview Text'
+        publicationDate: 'Publication Date'
         seoAndMarketing: 'SEO & Marketing'
         summary: 'Summary'
         surefootedness: 'Surefootedness'

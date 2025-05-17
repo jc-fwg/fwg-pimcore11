@@ -2,3 +2,6 @@ web:
     social:
         email: 'E-Mail an uns'
         instagram: 'FreiWeg auf Instagram'
+home:
+    posts:
+        latest: 'Neueste Beiträge'

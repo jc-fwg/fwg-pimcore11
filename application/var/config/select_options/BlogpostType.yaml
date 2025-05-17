@@ -2,8 +2,8 @@ pimcore:
     objects:
         select_options:
             definitions:
-                BlogPostType:
-                    id: BlogPostType
+                BlogpostType:
+                    id: BlogpostType
                     group: ''
                     useTraits: ''
                     implementsInterfaces: ''

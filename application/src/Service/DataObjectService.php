@@ -30,7 +30,7 @@ class DataObjectService
         }
 
         $pathPrefix = match ($object->getClassId()) {
-            DataObject\BlogPost::classId() => FolderConstants::ASSET_BLOGPOSTS,
+            DataObject\Blogpost::classId() => FolderConstants::ASSET_BLOGPOSTS,
             default => '/',
         };
 
