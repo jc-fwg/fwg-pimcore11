@@ -8,7 +8,7 @@
  * - publicationDate [date]
  * - blogpostType [select]
  * - authors [multiselect]
- * - activity [manyToManyRelation]
+ * - activity [manyToOneRelation]
  * - categories [manyToManyObjectRelation]
  * - imageMain [image]
  * - assetsFolder [manyToOneRelation]
@@ -16,6 +16,7 @@
  * - imageTeaser [image]
  * - headline [input]
  * - content [fieldcollections]
+ * - slug [input]
  * - metaTitle [input]
  * - metaDescription [textarea]
  * - hashtags [textarea]
@@ -30,7 +31,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1747495531,
+   'modificationDate' => 1747585694,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -170,7 +171,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'optionsProviderData' => '',
               )),
               3 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
+              \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                  'name' => 'activity',
                  'title' => 'app.class.activity.title',
                  'tooltip' => '',
@@ -195,9 +196,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     'classes' => 'Activity',
                   ),
                 ),
-                 'displayMode' => NULL,
+                 'displayMode' => 'grid',
                  'pathFormatterClass' => '',
-                 'maxItems' => NULL,
                  'assetInlineDownloadAllowed' => false,
                  'assetUploadPath' => '',
                  'allowToClearRelation' => true,
@@ -210,9 +210,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'documentTypes' => 
                 array (
                 ),
-                 'enableTextSelection' => true,
                  'width' => '',
-                 'height' => '',
               )),
               4 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
@@ -488,7 +486,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
           )),
           2 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Region::__set_state(array(
-             'name' => 'Layout',
+             'name' => 'SEO & Marketing',
              'type' => NULL,
              'region' => NULL,
              'title' => 'app.generic.seoAndMarketing',
@@ -515,6 +513,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'children' => 
                 array (
                   0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+                     'name' => 'slug',
+                     'title' => 'app.generic.slug',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => true,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'defaultValue' => NULL,
+                     'columnLength' => 190,
+                     'regex' => '',
+                     'regexFlags' => 
+                    array (
+                    ),
+                     'unique' => true,
+                     'showCharCount' => false,
+                     'width' => '100%',
+                     'defaultValueGenerator' => '',
+                  )),
+                  1 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Meta',
                      'type' => NULL,
@@ -602,7 +630,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'border' => false,
                  'icon' => '',
                  'labelWidth' => 100,
-                 'labelAlign' => 'left',
+                 'labelAlign' => 'top',
               )),
               1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
@@ -655,7 +683,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'showCharCount' => false,
                          'excludeFromSearchIndex' => false,
                          'height' => '',
-                         'width' => '',
+                         'width' => '100%',
                       )),
                       1 => 
                       \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
