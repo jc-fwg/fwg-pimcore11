@@ -7,6 +7,7 @@
  *
  * Fields Summary:
  * - name [input]
+ * - blogposts [reverseObjectRelation]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -16,7 +17,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.category.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1747494361,
+   'modificationDate' => 1747583408,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -89,6 +90,46 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'defaultValueGenerator' => '',
           )),
+          1 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
+             'name' => 'blogposts',
+             'title' => 'app.class.blogpost.titlePlural',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => true,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => true,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'classes' => 
+            array (
+            ),
+             'displayMode' => NULL,
+             'pathFormatterClass' => '',
+             'maxItems' => NULL,
+             'visibleFields' => 'id,key',
+             'allowToCreateNewObject' => false,
+             'allowToClearRelation' => true,
+             'optimizedAdminLoading' => true,
+             'enableTextSelection' => false,
+             'visibleFieldDefinitions' => 
+            array (
+            ),
+             'width' => '',
+             'height' => '',
+             'ownerClassName' => 'Blogpost',
+             'ownerClassId' => 'blogpost',
+             'ownerFieldName' => 'categories',
+             'lazyLoading' => true,
+          )),
         ),
          'locked' => false,
          'blockedVarsForExport' => 
@@ -99,7 +140,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'border' => false,
          'icon' => '',
          'labelWidth' => 100,
-         'labelAlign' => 'left',
+         'labelAlign' => 'top',
       )),
     ),
      'locked' => false,

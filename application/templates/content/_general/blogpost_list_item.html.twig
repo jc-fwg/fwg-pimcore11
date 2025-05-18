@@ -1,17 +1,17 @@
 <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="post-list-item shadow-sm bg-light">
-        {% if post.imageMain is defined and post.imageMain is not null %}
+        {% if post.imageMain is not null %}
             {{ post.imageMain.thumbnail('home-posts').html({ 'imgAttributes': { 'class': 'img-fluid mt-1 mb-1', 'alt': post.headline } })|raw }}
         {% endif %}
         <div class="post-list-item-content p-3">
             <h3>{{ post.headline }}</h3>
             <i class="bi bi-calendar3 pr-2"></i> {{ post.publicationDate|date('d.m.Y', 'Europe/Berlin') }}, {% for author in post.authors %}{{ author.name }}{% endfor %}
             <p class="pt-2">
-                {% if post.previewText is defined and post.imageMain is not null %}
+                {% if post.previewText is not null %}
                     {{ shortenByWordCount(post.previewText, 23) }}
                 {% endif %}
             </p>
-            <a href="{{ app_blogpost_detail_link(post) }}" class="btn btn-secondary btn-sm d-block pt-2 pb-2">Mehr erfahren</a>
+            <a href="{{ post.detailLink }}" class="btn btn-secondary btn-sm d-block pt-2 pb-2">Mehr erfahren</a>
         </div>
     </div>
 </div>

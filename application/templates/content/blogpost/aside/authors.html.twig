@@ -1,0 +1,23 @@
+{% if blogpost.authors %}
+    <aside class="author mt-4">
+        <h3>{{ 'blogpost.authors.headline'|trans }}</h3>
+        {% for author in blogpost.authors %}
+            <table>
+                <tr>
+                    <td>
+                        <strong>{{ author.name }}</strong>
+                        <p>
+                            {{ author.description }}
+                        </p>
+                    </td>
+                    <td>
+                        {% if author.image is not empty %}
+                            {{ author.image.thumbnail('blogpost-author').html({ 'imgAttributes': { 'class': 'img-fluid rounded-circle pr-2', 'alt': author.name }})|raw }}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+            <i class="material-icons pr-2">link</i> <a href="#">{{ 'blogpost.authors.posts-from'|trans }} {{ author.name }}</a>
+        {% endfor %}
+    </aside>
+{% endif %}

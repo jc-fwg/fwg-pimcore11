@@ -1,0 +1,47 @@
+{% extends 'layouts/layout.html.twig' %}
+{% dump(blogpost) %}
+    {% block content %}
+        {% if blogpost is defined %}
+            <article class="page page-blogpost">
+{#                {% include 'layouts/inc/nav_main.html.twig' %}#}
+{#                {% include 'layouts/inc/hero.html.twig' %}#}
+                <div id="title" class="container p-4 text-left">
+                    <h1>{{ blogpost.headline }}</h1>
+                    <h2 class="js-toc-ignore">Subtitle bspw Wanderung, Allgäuer Alpen, Deutschland</h2>
+{#                    {% for badge in badges %}#}
+{#                        <span class="badge badge-secondary">{{ badge }}</span>#}
+{#                    {% endfor %}#}
+                </div>
+                {# INTRO #}
+                <div class="container p-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-7 pt-4 intro">
+{#                            {{ emojied(blogpost.blogpostContentPreviewText)|raw }}#}
+                        </div>
+                        {% include 'content/blogpost/aside/toc.html.twig' %}
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+{#                            {% for item in blogpost.blogpostContentModules %}#}
+{#                                {% include 'content/blogpost/content/' ~ item.type ~ '.html.twig' with { 'item' : item } %}#}
+{#                            {% endfor %}#}
+                        </div>
+                        <div class="col-12 offset-lg-1 col-lg-4">
+                            {# ASIDES #}
+{#                            {% if facts|length > 0 %}#}
+{#                                {% include 'content/blogpost/aside/data-facts.html.twig' %}#}
+{#                            {% endif %}#}
+{#                            {% include 'content/blogpost/aside/links-downloads.html.twig' %}#}
+                            {% include 'content/blogpost/aside/authors.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+                {% if tour is defined and tour is not null and tour.tourProfileAlltrails %}
+                    <div class="container pl-4 pr-4">
+                        <h2>{{ 'blogpost.tour.card-and-height-profile'|trans }}</h2>
+                        {% include 'content/blogpost/alltrails.html.twig' %}
+                    </div>
+                {% endif %}
+            </article>
+        {% endif %}
+    {% endblock %}

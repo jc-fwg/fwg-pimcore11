@@ -72,7 +72,7 @@ class BlogpostLinkGenerator implements LinkGeneratorInterface
 
     public function generate(object $object, array $params = []): string
     {
-        if (!($object instanceof BlogPost)) {
+        if (!($object instanceof Blogpost)) {
             throw new \InvalidArgumentException('Given object is not an blogpost instance');
         }
 
@@ -80,11 +80,7 @@ class BlogpostLinkGenerator implements LinkGeneratorInterface
             function () use ($object, $params) {
                 return $this->pimcoreUrl->__invoke(
                     [
-                        'blogposttitle' => Text::toUrl(
-                            $object->getHeadline() ?
-                                $this->getSanitizedUrlString($object->getHeadline()) :
-                                'blogpost'
-                        ),
+                        'slug' => $object->getSlug(),
                         'topic' => Text::toUrl(
 
                                 'topic'
@@ -94,7 +90,6 @@ class BlogpostLinkGenerator implements LinkGeneratorInterface
 //                                $this->getSanitizedUrlString($object->getBlogpostTopic()->getTopicTitle()) :
 //                                'topic'
 //                        ),
-                        'blogpost' => $object->getId(),
                     ],
                     'blogpost-detail',
                     true

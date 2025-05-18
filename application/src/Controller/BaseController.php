@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
 use Pimcore\Controller\FrontendController;
 use Pimcore\Model\DataObject;
 use Pimcore\Tool;
@@ -32,8 +33,33 @@ class BaseController extends FrontendController
         return false;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
     protected function getAllParameters(Request $request): array
     {
-        return array_merge($request->request->all(), $request->query->all());
+        $parameters = array_merge($request->request->all(), $request->query->all());
+        $parameters['authors'] = $this->getAuthors();
+        $parameters['socialChannels'] = $this->getSocialChannels();
+
+        return $parameters;
+    }
+
+    /** @return DataObject\Author[] */
+    private function getAuthors(): array
+    {
+        $listing = new DataObject\Author\Listing();
+
+        return $listing->getObjects();
+    }
+
+    /** @return DataObject\SocialChannel[] */
+    private function getSocialChannels(): array
+    {
+        $listing = new DataObject\SocialChannel\Listing();
+
+        return $listing->getObjects();
     }
 }

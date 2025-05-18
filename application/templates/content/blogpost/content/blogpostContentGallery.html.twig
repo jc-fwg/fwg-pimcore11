@@ -1,0 +1,10 @@
+<div id="blogpost-gallery-{{ item.index }}" class="blogpost-content blogpost-content-gallery js-bbx-gallery">
+    {% for image in item.gallery.items %}
+        {% set fullImageSource = image.thumbnail('blogpost-gallery-full').path %}
+        {{ image.thumbnail('blogpost-gallery-thumbnail').html({ 'imgAttributes': {
+            'class': 'img-fluid p-1 border mr-2 mb-2',
+            'alt': 'author.authorName',
+            'data-fullsource': fullImageSource
+        }})|raw }}
+    {% endfor %}
+</div>

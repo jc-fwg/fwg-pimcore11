@@ -101,6 +101,14 @@ services:
         public: true
 
     #
+    # MAPPER
+    #
+
+    App\Mapper\:
+        resource: '../src/Mapper'
+        public: true
+
+    #
     # OPTIONS PROVIDER
     #
 

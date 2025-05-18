@@ -15,6 +15,11 @@ class AuthorRepository extends AbstractRepository
     ) {
     }
 
+    public function findOneById(int $id): ?DataObject\Author
+    {
+        return DataObject\Author::getById($id);
+    }
+
     /**
      * @return array<int, array<string, int|string>>
      *

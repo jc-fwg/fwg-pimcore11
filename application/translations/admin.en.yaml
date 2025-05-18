@@ -32,6 +32,7 @@ app:
         previewText: 'Preview Text'
         publicationDate: 'Publication Date'
         seoAndMarketing: 'SEO & Marketing'
+        slug: 'Slug'
         summary: 'Summary'
         surefootedness: 'Surefootedness'
         temperature: 'Temperature (°C)'
@@ -80,7 +81,7 @@ app:
         author:
             title: 'Author'
             titlePlural: 'Authors'
-        blogPost:
+        blogpost:
             title: 'Blogpost'
             titlePlural: 'Blogposts'
         category:

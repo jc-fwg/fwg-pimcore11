@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
+use App\Mapper\BlogpostMapper;
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -12,48 +15,34 @@ use App\Helper\ContentHelper;
 
 /**
  * Class BlogpostController
- * @package AppBundle\Controller
  */
 class BlogpostController extends BaseController
 {
-    private $blogpost;
-
-    /** @var Tour|null $tour */
-    private $tour;
-
-    /**
-     * @Route("{_locale}/{topic}/{blogposttitle}~bp{blogpost}",
-     *      name="blogpost-detail",
-     *      locale="de",
-     *      requirements={"topic"="[\w-]+", "blogposttitle"="[\w-]+", "bp"="\d+", "_locale": "[\w]*"})
-     * @param Request $request
-     * @param Config $websiteConfig
-     * @param TranslatorInterface $translator
-     */
-    public function blogpostAction(
-        Request $request,
-        Config $websiteConfig,
-        TranslatorInterface $translator
+    public function __construct(
+        private readonly BlogpostRepository $blogpostRepository,
+        private readonly BlogpostMapper $blogpostMapper,
     )
     {
+    }
+
+    #[Template('content/blogpost/blogpost.html.twig')]
+    #[Route(
+        '/{topic}/{slug}',
+        name: 'blogpost-detail',
+        requirements: [
+            'topic' => '[\w-]+',
+            'slug' => '[\w-]+',
+        ],
+    )]
+    public function blogpostAction(string $slug, Request $request): array
+    {
+        $blogpost = $this->blogpostRepository->getBySlug($slug);
+
         $paramBag = $this->getAllParameters($request);
 
-        /** @var Blogpost $blogpost */
-        $this->blogpost = Blogpost::getById($request->get('blogpost'));
-
-        if ($this->blogpost) {
-            $this->tour = $this->blogpost->getBlogpostTour();
-
-            $paramBag['blogpost'] = $this->blogpost;
-            $paramBag['tour'] = $this->tour;
-            $paramBag['title'] = $this->blogpost->getBlogpostTitle();
-            $paramBag['headTitle'] = $this->blogpost->getBlogpostTitle();
-            $paramBag['heroImage'] = $this->blogpost->getBlogpostHeroImage();
-            $paramBag['badges'] = $this->fetchBadges();
-            $paramBag['facts'] = $this->fetchFacts();
-        }
-
-        return $this->render('page/blogpost.html.twig', $paramBag);
+        return array_merge($paramBag, [
+            'blogpost' => $this->blogpostMapper->fromModel($blogpost),
+        ]);
     }
 
     /**

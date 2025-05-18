@@ -71,7 +71,7 @@ app:
         author:
             title: 'Autor'
             titlePlural: 'Autoren'
-        blogPost:
+        blogpost:
             title: 'Blogbeitrag'
             titlePlural: 'Blogbeiträge'
         country:

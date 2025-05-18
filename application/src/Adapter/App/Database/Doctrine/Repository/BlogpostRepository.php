@@ -31,4 +31,9 @@ class BlogpostRepository extends AbstractRepository
 
         return $listing->getObjects();
     }
+
+    public function getBySlug(string $slug): ?DataObject\Blogpost
+    {
+        return DataObject\Blogpost::getBySlug($slug, 1);
+    }
 }

@@ -21,7 +21,7 @@ class BlogpostHashtagsCalculator implements CalculatorClassInterface
             return '';
         }
 
-        $hashtags[] = $object->getHashtags();
+        $hashtags[] = str_replace("\n", ' ', (string) $object->getHashtags());
 
         $hashtagSets = $object->getHashtagSets() ?? [];
 
@@ -32,11 +32,11 @@ class BlogpostHashtagsCalculator implements CalculatorClassInterface
             $hashtags[] = $hashtagSet->getHashtags();
         }
 
-        return implode(' ',
+        return trim(implode(' ',
             array_filter($hashtags, function ($hashtags) {
                 return !empty($hashtags);
             })
-        );
+        ));
     }
 
     public function getCalculatedValueForEditMode(Concrete $object, CalculatedValue $context): string
