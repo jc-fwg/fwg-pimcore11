@@ -1,0 +1,15 @@
+pimcore:
+    properties:
+        predefined:
+            definitions:
+                b3e02c01-c87e-48f2-9d7c-ba2127c2bdb7:
+                    name: 'Hero Image'
+                    description: ''
+                    key: document_hero_image
+                    type: asset
+                    data: ''
+                    config: ''
+                    ctype: document
+                    inheritable: false
+                    creationDate: 1748527708
+                    modificationDate: 1748527747

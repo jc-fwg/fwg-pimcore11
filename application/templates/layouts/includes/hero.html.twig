@@ -1,0 +1,16 @@
+<header id="hero" class="text-center">
+    {% if heroImage is defined and heroImage is not null %}
+        {% set heroImage = heroImage.thumbnail('heroImage').html({
+            'class': 'd-none',
+            'id': 'hero-background'
+        }) %}
+        {{ heroImage|raw }}
+    {% endif %}
+    <div class="hero-content">
+        <div class="container text-start p-4">
+            <h1>{{ pimcore_input('title', {'placeholder':'Title'}) }}</h1>
+            <br>
+            <h2 class="js-toc-ignore">{{ pimcore_input('subtitle', {'placeholder':'Subitle'}) }}</h2>
+        </div>
+    </div>
+</header>

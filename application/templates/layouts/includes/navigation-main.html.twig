@@ -1,9 +1,41 @@
-<ul class="nav navbar-nav">
-    {% for page in pages %}
-        {% if page.documentType == "page" or page.documentType == "link" %}
-            <li>
-                <a href="{{ page.uri }}"{% if page.active %} class="active"{% endif %}>{{ page.title }}</a>
-            </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+{# get the document which should be used to start in navigation | default home #}
+{% set navStartNode = document.getProperty('navigation_main_root') %}
+{% if not navStartNode is instanceof('\\Pimcore\\Model\\Document') %}
+    {% set navStartNode = pimcore_document(1) %}
+{% endif %}
+
+{% set navMain =  pimcore_build_nav({
+    active: document,
+    root: navStartNode
+}) %}
+<nav id="nav-main" class="navbar navbar-dark navbar-expand-lg flex-column pt-2 fixed-top">
+    <div id="nav-main-bg-layer">
+
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-main">
+        <a class="navbar-brand" href="/">
+            <img id="logo" src="{{ asset('static/gfx/freiweg-logo.svg') }}" alt="FreiWeg Outdoor Activity Blog">
+        </a>
+        <ul class="navbar-nav mr-auto">
+            {% dump(navMain) %}
+            {% for topicPage in navMain %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="drobHike" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ topicPage.getLabel()|trans }}</a>
+                    {% if topicPage.hasPages() %}
+                        <div class="dropdown-menu bg-dark" aria-labelledby="drobHike">
+                            {% for subPage in topicPage.getPages() %}
+                                {% if subPage.isVisible() %}
+                                    <a class="dropdown-item" href="{{ subPage.getHref() }}">{{ subPage.getLabel()|trans }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

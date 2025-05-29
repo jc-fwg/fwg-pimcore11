@@ -3,11 +3,30 @@
     {% block content %}
         {% if blogpost is defined %}
             <article class="page page-blogpost">
-{#                {% include 'layouts/inc/nav_main.html.twig' %}#}
-{#                {% include 'layouts/inc/hero.html.twig' %}#}
+                {% include 'layouts/includes/navigation-main.html.twig' %}
+                {# HERO #}
+                <header id="hero" class="text-center">
+                    {% if blogpost.imageTeaser is defined and blogpost.imageTeaser is not null %}
+                        {% set heroImage = blogpost.imageTeaser.thumbnail('heroImage').html({
+                            'imgAttributes': {
+                                'class': 'd-none',
+                                'id': 'hero-background'
+                            },
+                        }) %}
+                        {{ heroImage|raw }}
+                    {% endif %}
+                    <div class="hero-content">
+                        <div class="container text-start p-4">
+                            <h1>{{ blogpost.title }}</h1>
+                            <br>
+                            <h2 class="js-toc-ignore">{{ blogpost.subTitle }}</h2>
+                        </div>
+                    </div>
+                </header>
+                {# CONTENTS #}
                 <div id="title" class="container p-4 text-left">
-                    <h1>{{ blogpost.headline }}</h1>
-                    <h2 class="js-toc-ignore">Subtitle bspw Wanderung, Allgäuer Alpen, Deutschland</h2>
+                    <h1>{{ blogpost.title }}</h1>
+                    <h2 class="js-toc-ignore">{{ blogpost.subTitle }}</h2>
 {#                    {% for badge in badges %}#}
 {#                        <span class="badge badge-secondary">{{ badge }}</span>#}
 {#                    {% endfor %}#}
@@ -22,6 +41,11 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-7">
+                            gugugg
+                            <h2>ashdhsafhasjk</h2>
+                            <p>
+                                asdasfasaafas
+                            </p>
 {#                            {% for item in blogpost.blogpostContentModules %}#}
 {#                                {% include 'content/blogpost/content/' ~ item.type ~ '.html.twig' with { 'item' : item } %}#}
 {#                            {% endfor %}#}

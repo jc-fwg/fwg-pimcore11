@@ -1,6 +1,6 @@
 <header id="hero">
     {% if heroImage is defined and heroImage is not null %}
-        {% set heroImage = heroImage.thumbnail('home-heroimage').html({
+        {% set heroImage = heroImage.thumbnail('heroImage').html({
             'class': 'd-none',
             'id': 'hero-background'
         }) %}

@@ -1,3 +1,5 @@
+@use '_base.scss' as base;
+
 html {
     scroll-behavior: smooth;
 }
@@ -22,12 +24,12 @@ h4 {
 }
 
 .btn-primary {
-    background-color: $color-cd-orange;
-    border-color: $color-cd-orange;
+    background-color: base.$color-cd-orange;
+    border-color: base.$color-cd-orange;
 }
 .btn-secondary {
-    background-color: $color-cd-green;
-    border-color: $color-cd-green;
+    background-color: base.$color-cd-green;
+    border-color: base.$color-cd-green;
 }
 
 .spaced {
@@ -41,7 +43,7 @@ h4 {
 }
 
 a {
-    color: $color-cd-green;
+    color: base.$color-cd-green;
 
 }
 
@@ -74,7 +76,7 @@ a {
         h1,
         h2 {
             margin: 0;
-            background-color: $color-cd-orange;
+            background-color: base.$color-cd-orange;
             padding: 5px 11px;
             color: #fff;
             display: inline-block;
@@ -85,11 +87,11 @@ a {
         }
 
         h2 {
-            background-color: $color-cd-green;
+            background-color: base.$color-cd-green;
         }
 
         .topic {
-            border-left: 3px solid $color-cd-orange;
+            border-left: 3px solid base.$color-cd-orange;
 
             h2 {
                 font-size: 1rem;
@@ -135,14 +137,14 @@ footer {
         color: #fff;
 
         &:hover {
-            color: $color-cd-green;
+            color: base.$color-cd-green;
             text-decoration: none;
         }
     }
 }
 
 .border-cd-orange {
-    border-color: $color-cd-orange !important;
+    border-color: base.$color-cd-orange !important;
 }
 
 #social-bar {
@@ -157,7 +159,7 @@ footer {
         border-bottom: 1px solid #fff;
         width: 40px;
         height: 40px;
-        background-color: $color-cd-orange;
+        background-color: base.$color-cd-orange;
         color: #fff;
         line-height: 40px;
         text-align: center;
@@ -167,7 +169,7 @@ footer {
         }
 
         &:hover {
-            background-color: $color-cd-green;
+            background-color: base.$color-cd-green;
         }
 
         img {

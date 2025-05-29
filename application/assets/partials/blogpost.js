@@ -1,0 +1,46 @@
+'use strict';
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Handler when the DOM is fully loaded
+    if (document.getElementById("toc")) {
+        buildTableOfContent();
+    }
+});
+
+/**
+ * Builds table of content from h2
+ */
+function buildTableOfContent() {
+
+    // Fetch headlines
+    let headlinesH2 = Array.prototype.slice.call(document.getElementsByTagName("h2"));
+    let headlinesH3 = Array.prototype.slice.call(document.getElementsByTagName("h3"));
+    let headlines = headlinesH2.concat(headlinesH3);
+
+    let tocHtml = "";
+    let index = 0;
+
+    for (let headline of headlines) {
+
+        // Skip ignored headlines
+        if (headline.classList.contains("js-toc-ignore")) {
+            continue;
+        }
+
+        // Add anchor before headline
+        let anchorElement = document.createElement("a");
+        anchorElement.setAttribute("name", "toc" + index);
+        headline.parentNode.insertBefore(anchorElement, headline);
+
+        // Add class on H3 for show mobile only
+        let classAdditon = "";
+        if (headline.tagName.toLowerCase() === "h3") {
+            classAdditon = ' class="d-lg-none"';
+        }
+
+        tocHtml += '<li' + classAdditon + '><a href="#toc' + index + '">' + headline.innerText + '</a></li>';
+        index++;
+    };
+
+    document.getElementsByClassName("js-toc")[0].innerHTML = tocHtml;
+}

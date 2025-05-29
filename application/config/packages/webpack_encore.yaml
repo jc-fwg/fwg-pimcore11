@@ -1,0 +1,3 @@
+webpack_encore:
+    builds:
+        _default: '%kernel.project_dir%/public/build'

@@ -8,3 +8,6 @@ backup-database:
 
 cache-clear-full:
     bin/console cache:clear; bin/console pimcore:cache:clear
+
+create-folders:
+    bin/console cache:clear; bin/console app:build:create-folders

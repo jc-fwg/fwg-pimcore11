@@ -1,3 +1,5 @@
+@use '../_base.scss' as base;
+
 #page-home {
 
     #hero {
@@ -16,10 +18,10 @@
             padding-top: 60px;
             padding-bottom: 30px;
             line-height: 2em;
-            border-bottom: 1px dotted $color-cd-orange;
+            border-bottom: 1px dotted base.$color-cd-orange;
 
             strong {
-                color: $color-cd-green;
+                color: base.$color-cd-green;
             }
         }
     }
@@ -37,8 +39,8 @@
             h3 {
                 margin: 15px 0;
                 padding: 5px 3px;
-                background-color: $color-cd-orange;
-                color: $color-white;
+                background-color: base.$color-cd-orange;
+                color: base.$color-white;
                 border-radius: 5px;
                 text-transform: uppercase;
                 font-weight: 600;

@@ -9,6 +9,7 @@ use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Image;
 use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Category;
+use Pimcore\Model\DataObject\Fieldcollection;
 
 class BlogpostDto extends DataModelDto
 {
@@ -27,8 +28,9 @@ class BlogpostDto extends DataModelDto
         public ?Folder $assetsFolder = null,
         public ?string $previewText = null,
         public ?Image $imageTeaser = null,
-        public ?string $headline = null,
-        public ?string $content = null,
+        public ?string $title = null,
+        public ?string $subTitle = null,
+        public ?Fieldcollection $content = null,
         public ?string $metaTitle = null,
         public ?string $metaDescription = null,
         public ?string $hashtags = null,
