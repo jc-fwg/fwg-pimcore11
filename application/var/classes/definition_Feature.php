@@ -8,7 +8,6 @@
  * Fields Summary:
  * - name [input]
  * - emoji [input]
- * - icon [image]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -18,7 +17,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.feature.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745526626,
+   'modificationDate' => 1748705524,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -121,29 +120,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '50px',
              'defaultValueGenerator' => '',
           )),
-          2 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
-             'name' => 'icon',
-             'title' => 'app.generic.icon',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => false,
-             'index' => false,
-             'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => false,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
-             'blockedVarsForExport' => 
-            array (
-            ),
-             'uploadPath' => '',
-             'width' => '',
-             'height' => '',
-          )),
         ),
          'locked' => false,
          'blockedVarsForExport' => 
@@ -202,127 +178,27 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'deletedDataComponents' => 
   array (
     0 => 
-    \Pimcore\Model\DataObject\ClassDefinition\Data\Localizedfields::__set_state(array(
-       'name' => 'localizedfields',
-       'title' => '',
-       'tooltip' => NULL,
+    \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
+       'name' => 'icon',
+       'title' => 'app.generic.icon',
+       'tooltip' => '',
        'mandatory' => false,
        'noteditable' => false,
        'index' => false,
        'locked' => false,
-       'style' => NULL,
+       'style' => '',
        'permissions' => NULL,
        'fieldtype' => '',
        'relationType' => false,
        'invisible' => false,
-       'visibleGridView' => true,
-       'visibleSearch' => true,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
        'blockedVarsForExport' => 
       array (
       ),
-       'children' => 
-      array (
-        0 => 
-        \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-           'name' => 'name',
-           'title' => 'app.generic.name',
-           'tooltip' => '',
-           'mandatory' => false,
-           'noteditable' => false,
-           'index' => false,
-           'locked' => false,
-           'style' => '',
-           'permissions' => NULL,
-           'fieldtype' => '',
-           'relationType' => false,
-           'invisible' => false,
-           'visibleGridView' => false,
-           'visibleSearch' => false,
-           'blockedVarsForExport' => 
-          array (
-          ),
-           'defaultValue' => NULL,
-           'columnLength' => 190,
-           'regex' => '',
-           'regexFlags' => 
-          array (
-          ),
-           'unique' => false,
-           'showCharCount' => false,
-           'width' => '',
-           'defaultValueGenerator' => '',
-        )),
-        1 => 
-        \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-           'name' => 'emoji',
-           'title' => 'app.generic.emoji',
-           'tooltip' => '',
-           'mandatory' => false,
-           'noteditable' => false,
-           'index' => false,
-           'locked' => false,
-           'style' => '',
-           'permissions' => NULL,
-           'fieldtype' => '',
-           'relationType' => false,
-           'invisible' => false,
-           'visibleGridView' => false,
-           'visibleSearch' => false,
-           'blockedVarsForExport' => 
-          array (
-          ),
-           'defaultValue' => NULL,
-           'columnLength' => 190,
-           'regex' => '',
-           'regexFlags' => 
-          array (
-          ),
-           'unique' => false,
-           'showCharCount' => false,
-           'width' => '50px',
-           'defaultValueGenerator' => '',
-        )),
-        2 => 
-        \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
-           'name' => 'icon',
-           'title' => 'app.generic.icon',
-           'tooltip' => '',
-           'mandatory' => false,
-           'noteditable' => false,
-           'index' => false,
-           'locked' => false,
-           'style' => '',
-           'permissions' => NULL,
-           'fieldtype' => '',
-           'relationType' => false,
-           'invisible' => false,
-           'visibleGridView' => false,
-           'visibleSearch' => false,
-           'blockedVarsForExport' => 
-          array (
-          ),
-           'uploadPath' => '',
-           'width' => '',
-           'height' => '',
-        )),
-      ),
-       'region' => NULL,
-       'layout' => NULL,
-       'maxTabs' => NULL,
-       'border' => false,
-       'provideSplitView' => false,
-       'tabPosition' => 'top',
-       'hideLabelsWhenTabsReached' => NULL,
-       'referencedFields' => 
-      array (
-      ),
-       'permissionView' => NULL,
-       'permissionEdit' => NULL,
-       'labelWidth' => 100,
-       'labelAlign' => 'top',
+       'uploadPath' => '',
        'width' => '',
        'height' => '',
-       'fieldDefinitionsCache' => NULL,
     )),
   ),
    'blockedVarsForExport' => 

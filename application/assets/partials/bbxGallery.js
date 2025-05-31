@@ -77,7 +77,7 @@ function buildSlideOut(images, thumbnailClicked) {
 
         // Setup loader wrapper, append to image wrapper
         let imageLoaderElement = document.createElement("div");
-        imageLoaderElement.innerHTML = '<img src="/gfx/loader-puff.svg" class="loader" />';
+        imageLoaderElement.innerHTML = '<img src="/static/gfx/loader-puff.svg" class="loader" />';
         imageDivElement.appendChild(imageLoaderElement);
 
         // Setup image counter, append to image wrapper
@@ -105,6 +105,7 @@ function buildSlideOut(images, thumbnailClicked) {
 
     // Slide out and prevent body scrolling
     slideoutElement.classList.add("show");
+    console.log(slideoutElement);
     document.body.style.overflow = "hidden";
 }
 

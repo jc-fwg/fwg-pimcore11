@@ -1,0 +1,26 @@
+pimcore:
+    assets:
+        image:
+            thumbnails:
+                definitions:
+                    blogpost-gallery-full:
+                        items:
+                            -
+                                method: scaleByWidth
+                                arguments:
+                                    width: 1140
+                                    forceResize: true
+                        medias: {  }
+                        name: blogpost-gallery-full
+                        description: ''
+                        group: Blogpost
+                        format: JPEG
+                        quality: 70
+                        highResolution: null
+                        preserveColor: false
+                        preserveMetaData: false
+                        rasterizeSVG: false
+                        downloadable: false
+                        modificationDate: 1748701308
+                        creationDate: 1748701191
+                        preserveAnimation: false

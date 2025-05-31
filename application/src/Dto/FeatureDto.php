@@ -6,13 +6,12 @@ namespace App\Dto;
 
 use Pimcore\Model\Asset\Image;
 
-class AuthorDto
+class FeatureDto
 {
     public function __construct(
         public readonly int $id,
         public ?string $name = null,
-        public ?string $description = null,
-        public ?Image $image = null,
+        public ?string $emoji = null,
     )
     {
     }

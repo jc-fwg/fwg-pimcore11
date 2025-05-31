@@ -11,7 +11,7 @@ use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Category;
 use Pimcore\Model\DataObject\Fieldcollection;
 
-class BlogpostDto extends DataModelDto
+class BlogpostDto
 {
     /**
      * @param AuthorDto[] $authors

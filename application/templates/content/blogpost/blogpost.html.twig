@@ -35,26 +35,22 @@
                 <div class="container p-4">
                     <div class="row">
                         <div class="col-12 col-lg-7 pt-4 intro">
-{#                            {{ emojied(blogpost.blogpostContentPreviewText)|raw }}#}
+                            {{ emojied(blogpost.previewText)|raw }}
                         </div>
                         {% include 'content/blogpost/aside/toc.html.twig' %}
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-7">
-                            gugugg
-                            <h2>ashdhsafhasjk</h2>
-                            <p>
-                                asdasfasaafas
-                            </p>
-{#                            {% for item in blogpost.blogpostContentModules %}#}
-{#                                {% include 'content/blogpost/content/' ~ item.type ~ '.html.twig' with { 'item' : item } %}#}
-{#                            {% endfor %}#}
+                            {% for item in blogpost.content %}
+                                {% include 'content/blogpost/content/' ~ item.type ~ '.html.twig' with { 'item' : item } %}
+                            {% endfor %}
                         </div>
                         <div class="col-12 offset-lg-1 col-lg-4">
                             {# ASIDES #}
-{#                            {% if facts|length > 0 %}#}
-{#                                {% include 'content/blogpost/aside/data-facts.html.twig' %}#}
-{#                            {% endif %}#}
+
+                            {% if blogpost.activity is not null and blogpost.activity.features|length > 0 %}
+                                {% include 'content/blogpost/aside/activity-features.html.twig' %}
+                            {% endif %}
 {#                            {% include 'content/blogpost/aside/links-downloads.html.twig' %}#}
                             {% include 'content/blogpost/aside/authors.html.twig' %}
                         </div>
