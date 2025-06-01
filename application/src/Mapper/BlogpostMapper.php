@@ -7,12 +7,15 @@ namespace App\Mapper;
 use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
 use App\Dto\BlogpostDto;
 use App\Website\LinkGenerator\BlogpostLinkGenerator;
+use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Author;
 use Pimcore\Model\DataObject\Blogpost;
+use Pimcore\Model\DataObject\Category;
 
 class BlogpostMapper
 {
     public function __construct(
+        private readonly ActivityMapper $activityMapper,
         private readonly AuthorRepository $authorRepository,
         private readonly AuthorMapper $authorMapper,
         private readonly BlogpostLinkGenerator $blogpostLinkGenerator
@@ -26,7 +29,6 @@ class BlogpostMapper
             id: $model->getId(),
             publicationDate:  $model->getPublicationDate(),
             blogpostType:  $model->getBlogpostType(),
-            activity:  $model->getActivity(),
             imageMain:   $model->getImageMain(),
             assetsFolder:   $model->getAssetsFolder(),
             previewText:   $model->getPreviewText(),
@@ -58,11 +60,16 @@ class BlogpostMapper
         // Categories
         $categories = $model->getCategories() ?? [];
         foreach ($categories as $category) {
-            if (!$category instanceof \Pimcore\Model\DataObject\Category) {
+            if (!$category instanceof Category) {
                 continue;
             }
 
             $dto->categories[] = $category;
+        }
+
+        $activity = $model->getActivity();
+        if ($activity instanceof Activity) {
+            $dto->activity = $this->activityMapper->fromModel($activity);
         }
 
         return $dto;

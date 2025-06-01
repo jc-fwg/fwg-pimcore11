@@ -6,6 +6,7 @@ namespace App\Adapter\App\Database\Doctrine\Repository;
 
 use Exception;
 use Pimcore\Model\DataObject\AbstractObject;
+use Pimcore\Model\DataObject\ClassDefinition;
 use Pimcore\Model\DataObject\Listing;
 use Pimcore\Model\Element\AbstractElement;
 
@@ -38,5 +39,10 @@ abstract class AbstractRepository
         AbstractObject::setHideUnpublished($currentStatus);
 
         return $result;
+    }
+
+    public function findById(string $id): ?AbstractObject
+    {
+        return AbstractObject::getById($id);
     }
 }

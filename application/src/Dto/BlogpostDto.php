@@ -7,7 +7,6 @@ namespace App\Dto;
 use Carbon\Carbon;
 use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Image;
-use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Category;
 use Pimcore\Model\DataObject\Fieldcollection;
 
@@ -21,9 +20,9 @@ class BlogpostDto
         public readonly int $id,
         public ?Carbon $publicationDate = null,
         public ?string $blogpostType = null,
-        public ?array $authors = null,
-        public ?Activity $activity = null,
-        public ?array $categories = null,
+        public ?array $authors = [],
+        public ?ActivityDto $activity = null,
+        public ?array $categories = [],
         public ?Image $imageMain = null,
         public ?Folder $assetsFolder = null,
         public ?string $previewText = null,

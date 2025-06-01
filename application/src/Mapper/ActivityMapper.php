@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
-use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
+use App\Adapter\App\Database\Doctrine\Repository\FeatureRepository;
 use App\Dto\ActivityDto;
-use App\Dto\BlogpostDto;
-use App\Website\LinkGenerator\BlogpostLinkGenerator;
 use Pimcore\Model\DataObject\Activity;
-use Pimcore\Model\DataObject\Author;
-use Pimcore\Model\DataObject\Blogpost;
+use Pimcore\Model\DataObject\Feature;
 
 class ActivityMapper
 {
     public function __construct(
-        private readonly AuthorRepository $authorRepository,
-        private readonly AuthorMapper $authorMapper,
-        private readonly BlogpostLinkGenerator $blogpostLinkGenerator
+        private readonly FeatureRepository $featureRepository,
+        private readonly FeatureMapper $featureMapper,
     )
     {
     }
@@ -33,28 +29,15 @@ class ActivityMapper
             temperature: $model->getTemperature(),
         );
 
-        $dto->isPublished = $model->isPublished();
+        // Features
+        foreach ($model->getFeatures() as $featureId) {
+            $feature = $this->featureRepository->findById($featureId);
 
-        // Authors
-        $authorsIds = $model->getAuthors() ?? [];
-        foreach ($authorsIds as $authorId) {
-            $author = $this->authorRepository->findOneById((int) $authorId);
-
-            if (!$author instanceof Author) {
+            if (!$feature instanceof Feature) {
                 continue;
             }
 
-            $dto->authors[] = $this->authorMapper->fromModel($author);
-        }
-
-        // Categories
-        $categories = $model->getCategories() ?? [];
-        foreach ($categories as $category) {
-            if (!$category instanceof \Pimcore\Model\DataObject\Category) {
-                continue;
-            }
-
-            $dto->categories[] = $category;
+            $dto->features[] = $this->featureMapper->fromModel($feature);
         }
 
         return $dto;

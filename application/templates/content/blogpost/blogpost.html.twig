@@ -2,6 +2,7 @@
 {% dump(blogpost) %}
     {% block content %}
         {% if blogpost is defined %}
+            {% dump(blogpost) %}
             <article class="page page-blogpost">
                 {% include 'layouts/includes/navigation-main.html.twig' %}
                 {# HERO #}
