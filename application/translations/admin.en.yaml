@@ -8,6 +8,7 @@ app:
         breaks: 'Breaks'
         bootstrapIcon: 'Bootstrap Icon'
         content: 'Content'
+        country: 'Country'
         date: 'Date'
         description: 'Description'
         distance: 'Distance (km'
@@ -99,6 +100,9 @@ app:
         region:
             title: 'Region'
             titlePlural: 'Regions'
+        state:
+            title: 'State'
+            titlePlural: 'States'
     fieldCollection:
         contentGallery:
             title: 'Gallery'

@@ -3,21 +3,21 @@
 /**
  * Inheritance: no
  * Variants: no
- * Title: app.class.country.title
+ * Title: app.class.state.title
  *
  * Fields Summary:
  * - name [input]
- * - flag [image]
+ * - country [country]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'dao' => NULL,
-   'id' => 'country',
-   'name' => 'Country',
-   'title' => 'app.class.country.title',
+   'id' => 'state',
+   'name' => 'State',
+   'title' => 'app.class.state.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745515637,
+   'modificationDate' => 1748787230,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -91,9 +91,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultValueGenerator' => '',
           )),
           1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
-             'name' => 'flag',
-             'title' => 'app.generic.flag',
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Country::__set_state(array(
+             'name' => 'country',
+             'title' => 'app.generic.country',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -109,9 +109,15 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'blockedVarsForExport' => 
             array (
             ),
-             'uploadPath' => '',
+             'defaultValue' => 'DE',
+             'columnLength' => 190,
+             'dynamicOptions' => false,
+             'defaultValueGenerator' => '',
              'width' => '',
-             'height' => '',
+             'optionsProviderType' => NULL,
+             'optionsProviderClass' => NULL,
+             'optionsProviderData' => NULL,
+             'restrictTo' => '',
           )),
         ),
          'locked' => false,
@@ -137,7 +143,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelWidth' => 100,
      'labelAlign' => 'left',
   )),
-   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f30e.svg',
+   'icon' => '/bundles/pimcoreadmin/img/twemoji/1faa9.svg',
    'group' => 'Localizing',
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',

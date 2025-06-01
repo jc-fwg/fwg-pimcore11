@@ -22,4 +22,10 @@ class BlogpostService
 
         $blogpost->setSlug($this->slugger->slug(implode(' ', $slug))->toString());
     }
+
+    /** @return string[] */
+    public function getBadgesByActivity(DataObject\Activity $activity): array
+    {
+
+    }
 }

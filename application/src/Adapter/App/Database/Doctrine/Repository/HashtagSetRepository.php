@@ -38,4 +38,9 @@ class HashtagSetRepository extends AbstractRepository
             'key'   => (string) $row['key'],
         ], $results);
     }
+
+    public function getExpectedClass(): string
+    {
+        return DataObject\HashtagSet::class;
+    }
 }

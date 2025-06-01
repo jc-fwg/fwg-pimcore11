@@ -43,8 +43,6 @@ class BlogpostMapper
             detailLink: $this->blogpostLinkGenerator->generate($model)
         );
 
-        $dto->isPublished = $model->isPublished();
-
         // Authors
         $authorsIds = $model->getAuthors() ?? [];
         foreach ($authorsIds as $authorId) {
@@ -67,6 +65,7 @@ class BlogpostMapper
             $dto->categories[] = $category;
         }
 
+        // Activity
         $activity = $model->getActivity();
         if ($activity instanceof Activity) {
             $dto->activity = $this->activityMapper->fromModel($activity);

@@ -9,11 +9,12 @@
  * - activityType [select]
  * - title [input]
  * - date [date]
- * - weather [select]
- * - temperature [numeric]
  * - features [multiselect]
  * - locations [fieldcollections]
+ * - weather [select]
+ * - temperature [numeric]
  * - typeSpecific [objectbricks]
+ * - regions [manyToManyObjectRelation]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -23,7 +24,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1745603164,
+   'modificationDate' => 1748789011,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -177,6 +178,67 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'defaultValueGenerator' => '',
                   )),
                   3 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
+                     'name' => 'features',
+                     'title' => 'app.generic.features',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'maxItems' => NULL,
+                     'renderType' => 'tags',
+                     'dynamicOptions' => false,
+                     'defaultValue' => NULL,
+                     'height' => '',
+                     'width' => '',
+                     'defaultValueGenerator' => '',
+                     'optionsProviderType' => 'class',
+                     'optionsProviderClass' => '@App\\OptionsProvider\\FeatureOptionsProvider',
+                     'optionsProviderData' => '',
+                  )),
+                  4 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections::__set_state(array(
+                     'name' => 'locations',
+                     'title' => 'app.fieldCollection.location.titlePlural',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'allowedTypes' => 
+                    array (
+                      0 => 'location',
+                    ),
+                     'lazyLoading' => true,
+                     'maxItems' => NULL,
+                     'disallowAddRemove' => false,
+                     'disallowReorder' => false,
+                     'collapsed' => false,
+                     'collapsible' => false,
+                     'border' => false,
+                  )),
+                  5 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Weather Conditions',
                      'type' => NULL,
@@ -257,67 +319,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'labelWidth' => 100,
                      'labelAlign' => 'left',
                   )),
-                  4 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
-                     'name' => 'features',
-                     'title' => 'app.generic.features',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => false,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'maxItems' => NULL,
-                     'renderType' => 'tags',
-                     'dynamicOptions' => false,
-                     'defaultValue' => NULL,
-                     'height' => '',
-                     'width' => '',
-                     'defaultValueGenerator' => '',
-                     'optionsProviderType' => 'class',
-                     'optionsProviderClass' => '@App\\OptionsProvider\\FeatureOptionsProvider',
-                     'optionsProviderData' => '',
-                  )),
-                  5 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections::__set_state(array(
-                     'name' => 'locations',
-                     'title' => 'app.fieldCollection.location.titlePlural',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => false,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'allowedTypes' => 
-                    array (
-                      0 => 'location',
-                    ),
-                     'lazyLoading' => true,
-                     'maxItems' => NULL,
-                     'disallowAddRemove' => false,
-                     'disallowReorder' => false,
-                     'collapsed' => false,
-                     'collapsible' => false,
-                     'border' => false,
-                  )),
                 ),
                  'locked' => false,
                  'blockedVarsForExport' => 
@@ -381,6 +382,74 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/list.svg',
                  'labelWidth' => 100,
                  'labelAlign' => 'top',
+              )),
+              2 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
+                 'name' => 'Layout',
+                 'type' => NULL,
+                 'region' => 'south',
+                 'title' => '',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                  0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
+                     'name' => 'regions',
+                     'title' => 'app.class.region.titlePlural',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => true,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'classes' => 
+                    array (
+                      0 => 
+                      array (
+                        'classes' => 'Region',
+                      ),
+                    ),
+                     'displayMode' => 'grid',
+                     'pathFormatterClass' => '',
+                     'maxItems' => NULL,
+                     'visibleFields' => 
+                    array (
+                    ),
+                     'allowToCreateNewObject' => false,
+                     'allowToClearRelation' => true,
+                     'optimizedAdminLoading' => false,
+                     'enableTextSelection' => false,
+                     'visibleFieldDefinitions' => 
+                    array (
+                    ),
+                     'width' => '',
+                     'height' => '',
+                  )),
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'panel',
+                 'layout' => NULL,
+                 'border' => false,
+                 'icon' => '',
+                 'labelWidth' => 100,
+                 'labelAlign' => 'left',
               )),
             ),
              'locked' => false,
