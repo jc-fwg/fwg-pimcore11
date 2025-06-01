@@ -36,7 +36,7 @@
 /public/sitemap*.xml
 
 # PHP-CS-Fixer
-/.php-cs-fixer.php
+.php-cs-fixer.php
 /.php-cs-fixer.cache
 
 # composer & nodeJS

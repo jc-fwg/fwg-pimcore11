@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
-use App\Dto\RegionDto;
 use App\Dto\StateDto;
-use Pimcore\Model\DataObject\Region;
 use Pimcore\Model\DataObject\State;
 
 class StateMapper

@@ -31,7 +31,8 @@
   },
   "require-dev": {
     "codeception/codeception": "^5.0.3",
-    "codeception/module-symfony": "^3.1.0"
+    "codeception/module-symfony": "^3.1.0",
+    "friendsofphp/php-cs-fixer": "^3.75"
   },
   "extra": {
     "patches-file": "composer.patches.json"
