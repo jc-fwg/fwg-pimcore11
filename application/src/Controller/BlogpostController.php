@@ -1,28 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
+use App\Helper\ContentHelper;
 use App\Mapper\BlogpostMapper;
+use Pimcore\Model\DataObject\Tour;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
-use Pimcore\Model\DataObject\Blogpost;
-use Pimcore\Model\DataObject\Tour;
-use Pimcore\Config\Config;
-use App\Helper\ContentHelper;
 
 /**
- * Class BlogpostController
+ * Class BlogpostController.
  */
 class BlogpostController extends BaseController
 {
     public function __construct(
         private readonly BlogpostRepository $blogpostRepository,
         private readonly BlogpostMapper $blogpostMapper,
-    )
-    {
+    ) {
     }
 
     #[Template('content/blogpost/blogpost.html.twig')]
@@ -31,7 +29,7 @@ class BlogpostController extends BaseController
         name: 'blogpost-detail',
         requirements: [
             'topic' => '[\w-]+',
-            'slug' => '[\w-]+',
+            'slug'  => '[\w-]+',
         ],
     )]
     public function blogpostAction(string $slug, Request $request): array
@@ -45,9 +43,6 @@ class BlogpostController extends BaseController
         ]);
     }
 
-    /**
-     * @return array
-     */
     private function fetchBadges(): array
     {
         $badges = [];
@@ -57,8 +52,8 @@ class BlogpostController extends BaseController
             $tourRegions = $this->tour->getTourGeoRegions();
             $tourGeoData = [
                 'countries' => [],
-                'regions' => [],
-                'states' => [],
+                'regions'   => [],
+                'states'    => [],
             ];
 
             foreach ($tourRegions as $region) {
@@ -115,19 +110,17 @@ class BlogpostController extends BaseController
 
         // Tour facts
         if ($this->tour) {
-
             // Default facts
             $facts['tour'] = [
-
-                'distance' => (float)$this->tour->getTourFactDistance(),
-                'elevation' => (int)$this->tour->getTourFactElevation(),
-                'duration' => (float)$this->tour->getTourFactDuration(),
-                'pauses' => (string)$this->tour->getTourFactPauses(),
-                'orientation' => (string)$this->tour->getTourFactOrientation(),
-                'start' => $this->tour->getTourStart(),
-                'startTitle' => $this->tour->getTourStartTitle(),
-                'end' => $this->tour->getTourEnd(),
-                'endTitle' => $this->tour->getTourEndTitle(),
+                'distance'    => (float) $this->tour->getTourFactDistance(),
+                'elevation'   => (int) $this->tour->getTourFactElevation(),
+                'duration'    => (float) $this->tour->getTourFactDuration(),
+                'pauses'      => (string) $this->tour->getTourFactPauses(),
+                'orientation' => (string) $this->tour->getTourFactOrientation(),
+                'start'       => $this->tour->getTourStart(),
+                'startTitle'  => $this->tour->getTourStartTitle(),
+                'end'         => $this->tour->getTourEnd(),
+                'endTitle'    => $this->tour->getTourEndTitle(),
                 'orientation' => $this->tour->getTourFactOrientation(),
             ];
 
@@ -146,6 +139,7 @@ class BlogpostController extends BaseController
                 ]);
             }
         }
+
         return $facts;
     }
 }

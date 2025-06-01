@@ -11,8 +11,7 @@ class RegionMapper
 {
     public function __construct(
         private readonly StateMapper $stateMapper,
-    )
-    {
+    ) {
     }
 
     public function fromModel(Region $model): RegionDto

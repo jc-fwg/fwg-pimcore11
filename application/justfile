@@ -11,3 +11,25 @@ cache-clear-full:
 
 create-folders:
     bin/console cache:clear; bin/console app:build:create-folders
+
+## Linting
+_create-cache-dir:
+    mkdir -p cache
+
+lint-fix: lint-cs-fixer-fix
+
+## PHP CS Fixer
+
+cs_fixer_executable := './vendor/bin/php-cs-fixer'
+
+# Run php-cs-fixer in dry run
+lint-cs-fixer: _create-cache-dir
+    {{ cs_fixer_executable }} fix --dry-run --verbose --allow-risky=yes --config=.php-cs-fixer.php
+
+# Run php-cs-fixer in dry run and print out the diff
+lint-cs-fixer-diff: _create-cache-dir
+    {{ cs_fixer_executable }} fix --dry-run --diff --verbose --allow-risky=yes --config=.php-cs-fixer.php
+
+# Run php-cs-fixer
+lint-cs-fixer-fix: _create-cache-dir
+    {{ cs_fixer_executable }} fix --verbose --allow-risky=yes --config=.php-cs-fixer.php

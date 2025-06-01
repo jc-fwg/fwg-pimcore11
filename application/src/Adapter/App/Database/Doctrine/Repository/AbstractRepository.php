@@ -6,9 +6,10 @@ namespace App\Adapter\App\Database\Doctrine\Repository;
 
 use Exception;
 use Pimcore\Model\DataObject\AbstractObject;
-use Pimcore\Model\DataObject\ClassDefinition;
 use Pimcore\Model\DataObject\Listing;
 use Pimcore\Model\Element\AbstractElement;
+
+use function sprintf;
 
 abstract class AbstractRepository
 {
@@ -53,12 +54,7 @@ abstract class AbstractRepository
         }
 
         if ($object::class !== $this->getExpectedClass()) {
-            throw new Exception(sprintf(
-                'Object with ID %s is not of type %s, but of type %s',
-                $id,
-                static::class,
-                $object::class
-            ));
+            throw new Exception(sprintf('Object with ID %s is not of type %s, but of type %s', $id, static::class, $object::class));
         }
 
         return $object;

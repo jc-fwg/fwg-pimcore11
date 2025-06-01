@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 // define project root which will be used throughout the bootstrapping process
-define('PIMCORE_PROJECT_ROOT', dirname(__DIR__));
+\define('PIMCORE_PROJECT_ROOT', \dirname(__DIR__));
 
 const PROJECT_ROOT = PIMCORE_PROJECT_ROOT;
 
@@ -10,7 +12,7 @@ foreach (['APP_ENV' => 'test', 'PIMCORE_SKIP_DOTENV_FILE' => true] as $name => $
     putenv("{$name}={$value}");
     $_ENV[$name] = $_SERVER[$name] = $value;
 }
-require_once PIMCORE_PROJECT_ROOT . '/vendor/autoload.php';
+require_once PIMCORE_PROJECT_ROOT.'/vendor/autoload.php';
 
-\Pimcore\Bootstrap::setProjectRoot();
-\Pimcore\Bootstrap::bootstrap();
+Pimcore\Bootstrap::setProjectRoot();
+Pimcore\Bootstrap::bootstrap();

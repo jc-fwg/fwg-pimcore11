@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Twig\Extension;
@@ -14,9 +15,6 @@ class BlogpostExtension extends AbstractExtension
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [
@@ -28,6 +26,4 @@ class BlogpostExtension extends AbstractExtension
     {
         return $this->blogpostLinkGenerator->generate($blogpost, []);
     }
-
 }
-

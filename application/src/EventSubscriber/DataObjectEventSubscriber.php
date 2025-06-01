@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use App\Service\DataObjectService;
+use Exception;
 use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
@@ -15,8 +16,7 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
 {
     public function __construct(
         private readonly DataObjectService $dataObjectService,
-    )
-    {
+    ) {
     }
 
     /** @codeCoverageIgnore  */
@@ -58,7 +58,7 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function setAssetsFolderByObjectKey(DataObjectEvent $event): void
     {

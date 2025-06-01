@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Mapper;
 
 use App\Adapter\App\Database\Doctrine\Repository\FeatureRepository;
-use App\Adapter\App\Database\Doctrine\Repository\RegionRepository;
 use App\Dto\ActivityDto;
 use Exception;
 use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Feature;
-use Pimcore\Model\DataObject\Region;
 
 class ActivityMapper
 {
@@ -18,8 +16,7 @@ class ActivityMapper
         private readonly FeatureRepository $featureRepository,
         private readonly FeatureMapper $featureMapper,
         private readonly RegionMapper $regionMapper,
-    )
-    {
+    ) {
     }
 
     /**
@@ -42,7 +39,6 @@ class ActivityMapper
         // Regions
         $regions = [];
         foreach ($model->getRegions() ?? [] as $region) {
-
             $regions[] = $this->regionMapper->fromModel($region);
         }
 

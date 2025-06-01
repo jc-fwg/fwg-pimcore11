@@ -13,8 +13,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
 {
     public function __construct(
         private readonly BlogpostService $blogpostService,
-    )
-    {
+    ) {
     }
 
     /** @codeCoverageIgnore  */

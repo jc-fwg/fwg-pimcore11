@@ -12,7 +12,6 @@ class RegionDto
         public ?string $name = null,
         public ?string $description = null,
         public ?array $states = [],
-    )
-    {
+    ) {
     }
 }

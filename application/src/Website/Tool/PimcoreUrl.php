@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /**
- * Pimcore
+ * Pimcore.
  *
  * This source file is available under two different licenses:
  * - GNU General Public License version 3 (GPLv3)
@@ -18,7 +20,6 @@ namespace App\Website\Tool;
 class PimcoreUrl extends \Pimcore\Twig\Extension\Templating\PimcoreUrl
 {
     /**
-     * @param array $urlOptions
      * @param null $name
      * @param bool $reset
      * @param bool $encode

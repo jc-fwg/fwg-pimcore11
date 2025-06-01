@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Pimcore
+ * Pimcore.
  *
  * This source file is available under two different licenses:
  * - GNU General Public License version 3 (GPLv3)
@@ -22,15 +22,10 @@ use Twig\TwigFunction;
 
 class UniqidExtension extends AbstractExtension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return [
-            new TwigFunction('uniqid', function (string $prefix = '', bool $moreEntropy = false) {
-                return uniqid($prefix, $moreEntropy);
-            })
+            new TwigFunction('uniqid', static fn (string $prefix = '', bool $moreEntropy = false) => uniqid($prefix, $moreEntropy)),
         ];
     }
 }

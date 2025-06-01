@@ -9,8 +9,7 @@ class StateDto
     public function __construct(
         public readonly int $id,
         public ?string $name = null,
-        public ?string $country = null,
-    )
-    {
+        public ?CountryDto $country = null,
+    ) {
     }
 }

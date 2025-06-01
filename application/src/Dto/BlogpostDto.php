@@ -14,7 +14,7 @@ class BlogpostDto
 {
     /**
      * @param AuthorDto[] $authors
-     * @param Category[] $categories
+     * @param Category[]  $categories
      */
     public function __construct(
         public readonly int $id,
@@ -36,7 +36,6 @@ class BlogpostDto
         public ?array $hashtagSets = null,
         public ?string $hashtagsCalculated = null,
         public ?string $detailLink = null,
-    )
-    {
+    ) {
     }
 }

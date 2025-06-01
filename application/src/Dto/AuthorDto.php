@@ -13,7 +13,6 @@ class AuthorDto
         public ?string $name = null,
         public ?string $description = null,
         public ?Image $image = null,
-    )
-    {
+    ) {
     }
 }

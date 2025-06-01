@@ -10,14 +10,13 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class BlogpostService
 {
     public function __construct(
-        private readonly SluggerInterface $slugger
-    )
-    {
+        private readonly SluggerInterface $slugger,
+    ) {
     }
 
     public function setSlug(DataObject\Blogpost $blogpost): void
     {
-        $slug = [];
+        $slug   = [];
         $slug[] = $blogpost->getHeadline();
 
         $blogpost->setSlug($this->slugger->slug(implode(' ', $slug))->toString());
@@ -26,6 +25,5 @@ class BlogpostService
     /** @return string[] */
     public function getBadgesByActivity(DataObject\Activity $activity): array
     {
-
     }
 }

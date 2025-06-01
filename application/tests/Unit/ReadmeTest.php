@@ -1,15 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Unit;
 
 use Codeception\Test\Unit;
 
 /**
  * This is a tongue-in-cheek test created to validate codeception functionality.
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class ReadmeTest extends Unit
+final class ReadmeTest extends Unit
 {
-    private const README_PATH = PROJECT_ROOT . '/README.md';
+    private const README_PATH = PROJECT_ROOT.'/README.md';
     private string $readme;
 
     protected function setUp(): void
@@ -20,12 +26,12 @@ class ReadmeTest extends Unit
 
     public function testReadmeIsWrittenWithLove(): void
     {
-        self::assertStringContainsString('😎', $this->readme);
-        self::assertStringContainsString('pimcore', $this->readme);
+        static::assertStringContainsString('😎', $this->readme);
+        static::assertStringContainsString('pimcore', $this->readme);
     }
 
     public function testReadmeContainsInstructionsForExecutingTests(): void
     {
-        self::assertStringContainsString('codecept run', $this->readme);
+        static::assertStringContainsString('codecept run', $this->readme);
     }
 }

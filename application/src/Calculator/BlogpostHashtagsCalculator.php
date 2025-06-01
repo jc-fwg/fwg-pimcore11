@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Calculator;
 
 use Pimcore\Model\DataObject\Blogpost;
@@ -10,7 +12,6 @@ use Pimcore\Model\DataObject\HashtagSet;
 
 class BlogpostHashtagsCalculator implements CalculatorClassInterface
 {
-
     public function compute(Concrete $object, CalculatedValue $context): string
     {
         if (!$object instanceof Blogpost) {
@@ -26,16 +27,13 @@ class BlogpostHashtagsCalculator implements CalculatorClassInterface
         $hashtagSets = $object->getHashtagSets() ?? [];
 
         foreach ($hashtagSets as $hashtagSetId) {
-
             $hashtagSet = HashtagSet::getById($hashtagSetId);
 
             $hashtags[] = $hashtagSet->getHashtags();
         }
 
         return trim(implode(' ',
-            array_filter($hashtags, function ($hashtags) {
-                return !empty($hashtags);
-            })
+            array_filter($hashtags, static fn ($hashtags) => !empty($hashtags))
         ));
     }
 

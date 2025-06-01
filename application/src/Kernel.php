@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /**
- * Pimcore
+ * Pimcore.
  *
  * This source file is available under two different licenses:
  * - GNU General Public License version 3 (GPLv3)
@@ -24,7 +26,6 @@ class Kernel extends PimcoreKernel
     /**
      * Adds bundles to register to the bundle collection. The collection is able
      * to handle priorities and environment specific bundles.
-     *
      */
     public function registerBundlesToCollection(BundleCollection $collection): void
     {

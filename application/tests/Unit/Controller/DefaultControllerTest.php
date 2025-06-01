@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Tests\Unit\Controller;
@@ -14,8 +15,12 @@ use Twig\Environment;
 
 /**
  * This basic unit test demonstrates how to unit-test a controller using mocked twig engine.
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class DefaultControllerTest extends Unit
+final class DefaultControllerTest extends Unit
 {
     private DefaultController $controller;
 
@@ -37,23 +42,23 @@ class DefaultControllerTest extends Unit
         $this->controller->setContainer($container);
     }
 
-    public function testDefaultAction()
+    public function testDefaultAction(): void
     {
-        $this->twig->method('render')->will(
-            $this->returnValueMap([
+        $this->twig->method('render')->willReturnMap(
+            [
                 // Simulate rendering of default template.
                 ['default/default.html.twig', [], 'At pimcore we love writing tests! ❤️TDD!'],
-            ])
+            ]
         );
 
         $response = $this->controller->defaultAction($this->createMock(Request::class));
 
-        self::assertEquals(200, $response->getStatusCode());
-        self::assertStringContainsStringIgnoringCase('pimcore', $response->getContent());
-        self::assertStringContainsStringIgnoringCase('❤', $response->getContent());
-        self::assertStringContainsStringIgnoringCase('tests', $response->getContent());
-        self::assertStringNotContainsStringIgnoringCase('bugs', $response->getContent());
-        self::assertStringNotContainsStringIgnoringCase('hacks', $response->getContent());
-        self::assertStringNotContainsStringIgnoringCase('💩', $response->getContent());
+        static::assertSame(200, $response->getStatusCode());
+        static::assertStringContainsStringIgnoringCase('pimcore', $response->getContent());
+        static::assertStringContainsStringIgnoringCase('❤', $response->getContent());
+        static::assertStringContainsStringIgnoringCase('tests', $response->getContent());
+        static::assertStringNotContainsStringIgnoringCase('bugs', $response->getContent());
+        static::assertStringNotContainsStringIgnoringCase('hacks', $response->getContent());
+        static::assertStringNotContainsStringIgnoringCase('💩', $response->getContent());
     }
 }

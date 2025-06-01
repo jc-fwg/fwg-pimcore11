@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class ActivityDto
 {
     /**
-     * @param RegionDto[] $regions
+     * @param RegionDto[]  $regions
      * @param FeatureDto[] $features
      */
     public function __construct(
@@ -22,7 +22,6 @@ class ActivityDto
         public ?array $features = [],
         public ?string $weather = null,
         public ?int $temperature = null,
-    )
-    {
+    ) {
     }
 }

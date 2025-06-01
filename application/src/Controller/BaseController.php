@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Pimcore
+ * Pimcore.
  *
  * This source file is available under two different licenses:
  * - GNU General Public License version 3 (GPLv3)
@@ -16,7 +17,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
 use Pimcore\Controller\FrontendController;
 use Pimcore\Model\DataObject;
 use Pimcore\Tool;
@@ -33,15 +33,10 @@ class BaseController extends FrontendController
         return false;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     protected function getAllParameters(Request $request): array
     {
-        $parameters = array_merge($request->request->all(), $request->query->all());
-        $parameters['authors'] = $this->getAuthors();
+        $parameters                   = array_merge($request->request->all(), $request->query->all());
+        $parameters['authors']        = $this->getAuthors();
         $parameters['socialChannels'] = $this->getSocialChannels();
 
         return $parameters;

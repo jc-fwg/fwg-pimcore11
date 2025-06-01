@@ -18,28 +18,27 @@ class BlogpostMapper
         private readonly ActivityMapper $activityMapper,
         private readonly AuthorRepository $authorRepository,
         private readonly AuthorMapper $authorMapper,
-        private readonly BlogpostLinkGenerator $blogpostLinkGenerator
-    )
-    {
+        private readonly BlogpostLinkGenerator $blogpostLinkGenerator,
+    ) {
     }
 
     public function fromModel(Blogpost $model): BlogpostDto
     {
         $dto = new BlogpostDto(
             id: $model->getId(),
-            publicationDate:  $model->getPublicationDate(),
-            blogpostType:  $model->getBlogpostType(),
-            imageMain:   $model->getImageMain(),
-            assetsFolder:   $model->getAssetsFolder(),
-            previewText:   $model->getPreviewText(),
+            publicationDate: $model->getPublicationDate(),
+            blogpostType: $model->getBlogpostType(),
+            imageMain: $model->getImageMain(),
+            assetsFolder: $model->getAssetsFolder(),
+            previewText: $model->getPreviewText(),
             imageTeaser: $model->getImageTeaser(),
-            title:    $model->getTitle(),
-            subTitle:    $model->getSubTitle(),
-            content:    $model->getContent(),
-            metaTitle:   $model->getMetaTitle(),
+            title: $model->getTitle(),
+            subTitle: $model->getSubTitle(),
+            content: $model->getContent(),
+            metaTitle: $model->getMetaTitle(),
             metaDescription: $model->getMetaDescription(),
-            hashtags:   $model->getHashtags(),
-            hashtagsCalculated:   $model->getHashtagsCalculated(),
+            hashtags: $model->getHashtags(),
+            hashtagsCalculated: $model->getHashtagsCalculated(),
             detailLink: $this->blogpostLinkGenerator->generate($model)
         );
 

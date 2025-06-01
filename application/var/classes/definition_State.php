@@ -7,7 +7,7 @@
  *
  * Fields Summary:
  * - name [input]
- * - country [country]
+ * - country [manyToOneRelation]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -17,7 +17,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.state.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1748787230,
+   'modificationDate' => 1748792000,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -91,9 +91,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultValueGenerator' => '',
           )),
           1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Country::__set_state(array(
+          \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
              'name' => 'country',
-             'title' => 'app.generic.country',
+             'title' => 'app.class.country.title',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -102,22 +102,35 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'style' => '',
              'permissions' => NULL,
              'fieldtype' => '',
-             'relationType' => false,
+             'relationType' => true,
              'invisible' => false,
              'visibleGridView' => false,
              'visibleSearch' => false,
              'blockedVarsForExport' => 
             array (
             ),
-             'defaultValue' => 'DE',
-             'columnLength' => 190,
-             'dynamicOptions' => false,
-             'defaultValueGenerator' => '',
+             'classes' => 
+            array (
+              0 => 
+              array (
+                'classes' => 'Country',
+              ),
+            ),
+             'displayMode' => 'grid',
+             'pathFormatterClass' => '',
+             'assetInlineDownloadAllowed' => false,
+             'assetUploadPath' => '',
+             'allowToClearRelation' => true,
+             'objectsAllowed' => true,
+             'assetsAllowed' => false,
+             'assetTypes' => 
+            array (
+            ),
+             'documentsAllowed' => false,
+             'documentTypes' => 
+            array (
+            ),
              'width' => '',
-             'optionsProviderType' => NULL,
-             'optionsProviderClass' => NULL,
-             'optionsProviderData' => NULL,
-             'restrictTo' => '',
           )),
         ),
          'locked' => false,

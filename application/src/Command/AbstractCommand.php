@@ -12,7 +12,7 @@ use Symfony\Component\Process\Exception\RuntimeException;
 abstract class AbstractCommand extends PimcoreAbstractCommand
 {
     public function __construct(
-        ?string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

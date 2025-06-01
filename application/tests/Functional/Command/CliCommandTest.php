@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Tests\Functional\Command;
@@ -8,14 +9,16 @@ use Pimcore\Test\KernelTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class CliCommandTest extends KernelTestCase
+use function define;
+
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
+final class CliCommandTest extends KernelTestCase
 {
     private CommandTester $cmd;
-
-    protected static function getKernelClass(): string
-    {
-        return Kernel::class;
-    }
 
     protected function setUp(): void
     {
@@ -25,13 +28,18 @@ class CliCommandTest extends KernelTestCase
         parent::setUp();
 
         $application = new Application(self::bootKernel());
-        $this->cmd = new CommandTester($application->find('list'));
+        $this->cmd   = new CommandTester($application->find('list'));
     }
 
     public function testPimcoreCommandsAppearInListing(): void
     {
         $this->cmd->execute([]);
 
-        self::assertStringContainsString('pimcore:', $this->cmd->getDisplay());
+        static::assertStringContainsString('pimcore:', $this->cmd->getDisplay());
+    }
+
+    protected static function getKernelClass(): string
+    {
+        return Kernel::class;
     }
 }

@@ -5,16 +5,18 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Constant\FolderConstants;
+use Exception;
 use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Service;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\AbstractObject;
-use Pimcore\Model\DataObject\Concrete;
+
+use function sprintf;
 
 class DataObjectService
 {
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function setAssetsFolderByObjectKey(DataObject $object): void
     {
@@ -31,7 +33,7 @@ class DataObjectService
 
         $pathPrefix = match ($object->getClassId()) {
             DataObject\Blogpost::classId() => FolderConstants::ASSET_BLOGPOSTS,
-            default => '/',
+            default                        => '/',
         };
 
         $assetsFolder = Service::createFolderByPath(

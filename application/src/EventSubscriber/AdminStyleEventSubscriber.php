@@ -38,13 +38,13 @@ class AdminStyleEventSubscriber extends AbstractEventSubscriber
 
         $adminStyle = new AdminStyle($element);
 
-        $elementIcon = match(true) {
+        $elementIcon = match (true) {
             $element->getRedaxoArticleSliceId() !== null => '/bundles/pimcoreadmin/img/flat-color-icons/calendar.svg',
-            $element->getRedaxoId() !== null => '/bundles/pimcoreadmin/img/flat-color-icons/overtime.svg',
-            default => null,
+            $element->getRedaxoId() !== null             => '/bundles/pimcoreadmin/img/flat-color-icons/overtime.svg',
+            default                                      => null,
         };
 
-        DataObject\Service::useInheritedValues(true, function () use ($element, $adminStyle, $elementIcon) {
+        DataObject\Service::useInheritedValues(true, static function () use ($adminStyle, $elementIcon): void {
             $adminStyle->setElementCssClass(false);
             $adminStyle->setElementIcon($elementIcon);
         });
