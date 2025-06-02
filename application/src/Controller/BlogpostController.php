@@ -43,67 +43,6 @@ class BlogpostController extends BaseController
         ]);
     }
 
-    private function fetchBadges(): array
-    {
-        $badges = [];
-
-        // Badges : Geo data from tour
-        if ($this->tour) {
-            $tourRegions = $this->tour->getTourGeoRegions();
-            $tourGeoData = [
-                'countries' => [],
-                'regions'   => [],
-                'states'    => [],
-            ];
-
-            foreach ($tourRegions as $region) {
-                /** var GeoRegion $region */
-                $tourGeoData['regions'][] = $region->getGeoRegionTitle();
-
-                // Countries
-                $countries = $region->getGeoRegionCountries();
-                foreach ($countries as $country) {
-                    /** var GeoCountry $country */
-                    $tourGeoData['countries'][] = $country->getGeoCountryTitle();
-                }
-
-                // States (if available)
-                $states = $region->getGeoRegionStates();
-                foreach ($states as $state) {
-                    /** var GeoState $state */
-                    $tourGeoData['states'][] = $state->getGeoStateTitle();
-                }
-            }
-
-            // Override countries and states if tour has own relations
-            if ($this->tour->getTourGeoCountries()) {
-                $tourGeoData['countries'] = [];
-                foreach ($this->tour->getTourGeoCountries() as $country) {
-                    $tourGeoData['countries'][] = $country->getGeoCountryTitle();
-                }
-            }
-            if ($this->tour->getTourGeoStates()) {
-                $tourGeoData['states'] = [];
-                foreach ($this->tour->getTourGeoStates() as $state) {
-                    $tourGeoData['states'][] = $state->getGeoStateTitle();
-                }
-            }
-
-            $badges['tourGeoData'] = array_merge(
-                $tourGeoData['regions'],
-                $tourGeoData['countries'],
-                $tourGeoData['states']
-            );
-
-            // Tour tags
-            foreach ($this->tour->getTourTags() as $tag) {
-                $badges['tourTags'] = $tag->getTagTitle();
-            }
-        }
-
-        return ContentHelper::flattenArray($badges);
-    }
-
     private function fetchFacts(): array
     {
         $facts = [];

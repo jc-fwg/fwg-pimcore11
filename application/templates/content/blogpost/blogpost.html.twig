@@ -28,9 +28,13 @@
                 <div id="title" class="container p-4 text-left">
                     <h1>{{ blogpost.title }}</h1>
                     <h2 class="js-toc-ignore">{{ blogpost.subTitle }}</h2>
-                    {% for badge in blogpost.badges %}
-                        <span class="badge text-bg-secondary">{{ badge }}</span>
-                    {% endfor %}
+                    {% if blogpost.activity is not null %}
+                        {% for tag in blogpost.activity.tags %}
+                            {% if tag.isHeadline == true %}
+                                <span class="badge text-bg-secondary">{{ tag.tag.name }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 {# INTRO #}
                 <div class="container p-4">
@@ -48,10 +52,9 @@
                         </div>
                         <div class="col-12 offset-lg-1 col-lg-4">
                             {# ASIDES #}
-
-                            {% if blogpost.activity is not null and blogpost.activity.features|length > 0 %}
-                                {% include 'content/blogpost/aside/activity-features.html.twig' %}
-                            {% endif %}
+{#                            {% if blogpost.activity is not null  and blogpost.activity.facts|length > 0%}#}
+{#                                {% include 'content/blogpost/aside/facts.html.twig' %}#}
+{#                            {% endif %}#}
 {#                            {% include 'content/blogpost/aside/links-downloads.html.twig' %}#}
                             {% include 'content/blogpost/aside/authors.html.twig' %}
                         </div>

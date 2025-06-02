@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
-use App\Adapter\App\Database\Doctrine\Repository\FeatureRepository;
 use App\Dto\ActivityDto;
+use App\Dto\ActivityTagDto;
 use Exception;
 use Pimcore\Model\DataObject\Activity;
-use Pimcore\Model\DataObject\Feature;
+use Pimcore\Model\DataObject\Tag;
 
 class ActivityMapper
 {
     public function __construct(
-        private readonly FeatureRepository $featureRepository,
-        private readonly FeatureMapper $featureMapper,
-        private readonly RegionMapper $regionMapper,
+        private readonly TagMapper $tagMapper,
     ) {
     }
 
@@ -24,22 +22,22 @@ class ActivityMapper
      */
     public function fromModel(Activity $model): ActivityDto
     {
-        // Features
-        $features = [];
-        foreach ($model->getFeatures() ?? [] as $featureId) {
-            $feature = $this->featureRepository->findById($featureId);
+        // Tags
+        $tags = [];
+        foreach ($model->getTags() ?? [] as $tagRelation) {
 
-            if (!$feature instanceof Feature) {
+            $object = $tagRelation->getObject();
+
+            if (!$object instanceof Tag) {
                 continue;
             }
 
-            $features[] = $this->featureMapper->fromModel($feature);
-        }
+            $tag = $this->tagMapper->fromModel($object);
 
-        // Regions
-        $regions = [];
-        foreach ($model->getRegions() ?? [] as $region) {
-            $regions[] = $this->regionMapper->fromModel($region);
+            $tags[] = new ActivityTagDto(
+                tag: $tag,
+                isHeadline: (bool) $tagRelation->getHeadline(),
+            );
         }
 
         return new ActivityDto(
@@ -47,8 +45,7 @@ class ActivityMapper
             activityType: $model->getActivityType(),
             title: $model->getTitle(),
             date: $model->getDate(),
-            regions: $regions,
-            features: $features,
+            tags: $tags,
             weather: $model->getWeather(),
             temperature: $model->getTemperature(),
         );

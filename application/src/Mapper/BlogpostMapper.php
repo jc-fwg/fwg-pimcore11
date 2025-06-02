@@ -6,12 +6,10 @@ namespace App\Mapper;
 
 use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
 use App\Dto\BlogpostDto;
-use App\Service\BlogpostService;
 use App\Website\LinkGenerator\BlogpostLinkGenerator;
-use Pimcore\Model\DataObject\Activity;
+use Exception;
 use Pimcore\Model\DataObject\Author;
 use Pimcore\Model\DataObject\Blogpost;
-use Pimcore\Model\DataObject\Category;
 
 class BlogpostMapper
 {
@@ -20,16 +18,34 @@ class BlogpostMapper
         private readonly AuthorRepository $authorRepository,
         private readonly AuthorMapper $authorMapper,
         private readonly BlogpostLinkGenerator $blogpostLinkGenerator,
-        private readonly BlogpostService $blogpostService,
     ) {
     }
 
+    /**
+     * @throws Exception
+     */
     public function fromModel(Blogpost $model): BlogpostDto
     {
-        $dto = new BlogpostDto(
+        // Authors
+        $authorsIds = $model->getAuthors() ?? [];
+        $authors = [];
+        foreach ($authorsIds as $authorId) {
+            $author = $this->authorRepository->findOneById((int) $authorId);
+
+            if (!$author instanceof Author) {
+                continue;
+            }
+
+            $authors[] = $this->authorMapper->fromModel($author);
+        }
+
+        return new BlogpostDto(
             id: $model->getId(),
             publicationDate: $model->getPublicationDate(),
             blogpostType: $model->getBlogpostType(),
+            authors: $authors,
+            activity: $model->getActivity() ? $this->activityMapper->fromModel($model->getActivity()) : null,
+            categories: $model->getCategories() ?? [],
             imageMain: $model->getImageMain(),
             assetsFolder: $model->getAssetsFolder(),
             previewText: $model->getPreviewText(),
@@ -43,36 +59,5 @@ class BlogpostMapper
             hashtagsCalculated: $model->getHashtagsCalculated(),
             detailLink: $this->blogpostLinkGenerator->generate($model),
         );
-
-        // Authors
-        $authorsIds = $model->getAuthors() ?? [];
-        foreach ($authorsIds as $authorId) {
-            $author = $this->authorRepository->findOneById((int) $authorId);
-
-            if (!$author instanceof Author) {
-                continue;
-            }
-
-            $dto->authors[] = $this->authorMapper->fromModel($author);
-        }
-
-        // Categories
-        $categories = $model->getCategories() ?? [];
-        foreach ($categories as $category) {
-            if (!$category instanceof Category) {
-                continue;
-            }
-
-            $dto->categories[] = $category;
-        }
-
-        // Activity
-        $activity = $model->getActivity();
-        if ($activity instanceof Activity) {
-            $dto->activity = $this->activityMapper->fromModel($activity);
-            $dto->badges   = $this->blogpostService->getBadges($dto->activity);
-        }
-
-        return $dto;
     }
 }

@@ -7,6 +7,8 @@
  *
  * Fields Summary:
  * - name [input]
+ * - weight [slider]
+ * - dependendsOn [manyToManyObjectRelation]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -16,7 +18,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.tagCategory.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1748850349,
+   'modificationDate' => 1748893080,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -89,6 +91,77 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'defaultValueGenerator' => '',
           )),
+          1 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Slider::__set_state(array(
+             'name' => 'weight',
+             'title' => 'app.generic.weight',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'minValue' => 0.0,
+             'maxValue' => 100.0,
+             'vertical' => false,
+             'increment' => 5.0,
+             'decimalPrecision' => 0,
+             'height' => '',
+             'width' => '',
+          )),
+          2 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
+             'name' => 'dependendsOn',
+             'title' => 'app.generic.dependsOn',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => true,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'classes' => 
+            array (
+              0 => 
+              array (
+                'classes' => 'TagCategory',
+              ),
+              1 => 
+              array (
+                'classes' => 'Tag',
+              ),
+            ),
+             'displayMode' => 'grid',
+             'pathFormatterClass' => '',
+             'maxItems' => NULL,
+             'visibleFields' => 'fullpath',
+             'allowToCreateNewObject' => false,
+             'allowToClearRelation' => true,
+             'optimizedAdminLoading' => false,
+             'enableTextSelection' => false,
+             'visibleFieldDefinitions' => 
+            array (
+            ),
+             'width' => '',
+             'height' => '',
+          )),
         ),
          'locked' => false,
          'blockedVarsForExport' => 
@@ -99,7 +172,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'border' => false,
          'icon' => '',
          'labelWidth' => 100,
-         'labelAlign' => 'left',
+         'labelAlign' => 'top',
       )),
     ),
      'locked' => false,
