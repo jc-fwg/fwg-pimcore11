@@ -5,7 +5,9 @@ parameters:
     commands.create_folders.document:
     commands.create_folders.dataObject:
         - !php/const App\Constant\FolderConstants::OBJECT_ACTIVITIES
+        - !php/const App\Constant\FolderConstants::OBJECT_AUTHORS
         - !php/const App\Constant\FolderConstants::OBJECT_BLOGPOSTS
         - !php/const App\Constant\FolderConstants::OBJECT_CATEGORIES
         - !php/const App\Constant\FolderConstants::OBJECT_HASHTAG_SETS
-        - !php/const App\Constant\FolderConstants::OBJECT_LOCALIZING
+        - !php/const App\Constant\FolderConstants::OBJECT_SOCIAL_CHANNELS
+        - !php/const App\Constant\FolderConstants::OBJECT_TAGS

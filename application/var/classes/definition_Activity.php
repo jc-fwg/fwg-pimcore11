@@ -9,12 +9,11 @@
  * - activityType [select]
  * - title [input]
  * - date [date]
- * - features [multiselect]
  * - locations [fieldcollections]
  * - weather [select]
  * - temperature [numeric]
  * - typeSpecific [objectbricks]
- * - regions [manyToManyObjectRelation]
+ * - tags [manyToManyObjectRelation]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -24,7 +23,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1748789011,
+   'modificationDate' => 1748853463,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -178,36 +177,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'defaultValueGenerator' => '',
                   )),
                   3 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
-                     'name' => 'features',
-                     'title' => 'app.generic.features',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => false,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'maxItems' => NULL,
-                     'renderType' => 'tags',
-                     'dynamicOptions' => false,
-                     'defaultValue' => NULL,
-                     'height' => '',
-                     'width' => '',
-                     'defaultValueGenerator' => '',
-                     'optionsProviderType' => 'class',
-                     'optionsProviderClass' => '@App\\OptionsProvider\\FeatureOptionsProvider',
-                     'optionsProviderData' => '',
-                  )),
-                  4 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections::__set_state(array(
                      'name' => 'locations',
                      'title' => 'app.fieldCollection.location.titlePlural',
@@ -238,7 +207,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'collapsible' => false,
                      'border' => false,
                   )),
-                  5 => 
+                  4 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Weather Conditions',
                      'type' => NULL,
@@ -385,10 +354,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
               )),
               2 => 
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
-                 'name' => 'Layout',
+                 'name' => 'Tags',
                  'type' => NULL,
                  'region' => 'south',
-                 'title' => '',
+                 'title' => 'app.class.tag.titlePlural',
                  'width' => '',
                  'height' => '',
                  'collapsible' => false,
@@ -399,8 +368,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 array (
                   0 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
-                     'name' => 'regions',
-                     'title' => 'app.class.region.titlePlural',
+                     'name' => 'tags',
+                     'title' => 'app.class.tag.titlePlural',
                      'tooltip' => '',
                      'mandatory' => false,
                      'noteditable' => false,
@@ -420,18 +389,16 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     array (
                       0 => 
                       array (
-                        'classes' => 'Region',
+                        'classes' => 'Tag',
                       ),
                     ),
                      'displayMode' => 'grid',
                      'pathFormatterClass' => '',
                      'maxItems' => NULL,
-                     'visibleFields' => 
-                    array (
-                    ),
+                     'visibleFields' => 'fullpath',
                      'allowToCreateNewObject' => false,
                      'allowToClearRelation' => true,
-                     'optimizedAdminLoading' => false,
+                     'optimizedAdminLoading' => true,
                      'enableTextSelection' => false,
                      'visibleFieldDefinitions' => 
                     array (
@@ -449,7 +416,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'border' => false,
                  'icon' => '',
                  'labelWidth' => 100,
-                 'labelAlign' => 'left',
+                 'labelAlign' => 'top',
               )),
             ),
              'locked' => false,

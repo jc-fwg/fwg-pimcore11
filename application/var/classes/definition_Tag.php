@@ -3,21 +3,21 @@
 /**
  * Inheritance: no
  * Variants: no
- * Title: app.class.state.title
+ * Title: app.class.tag.title
  *
  * Fields Summary:
  * - name [input]
- * - country [manyToOneRelation]
+ * - emoji [input]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'dao' => NULL,
-   'id' => 'state',
-   'name' => 'State',
-   'title' => 'app.class.state.title',
+   'id' => 'tag',
+   'name' => 'Tag',
+   'title' => 'app.class.tag.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1748792000,
+   'modificationDate' => 1748850433,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -51,7 +51,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'name' => 'Layout',
          'type' => NULL,
          'region' => NULL,
-         'title' => '',
+         'title' => 'app.generic.baseData',
          'width' => '',
          'height' => '',
          'collapsible' => false,
@@ -91,9 +91,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultValueGenerator' => '',
           )),
           1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
-             'name' => 'country',
-             'title' => 'app.class.country.title',
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+             'name' => 'emoji',
+             'title' => 'app.generic.emoji',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -102,35 +102,23 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'style' => '',
              'permissions' => NULL,
              'fieldtype' => '',
-             'relationType' => true,
+             'relationType' => false,
              'invisible' => false,
              'visibleGridView' => false,
              'visibleSearch' => false,
              'blockedVarsForExport' => 
             array (
             ),
-             'classes' => 
-            array (
-              0 => 
-              array (
-                'classes' => 'Country',
-              ),
-            ),
-             'displayMode' => 'grid',
-             'pathFormatterClass' => '',
-             'assetInlineDownloadAllowed' => false,
-             'assetUploadPath' => '',
-             'allowToClearRelation' => true,
-             'objectsAllowed' => true,
-             'assetsAllowed' => false,
-             'assetTypes' => 
+             'defaultValue' => NULL,
+             'columnLength' => 190,
+             'regex' => '',
+             'regexFlags' => 
             array (
             ),
-             'documentsAllowed' => false,
-             'documentTypes' => 
-            array (
-            ),
-             'width' => '',
+             'unique' => false,
+             'showCharCount' => false,
+             'width' => '50px',
+             'defaultValueGenerator' => '',
           )),
         ),
          'locked' => false,
@@ -156,8 +144,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelWidth' => 100,
      'labelAlign' => 'left',
   )),
-   'icon' => '/bundles/pimcoreadmin/img/twemoji/1faa9.svg',
-   'group' => 'Localizing',
+   'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/label.svg',
+   'group' => '',
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',
    'previewGeneratorReference' => '',

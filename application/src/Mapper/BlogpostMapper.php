@@ -6,6 +6,7 @@ namespace App\Mapper;
 
 use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
 use App\Dto\BlogpostDto;
+use App\Service\BlogpostService;
 use App\Website\LinkGenerator\BlogpostLinkGenerator;
 use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Author;
@@ -19,6 +20,7 @@ class BlogpostMapper
         private readonly AuthorRepository $authorRepository,
         private readonly AuthorMapper $authorMapper,
         private readonly BlogpostLinkGenerator $blogpostLinkGenerator,
+        private readonly BlogpostService $blogpostService,
     ) {
     }
 
@@ -39,7 +41,7 @@ class BlogpostMapper
             metaDescription: $model->getMetaDescription(),
             hashtags: $model->getHashtags(),
             hashtagsCalculated: $model->getHashtagsCalculated(),
-            detailLink: $this->blogpostLinkGenerator->generate($model)
+            detailLink: $this->blogpostLinkGenerator->generate($model),
         );
 
         // Authors
@@ -68,6 +70,7 @@ class BlogpostMapper
         $activity = $model->getActivity();
         if ($activity instanceof Activity) {
             $dto->activity = $this->activityMapper->fromModel($activity);
+            $dto->badges   = $this->blogpostService->getBadges($dto->activity);
         }
 
         return $dto;

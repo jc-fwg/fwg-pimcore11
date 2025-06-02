@@ -103,6 +103,12 @@ app:
         state:
             title: 'State'
             titlePlural: 'States'
+        tag:
+            title: 'Tag'
+            titlePlural: 'Tags'
+        tagCategory:
+            title: 'Tag Category'
+            titlePlural: 'Tag Categories'
     fieldCollection:
         contentGallery:
             title: 'Gallery'

@@ -3,22 +3,20 @@
 /**
  * Inheritance: no
  * Variants: no
- * Title: app.class.region.title
+ * Title: app.class.tagCategory.title
  *
  * Fields Summary:
  * - name [input]
- * - description [wysiwyg]
- * - states [manyToManyObjectRelation]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'dao' => NULL,
-   'id' => 'region',
-   'name' => 'Region',
-   'title' => 'app.class.region.title',
+   'id' => 'tagCategory',
+   'name' => 'TagCategory',
+   'title' => 'app.class.tagCategory.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1748782798,
+   'modificationDate' => 1748850349,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -88,73 +86,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             ),
              'unique' => false,
              'showCharCount' => false,
-             'width' => '100%',
+             'width' => '',
              'defaultValueGenerator' => '',
-          )),
-          1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
-             'name' => 'description',
-             'title' => 'app.generic.description',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => false,
-             'index' => false,
-             'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => false,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
-             'blockedVarsForExport' => 
-            array (
-            ),
-             'toolbarConfig' => '',
-             'excludeFromSearchIndex' => false,
-             'maxCharacters' => '',
-             'height' => '',
-             'width' => '',
-          )),
-          2 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
-             'name' => 'states',
-             'title' => 'app.class.state.titlePlural',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => false,
-             'index' => false,
-             'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => true,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
-             'blockedVarsForExport' => 
-            array (
-            ),
-             'classes' => 
-            array (
-              0 => 
-              array (
-                'classes' => 'State',
-              ),
-            ),
-             'displayMode' => 'grid',
-             'pathFormatterClass' => '',
-             'maxItems' => NULL,
-             'visibleFields' => 'id,key',
-             'allowToCreateNewObject' => false,
-             'allowToClearRelation' => true,
-             'optimizedAdminLoading' => false,
-             'enableTextSelection' => false,
-             'visibleFieldDefinitions' => 
-            array (
-            ),
-             'width' => '',
-             'height' => '',
           )),
         ),
          'locked' => false,
@@ -166,7 +99,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'border' => false,
          'icon' => '',
          'labelWidth' => 100,
-         'labelAlign' => 'top',
+         'labelAlign' => 'left',
       )),
     ),
      'locked' => false,
@@ -180,8 +113,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelWidth' => 100,
      'labelAlign' => 'left',
   )),
-   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f310.svg',
-   'group' => 'Localizing',
+   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f4d9.svg',
+   'group' => '',
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',
    'previewGeneratorReference' => '',

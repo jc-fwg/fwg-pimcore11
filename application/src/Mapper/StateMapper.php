@@ -23,7 +23,7 @@ class StateMapper
         return new StateDto(
             id: $model->getId(),
             name: $model->getName(),
-            country: $country ? $this->countryMapper->fromModel($model->getCountry()) : null,
+            country: $this->countryMapper->fromModel($country),
         );
     }
 }

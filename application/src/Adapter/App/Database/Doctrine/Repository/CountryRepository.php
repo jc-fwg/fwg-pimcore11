@@ -18,10 +18,6 @@ class CountryRepository extends AbstractRepository
 
     public function getCountryByState(State $state): ?Country
     {
-        if ($state->getCountry() instanceof Country) {
-            return $state->getCountry();
-        }
-
         $parentId = $state->getParent()?->getId();
 
         if ($parentId === null) {

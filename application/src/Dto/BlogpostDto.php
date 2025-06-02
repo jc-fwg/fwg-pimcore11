@@ -15,14 +15,15 @@ class BlogpostDto
     /**
      * @param AuthorDto[] $authors
      * @param Category[]  $categories
+     * @param string[]    $badges
      */
     public function __construct(
         public readonly int $id,
         public ?Carbon $publicationDate = null,
         public ?string $blogpostType = null,
-        public ?array $authors = [],
+        public array $authors = [],
         public ?ActivityDto $activity = null,
-        public ?array $categories = [],
+        public array $categories = [],
         public ?Image $imageMain = null,
         public ?Folder $assetsFolder = null,
         public ?string $previewText = null,
@@ -33,9 +34,10 @@ class BlogpostDto
         public ?string $metaTitle = null,
         public ?string $metaDescription = null,
         public ?string $hashtags = null,
-        public ?array $hashtagSets = null,
+        public array $hashtagSets = [],
         public ?string $hashtagsCalculated = null,
         public ?string $detailLink = null,
+        public array $badges = [],
     ) {
     }
 }

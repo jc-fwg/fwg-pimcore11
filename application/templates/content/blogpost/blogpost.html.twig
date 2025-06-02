@@ -28,9 +28,9 @@
                 <div id="title" class="container p-4 text-left">
                     <h1>{{ blogpost.title }}</h1>
                     <h2 class="js-toc-ignore">{{ blogpost.subTitle }}</h2>
-{#                    {% for badge in badges %}#}
-{#                        <span class="badge badge-secondary">{{ badge }}</span>#}
-{#                    {% endfor %}#}
+                    {% for badge in blogpost.badges %}
+                        <span class="badge text-bg-secondary">{{ badge }}</span>
+                    {% endfor %}
                 </div>
                 {# INTRO #}
                 <div class="container p-4">
