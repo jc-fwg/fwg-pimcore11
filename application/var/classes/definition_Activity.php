@@ -13,7 +13,7 @@
  * - weather [select]
  * - temperature [numeric]
  * - typeSpecific [objectbricks]
- * - tags [advancedManyToManyObjectRelation]
+ * - tags [manyToManyObjectRelation]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -23,7 +23,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1748897997,
+   'modificationDate' => 1749066904,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -367,7 +367,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'children' => 
                 array (
                   0 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\AdvancedManyToManyObjectRelation::__set_state(array(
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
                      'name' => 'tags',
                      'title' => 'app.class.tag.titlePlural',
                      'tooltip' => '',
@@ -392,7 +392,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                         'classes' => 'Tag',
                       ),
                     ),
-                     'displayMode' => NULL,
+                     'displayMode' => 'grid',
                      'pathFormatterClass' => '',
                      'maxItems' => NULL,
                      'visibleFields' => 'fullpath',
@@ -405,24 +405,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     ),
                      'width' => '',
                      'height' => '',
-                     'allowedClassId' => 'Tag',
-                     'columns' => 
-                    array (
-                      0 => 
-                      array (
-                        'type' => 'bool',
-                        'position' => 1,
-                        'key' => 'headline',
-                        'label' => 'Headline',
-                        'value' => 'headline',
-                      ),
-                    ),
-                     'columnKeys' => 
-                    array (
-                      0 => 'headline',
-                    ),
-                     'enableBatchEdit' => false,
-                     'allowMultipleAssignments' => false,
                   )),
                 ),
                  'locked' => false,

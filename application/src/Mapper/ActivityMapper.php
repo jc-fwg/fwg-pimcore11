@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
+use App\Adapter\App\Database\Doctrine\Repository\TagRepository;
 use App\Dto\ActivityDto;
-use App\Dto\ActivityTagDto;
+use App\Dto\TagDto;
 use Exception;
 use Pimcore\Model\DataObject\Activity;
-use Pimcore\Model\DataObject\Tag;
 
 class ActivityMapper
 {
     public function __construct(
         private readonly TagMapper $tagMapper,
+        private readonly TagRepository $tagRepository,
     ) {
     }
 
@@ -23,20 +24,17 @@ class ActivityMapper
     public function fromModel(Activity $model): ActivityDto
     {
         // Tags
-        $tags = [];
-        foreach ($model->getTags() ?? [] as $tagRelation) {
+        $tagIds = [];
+        foreach ($model->getTags() ?? [] as $tag) {
+            $tagIds[] = (int) $tag->getId();
+        }
+        $tags = $this->tagRepository->findAllOrderedByTagCategoryWeighting($tagIds);
 
-            $object = $tagRelation->getObject();
-
-            if (!$object instanceof Tag) {
-                continue;
-            }
-
-            $tag = $this->tagMapper->fromModel($object);
-
-            $tags[] = new ActivityTagDto(
-                tag: $tag,
-                isHeadline: (bool) $tagRelation->getHeadline(),
+        foreach ($tags as $tag) {
+            $tagDtos[] = new TagDto(
+                id: $tag['oo_id'],
+                name: $tag['name'],
+                emoji: $tag['emoji'],
             );
         }
 
@@ -45,7 +43,7 @@ class ActivityMapper
             activityType: $model->getActivityType(),
             title: $model->getTitle(),
             date: $model->getDate(),
-            tags: $tags,
+            tags: $tagDtos,
             weather: $model->getWeather(),
             temperature: $model->getTemperature(),
         );

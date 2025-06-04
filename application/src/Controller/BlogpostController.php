@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
-use App\Helper\ContentHelper;
 use App\Mapper\BlogpostMapper;
 use Pimcore\Model\DataObject\Tour;
 use Symfony\Bridge\Twig\Attribute\Template;

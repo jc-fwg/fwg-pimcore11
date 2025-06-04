@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class ActivityDto
 {
     /**
-     * @param ActivityTagDto[] $tags
+     * @param TagDto[] $tags
      */
     public function __construct(
         public readonly int $id,

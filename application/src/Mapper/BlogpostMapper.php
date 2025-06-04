@@ -28,7 +28,7 @@ class BlogpostMapper
     {
         // Authors
         $authorsIds = $model->getAuthors() ?? [];
-        $authors = [];
+        $authors    = [];
         foreach ($authorsIds as $authorId) {
             $author = $this->authorRepository->findOneById((int) $authorId);
 

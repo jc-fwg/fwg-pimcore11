@@ -30,9 +30,7 @@
                     <h2 class="js-toc-ignore">{{ blogpost.subTitle }}</h2>
                     {% if blogpost.activity is not null %}
                         {% for tag in blogpost.activity.tags %}
-                            {% if tag.isHeadline == true %}
-                                <span class="badge text-bg-secondary">{{ tag.tag.name }}</span>
-                            {% endif %}
+                            <span class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</span>
                         {% endfor %}
                     {% endif %}
                 </div>
