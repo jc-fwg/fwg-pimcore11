@@ -3,8 +3,9 @@
         {% set fullImageSource = image.thumbnail('blogpost-gallery-full').path %}
         {{ image.thumbnail('blogpost-gallery-thumbnail').html({ 'imgAttributes': {
             'class': 'img-fluid p-1 border mr-2 mb-2',
-            'alt': 'author.authorName',
-            'data-fullsource': fullImageSource
+            'alt': blogpost.title,
+            'data-fullsource': fullImageSource,
+            'data-index': loop.index,
         }})|raw }}
     {% endfor %}
 </div>

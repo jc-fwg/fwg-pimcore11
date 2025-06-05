@@ -5,3 +5,10 @@ web:
 home:
     posts:
         latest: 'Neueste Beiträge'
+
+blogpost:
+    toc:
+        headline: 'Inhaltsverzeichnis'
+    authors:
+        headline: 'Autoren'
+        posts-from: 'Mehr Beiträge von'

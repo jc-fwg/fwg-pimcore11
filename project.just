@@ -1,6 +1,9 @@
 npm-run-dev:
     cd application/; npm run dev
 
+npm-run-watch:
+    cd application/; npm run watch
+
 ssh-uberspace:
     ssh uberawmediapimcore01
 

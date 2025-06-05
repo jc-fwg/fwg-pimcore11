@@ -13,19 +13,19 @@ function initBbxGalleries() {
     for (let gallery of bbxGalleries) {
 
         let images = gallery.getElementsByTagName("img");
-        gallery.addEventListener('click', event => {
-            buildSlideOut(images, event.target);
-        });
+        // gallery.addEventListener('click', event => {
+        //     buildSlideOut(images, event.target);
+        // });
 
-        /* Add event listener to images so we can jump to selected image. Coming later...
+        // Add event listener to images so we can jump to selected image. Coming later...
         for (let image of images) {
             image.addEventListener('click', event => {
                 buildSlideOut(images, event.target);
             });
         }
 
-        AAAAAAND.... So we can use it for arrow keys to jump to image :)
-        */
+        // AAAAAAND.... So we can use it for arrow keys to jump to image :)
+
     }
 }
 
@@ -35,7 +35,6 @@ function initBbxGalleries() {
  * @param thumbnailClicked
  */
 function buildSlideOut(images, thumbnailClicked) {
-
     /*
      * Get existing slideOut element or create if not available yet.
      * Remove all content of it.
@@ -83,7 +82,10 @@ function buildSlideOut(images, thumbnailClicked) {
         // Setup image counter, append to image wrapper
         let imageCounterElement = document.createElement("div");
         imageCounterElement.classList.add("counter");
-        imageCounterElement.textContent = index + " / " + images.length;
+
+        let imageTitle = image.getAttribute("alt");
+
+        imageCounterElement.textContent = imageTitle + " (" + index + " / " + images.length + ")";
         imageDivElement.appendChild(imageCounterElement);
 
         // Append image wrapper to slideout
@@ -92,12 +94,12 @@ function buildSlideOut(images, thumbnailClicked) {
         // Setup full image, add listener to append it into image wrapper after it's loaded
         let imageElement = document.createElement("img");
         imageElement.classList.add("full");
+        imageElement.dataset.index = index.toString();
         imageElement.addEventListener ("load", function () {
             imageLoaderElement.parentNode.removeChild(imageLoaderElement);
             imageDivElement.classList.remove("loading");
             imageDivElement.appendChild(imageElement);
         });
-        console.log(image);
         imageElement.src = image.dataset.fullsource;
 
         index++;
@@ -105,8 +107,28 @@ function buildSlideOut(images, thumbnailClicked) {
 
     // Slide out and prevent body scrolling
     slideoutElement.classList.add("show");
-    console.log(slideoutElement);
     document.body.style.overflow = "hidden";
+
+    // Jump to clicked image
+    if (thumbnailClicked) {
+        let imageIndex = thumbnailClicked.dataset.index.toString();
+        let attempts = 0;
+
+        let tryScrollToImage = () => {
+            let targetImage = slideoutElement.querySelector('img[data-index="' + imageIndex + '"]');
+            if (!targetImage) {
+                attempts++;
+
+                if (attempts < 100) {
+                    setTimeout(tryScrollToImage, 50);
+                }
+                return;
+            }
+
+            targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
+        };
+        tryScrollToImage();
+    }
 }
 
 function closeSlideOut(slideoutElement, event) {

@@ -3,6 +3,8 @@ set dotenv-filename := "application/.env"
 list:
     just --list
 
+ccf : cache-clear-full
+
 backup-database:
     bin/console backup:backup --only-database
 
