@@ -1,5 +1,11 @@
 @use '_base.scss' as base;
 
+.blogpost-content-gallery {
+    img:hover {
+        cursor: pointer;
+    }
+}
+
 #bbx-gallery-slideout {
     position: fixed;
     left: 0;
