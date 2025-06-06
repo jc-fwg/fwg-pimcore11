@@ -37,6 +37,7 @@
         {% block head_stylesheets %}
             {{ pimcore_head_link() }}
         {% endblock %}
+        {% block extra_stylesheets %}{% endblock %}
     </head>
     <body>
         {# NAVIGATION MAIN #}
@@ -64,5 +65,6 @@
         {% block headscripts %}
             {{ pimcore_head_script() }}
         {% endblock %}
+        {% block extra_scripts %}{% endblock %}
     </body>
 </html>
