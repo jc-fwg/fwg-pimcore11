@@ -8,7 +8,6 @@
  * - breaks [select]
  * - headForHeights [select]
  * - surefootedness [select]
- * - gpxFIle [manyToOneRelation]
  * - komootEmbedCode [textarea]
  */
 
@@ -245,48 +244,6 @@ return \Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
              'optionsProviderData' => 'RatingOfNecessity',
           )),
           3 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
-             'name' => 'gpxFIle',
-             'title' => 'app.generic.gpxFile',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => false,
-             'index' => false,
-             'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => true,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
-             'blockedVarsForExport' => 
-            array (
-            ),
-             'classes' => 
-            array (
-            ),
-             'displayMode' => 'grid',
-             'pathFormatterClass' => '',
-             'assetInlineDownloadAllowed' => false,
-             'assetUploadPath' => '',
-             'allowToClearRelation' => true,
-             'objectsAllowed' => false,
-             'assetsAllowed' => true,
-             'assetTypes' => 
-            array (
-              0 => 
-              array (
-                'assetTypes' => 'unknown',
-              ),
-            ),
-             'documentsAllowed' => false,
-             'documentTypes' => 
-            array (
-            ),
-             'width' => '',
-          )),
-          4 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
              'name' => 'komootEmbedCode',
              'title' => 'app.generic.komootEmbedCode',

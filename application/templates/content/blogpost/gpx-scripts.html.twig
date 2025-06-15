@@ -1,0 +1,74 @@
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        });
+        const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri'
+        });
+
+        const map = L.map('map', {
+            center: [50.0, 8.0],
+            zoom: 13,
+            layers: [osm]
+        });
+
+        const baseMaps = {
+            "Karte": osm,
+            "Satellit": satellite
+        };
+        L.control.layers(baseMaps).addTo(map);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const elevationControl = L.control.elevation({
+            position: "topright",
+            theme: "lime-theme",
+            detached: true,
+            elevationDiv: "#elevation",
+            followMarker: true,
+            downloadLink: "link",
+            distanceMarkers: true,
+        });
+
+        elevationControl.addTo(map);
+
+        fetch("{{ blogpost.activity.gpx.fullPath }}")
+            .then(response => response.text())
+            .then(gpxText => {
+                // Parse GPX as XML
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(gpxText, "application/xml");
+
+                // Remove all <wpt> elements
+                const waypoints = xmlDoc.getElementsByTagName("wpt");
+                while (waypoints.length > 0) {
+                    waypoints[0].parentNode.removeChild(waypoints[0]);
+                }
+
+                // Serialize the cleaned XML back to string
+                const cleanedGpx = new XMLSerializer().serializeToString(xmlDoc);
+
+                // Now load into Leaflet GPX
+                const gpx = new L.GPX(cleanedGpx, {
+                    async: true,
+                    marker_options: {
+                        startIconUrl: null,
+                        endIconUrl: false,
+                        shadowUrl: false,
+                    },
+                });
+
+                gpx.on('loaded', function(e) {
+                    map.fitBounds(e.target.getBounds());
+                }).on('addline', function(e) {
+                    elevationControl.addData(e.line);
+                }).addTo(map);
+            });
+    });
+</script>

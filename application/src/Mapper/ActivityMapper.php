@@ -24,6 +24,7 @@ class ActivityMapper
     public function fromModel(Activity $model): ActivityDto
     {
         // Tags
+        $tagDtos = [];
         $tagIds = [];
         foreach ($model->getTags() ?? [] as $tag) {
             $tagIds[] = (int) $tag->getId();
@@ -43,6 +44,7 @@ class ActivityMapper
             activityType: $model->getActivityType(),
             title: $model->getTitle(),
             date: $model->getDate(),
+            gpx: $model->getGpx(),
             tags: $tagDtos,
             weather: $model->getWeather(),
             temperature: $model->getTemperature(),

@@ -10,6 +10,7 @@
  * - title [input]
  * - date [date]
  * - locations [fieldcollections]
+ * - gpx [manyToOneRelation]
  * - weather [select]
  * - temperature [numeric]
  * - typeSpecific [objectbricks]
@@ -23,7 +24,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1749066904,
+   'modificationDate' => 1749991053,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -208,6 +209,60 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'border' => false,
                   )),
                   4 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
+                     'name' => 'gpx',
+                     'title' => 'app.generic.gpxFile',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => true,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'classes' => 
+                    array (
+                      0 => 
+                      array (
+                        'classes' => '',
+                      ),
+                    ),
+                     'displayMode' => 'grid',
+                     'pathFormatterClass' => '',
+                     'assetInlineDownloadAllowed' => false,
+                     'assetUploadPath' => '',
+                     'allowToClearRelation' => true,
+                     'objectsAllowed' => false,
+                     'assetsAllowed' => true,
+                     'assetTypes' => 
+                    array (
+                      0 => 
+                      array (
+                        'assetTypes' => 'unknown',
+                      ),
+                      1 => 
+                      array (
+                        'assetTypes' => 'text',
+                      ),
+                    ),
+                     'documentsAllowed' => false,
+                     'documentTypes' => 
+                    array (
+                      0 => 
+                      array (
+                        'documentTypes' => '',
+                      ),
+                    ),
+                     'width' => '',
+                  )),
+                  5 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Weather Conditions',
                      'type' => NULL,

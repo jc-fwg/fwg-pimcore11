@@ -6,6 +6,7 @@ namespace App\Adapter\App\Database\Doctrine\Repository;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Exception;
 use Pimcore\Model\DataObject;
 
 class TagRepository extends AbstractRepository
@@ -24,7 +25,7 @@ class TagRepository extends AbstractRepository
      *
      * @return array<int, array<string, mixed>>
      *
-     * @throws \Doctrine\DBAL\Exception
+     * @throws Exception
      */
     public function findAllOrderedByTagCategoryWeighting(array $ids = []): array
     {

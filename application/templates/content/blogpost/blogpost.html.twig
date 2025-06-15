@@ -1,52 +1,22 @@
 {% extends 'layouts/layout.html.twig' %}
-{% block extra_stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css" />
-{% endblock %}
-
-{% block extra_scripts %}
-    {{ parent() }}
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const map = L.map('map').setView([50.0, 8.0], 13);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-
-            const elevationControl = L.control.elevation({
-                position: "topright",
-                theme: "steelblue-theme",
-                detached: true,
-                elevationDiv: "#elevation",
-                followMarker: true
-            });
-
-            elevationControl.addTo(map);
-
-            const gpx = new L.GPX('/gpx/osterspaier-langhalsweg.gpx', {
-                async: true,
-                marker_options: {
-                    startIconUrl: null,
-                    endIconUrl: null,
-                    shadowUrl: null
-                }
-            }).on('loaded', function(e) {
-                map.fitBounds(e.target.getBounds());
-            }).on("addline", function(e) {
-                elevationControl.addData(e.line);
-            }).addTo(map);
-        });
-    </script>
-{% endblock %}
+    {% block extra_stylesheets %}
+        {{ parent() }}
+        {# GPX #}
+        {% if blogpost.activity.gpx is not null %}
+            {% include 'content/blogpost/gpx-stylesheets.html.twig' %}
+        {% endif %}
+    {% endblock %}
+    {% block extra_scripts %}
+        {{ parent() }}
+        {# GPX #}
+        {% if blogpost.activity.gpx is not null %}
+            {% include 'content/blogpost/gpx-scripts.html.twig' %}
+        {% endif %}
+    {% endblock %}
     {% block content %}
         {% if blogpost is defined %}
-{#            {{ dump(blogpost) }}#}
+            {{ dump(blogpost) }}
+            {{ dump(blogpost.activity.gpx.fullPath) }}
             <article class="page page-blogpost">
                 {% include 'layouts/includes/navigation-main.html.twig' %}
                 {# HERO #}
@@ -86,27 +56,24 @@
                             {% for item in blogpost.content %}
                                 {% include 'content/blogpost/content/' ~ item.type ~ '.html.twig' with { 'item' : item } %}
                             {% endfor %}
+                            {# GPX #}
+                            {% if blogpost.activity.gpx is not null %}
+                                <div id="gpx" class="p-1 border mt-2">
+                                    <div id="map" style="height: 400px;"></div>
+                                    <div id="elevation" class="mt-1"></div>
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="col-12 offset-lg-1 col-lg-4">
                             {# ASIDES #}
 {#                            {% if blogpost.activity is not null  and blogpost.activity.facts|length > 0%}#}
 {#                                {% include 'content/blogpost/aside/facts.html.twig' %}#}
 {#                            {% endif %}#}
-{#                            {% include 'content/blogpost/aside/links-downloads.html.twig' %}#}
+                            {% include 'content/blogpost/aside/links-downloads.html.twig' %}
                             {% include 'content/blogpost/aside/authors.html.twig' %}
                         </div>
                     </div>
                 </div>
-                <div id="map" class="container" style="height: 400px;"></div>
-                <div id="elevation" class="container" style="height: 200px;"></div>
-
-
-                {% if tour is defined and tour is not null and tour.tourProfileAlltrails %}
-                    <div class="container pl-4 pr-4">
-                        <h2>{{ 'blogpost.tour.card-and-height-profile'|trans }}</h2>
-                        {% include 'content/blogpost/alltrails.html.twig' %}
-                    </div>
-                {% endif %}
             </article>
         {% endif %}
 

@@ -10,5 +10,6 @@ blogpost:
     toc:
         headline: 'Inhaltsverzeichnis'
     authors:
-        headline: 'Autoren'
+        headline: 'Autor'
+        headlinePlural: 'Autoren'
         posts-from: 'Mehr Beiträge von'
