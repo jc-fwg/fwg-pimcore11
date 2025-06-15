@@ -1,13 +1,28 @@
 <aside class="links-downloads mt-4">
-    <h3>{{ 'blogpost.link-files.headline'|trans }}</h3>
+    <h3>{{ 'blogpost.linksAndDownloads.headline'|trans }}</h3>
     <table>
-        {{ dump(blogpost) }}
-{#        {% if tour is defined and tour is not null and tour.tourTrackingFile %}#}
-{#            <tr>#}
-{#                <td><i class="material-icons pr-2">file_download</i></td>#}
-{#                <td><a href="{{ tour.tourTrackingFile.fullPath }}" download>{{ 'blogpost.tour.gpx-as-download'|trans }}</a></td>#}
-{#            </tr>#}
-{#        {% endif %}#}
+        {% if blogpost.activity.gpx is defined and blogpost.activity.gpx is not null %}
+            <tr>
+                <td><i class="bi bi-geo-alt-fill" /></td>
+                <td><a href="{{ blogpost.activity.gpx.fullPath }}" download>{{ 'blogpost.activity.gpxDownload'|trans }}</a></td>
+            </tr>
+        {% endif %}
+        {% if blogpost.downloads is defined and blogpost.downloads|length > 0 %}
+            {% for download in blogpost.downloads %}
+                <tr>
+                    <td><i class="bi bi-download" /></td>
+                    <td><a href="{{ download.fullPath }}" download>{{ download.key }}</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        {% if blogpost.links is defined and blogpost.links|length > 0 %}
+            {% for link in blogpost.links %}
+                <tr>
+                    <td><i class="bi bi-link" /></td>
+                    <td><a href="{{ link.path }}" target="{{ link.target }}">{{ link.text }}</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
 {#        {% for collection in blogpost.blogpostLinksAndFiles %}#}
 {#            #}{# Link #}
 {#            {% if collection.type == "blogpostLinkURL" %}#}

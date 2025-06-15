@@ -13,6 +13,9 @@
  * - imageMain [image]
  * - imageTeaser [image]
  * - assetsFolder [manyToOneRelation]
+ * - downloads [manyToManyRelation]
+ * - links [block]
+ * -- link [link]
  * - title [input]
  * - subTitle [input]
  * - previewText [wysiwyg]
@@ -32,7 +35,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1747686359,
+   'modificationDate' => 1750001331,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -253,7 +256,33 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '',
                  'height' => '',
               )),
-              5 => 
+            ),
+             'locked' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'fieldtype' => 'panel',
+             'layout' => NULL,
+             'border' => false,
+             'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/engineering.svg',
+             'labelWidth' => 100,
+             'labelAlign' => 'top',
+          )),
+          1 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
+             'name' => 'AssassetsDownloadsLinks',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.assetsDownloadsLinks',
+             'width' => '',
+             'height' => '',
+             'collapsible' => false,
+             'collapsed' => false,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                  'name' => 'Assets',
                  'type' => NULL,
@@ -360,6 +389,166 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'labelWidth' => 100,
                  'labelAlign' => 'top',
               )),
+              1 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
+                 'name' => 'Downloads',
+                 'type' => NULL,
+                 'region' => NULL,
+                 'title' => 'app.generic.downloads',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                  0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
+                     'name' => 'downloads',
+                     'title' => 'app.generic.downloads',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => true,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'classes' => 
+                    array (
+                    ),
+                     'displayMode' => NULL,
+                     'pathFormatterClass' => '',
+                     'maxItems' => NULL,
+                     'assetInlineDownloadAllowed' => false,
+                     'assetUploadPath' => '',
+                     'allowToClearRelation' => true,
+                     'objectsAllowed' => false,
+                     'assetsAllowed' => true,
+                     'assetTypes' => 
+                    array (
+                    ),
+                     'documentsAllowed' => false,
+                     'documentTypes' => 
+                    array (
+                    ),
+                     'enableTextSelection' => false,
+                     'width' => '',
+                     'height' => '',
+                  )),
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'fieldset',
+                 'labelWidth' => 100,
+                 'labelAlign' => 'top',
+              )),
+              2 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
+                 'name' => 'Links',
+                 'type' => NULL,
+                 'region' => NULL,
+                 'title' => 'app.generic.links',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                  0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Block::__set_state(array(
+                     'name' => 'links',
+                     'title' => '',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'lazyLoading' => true,
+                     'disallowAddRemove' => false,
+                     'disallowReorder' => false,
+                     'collapsible' => false,
+                     'collapsed' => false,
+                     'maxItems' => NULL,
+                     'styleElement' => '',
+                     'children' => 
+                    array (
+                      0 => 
+                      \Pimcore\Model\DataObject\ClassDefinition\Data\Link::__set_state(array(
+                         'name' => 'link',
+                         'title' => 'app.generic.link',
+                         'tooltip' => '',
+                         'mandatory' => false,
+                         'noteditable' => false,
+                         'index' => false,
+                         'locked' => false,
+                         'style' => '',
+                         'permissions' => NULL,
+                         'fieldtype' => '',
+                         'relationType' => false,
+                         'invisible' => false,
+                         'visibleGridView' => false,
+                         'visibleSearch' => false,
+                         'blockedVarsForExport' => 
+                        array (
+                        ),
+                         'allowedTypes' => 
+                        array (
+                        ),
+                         'allowedTargets' => 
+                        array (
+                        ),
+                         'disabledFields' => 
+                        array (
+                          0 => 'parameters',
+                          1 => 'class',
+                          2 => 'attributes',
+                          3 => 'anchor',
+                          4 => 'target',
+                          5 => 'accesskey',
+                          6 => 'rel',
+                          7 => 'tabindex',
+                          8 => 'title',
+                        ),
+                      )),
+                    ),
+                     'layout' => NULL,
+                     'referencedFields' => 
+                    array (
+                    ),
+                     'fieldDefinitionsCache' => NULL,
+                  )),
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'fieldset',
+                 'labelWidth' => 100,
+                 'labelAlign' => 'top',
+              )),
             ),
              'locked' => false,
              'blockedVarsForExport' => 
@@ -368,11 +557,11 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'fieldtype' => 'panel',
              'layout' => NULL,
              'border' => false,
-             'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/engineering.svg',
+             'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/asset.svg',
              'labelWidth' => 100,
              'labelAlign' => 'top',
           )),
-          1 => 
+          2 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
              'name' => 'Content',
              'type' => NULL,
@@ -515,7 +704,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'top',
           )),
-          2 => 
+          3 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Region::__set_state(array(
              'name' => 'SEO & Marketing',
              'type' => NULL,

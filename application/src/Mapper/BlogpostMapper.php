@@ -6,10 +6,12 @@ namespace App\Mapper;
 
 use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
 use App\Dto\BlogpostDto;
+use App\Dto\LinkDto;
 use App\Website\LinkGenerator\BlogpostLinkGenerator;
 use Exception;
 use Pimcore\Model\DataObject\Author;
 use Pimcore\Model\DataObject\Blogpost;
+use Pimcore\Model\DataObject\Data\Link;
 
 class BlogpostMapper
 {
@@ -39,6 +41,17 @@ class BlogpostMapper
             $authors[] = $this->authorMapper->fromModel($author);
         }
 
+        // Links
+        $links = [];
+        foreach ($model->getLinks() ?? [] as $blockElement) {
+            /** @var Link $link */
+            $link    = $blockElement['link'] ?? null;
+            $links[] = new LinkDto(
+                $link->getData()->getText(),
+                $link->getData()->getPath(),
+            );
+        }
+
         return new BlogpostDto(
             id: $model->getId(),
             publicationDate: $model->getPublicationDate(),
@@ -50,6 +63,8 @@ class BlogpostMapper
             assetsFolder: $model->getAssetsFolder(),
             previewText: $model->getPreviewText(),
             imageTeaser: $model->getImageTeaser(),
+            downloads: $model->getDownloads(),
+            links: $links,
             title: $model->getTitle(),
             subTitle: $model->getSubTitle(),
             content: $model->getContent(),

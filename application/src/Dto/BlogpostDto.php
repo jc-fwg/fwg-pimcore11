@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Dto;
 
 use Carbon\Carbon;
+use Pimcore\Model\Asset;
 use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Image;
 use Pimcore\Model\DataObject\Category;
@@ -15,6 +16,8 @@ class BlogpostDto
     /**
      * @param AuthorDto[] $authors
      * @param Category[]  $categories
+     * @param Asset[]     $downloads
+     * @param LinkDto[]   $links
      */
     public function __construct(
         public readonly int $id,
@@ -27,6 +30,8 @@ class BlogpostDto
         public ?Folder $assetsFolder = null,
         public ?string $previewText = null,
         public ?Image $imageTeaser = null,
+        public array $downloads = [],
+        public ?array $links = [],
         public ?string $title = null,
         public ?string $subTitle = null,
         public ?Fieldcollection $content = null,

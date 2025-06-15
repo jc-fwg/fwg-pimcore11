@@ -13,6 +13,7 @@
  * - gpx [manyToOneRelation]
  * - weather [select]
  * - temperature [numeric]
+ * - breaks [select]
  * - typeSpecific [objectbricks]
  * - tags [manyToManyObjectRelation]
  */
@@ -24,7 +25,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1749991053,
+   'modificationDate' => 1750007451,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -229,10 +230,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     ),
                      'classes' => 
                     array (
-                      0 => 
-                      array (
-                        'classes' => '',
-                      ),
                     ),
                      'displayMode' => 'grid',
                      'pathFormatterClass' => '',
@@ -255,10 +252,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'documentsAllowed' => false,
                      'documentTypes' => 
                     array (
-                      0 => 
-                      array (
-                        'documentTypes' => '',
-                      ),
                     ),
                      'width' => '',
                   )),
@@ -370,6 +363,34 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'children' => 
                 array (
                   0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+                     'name' => 'breaks',
+                     'title' => 'app.generic.breaks',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'defaultValue' => '',
+                     'columnLength' => 190,
+                     'dynamicOptions' => false,
+                     'defaultValueGenerator' => '',
+                     'width' => '',
+                     'optionsProviderType' => 'select_options',
+                     'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
+                     'optionsProviderData' => 'ActivityBreaks',
+                  )),
+                  1 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
                      'name' => 'typeSpecific',
                      'title' => 'app.generic.typeSpecific',

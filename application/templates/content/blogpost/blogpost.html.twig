@@ -2,21 +2,20 @@
     {% block extra_stylesheets %}
         {{ parent() }}
         {# GPX #}
-        {% if blogpost.activity.gpx is not null %}
+        {% if blogpost.activity.gpx is defined and blogpost.activity.gpx is not null %}
             {% include 'content/blogpost/gpx-stylesheets.html.twig' %}
         {% endif %}
     {% endblock %}
     {% block extra_scripts %}
         {{ parent() }}
         {# GPX #}
-        {% if blogpost.activity.gpx is not null %}
+        {% if blogpost.activity.gpx is defined and blogpost.activity.gpx is not null %}
             {% include 'content/blogpost/gpx-scripts.html.twig' %}
         {% endif %}
     {% endblock %}
     {% block content %}
         {% if blogpost is defined %}
             {{ dump(blogpost) }}
-            {{ dump(blogpost.activity.gpx.fullPath) }}
             <article class="page page-blogpost">
                 {% include 'layouts/includes/navigation-main.html.twig' %}
                 {# HERO #}
@@ -57,18 +56,18 @@
                                 {% include 'content/blogpost/content/' ~ item.type ~ '.html.twig' with { 'item' : item } %}
                             {% endfor %}
                             {# GPX #}
-                            {% if blogpost.activity.gpx is not null %}
+                            {% if blogpost.activity.gpx is defined and blogpost.activity.gpx is not null %}
                                 <div id="gpx" class="p-1 border mt-2">
                                     <div id="map" style="height: 400px;"></div>
                                     <div id="elevation" class="mt-1"></div>
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="col-12 offset-lg-1 col-lg-4">
+                        <div class="col-12 offset-lg-1 col-lg-4 asides">
                             {# ASIDES #}
-{#                            {% if blogpost.activity is not null  and blogpost.activity.facts|length > 0%}#}
-{#                                {% include 'content/blogpost/aside/facts.html.twig' %}#}
-{#                            {% endif %}#}
+                            {% if blogpost.activity is not null  and blogpost.activity.facts|length > 0%}
+                                {% include 'content/blogpost/aside/facts.html.twig' %}
+                            {% endif %}
                             {% include 'content/blogpost/aside/links-downloads.html.twig' %}
                             {% include 'content/blogpost/aside/authors.html.twig' %}
                         </div>

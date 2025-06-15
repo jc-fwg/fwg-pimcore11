@@ -1,0 +1,30 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                DifficultyHike:
+                    id: DifficultyHike
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: easy
+                            label: app.collection.difficultyHike.easy
+                            name: easy
+                        -
+                            value: easyPlus
+                            label: app.collection.difficultyHike.easyPlus
+                            name: easyPlus
+                        -
+                            value: moderate
+                            label: app.collection.difficultyHike.moderate
+                            name: moderate
+                        -
+                            value: moderatePlus
+                            label: app.collection.difficultyHike.moderatePlus
+                            name: moderatePlus
+                        -
+                            value: hard
+                            label: app.collection.difficultyHike.hard
+                            name: hard

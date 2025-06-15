@@ -21,4 +21,22 @@
             background-color: base.$color-cd-green;
         }
     }
+
+    .links-downloads {
+
+        tr {
+            vertical-align: top;
+
+            td:first-child {
+                padding-right: 10px
+            }
+        }
+    }
+
+    .author {
+
+        .bi {
+                padding-right: 10px
+            }
+    }
 }

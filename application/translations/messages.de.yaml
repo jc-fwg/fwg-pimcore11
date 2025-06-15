@@ -13,3 +13,7 @@ blogpost:
         headline: 'Autor'
         headlinePlural: 'Autoren'
         posts-from: 'Mehr Beiträge von'
+    linksAndDownloads:
+        headline: 'Links und Downloads'
+    activity:
+        gpxDownload: 'GPX herunterladen'

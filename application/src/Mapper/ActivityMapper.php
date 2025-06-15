@@ -25,7 +25,7 @@ class ActivityMapper
     {
         // Tags
         $tagDtos = [];
-        $tagIds = [];
+        $tagIds  = [];
         foreach ($model->getTags() ?? [] as $tag) {
             $tagIds[] = (int) $tag->getId();
         }
