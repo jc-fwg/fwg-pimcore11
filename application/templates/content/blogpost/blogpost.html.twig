@@ -15,7 +15,7 @@
     {% endblock %}
     {% block content %}
         {% if blogpost is defined %}
-            {{ dump(blogpost) }}
+            {{ dump(blogpost.activity) }}
             <article class="page page-blogpost">
                 {% include 'layouts/includes/navigation-main.html.twig' %}
                 {# HERO #}
@@ -65,8 +65,8 @@
                         </div>
                         <div class="col-12 offset-lg-1 col-lg-4 asides">
                             {# ASIDES #}
-                            {% if blogpost.activity is not null  and blogpost.activity.facts|length > 0%}
-                                {% include 'content/blogpost/aside/facts.html.twig' %}
+                            {% if blogpost.activity is not null  and blogpost.activity.summary is not null %}
+                                {% include 'content/blogpost/aside/summary.html.twig' %}
                             {% endif %}
                             {% include 'content/blogpost/aside/links-downloads.html.twig' %}
                             {% include 'content/blogpost/aside/authors.html.twig' %}

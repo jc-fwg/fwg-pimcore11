@@ -1,12 +1,20 @@
 <aside class="data-facts mt-4">
-    <h3>{{ 'blogpost.data-facts.headline'|trans }}</h3>
-    <table>
+    <h3>{{ 'blogpost.activity.summary.headline'|trans }}</h3>
+    <table class="table table-striped">
+        {% if blogpost.activity.activityType == "hike" %}
+            {% include 'content/blogpost/aside/summary/startEnd.html.twig' %}
+            {% include 'content/blogpost/aside/summary/distance.html.twig' %}
+            {% include 'content/blogpost/aside/summary/elevation.html.twig' %}
+            {% include 'content/blogpost/aside/summary/duration.html.twig' %}
+        {% endif %}
+    </table>
+        {#
 
-        {# Tour facts #}
-        {% if facts.tour is defined %}
+        #}{# Tour summary #}{#
+        {% if blogpost.activity.summary is defined %}
             <tr>
-                <td class="font-weight-bold pr-2">
-                    {% if facts.tour.end %}
+                <td>
+                    {% if blogpost.activity %}
                         {{ 'blogpost.data-facts.tour.starting-point'|trans }}
                     {% else %}
                         {{ 'blogpost.data-facts.tour.starting-and-end-point'|trans }}
@@ -21,10 +29,10 @@
                     </a>
                 </td>
             </tr>
-            {# Endpoint #}
+            #}{# Endpoint #}{#
             {% if facts.tour.end %}
                 <tr>
-                    <td class="font-weight-bold pr-2">
+                    <td>
                         {{ 'blogpost.data-facts.tour.end-point'|trans }}
                     </td>
                     <td>
@@ -37,36 +45,36 @@
                     </td>
                 </tr>
             {% endif %}
-            {# Distance #}
+            #}{# Distance #}{#
             {% if
                 facts.tour.distance is defined and
                 facts.tour.distance > 0
             %}
                 <tr>
-                    <td class="font-weight-bold pr-2">{{ 'blogpost.data-facts.distance'|trans }}</td>
+                    <td>{{ 'blogpost.data-facts.distance'|trans }}</td>
                     <td>Ca. {{ facts.tour.distance }} km</td>
                 </tr>
             {% endif %}
-            {# Elevation #}
+            #}{# Elevation #}{#
             {% if
                 facts.tour.elevation is defined and
                 facts.tour.elevation > 0
             %}
                 <tr>
-                    <td class="font-weight-bold pr-2">{{ 'blogpost.data-facts.elevation'|trans }}</td>
+                    <td>{{ 'blogpost.data-facts.elevation'|trans }}</td>
                     <td>Ca. {{ facts.tour.elevation }} Hm</td>
                 </tr>
             {% endif %}
-            {# Duration #}
+            #}{# Duration #}{#
             {% if
                 facts.tour.duration is defined and
                 facts.tour.duration > 0
             %}
                 <tr>
-                    <td class="font-weight-bold pr-2">{{ 'blogpost.data-facts.duration'|trans }}</td>
+                    <td>{{ 'blogpost.data-facts.duration'|trans }}</td>
                     <td>
                         Ca. {{ facts.tour.duration }} {{ 'blogpost.data-facts.duration.hours'|trans }}
-                        {# Pauses #}
+                        #}{# Pauses #}{#
                         {% if
                             facts.tour.pauses is defined and
                             facts.tour.pauses is not empty
@@ -77,57 +85,57 @@
                     </td>
                 </tr>
             {% endif %}
-            {# Orientation #}
+            #}{# Orientation #}{#
             {% if
                 facts.tour.orientation is defined and
                 facts.tour.orientation is not empty
             %}
                 <tr>
-                    <td class="font-weight-bold pr-2">{{ 'blogpost.data-facts.tour.orientation'|trans }}</td>
+                    <td>{{ 'blogpost.data-facts.tour.orientation'|trans }}</td>
                     <td>
                         {% set translationKey = 'blogpost.facts.tour.orientation.' ~ facts.tour.orientation %}
                         {{ translationKey|trans }}
                     </td>
                 </tr>
             {% endif %}
-            {# Hike : Head for height #}
+            #}{# Hike : Head for height #}{#
             {% if
                 facts.tour.headForHeights is defined and
                 facts.tour.headForHeights is not empty
             %}
                 <tr>
-                    <td class="font-weight-bold pr-2">{{ 'blogpost.data-facts.tour.head-for-heights'|trans }}</td>
+                    <td>{{ 'blogpost.data-facts.tour.head-for-heights'|trans }}</td>
                     <td>
                         {% set translationKey = 'blogpost.facts.tour.head-for-heights.' ~ facts.tour.headForHeights %}
                         {{ translationKey|trans }}
                     </td>
                 </tr>
             {% endif %}
-            {# Hike : Surefootedness #}
+            #}{# Hike : Surefootedness #}{#
             {% if
                 facts.tour.surefootedness is defined and
                 facts.tour.surefootedness is not empty
             %}
                 <tr>
-                    <td class="font-weight-bold pr-2">{{ 'blogpost.data-facts.tour.surefootedness'|trans }}</td>
+                    <td>{{ 'blogpost.data-facts.tour.surefootedness'|trans }}</td>
                     <td>
                         {% set translationKey = 'blogpost.facts.tour.surefootedness.' ~ facts.tour.surefootedness %}
                         {{ translationKey|trans }}
                     </td>
                 </tr>
             {% endif %}
-            {# Bike : Singletrail scale #}
+            #}{# Bike : Singletrail scale #}{#
             {% if
                 facts.tour.singletrailScale is defined and
                 facts.tour.singletrailScale is not empty
             %}
                 <tr>
-                    <td class="font-weight-bold pr-2">{{ 'blogpost.data-facts.tour.singletrail-scale'|trans }}</td>
+                    <td>{{ 'blogpost.data-facts.tour.singletrail-scale'|trans }}</td>
                     <td>
                         {{ facts.tour.singletrailScale }}
                     </td>
                 </tr>
             {% endif %}
         {% endif %}
-    </table>
+    </table>#}
 </aside>

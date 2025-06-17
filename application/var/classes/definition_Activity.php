@@ -13,8 +13,9 @@
  * - gpx [manyToOneRelation]
  * - weather [select]
  * - temperature [numeric]
+ * - duration [numeric]
  * - breaks [select]
- * - typeSpecific [objectbricks]
+ * - summary [objectbricks]
  * - tags [manyToManyObjectRelation]
  */
 
@@ -25,7 +26,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1750007451,
+   'modificationDate' => 1750164317,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -334,7 +335,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     ),
                      'fieldtype' => 'fieldset',
                      'labelWidth' => 100,
-                     'labelAlign' => 'left',
+                     'labelAlign' => 'top',
                   )),
                 ),
                  'locked' => false,
@@ -363,6 +364,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'children' => 
                 array (
                   0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
+                     'name' => 'duration',
+                     'title' => 'app.generic.duration',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'defaultValue' => NULL,
+                     'integer' => false,
+                     'unsigned' => false,
+                     'minValue' => NULL,
+                     'maxValue' => NULL,
+                     'unique' => false,
+                     'decimalSize' => NULL,
+                     'decimalPrecision' => NULL,
+                     'width' => '',
+                     'defaultValueGenerator' => '',
+                  )),
+                  1 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
                      'name' => 'breaks',
                      'title' => 'app.generic.breaks',
@@ -390,10 +421,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
                      'optionsProviderData' => 'ActivityBreaks',
                   )),
-                  1 => 
+                  2 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                     'name' => 'typeSpecific',
-                     'title' => 'app.generic.typeSpecific',
+                     'name' => 'summary',
+                     'title' => 'app.generic.summary',
                      'tooltip' => '',
                      'mandatory' => false,
                      'noteditable' => false,

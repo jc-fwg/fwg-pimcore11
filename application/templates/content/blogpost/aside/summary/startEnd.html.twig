@@ -1,0 +1,37 @@
+{% set startPoint = null %}
+{% set endPoint = null %}
+{% for location in blogpost.activity.locations %}
+    {% if location.locationType == "startPoint" %}
+        {% set startPoint = location %}
+    {% endif %}
+    {% if location.locationType == "endPoint" %}
+        {% set endPoint = location %}
+    {% endif %}
+{% endfor %}
+{% if startPoint is not null and endPoint is null %}
+    <tr>
+        <td>
+            {{ 'blogpost.activity.summary.location.startAndEnd'|trans }}
+        </td>
+        <td>
+            <a href="">{{ startPoint.name }}</a>
+        </td>
+    </tr>
+{% elseif startPoint is not null and endPoint is not null %}
+    <tr>
+        <td>
+            {{ 'blogpost.activity.summary.location.start'|trans }}
+        </td>
+        <td>
+            <a href="">{{ startPoint.name }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ 'blogpost.activity.summary.location.end'|trans }}
+        </td>
+        <td>
+            <a href="">{{ endPoint.name }}</a>
+        </td>
+    </tr>
+{% endif %}

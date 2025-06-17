@@ -1,3 +1,6 @@
+generic:
+    with: 'mit'
+
 web:
     social:
         email: 'E-Mail an uns'
@@ -17,3 +20,25 @@ blogpost:
         headline: 'Links und Downloads'
     activity:
         gpxDownload: 'GPX herunterladen'
+        summary:
+            headline: 'Zusammenfassung der Tour'
+            breaks:
+                title: 'Pausen'
+                short: 'kurzen'
+            distance:
+                title: 'Distanz'
+            duration:
+                title: 'Dauer'
+            elevation:
+                title: 'Anstieg'
+            location:
+                startAndEnd: 'Start- und Endpunkt'
+                start: 'Startpunkt'
+                end: 'Endpunkt'
+            date:
+                title: 'Gemacht am'
+            weather:
+                title: 'Wetter'
+                conditions:
+                    muh: 'Mäßig'
+

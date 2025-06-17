@@ -4,7 +4,6 @@
  * Fields Summary:
  * - distance [numeric]
  * - elevation [numeric]
- * - duration [numeric]
  * - difficulty [select]
  * - headForHeights [select]
  * - surefootedness [select]
@@ -109,37 +108,7 @@ return \Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
                 array (
                 ),
                  'defaultValue' => NULL,
-                 'integer' => false,
-                 'unsigned' => false,
-                 'minValue' => NULL,
-                 'maxValue' => NULL,
-                 'unique' => false,
-                 'decimalSize' => NULL,
-                 'decimalPrecision' => NULL,
-                 'width' => '',
-                 'defaultValueGenerator' => '',
-              )),
-              2 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
-                 'name' => 'duration',
-                 'title' => 'app.generic.duration',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'defaultValue' => NULL,
-                 'integer' => false,
+                 'integer' => true,
                  'unsigned' => false,
                  'minValue' => NULL,
                  'maxValue' => NULL,
@@ -278,7 +247,7 @@ return \Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
     0 => 
     array (
       'classname' => 'Activity',
-      'fieldname' => 'typeSpecific',
+      'fieldname' => 'summary',
     ),
   ),
    'activeDispatchingEvents' => 
