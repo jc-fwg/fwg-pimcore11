@@ -1,0 +1,26 @@
+pimcore:
+    assets:
+        image:
+            thumbnails:
+                definitions:
+                    blogpost-author:
+                        items:
+                            -
+                                method: resize
+                                arguments:
+                                    width: 75
+                                    height: 75
+                        medias: {  }
+                        name: blogpost-author
+                        description: ''
+                        group: Blogpost
+                        format: JPEG
+                        quality: 60
+                        highResolution: null
+                        preserveColor: false
+                        preserveMetaData: false
+                        rasterizeSVG: false
+                        downloadable: false
+                        modificationDate: 1750274968
+                        creationDate: 1750273900
+                        preserveAnimation: false

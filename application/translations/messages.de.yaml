@@ -24,21 +24,52 @@ blogpost:
             headline: 'Zusammenfassung der Tour'
             breaks:
                 title: 'Pausen'
-                short: 'kurzen'
+                values:
+                    none: 'ohne'
+                    extensive: 'ausgedehnte'
+                    short: 'kurze'
+            difficulty:
+                title: 'Schwierigkeit'
+                values:
+                    easy: 'leicht'
+                    easyPlus: 'leicht bis mittel'
+                    medium: 'mittel'
+                    mediumPlus: 'mittel bis schwer'
+                    hard: 'schwer'
             distance:
                 title: 'Distanz'
             duration:
                 title: 'Dauer'
             elevation:
                 title: 'Anstieg'
+            headForHeights:
+                title: 'Schwindelfreiheit'
             location:
                 startAndEnd: 'Start- und Endpunkt'
                 start: 'Startpunkt'
                 end: 'Endpunkt'
             date:
                 title: 'Gemacht am'
+            ratingOfNecessity:
+                values:
+                    none: 'nicht erforderlich'
+                    partially: 'teilweise erforderlich'
+                    required: 'erforderlich'
+            sureFootness:
+                title: 'Trittsicherheit'
             weather:
                 title: 'Wetter'
-                conditions:
-                    muh: 'Mäßig'
+                values:
+                    cloudy: 'wolkig'
+                    hail: 'Hagel'
+                    heavyRain: 'schwerer Regen'
+                    icy: 'eisig'
+                    foggy: 'neblig'
+                    frosty: 'frostig'
+                    lightRain: 'leicher Regen'
+                    rainy: 'regnerisch'
+                    snowy: 'schneebedeckt'
+                    stormy: 'stürmisch'
+                    sunny: 'sonnig'
+                    windy: 'windig'
 

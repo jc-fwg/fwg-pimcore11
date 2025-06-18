@@ -22,6 +22,14 @@
         }
     }
 
+    aside {
+
+        h3 {
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+    }
+
     .links-downloads {
 
         tr {
@@ -35,8 +43,24 @@
 
     .author {
 
-        .bi {
-                padding-right: 10px
+        img {
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+
+        table {
+
+            tr {
+                vertical-align: top;
+
+                td:first-child {;
+                    padding-right: 10px;
+                }
+
+                p {
+                    margin-bottom: 5px;
+                }
             }
+        }
     }
 }

@@ -12,7 +12,7 @@ class Hike extends ActivitySummaryDto
         public ?float $distance = null,
         public ?int $elevation = null,
         public ?string $difficulty = null,
-        public ?string $headForHeight = null,
+        public ?string $headForHeights = null,
         public ?string $sureFootness = null,
     ) {
         parent::__construct(

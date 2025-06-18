@@ -114,7 +114,7 @@ class ActivityMapper
             distance: $summary->getDistance(),
             elevation: $summary->getElevation(),
             difficulty: $summary->getDifficulty(),
-            headForHeight: $summary->getHeadForHeights(),
+            headForHeights: $summary->getHeadForHeights(),
             sureFootness: $summary->getSurefootedness(),
         );
     }

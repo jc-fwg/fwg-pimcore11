@@ -15,7 +15,7 @@
     {% endblock %}
     {% block content %}
         {% if blogpost is defined %}
-            {{ dump(blogpost.activity) }}
+            {{ dump(blogpost) }}
             <article class="page page-blogpost">
                 {% include 'layouts/includes/navigation-main.html.twig' %}
                 {# HERO #}
@@ -57,7 +57,7 @@
                             {% endfor %}
                             {# GPX #}
                             {% if blogpost.activity.gpx is defined and blogpost.activity.gpx is not null %}
-                                <div id="gpx" class="p-1 border mt-2">
+                                <div id="gpx" class="p-1 border mt-5">
                                     <div id="map" style="height: 400px;"></div>
                                     <div id="elevation" class="mt-1"></div>
                                 </div>
@@ -75,7 +75,4 @@
                 </div>
             </article>
         {% endif %}
-
     {% endblock %}
-
-

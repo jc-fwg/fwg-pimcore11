@@ -7,15 +7,15 @@
             <table>
                 <tr>
                     <td>
-                        <strong>{{ author.name }}</strong>
-                        <p>
-                            {{ author.description }}
-                        </p>
+                        {% if author.image is not empty %}
+                            {{ author.image.thumbnail('blogpost-author').html({ 'imgAttributes': { 'class': 'shadow-sm', 'alt': author.name }})|raw }}
+                        {% endif %}
                     </td>
                     <td>
-                        {% if author.image is not empty %}
-                            {{ author.image.thumbnail('blogpost-author').html({ 'imgAttributes': { 'class': 'img-fluid rounded-circle pr-2', 'alt': author.name }})|raw }}
-                        {% endif %}
+                        <p>
+                            <strong>{{ author.name }}</strong>
+                            {{ author.description|raw }}
+                        </p>
                     </td>
                 </tr>
             </table>
