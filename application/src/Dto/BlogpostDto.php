@@ -9,6 +9,7 @@ use Pimcore\Model\Asset;
 use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Image;
 use Pimcore\Model\DataObject\Category;
+use Pimcore\Model\DataObject\Comment;
 use Pimcore\Model\DataObject\Fieldcollection;
 
 class BlogpostDto
@@ -18,6 +19,7 @@ class BlogpostDto
      * @param Category[]  $categories
      * @param Asset[]     $downloads
      * @param LinkDto[]   $links
+     * @param Comment[]   $comments
      */
     public function __construct(
         public readonly int $id,
@@ -41,6 +43,7 @@ class BlogpostDto
         public array $hashtagSets = [],
         public ?string $hashtagsCalculated = null,
         public ?string $detailLink = null,
+        public ?array $comments = [],
     ) {
     }
 }

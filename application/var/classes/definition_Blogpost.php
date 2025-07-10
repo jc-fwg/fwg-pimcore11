@@ -5,11 +5,13 @@
  * Variants: no
  *
  * Fields Summary:
+ * - slug [input]
  * - publicationDate [date]
  * - blogpostType [select]
  * - authors [multiselect]
  * - activity [manyToOneRelation]
  * - categories [manyToManyObjectRelation]
+ * - comments [reverseObjectRelation]
  * - imageMain [image]
  * - imageTeaser [image]
  * - assetsFolder [manyToOneRelation]
@@ -20,7 +22,6 @@
  * - subTitle [input]
  * - previewText [wysiwyg]
  * - content [fieldcollections]
- * - slug [input]
  * - metaTitle [input]
  * - metaDescription [textarea]
  * - hashtags [textarea]
@@ -35,7 +36,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1750001331,
+   'modificationDate' => 1750711536,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -93,6 +94,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'children' => 
             array (
               0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+                 'name' => 'slug',
+                 'title' => 'app.generic.slug',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => true,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'defaultValue' => NULL,
+                 'columnLength' => 190,
+                 'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
+                 'unique' => true,
+                 'showCharCount' => false,
+                 'width' => '100%',
+                 'defaultValueGenerator' => '',
+              )),
+              1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Date::__set_state(array(
                  'name' => 'publicationDate',
                  'title' => 'app.generic.publicationDate',
@@ -116,7 +147,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'columnType' => 'date',
                  'defaultValueGenerator' => '',
               )),
-              1 => 
+              2 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
                  'name' => 'blogpostType',
                  'title' => 'Blogpost Type',
@@ -144,7 +175,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
                  'optionsProviderData' => 'BlogpostType',
               )),
-              2 => 
+              3 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
                  'name' => 'authors',
                  'title' => 'app.class.author.titlePlural',
@@ -174,7 +205,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'optionsProviderClass' => '@App\\OptionsProvider\\AuthorOptionsProvider',
                  'optionsProviderData' => '',
               )),
-              3 => 
+              4 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                  'name' => 'activity',
                  'title' => 'app.class.activity.title',
@@ -216,7 +247,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
               )),
-              4 => 
+              5 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
                  'name' => 'categories',
                  'title' => 'app.class.category.titlePlural',
@@ -255,6 +286,48 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
                  'height' => '',
+              )),
+              6 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
+                 'name' => 'comments',
+                 'title' => 'app.class.comment.titlePlural',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => true,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => true,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'classes' => 
+                array (
+                ),
+                 'displayMode' => NULL,
+                 'pathFormatterClass' => '',
+                 'maxItems' => NULL,
+                 'visibleFields' => 
+                array (
+                ),
+                 'allowToCreateNewObject' => false,
+                 'allowToClearRelation' => true,
+                 'optimizedAdminLoading' => false,
+                 'enableTextSelection' => false,
+                 'visibleFieldDefinitions' => 
+                array (
+                ),
+                 'width' => '',
+                 'height' => '',
+                 'ownerClassName' => 'Comment',
+                 'ownerClassId' => 'comment',
+                 'ownerFieldName' => 'blogpost',
+                 'lazyLoading' => true,
               )),
             ),
              'locked' => false,
@@ -733,36 +806,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'children' => 
                 array (
                   0 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-                     'name' => 'slug',
-                     'title' => 'app.generic.slug',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => true,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'defaultValue' => NULL,
-                     'columnLength' => 190,
-                     'regex' => '',
-                     'regexFlags' => 
-                    array (
-                    ),
-                     'unique' => true,
-                     'showCharCount' => false,
-                     'width' => '100%',
-                     'defaultValueGenerator' => '',
-                  )),
-                  1 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Meta',
                      'type' => NULL,

@@ -66,10 +66,12 @@ blogpost:
                     icy: 'eisig'
                     foggy: 'neblig'
                     frosty: 'frostig'
-                    lightRain: 'leicher Regen'
+                    lightRain: 'leichter Regen'
                     rainy: 'regnerisch'
                     snowy: 'schneebedeckt'
                     stormy: 'stürmisch'
                     sunny: 'sonnig'
                     windy: 'windig'
-
+    comments:
+        headline: 'Kommentare'
+        headlineSingular: 'Kommentar'

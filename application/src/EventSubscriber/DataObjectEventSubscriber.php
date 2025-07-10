@@ -52,6 +52,13 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
             return;
         }
 
+        if (
+            method_exists($object, 'getName') === true
+            && empty($object->getName()) === false
+        ) {
+            return;
+        }
+
         $defaultLanguage = Tool::getDefaultLanguage();
 
         $object->setName($object->getKey(), $defaultLanguage);

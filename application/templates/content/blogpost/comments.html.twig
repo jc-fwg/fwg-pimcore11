@@ -1,0 +1,11 @@
+<div id="comments" class="mt-5">
+    <h3>
+        {{ comments|length }}
+        {% if comments|length > 1 %}
+            {{ 'blogpost.comments.headline'|trans }}
+        {% else %}
+            {{ 'blogpost.comments.headlineSingular'|trans }}
+        {% endif %}
+    </h3>
+    comments in here
+</div>

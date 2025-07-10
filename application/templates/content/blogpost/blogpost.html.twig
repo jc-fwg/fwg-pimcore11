@@ -16,6 +16,7 @@
     {% block content %}
         {% if blogpost is defined %}
             {{ dump(blogpost) }}
+            {# BLOGPOST #}
             <article class="page page-blogpost">
                 {% include 'layouts/includes/navigation-main.html.twig' %}
                 {# HERO #}
@@ -61,6 +62,10 @@
                                     <div id="map" style="height: 400px;"></div>
                                     <div id="elevation" class="mt-1"></div>
                                 </div>
+                            {% endif %}
+                            {# COMMENTS #}
+                            {% if blogpost.comments is defined and blogpost.comments is not empty %}
+                                {% include 'content/blogpost/comments.html.twig' with { 'comments': blogpost.comments } %}
                             {% endif %}
                         </div>
                         <div class="col-12 offset-lg-1 col-lg-4 asides">

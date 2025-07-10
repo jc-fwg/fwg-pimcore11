@@ -8,5 +8,5 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 abstract class AbstractEventSubscriber implements EventSubscriberInterface
 {
-    public const IS_AUTO_SAVE = 'isAutoSave';
+    public const string IS_AUTO_SAVE = 'isAutoSave';
 }

@@ -19,6 +19,7 @@ class BlogpostMapper
         private readonly ActivityMapper $activityMapper,
         private readonly AuthorRepository $authorRepository,
         private readonly AuthorMapper $authorMapper,
+        private readonly CommentMapper $commentMapper,
         private readonly BlogpostLinkGenerator $blogpostLinkGenerator,
     ) {
     }
@@ -52,6 +53,11 @@ class BlogpostMapper
             );
         }
 
+        $comments = [];
+        foreach ($model->getComments() ?? [] as $comment) {
+            $comments[] = $this->commentMapper->fromModel($comment);
+        }
+
         return new BlogpostDto(
             id: $model->getId(),
             publicationDate: $model->getPublicationDate(),
@@ -73,6 +79,7 @@ class BlogpostMapper
             hashtags: $model->getHashtags(),
             hashtagsCalculated: $model->getHashtagsCalculated(),
             detailLink: $this->blogpostLinkGenerator->generate($model),
+            comments: $comments,
         );
     }
 }
