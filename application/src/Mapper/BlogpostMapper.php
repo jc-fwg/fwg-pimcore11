@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Mapper;
 
 use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
+use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Dto\BlogpostDto;
 use App\Dto\LinkDto;
 use App\Website\LinkGenerator\BlogpostLinkGenerator;
@@ -21,6 +22,7 @@ class BlogpostMapper
         private readonly AuthorMapper $authorMapper,
         private readonly CommentMapper $commentMapper,
         private readonly BlogpostLinkGenerator $blogpostLinkGenerator,
+        private readonly BlogpostRepository $blogpostRepository
     ) {
     }
 
@@ -53,9 +55,23 @@ class BlogpostMapper
             );
         }
 
-        $comments = [];
-        foreach ($model->getComments() ?? [] as $comment) {
-            $comments[] = $this->commentMapper->fromModel($comment);
+        // Comments
+        $comments = $this->blogpostRepository->getCommentTree($model->getId());
+        $commentDtos = [];
+        foreach ($comments as $key => $comment) {
+            $currentComment = $comment;
+            $commentDto = $this->commentMapper->fromModel($currentComment['comment']);
+
+            while (count($currentComment['children']) > 0) {
+
+                foreach($currentComment['children'] as $childComment) {
+                    $childCommentDto = $this->commentMapper->fromModel($childComment['comment']);
+                    $commentDto->children[] = $childCommentDto;
+
+                    $currentComment = $childComment;
+                }
+            }
+            $commentDtos[] = $commentDto;
         }
 
         return new BlogpostDto(
@@ -79,7 +95,7 @@ class BlogpostMapper
             hashtags: $model->getHashtags(),
             hashtagsCalculated: $model->getHashtagsCalculated(),
             detailLink: $this->blogpostLinkGenerator->generate($model),
-            comments: $comments,
+            comments: $commentDtos,
         );
     }
 }

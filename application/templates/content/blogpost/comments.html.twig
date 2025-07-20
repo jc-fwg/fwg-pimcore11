@@ -1,11 +1,25 @@
 <div id="comments" class="mt-5">
-    <h3>
-        {{ comments|length }}
-        {% if comments|length > 1 %}
-            {{ 'blogpost.comments.headline'|trans }}
-        {% else %}
-            {{ 'blogpost.comments.headlineSingular'|trans }}
-        {% endif %}
-    </h3>
-    comments in here
+    <h3>{{ 'blogpost.comments.headline'|trans }}</h3>
+    {% if blogpost.comments is empty %}
+        {{ 'blogpost.comments.no-comments'|trans }}
+    {% else %}
+
+        {# comments.twig #}
+        {% macro render_comments(comments, indent = false) %}
+            <ul class="list-unstyled{% if indent == true %} ms-4{% endif %}">
+                {% for comment in comments %}
+                    <li class="my-3">
+                        <small><b>{{ comment.name }}</b> am {{ comment.dateTime|date('d.m.Y') }} um {{ comment.dateTime|date('H:i') }} Uhr</small><br>
+                        <div class="border-bottom pb-3">{{ comment.comment }}</div>
+                        {% if comment.children is not empty %}
+                            {{ _self.render_comments(comment.children, true) }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endmacro %}
+
+        {# Im Haupttemplate aufrufen: #}
+        {{ _self.render_comments(comments) }}
+    {% endif %}
 </div>

@@ -15,7 +15,7 @@ blogpost:
     authors:
         headline: 'Autor'
         headlinePlural: 'Autoren'
-        posts-from: 'Mehr Beiträge von'
+        postsFrom: 'Mehr Beiträge von'
     linksAndDownloads:
         headline: 'Links und Downloads'
     activity:
@@ -75,3 +75,4 @@ blogpost:
     comments:
         headline: 'Kommentare'
         headlineSingular: 'Kommentar'
+        noComments: 'Keine Kommentare vorhanden'

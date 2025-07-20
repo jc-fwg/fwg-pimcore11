@@ -11,7 +11,6 @@
  * - authors [multiselect]
  * - activity [manyToOneRelation]
  * - categories [manyToManyObjectRelation]
- * - comments [reverseObjectRelation]
  * - imageMain [image]
  * - imageTeaser [image]
  * - assetsFolder [manyToOneRelation]
@@ -36,7 +35,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1750711536,
+   'modificationDate' => 1752867977,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -286,48 +285,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
                  'height' => '',
-              )),
-              6 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
-                 'name' => 'comments',
-                 'title' => 'app.class.comment.titlePlural',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => true,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => true,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'classes' => 
-                array (
-                ),
-                 'displayMode' => NULL,
-                 'pathFormatterClass' => '',
-                 'maxItems' => NULL,
-                 'visibleFields' => 
-                array (
-                ),
-                 'allowToCreateNewObject' => false,
-                 'allowToClearRelation' => true,
-                 'optimizedAdminLoading' => false,
-                 'enableTextSelection' => false,
-                 'visibleFieldDefinitions' => 
-                array (
-                ),
-                 'width' => '',
-                 'height' => '',
-                 'ownerClassName' => 'Comment',
-                 'ownerClassId' => 'comment',
-                 'ownerFieldName' => 'blogpost',
-                 'lazyLoading' => true,
               )),
             ),
              'locked' => false,
@@ -1087,6 +1044,48 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
+       'name' => 'comments',
+       'title' => 'app.class.comment.titlePlural',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => true,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => true,
+       'invisible' => false,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'classes' => 
+      array (
+      ),
+       'displayMode' => NULL,
+       'pathFormatterClass' => '',
+       'maxItems' => NULL,
+       'visibleFields' => 
+      array (
+      ),
+       'allowToCreateNewObject' => false,
+       'allowToClearRelation' => true,
+       'optimizedAdminLoading' => false,
+       'enableTextSelection' => false,
+       'visibleFieldDefinitions' => 
+      array (
+      ),
+       'width' => '',
+       'height' => '',
+       'ownerClassName' => 'Comment',
+       'ownerClassId' => NULL,
+       'ownerFieldName' => 'blogpost',
+       'lazyLoading' => true,
+    )),
   ),
    'blockedVarsForExport' => 
   array (

@@ -64,9 +64,7 @@
                                 </div>
                             {% endif %}
                             {# COMMENTS #}
-                            {% if blogpost.comments is defined and blogpost.comments is not empty %}
-                                {% include 'content/blogpost/comments.html.twig' with { 'comments': blogpost.comments } %}
-                            {% endif %}
+                            {% include 'content/blogpost/comments.html.twig' with { 'comments': blogpost.comments } %}
                         </div>
                         <div class="col-12 offset-lg-1 col-lg-4 asides">
                             {# ASIDES #}
