@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Exception\Captcha\InvalidCaptchaException;
 use App\ValueObject\BlogpostCommentValueObject;
+use Pimcore\Bundle\ApplicationLoggerBundle\ApplicationLogger;
 use Pimcore\Model\DataObject;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Constraints\Email;
@@ -99,12 +102,20 @@ class BlogpostService
                 [
                     'data' => $captcha['cacheKey'],
                 ])
+            ->add('pid', HiddenType::class)
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TBD
+
+            try {
+                $this->handleCommentForm($form);
+            } catch (InvalidCaptchaException $exception) {
+                ApplicationLogger::getInstance()->alert($exception->getMessage());
+            } catch (\Throwable $exception) {
+                ApplicationLogger::getInstance()->error($exception->getMessage());
+            }
         }
 
         return new BlogpostCommentValueObject(
@@ -112,5 +123,31 @@ class BlogpostService
             captcha: $captcha,
             isHandled: $form->isSubmitted() && $form->isValid()
         );;
+    }
+
+    private function handleCommentForm(FormInterface $form): void
+    {
+        $data = $form->getData();
+
+        $captcha = $this->captchaService->getCaptcha($data['cake']);
+        $captchaResultFromCache = $captcha['result'] ?? null;
+
+        $this->captchaService->removeCaptcha($data['cake']);
+
+        if (
+            $captcha === null
+            || (int) $captchaResultFromCache !== (int) $data['result']
+        ) {
+            throw new InvalidCaptchaException(
+                sprintf(
+                    'Invalid comment captcha for parentId %s (eMail: %s)',
+                    $data['pid'],
+                    $data['email']
+                )
+            );
+        }
+
+
+        // Save the comment to the database or perform other actions
     }
 }

@@ -76,6 +76,7 @@ blogpost:
         headline: 'Kommentare'
         headlineSingular: 'Kommentar'
         noComments: 'Keine Kommentare vorhanden'
+        yourComment: 'Dein Kommentar'
         form:
             name:
                 placeholder: 'Dein Name (notwendig)'
