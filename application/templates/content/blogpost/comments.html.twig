@@ -22,4 +22,69 @@
         {# Im Haupttemplate aufrufen: #}
         {{ _self.render_comments(comments) }}
     {% endif %}
+
+    {# Comment Form #}
+    {% if commentForm.isHandled() == false %}
+        {% set captcha = commentForm.getCaptcha() %}
+        {% set form = commentForm.getFormView() %}
+
+        {{ form_start(form) }}
+        {% set errors = form.vars.errors.form.getErrors(true).count %}
+
+        <input
+            placeholder="{{ "blogpost.comments.form.name.placeholder"|trans }}"
+            name="{{ field_name(form.name) }}"
+            {% if errors > 0 %}
+                class="get-list-error"
+            {% endif %}
+        >
+
+        <input
+            placeholder="{{ "blogpost.comments.form.email.placeholder"|trans }}"
+            name="{{ field_name(form.email) }}"
+            {% if errors > 0 %}
+                class="get-list-error"
+            {% endif %}
+        >
+
+        <textarea
+            placeholder="{{ "blogpost.comments.form.comment.placeholder"|trans }}"
+            name="{{ field_name(form.comment) }}"
+            {% if errors > 0 %}
+                class="get-list-error"
+            {% endif %}
+        >
+        </textarea>
+
+        <input
+            placeholder="{{ "blogpost.comments.form.website.placeholder"|trans }}"
+            name="{{ field_name(form.website) }}"
+            {% if errors > 0 %}
+                class="get-list-error"
+            {% endif %}
+        >
+
+        Was ergibt {{ captcha.firstNumber }} {{ captcha.operand }} {{ captcha.secondNumber }}?
+        <input
+            placeholder="{{ "blogpost.comments.form.result.placeholder"|trans }}"
+            name="{{ field_name(form.result) }}"
+            {% if errors > 0 %}
+                class="get-list-error"
+            {% endif %}
+        >
+        <br><br>
+        <input
+            type="hidden"
+            value="{{ captcha.cacheKey }}"
+            name="{{ field_name(form.cake) }}"
+        >
+        <input
+            type="submit"
+            class="js-recaptcha"
+            value="{{ "blogpost.comments.form.button.value"|trans }}"
+            name="{{ field_name(form.submit) }}"
+        >
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    {% endif %}
 </div>

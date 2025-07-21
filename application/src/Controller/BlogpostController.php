@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Mapper\BlogpostMapper;
+use App\Service\BlogpostService;
 use Pimcore\Model\DataObject\Tour;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,7 @@ class BlogpostController extends BaseController
     public function __construct(
         private readonly BlogpostRepository $blogpostRepository,
         private readonly BlogpostMapper $blogpostMapper,
+        private readonly BlogpostService $blogpostService
     ) {
     }
 
@@ -39,6 +41,7 @@ class BlogpostController extends BaseController
 
         return array_merge($paramBag, [
             'blogpost' => $this->blogpostMapper->fromModel($blogpost),
+            'commentForm' => $this->blogpostService->createOrHandleCommentForm($request)
         ]);
     }
 

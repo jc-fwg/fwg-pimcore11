@@ -76,3 +76,16 @@ blogpost:
         headline: 'Kommentare'
         headlineSingular: 'Kommentar'
         noComments: 'Keine Kommentare vorhanden'
+        form:
+            name:
+                placeholder: 'Dein Name (notwendig)'
+            email:
+                placeholder: 'E-Mail-Adresse (notwendig)'
+            website:
+                placeholder: 'Website (optional)'
+            comment:
+                placeholder: 'Dein Kommentar (notwendig)'
+            result:
+                placeholder: 'Ergebnis (notwendig)'
+            button:
+                value: 'Kommentar absenden'
