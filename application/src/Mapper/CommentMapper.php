@@ -14,11 +14,13 @@ class CommentMapper
     public function fromModel(Comment $model): CommentDto
     {
         return new CommentDto(
-            id: $model->getId(),
+            parentId: $model->getParentId(),
             dateTime: $model->getDateTime(),
+            id: $model->getId(),
             name: $model->getName(),
-            website: $model->getWebsite(),
-            comment: $model->getComment()
+            email: $model->getEmail(),
+            comment: $model->getComment(),
+            website: $model->getWebsite()
         );
     }
 }

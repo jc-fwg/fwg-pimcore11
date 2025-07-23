@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Exception\Captcha\InvalidCaptchaException;
+use App\Dto\CommentDto;
 use App\ValueObject\BlogpostCommentValueObject;
+use Carbon\Carbon;
 use Pimcore\Bundle\ApplicationLoggerBundle\ApplicationLogger;
 use Pimcore\Model\DataObject;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -15,8 +16,9 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Validator\Constraints\Email;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class BlogpostService
@@ -25,7 +27,8 @@ class BlogpostService
         private readonly SluggerInterface $slugger,
         private readonly FormFactoryInterface $formFactory,
         private readonly CaptchaService $captchaService,
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
+        private readonly ValidatorInterface $validator,
     ) {
     }
 
@@ -44,37 +47,29 @@ class BlogpostService
         $captcha = $this->captchaService->getCaptcha();
 
         $form = $builder
-            ->add('result', TextType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ],
-            ])
+            ->add('result', TextType::class,
+                [
+                    'label' => false,
+                    'attr' => [
+                        'placeholder' => $this->translator->trans('blogpost.comments.form.result.placeholder'),
+                    ],
+                ])
             ->add('name', TextType::class,
                 [
-                    'required' => true,
                     'label' => false,
                     'attr' => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.name.placeholder'),
                     ],
-                    'constraints' => [
-                        new NotBlank(),
-                    ],
                 ])
             ->add('email', TextType::class,
                 [
-                    'required' => true,
                     'label' => false,
                     'attr' => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.email.placeholder'),
                     ],
-                    'constraints' => [
-                        new NotBlank(),
-                        new Email(),
-                    ],
                 ])
             ->add('website', TextType::class,
                 [
-                    'required' => false,
                     'label' => false,
                     'attr' => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.website.placeholder'),
@@ -82,13 +77,9 @@ class BlogpostService
                 ])
             ->add('comment', TextType::class,
                 [
-                    'required' => true,
                     'label' => false,
                     'attr' => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.comment.placeholder'),
-                    ],
-                    'constraints' => [
-                        new NotBlank(),
                     ],
                 ])
             ->add('submit', SubmitType::class,
@@ -106,26 +97,21 @@ class BlogpostService
             ->getForm();
 
         $form->handleRequest($request);
+        $errors = null;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            try {
-                $this->handleCommentForm($form);
-            } catch (InvalidCaptchaException $exception) {
-                ApplicationLogger::getInstance()->alert($exception->getMessage());
-            } catch (\Throwable $exception) {
-                ApplicationLogger::getInstance()->error($exception->getMessage());
-            }
+        if ($form->isSubmitted()) {
+            $errors = $this->handleCommentForm($form);
         }
 
         return new BlogpostCommentValueObject(
             formView: $form->createView(),
             captcha: $captcha,
-            isHandled: $form->isSubmitted() && $form->isValid()
-        );;
+            isHandled: $form->isSubmitted() && $form->isValid(),
+            errors: $errors
+        );
     }
 
-    private function handleCommentForm(FormInterface $form): void
+    private function handleCommentForm(FormInterface $form): ?ConstraintViolationListInterface
     {
         $data = $form->getData();
 
@@ -134,20 +120,45 @@ class BlogpostService
 
         $this->captchaService->removeCaptcha($data['cake']);
 
+        $commentDto = new CommentDto(
+            parentId: (int) $data['pid'],
+            dateTime: Carbon::now(),
+            id: null,
+            name: $data['name'],
+            email: $data['email'],
+            comment: $data['comment'],
+            website: $data['website'] ?? null,
+        );
+
+        // Validation
+        $errors = $this->validator->validate($commentDto);
+
         if (
             $captcha === null
             || (int) $captchaResultFromCache !== (int) $data['result']
         ) {
-            throw new InvalidCaptchaException(
+            ApplicationLogger::getInstance()->alert(
                 sprintf(
                     'Invalid comment captcha for parentId %s (eMail: %s)',
                     $data['pid'],
                     $data['email']
                 )
             );
+            $errors->add(new ConstraintViolation(
+                'Invalid captcha result',
+                null,
+                [],
+                null,
+                'result',
+                $data['result']
+            ));;
         }
 
+        if ($errors->count() > 0) {
+            return $errors;
+        }
 
         // Save the comment to the database or perform other actions
+        return null;
     }
 }

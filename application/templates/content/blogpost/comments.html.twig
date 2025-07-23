@@ -24,21 +24,19 @@
     {% endif %}
 
     {# Comment Form #}
-    {% if commentForm.isHandled() == false %}
+    {% if commentForm.errors != null or commentForm.isHandled == false %}
         <h3 class="mt-5">{{ "blogpost.comments.yourComment"|trans }}</h3>
         {% set captcha = commentForm.getCaptcha() %}
         {% set form = commentForm.getFormView() %}
-
+        {{ dump(commentForm.errors) }}
         {{ form_start(form) }}
-        {% set errors = form.vars.errors.form.getErrors(true).count %}
         <div class="form-group">
             <textarea
                 placeholder="{{ "blogpost.comments.form.comment.placeholder"|trans }}"
                 name="{{ field_name(form.comment) }}"
-                class="form-control{% if errors > 0 %} get-list-error{% endif %}"
+                class="form-control"
                 rows="5"
-                required="required"
-            ></textarea>
+            >{{ form.comment.vars.value|default('') }}</textarea>
         </div>
 
         <div class="row g-2 mt-3">
@@ -46,8 +44,8 @@
                 <input
                     placeholder="{{ "blogpost.comments.form.name.placeholder"|trans }}"
                     name="{{ field_name(form.name) }}"
-                    class="form-control{% if errors > 0 %} get-list-error{% endif %}"
-                    required="required"
+                    class="form-control"
+                    value="{{ form.name.vars.value|default('') }}"
                 >
             </div>
             <div class="form-group col-12 col-md-4 mt-2 mt-md-0">
@@ -55,8 +53,8 @@
                     placeholder="{{ "blogpost.comments.form.email.placeholder"|trans }}"
                     name="{{ field_name(form.email) }}"
                     type="email"
-                    class="form-control{% if errors > 0 %} get-list-error{% endif %}"
-                    required="required"
+                    class="form-control"
+                    value="{{ form.email.vars.value|default('') }}"
                 >
             </div>
 
@@ -64,7 +62,8 @@
                 <input
                     placeholder="{{ "blogpost.comments.form.website.placeholder"|trans }}"
                     name="{{ field_name(form.website) }}"
-                    class="form-control{% if errors > 0 %} get-list-error{% endif %}"
+                    class="form-control"
+                    value="{{ form.website.vars.value|default('') }}"
                 >
             </div>
         </div>
@@ -75,8 +74,7 @@
                 placeholder="{{ "blogpost.comments.form.result.placeholder"|trans }}"
                 name="{{ field_name(form.result) }}"
                 type="number"
-                class="form-control{% if errors > 0 %} get-list-error{% endif %}"
-                required="required"
+                class="form-control"
             >
         </div>
 

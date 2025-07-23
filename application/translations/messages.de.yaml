@@ -80,13 +80,17 @@ blogpost:
         form:
             name:
                 placeholder: 'Dein Name (notwendig)'
+                error: 'Bitte gib deinen Namen ein'
             email:
                 placeholder: 'E-Mail-Adresse (notwendig)'
+                error: 'Bitte gib eine gültige E-Mail-Adresse ein'
             website:
                 placeholder: 'Website (optional)'
             comment:
                 placeholder: 'Dein Kommentar (notwendig)'
+                error: 'Bitte gib deinen Kommentar ein'
             result:
                 placeholder: 'Ergebnis (notwendig)'
+                error: 'Dein eingegebenes Ergebnis ist nicht korrekt'
             button:
                 value: 'Kommentar absenden'
