@@ -16,7 +16,6 @@ class CommentDto
     public function __construct(
         public readonly int $parentId,
         public readonly Carbon $dateTime,
-        public readonly ?int $id,
 
         #[Assert\NotBlank()]
         public readonly ?string $name = null,
@@ -27,7 +26,9 @@ class CommentDto
 
         #[Assert\NotBlank()]
         public readonly ?string $comment = null,
-        public readonly ?string $website = null,
+
+        public ?string $website = null,
+        public ?int $id = null,
         public array $children = [],
     ) {
     }

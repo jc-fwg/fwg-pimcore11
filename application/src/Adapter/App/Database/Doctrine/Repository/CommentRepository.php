@@ -4,38 +4,16 @@ declare(strict_types=1);
 
 namespace App\Adapter\App\Database\Doctrine\Repository;
 
+use Doctrine\DBAL\Connection;
 use Exception;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\Comment\Listing;
 
-class BlogpostRepository extends AbstractRepository
+class CommentRepository extends AbstractRepository
 {
-
-    /**
-     * @return array<int, array<string, int|string>>
-     *
-     * @throws Exception
-     */
-
-    /** @return DataObject\Blogpost[] */
-    public function findLatest(int $limit = 3): array
-    {
-        $listing = new DataObject\Blogpost\Listing();
-        $listing->setOrderKey(DataObject\Blogpost::FIELD_PUBLICATION_DATE);
-        $listing->setOrder('desc');
-        $listing->setLimit($limit);
-
-        return $listing->getObjects();
-    }
-
-    public function getBySlug(string $slug): ?DataObject\Blogpost
-    {
-        return DataObject\Blogpost::getBySlug($slug, 1);
-    }
-
     public function getExpectedClass(): string
     {
-        return DataObject\Blogpost::class;
+        return DataObject\Comment::class;
     }
 
     /**

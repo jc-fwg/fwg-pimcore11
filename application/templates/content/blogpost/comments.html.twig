@@ -24,12 +24,30 @@
     {% endif %}
 
     {# Comment Form #}
-    {% if commentForm.errors != null or commentForm.isHandled == false %}
+
+    {% if commentForm.errors == null and commentForm.isHandled == true %}
+        <div class="alert alert-success">
+            <strong>{{ "blogpost.comments.form.validation.successHeadline"|trans }}</strong>
+            <br>
+            {{ "blogpost.comments.form.validation.success"|trans }}
+        </div>
+    {% else %}
         <h3 class="mt-5">{{ "blogpost.comments.yourComment"|trans }}</h3>
         {% set captcha = commentForm.getCaptcha() %}
         {% set form = commentForm.getFormView() %}
-        {{ dump(commentForm.errors) }}
-        {{ form_start(form) }}
+
+        {% if commentForm.errors|length > 0 %}
+            <div class="alert alert-danger">
+                {{ "blogpost.comments.form.validation.error"|trans }}
+                <ul class="px-3 my-0">
+                    {% for error in commentForm.errors %}
+                        <li class="mt-1">{{ ("blogpost.comments.form." ~ error.propertyPath ~ ".error")|trans }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {{ form_start(form, { "action": app.request.requestUri ~ "#comments" }) }}
         <div class="form-group">
             <textarea
                 placeholder="{{ "blogpost.comments.form.comment.placeholder"|trans }}"

@@ -94,3 +94,7 @@ blogpost:
                 error: 'Dein eingegebenes Ergebnis ist nicht korrekt'
             button:
                 value: 'Kommentar absenden'
+            validation:
+                error: 'Dein Kommentar benötigt noch Anpassungen...'
+                success: 'Er wird von uns geprüft und ist nach Freigabe sichtbar.'
+                successHeadline: 'Vielen Dank für deinen Kommentar!'

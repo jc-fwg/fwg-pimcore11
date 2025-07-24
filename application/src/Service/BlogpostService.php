@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Adapter\App\Database\Doctrine\Repository\CommentRepository;
 use App\Dto\CommentDto;
+use App\Mapper\CommentMapper;
 use App\ValueObject\BlogpostCommentValueObject;
 use Carbon\Carbon;
 use Pimcore\Bundle\ApplicationLoggerBundle\ApplicationLogger;
@@ -29,6 +31,8 @@ class BlogpostService
         private readonly CaptchaService $captchaService,
         private readonly TranslatorInterface $translator,
         private readonly ValidatorInterface $validator,
+        private readonly CommentMapper $commentMapper,
+        private readonly CommentRepository $commentRepository,
     ) {
     }
 
@@ -123,7 +127,6 @@ class BlogpostService
         $commentDto = new CommentDto(
             parentId: (int) $data['pid'],
             dateTime: Carbon::now(),
-            id: null,
             name: $data['name'],
             email: $data['email'],
             comment: $data['comment'],
@@ -159,6 +162,31 @@ class BlogpostService
         }
 
         // Save the comment to the database or perform other actions
+        $comment = $this->commentMapper->toModel($commentDto);
+
+        try {
+            $this->commentRepository->persist($comment);
+        } catch (\Throwable $exception) {
+            ApplicationLogger::getInstance()->error(
+                sprintf(
+                    'Error while saving comment for parentId %s (eMail: %s): %s',
+                    $data['pid'],
+                    $data['email'],
+                    $exception->getMessage()
+                )
+            );
+            $errors->add(new ConstraintViolation(
+                'Beim Speichern des Kommentars ist ein Fehler aufgetreten. Bitte versuche es später erneut.',
+                null,
+                [],
+                null,
+                'comment',
+                $exception->getMessage()
+            ));
+
+            return $errors;
+        }
+
         return null;
     }
 }

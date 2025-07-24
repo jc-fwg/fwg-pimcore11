@@ -4,23 +4,59 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
-use App\Dto\AuthorDto;
+use App\Adapter\App\Database\Doctrine\Repository\CommentRepository;
 use App\Dto\CommentDto;
-use Pimcore\Model\DataObject\Author;
+use Pimcore\Model\AbstractModel;
+use Pimcore\Model\DataObject\AbstractObject;
 use Pimcore\Model\DataObject\Comment;
+use Pimcore\Model\DataObject\Concrete;
+use Pimcore\Model\DataObject\Service;
+use Pimcore\Tool;
 
 class CommentMapper
 {
+    public function __construct(
+        private readonly CommentRepository $commentRepository,
+    )
+    {
+    }
+
     public function fromModel(Comment $model): CommentDto
     {
         return new CommentDto(
             parentId: $model->getParentId(),
             dateTime: $model->getDateTime(),
-            id: $model->getId(),
             name: $model->getName(),
             email: $model->getEmail(),
             comment: $model->getComment(),
-            website: $model->getWebsite()
+            website: $model->getWebsite(),
+            id: $model->getId()
         );
+    }
+
+    public function toModel(CommentDto $dto): Comment
+    {
+        $model = $this->commentRepository->findById((string) $dto->id);
+
+        if (!$model instanceof Comment) {
+            $model = new Comment();
+            $model->setParentId($dto->parentId);
+            $model->setKey(Service::getValidKey(
+                sprintf(
+                    '%s-%s',
+                    $dto->parentId,
+                    $dto->dateTime->format("Y-m-d H:i:s")
+                ),
+                AbstractObject::OBJECT_TYPE_OBJECT)
+            );
+        }
+
+        $model->setDateTime($dto->dateTime);
+        $model->setName($dto->name);
+        $model->setEmail($dto->email);
+        $model->setComment($dto->comment);
+        $model->setWebsite($dto->website);
+
+        return $model;
     }
 }
