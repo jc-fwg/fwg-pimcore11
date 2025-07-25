@@ -20,7 +20,7 @@ class BlogpostController extends BaseController
     public function __construct(
         private readonly BlogpostRepository $blogpostRepository,
         private readonly BlogpostMapper $blogpostMapper,
-        private readonly BlogpostService $blogpostService
+        private readonly BlogpostService $blogpostService,
     ) {
     }
 
@@ -40,8 +40,8 @@ class BlogpostController extends BaseController
         $paramBag = $this->getAllParameters($request);
 
         return array_merge($paramBag, [
-            'blogpost' => $this->blogpostMapper->fromModel($blogpost),
-            'commentForm' => $this->blogpostService->createOrHandleCommentForm($request)
+            'blogpost'    => $this->blogpostMapper->fromModel($blogpost),
+            'commentForm' => $this->blogpostService->createOrHandleCommentForm($request),
         ]);
     }
 

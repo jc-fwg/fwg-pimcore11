@@ -10,7 +10,6 @@ use Pimcore\Model\DataObject\Comment\Listing;
 
 class BlogpostRepository extends AbstractRepository
 {
-
     /**
      * @return array<int, array<string, int|string>>
      *
@@ -40,9 +39,10 @@ class BlogpostRepository extends AbstractRepository
 
     /**
      * @return array<int, array<string, DataObject\Comment|array>>
+     *
      * @throws Exception
      */
-    function getCommentTree(int $parentId, ?string $order = 'desc'): array
+    public function getCommentTree(int $parentId, ?string $order = 'desc'): array
     {
         $commentsList = new Listing();
 
@@ -55,11 +55,12 @@ class BlogpostRepository extends AbstractRepository
         $tree = [];
         foreach ($comments as $comment) {
             $children = $this->getCommentTree($comment->getId(), 'asc');
-            $tree[] = [
-                'comment' => $comment,
-                'children' => $children
+            $tree[]   = [
+                'comment'  => $comment,
+                'children' => $children,
             ];
         }
+
         return $tree;
     }
 }

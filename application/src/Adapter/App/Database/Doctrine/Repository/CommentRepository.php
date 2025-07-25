@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Adapter\App\Database\Doctrine\Repository;
 
-use Doctrine\DBAL\Connection;
 use Exception;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\Comment\Listing;
@@ -18,9 +17,10 @@ class CommentRepository extends AbstractRepository
 
     /**
      * @return array<int, array<string, DataObject\Comment|array>>
+     *
      * @throws Exception
      */
-    function getCommentTree(int $parentId, ?string $order = 'desc'): array
+    public function getCommentTree(int $parentId, ?string $order = 'desc'): array
     {
         $commentsList = new Listing();
 
@@ -33,11 +33,12 @@ class CommentRepository extends AbstractRepository
         $tree = [];
         foreach ($comments as $comment) {
             $children = $this->getCommentTree($comment->getId(), 'asc');
-            $tree[] = [
-                'comment' => $comment,
-                'children' => $children
+            $tree[]   = [
+                'comment'  => $comment,
+                'children' => $children,
             ];
         }
+
         return $tree;
     }
 }

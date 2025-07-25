@@ -38,7 +38,7 @@ class ActivityMapper
                 continue;
             }
 
-            $link = $location->getLink();
+            $link    = $location->getLink();
             $linkDto = null;
 
             if ($link instanceof Link) {

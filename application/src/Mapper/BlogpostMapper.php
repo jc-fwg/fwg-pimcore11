@@ -14,6 +14,8 @@ use Pimcore\Model\DataObject\Author;
 use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\Data\Link;
 
+use function count;
+
 class BlogpostMapper
 {
     public function __construct(
@@ -22,7 +24,7 @@ class BlogpostMapper
         private readonly AuthorMapper $authorMapper,
         private readonly CommentMapper $commentMapper,
         private readonly BlogpostLinkGenerator $blogpostLinkGenerator,
-        private readonly BlogpostRepository $blogpostRepository
+        private readonly BlogpostRepository $blogpostRepository,
     ) {
     }
 
@@ -56,16 +58,15 @@ class BlogpostMapper
         }
 
         // Comments
-        $comments = $this->blogpostRepository->getCommentTree($model->getId());
+        $comments    = $this->blogpostRepository->getCommentTree($model->getId());
         $commentDtos = [];
         foreach ($comments as $key => $comment) {
             $currentComment = $comment;
-            $commentDto = $this->commentMapper->fromModel($currentComment['comment']);
+            $commentDto     = $this->commentMapper->fromModel($currentComment['comment']);
 
             while (count($currentComment['children']) > 0) {
-
-                foreach($currentComment['children'] as $childComment) {
-                    $childCommentDto = $this->commentMapper->fromModel($childComment['comment']);
+                foreach ($currentComment['children'] as $childComment) {
+                    $childCommentDto        = $this->commentMapper->fromModel($childComment['comment']);
                     $commentDto->children[] = $childCommentDto;
 
                     $currentComment = $childComment;

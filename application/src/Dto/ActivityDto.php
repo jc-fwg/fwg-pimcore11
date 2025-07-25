@@ -12,7 +12,7 @@ class ActivityDto
 {
     /**
      * @param ActivityLocationDto[] $locations
-     * @param TagDto[] $tags
+     * @param TagDto[]              $tags
      */
     public function __construct(
         public readonly int $id,

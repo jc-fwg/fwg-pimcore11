@@ -7,6 +7,10 @@ namespace App\Service;
 use Pimcore\Cache;
 use Random\RandomException;
 
+use function is_array;
+use function is_int;
+use function sprintf;
+
 class CaptchaService
 {
     public const string CAPTCHA_CACHE_KEY = 'cacheKey';
@@ -30,17 +34,17 @@ class CaptchaService
         $arithmetic = self::CAPTCHA_ARITHMETICS[array_rand(self::CAPTCHA_ARITHMETICS)];
 
         $captcha = match ($arithmetic) {
-            'addition' => $this->createAddition(),
-            'subtraction' => $this->createSubtraction(),
+            'addition'       => $this->createAddition(),
+            'subtraction'    => $this->createSubtraction(),
             'multiplication' => $this->createMultiplication(),
-            'division' => $this->createDivision(),
+            'division'       => $this->createDivision(),
         };
 
-        $captcha['operand'] = match($arithmetic) {
-            'addition' => 'plus',
-            'subtraction' => 'minus',
+        $captcha['operand'] = match ($arithmetic) {
+            'addition'       => 'plus',
+            'subtraction'    => 'minus',
             'multiplication' => 'mal',
-            'division' => 'geteilt durch',
+            'division'       => 'geteilt durch',
         };
 
         $cacheKey = sprintf('captcha_%s_%s', $arithmetic, time());
@@ -72,73 +76,77 @@ class CaptchaService
 
     /**
      * @return int[]
+     *
      * @throws RandomException
      */
     private function createAddition(): array
     {
-        $firstNumber = random_int(1, 50);
+        $firstNumber  = random_int(1, 50);
         $secondNumber = random_int(1, 50);
 
         return [
-            'firstNumber' => $firstNumber,
+            'firstNumber'  => $firstNumber,
             'secondNumber' => $secondNumber,
-            'result' => $firstNumber + $secondNumber,
+            'result'       => $firstNumber + $secondNumber,
         ];
     }
 
     /**
      * @return int[]
+     *
      * @throws RandomException
      */
     private function createSubtraction(): array
     {
-        $firstNumber = random_int(10, 100);
-        $secondNumber = random_int(1, ($firstNumber - 1));
+        $firstNumber  = random_int(10, 100);
+        $secondNumber = random_int(1, $firstNumber - 1);
 
         return [
-            'firstNumber' => $firstNumber,
+            'firstNumber'  => $firstNumber,
             'secondNumber' => $secondNumber,
-            'result' => $firstNumber - $secondNumber,
+            'result'       => $firstNumber - $secondNumber,
         ];
     }
 
     /**
      * @return int[]
+     *
      * @throws RandomException
      */
     private function createMultiplication(): array
     {
-        $firstNumber = random_int(1, 10);
+        $firstNumber  = random_int(1, 10);
         $secondNumber = random_int(1, 10);
 
         return [
-            'firstNumber' => $firstNumber,
+            'firstNumber'  => $firstNumber,
             'secondNumber' => $secondNumber,
-            'result' => $firstNumber * $secondNumber,
+            'result'       => $firstNumber * $secondNumber,
         ];
     }
 
     /**
      * @return int[]
+     *
      * @throws RandomException
      */
     private function createDivision(): array
     {
-        $firstNumber = null;
+        $firstNumber  = null;
         $secondNumber = null;
-        $result = null;
+        $result       = null;
 
         while (is_int($result) === false) {
-            $firstNumber = random_int(1, 100);
+            $firstNumber  = random_int(1, 100);
             $secondNumber = random_int(1, 100);
 
             $result = $firstNumber / $secondNumber;
         }
 
         return [
-            'firstNumber' => $firstNumber,
+            'firstNumber'  => $firstNumber,
             'secondNumber' => $secondNumber,
-            'result' => $firstNumber / $secondNumber,
+            'result'       => $firstNumber / $secondNumber,
         ];
     }
 }

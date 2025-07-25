@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exception\Captcha;
 
-class InvalidCaptchaException extends \RuntimeException
-{
+use RuntimeException;
 
+class InvalidCaptchaException extends RuntimeException
+{
 }

@@ -6,24 +6,22 @@ namespace App\Mapper;
 
 use App\Adapter\App\Database\Doctrine\Repository\CommentRepository;
 use App\Dto\CommentDto;
-use Pimcore\Model\AbstractModel;
 use Pimcore\Model\DataObject\AbstractObject;
 use Pimcore\Model\DataObject\Comment;
-use Pimcore\Model\DataObject\Concrete;
 use Pimcore\Model\DataObject\Service;
-use Pimcore\Tool;
+
+use function sprintf;
 
 class CommentMapper
 {
     public function __construct(
         private readonly CommentRepository $commentRepository,
-    )
-    {
+    ) {
     }
 
     public function fromModel(Comment $model): CommentDto
     {
-        $referenceComment = $model->getReferenceComment();
+        $referenceComment    = $model->getReferenceComment();
         $referenceCommentDto = null;
         if ($referenceComment instanceof Comment) {
             $referenceCommentDto = $this->fromModel($referenceComment);
@@ -52,7 +50,7 @@ class CommentMapper
                 sprintf(
                     '%s-%s',
                     $dto->parentId,
-                    $dto->dateTime->format("Y-m-d H:i:s")
+                    $dto->dateTime->format('Y-m-d H:i:s')
                 ),
                 AbstractObject::OBJECT_TYPE_OBJECT)
             );
@@ -60,7 +58,7 @@ class CommentMapper
 
         // Reference comment
         if ($dto->referenceComment instanceof CommentDto) {
-            $referenceComment = $this->commentRepository->findById((string)$dto->referenceComment->id);
+            $referenceComment = $this->commentRepository->findById((string) $dto->referenceComment->id);
 
             if ($referenceComment instanceof Comment) {
                 $model->setReferenceComment($referenceComment);

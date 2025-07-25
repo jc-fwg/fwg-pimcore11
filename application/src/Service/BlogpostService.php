@@ -22,6 +22,9 @@ use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Throwable;
+
+use function sprintf;
 
 class BlogpostService
 {
@@ -54,42 +57,42 @@ class BlogpostService
             ->add('result', TextType::class,
                 [
                     'label' => false,
-                    'attr' => [
+                    'attr'  => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.result.placeholder'),
                     ],
                 ])
             ->add('name', TextType::class,
                 [
                     'label' => false,
-                    'attr' => [
+                    'attr'  => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.name.placeholder'),
                     ],
                 ])
             ->add('email', TextType::class,
                 [
                     'label' => false,
-                    'attr' => [
+                    'attr'  => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.email.placeholder'),
                     ],
                 ])
             ->add('website', TextType::class,
                 [
                     'label' => false,
-                    'attr' => [
+                    'attr'  => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.website.placeholder'),
                     ],
                 ])
             ->add('comment', TextType::class,
                 [
                     'label' => false,
-                    'attr' => [
+                    'attr'  => [
                         'placeholder' => $this->translator->trans('blogpost.comments.form.comment.placeholder'),
                     ],
                 ])
             ->add('submit', SubmitType::class,
                 [
                     'label' => $this->translator->trans('blogpost.comments.form.button.value'),
-                    'attr' => [
+                    'attr'  => [
                         'class' => 'js-recaptcha',
                     ],
                 ])
@@ -109,7 +112,7 @@ class BlogpostService
             $errors = $this->handleCommentForm($form);
         }
 
-        $formView = $form->createView();
+        $formView      = $form->createView();
         $formSubmitted = $form->isSubmitted();
 
         unset($form);
@@ -126,7 +129,7 @@ class BlogpostService
     {
         $data = $form->getData();
 
-        $captcha = $this->captchaService->getCaptcha($data['cake']);
+        $captcha                = $this->captchaService->getCaptcha($data['cake']);
         $captchaResultFromCache = $captcha['result'] ?? null;
 
         $this->captchaService->removeCaptcha($data['cake']);
@@ -173,7 +176,7 @@ class BlogpostService
                 null,
                 'result',
                 $data['result']
-            ));;
+            ));
         }
 
         if ($errors->count() > 0) {
@@ -185,7 +188,7 @@ class BlogpostService
 
         try {
             $this->commentRepository->persist($comment);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             ApplicationLogger::getInstance()->error(
                 sprintf(
                     'Error while saving comment for parentId %s (eMail: %s): %s',
