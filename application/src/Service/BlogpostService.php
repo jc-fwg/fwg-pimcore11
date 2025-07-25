@@ -97,7 +97,9 @@ class BlogpostService
                 [
                     'data' => $captcha['cacheKey'],
                 ])
+            ->add('blogpostId', HiddenType::class)
             ->add('pid', HiddenType::class)
+            ->add('referenceId', HiddenType::class)
             ->getForm();
 
         $form->handleRequest($request);
@@ -107,10 +109,15 @@ class BlogpostService
             $errors = $this->handleCommentForm($form);
         }
 
+        $formView = $form->createView();
+        $formSubmitted = $form->isSubmitted();
+
+        unset($form);
+
         return new BlogpostCommentValueObject(
-            formView: $form->createView(),
+            formView: $formView,
             captcha: $captcha,
-            isHandled: $form->isSubmitted() && $form->isValid(),
+            isHandled: $formSubmitted === true && $errors === null,
             errors: $errors
         );
     }
@@ -124,12 +131,24 @@ class BlogpostService
 
         $this->captchaService->removeCaptcha($data['cake']);
 
+        $referenceId = isset($data['referenceId']) ? (string) $data['referenceId'] : null;
+
+        // Reference comment?
+        if ($referenceId !== null) {
+            $referenceComment = $this->commentRepository->findById($referenceId);
+
+            if ($referenceComment instanceof DataObject\Comment) {
+                $referenceCommentDto = $this->commentMapper->fromModel($referenceComment);
+            }
+        }
+
         $commentDto = new CommentDto(
             parentId: (int) $data['pid'],
             dateTime: Carbon::now(),
             name: $data['name'],
             email: $data['email'],
             comment: $data['comment'],
+            referenceComment: $referenceCommentDto ?? null,
             website: $data['website'] ?? null,
         );
 

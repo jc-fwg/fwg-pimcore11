@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById("toc")) {
         buildTableOfContent();
     }
+    if (document.getElementById("comments")) {
+        initCommentAnswers();
+    }
 });
 
 /**
@@ -43,4 +46,34 @@ function buildTableOfContent() {
     };
 
     document.getElementsByClassName("js-toc")[0].innerHTML = tocHtml;
+}
+
+/**
+ * Initializes comment answers
+ */
+function initCommentAnswers() {
+
+    let commentAnswerButtons = document.getElementsByClassName("js-comment-answer");
+    for (let button of commentAnswerButtons) {
+        button.addEventListener("click", function (event) {
+            let parentId = event.target.dataset.pid;
+            let referenceId = event.target.dataset.referenceid;
+            let name = event.target.dataset.name;
+
+            let headline = document.getElementById('comment-headline');
+            if (headline) {
+                headline.innerText = "Antwort an " + name;
+            }
+
+            let parentInput = document.getElementById('comment-pid');
+            if (parentInput) {
+                parentInput.value = parentId;
+            }
+
+            let commentInput = document.getElementById('reference-id');
+            if (commentInput) {
+                commentInput.value = referenceId;
+            }
+        });
+    }
 }

@@ -35,6 +35,7 @@ app:
         name: 'Name'
         previewText: 'Preview Text'
         publicationDate: 'Publication Date'
+        referenceComment: 'Reference Comment'
         seoAndMarketing: 'SEO & Marketing'
         slug: 'Slug'
         summary: 'Summary'

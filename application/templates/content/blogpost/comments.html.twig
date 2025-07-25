@@ -5,14 +5,29 @@
     {% else %}
 
         {# comments.twig #}
-        {% macro render_comments(comments, indent = false) %}
-            <ul class="list-unstyled{% if indent == true %} ms-4{% endif %}">
+        {% macro render_comments(comments, depth = 1) %}
+            <ul class="list-unstyled{% if depth > 1 %} ms-4{% endif %}">
                 {% for comment in comments %}
                     <li class="my-3">
-                        <small><b>{{ comment.name }}</b> am {{ comment.dateTime|date('d.m.Y') }} um {{ comment.dateTime|date('H:i') }} Uhr</small><br>
-                        <div class="border-bottom pb-3">{{ comment.comment }}</div>
+                        <small>
+                            <b>{{ comment.name }}</b> am {{ comment.dateTime|date('d.m.Y') }} um {{ comment.dateTime|date('H:i') }} Uhr
+                            {% if comment.referenceComment != null %}
+                                als Antwort auf den Kommentar von <b>{{ comment.referenceComment.name }}</b>
+                            {% endif %}
+                        </small>
+                        <br>
+                        <div class="border-bottom mt-2 pb-3">
+                            {{ comment.comment }}
+                            {% set parentId = comment.id %}
+                            {% if depth > 1 %}
+                                {% set parentId = comment.parentId %}
+                            {% endif %}
+                            <div class="mt-2 js-comment-answer" data-pid="{{ parentId }}" data-referenceid="{{ comment.id }}" data-name="{{ comment.name }}">
+                                <i class="bi bi-chat-dots"></i> {{ "blogpost.comments.answer"|trans }}
+                            </div>
+                        </div>
                         {% if comment.children is not empty %}
-                            {{ _self.render_comments(comment.children, true) }}
+                            {{ _self.render_comments(comment.children, depth + 1) }}
                         {% endif %}
                     </li>
                 {% endfor %}
@@ -24,7 +39,6 @@
     {% endif %}
 
     {# Comment Form #}
-
     {% if commentForm.errors == null and commentForm.isHandled == true %}
         <div class="alert alert-success">
             <strong>{{ "blogpost.comments.form.validation.successHeadline"|trans }}</strong>
@@ -32,7 +46,7 @@
             {{ "blogpost.comments.form.validation.success"|trans }}
         </div>
     {% else %}
-        <h3 class="mt-5">{{ "blogpost.comments.yourComment"|trans }}</h3>
+        <h3 id="comment-headline" class="mt-5 ">{{ "blogpost.comments.yourComment"|trans }}</h3>
         {% set captcha = commentForm.getCaptcha() %}
         {% set form = commentForm.getFormView() %}
 
@@ -47,7 +61,7 @@
             </div>
         {% endif %}
 
-        {{ form_start(form, { "action": app.request.requestUri ~ "#comments" }) }}
+        {{ form_start(form, { "action": app.request.requestUri ~ "#comments", "attr": { "class": "js-comment-form" }}) }}
         <div class="form-group">
             <textarea
                 placeholder="{{ "blogpost.comments.form.comment.placeholder"|trans }}"
@@ -98,22 +112,37 @@
 
         <div class="form-group mt-3">
             <input
-                type="hidden"
-                value="{{ captcha.cacheKey }}"
-                name="{{ field_name(form.cake) }}"
-            >
-            <input
-                type="hidden"
-                value="{{ blogpost.id }}"
-                name="{{ field_name(form.pid) }}"
-            >
-            <input
                 type="submit"
                 class="js-recaptcha"
                 value="{{ "blogpost.comments.form.button.value"|trans }}"
                 name="{{ field_name(form.submit) }}"
             >
         </div>
+
+        <input
+            type="hidden"
+            value="{{ captcha.cacheKey }}"
+            name="{{ field_name(form.cake) }}"
+        >
+
+        <input
+            type="hidden"
+            value="{{ blogpost.id }}"
+            name="{{ field_name(form.blogpostId) }}"
+        >
+        <input
+            type="hidden"
+            value="{{ form.pid.vars.value|default('') }}"
+            name="{{ field_name(form.pid) }}"
+            id="comment-pid"
+        >
+        <input
+            type="hidden"
+            value="{{ form.referenceId.vars.value|default('') }}"
+            name="{{ field_name(form.referenceId) }}"
+            id="reference-id"
+        >
+
         {{ form_rest(form) }}
         {{ form_end(form) }}
     {% endif %}

@@ -23,12 +23,19 @@ class CommentMapper
 
     public function fromModel(Comment $model): CommentDto
     {
+        $referenceComment = $model->getReferenceComment();
+        $referenceCommentDto = null;
+        if ($referenceComment instanceof Comment) {
+            $referenceCommentDto = $this->fromModel($referenceComment);
+        }
+
         return new CommentDto(
             parentId: $model->getParentId(),
             dateTime: $model->getDateTime(),
             name: $model->getName(),
             email: $model->getEmail(),
             comment: $model->getComment(),
+            referenceComment: $referenceCommentDto,
             website: $model->getWebsite(),
             id: $model->getId()
         );
@@ -49,6 +56,15 @@ class CommentMapper
                 ),
                 AbstractObject::OBJECT_TYPE_OBJECT)
             );
+        }
+
+        // Reference comment
+        if ($dto->referenceComment instanceof CommentDto) {
+            $referenceComment = $this->commentRepository->findById((string)$dto->referenceComment->id);
+
+            if ($referenceComment instanceof Comment) {
+                $model->setReferenceComment($referenceComment);
+            }
         }
 
         $model->setDateTime($dto->dateTime);

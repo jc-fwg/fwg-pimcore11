@@ -27,6 +27,7 @@ class CommentDto
         #[Assert\NotBlank()]
         public readonly ?string $comment = null,
 
+        public ?CommentDto $referenceComment = null,
         public ?string $website = null,
         public ?int $id = null,
         public array $children = [],

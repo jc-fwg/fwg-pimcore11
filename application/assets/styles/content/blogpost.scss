@@ -84,5 +84,14 @@
                 }
             }
         }
+
+        .js-comment-answer {
+            color: base.$color-cd-green;
+            cursor: pointer;
+
+            &:hover {
+                color: base.$color-cd-orange;
+            }
+        }
     }
 }

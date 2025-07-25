@@ -73,6 +73,7 @@ blogpost:
                     sunny: 'sonnig'
                     windy: 'windig'
     comments:
+        answer: 'Auf diesen Kommentar antworten'
         headline: 'Kommentare'
         headlineSingular: 'Kommentar'
         noComments: 'Keine Kommentare vorhanden'
