@@ -61,9 +61,9 @@ class BlogpostLinkGenerator implements LinkGeneratorInterface
             fn () => $this->pimcoreUrl->__invoke(
                 [
                     'slug'  => $object->getSlug(),
-                    'topic' => Text::toUrl(
-                        'topic'
-                    ),
+//                    'topic' => Text::toUrl(
+//                        'topic'
+//                    ),
                     //                        'topic' => Text::toUrl(
                     //                            $object->getBlogpostTopic() ?
                     //                                $this->getSanitizedUrlString($object->getBlogpostTopic()->getTopicTitle()) :

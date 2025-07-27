@@ -77,6 +77,7 @@ blogpost:
         headline: 'Kommentare'
         headlineSingular: 'Kommentar'
         noComments: 'Keine Kommentare vorhanden'
+        visitWebsite: 'Website besuchen'
         yourComment: 'Dein Kommentar'
         form:
             name:
@@ -97,5 +98,7 @@ blogpost:
                 value: 'Kommentar absenden'
             validation:
                 error: 'Dein Kommentar benötigt noch Anpassungen...'
-                success: 'Er wird von uns geprüft und ist nach Freigabe sichtbar.'
+                success: |
+                    Er wird von uns geprüft und ist nach Freigabe sichtbar.
+                    Du wirst per E-Mail benachrichtigt, sobald dein Kommentar freigeschaltet ist.
                 successHeadline: 'Vielen Dank für deinen Kommentar!'

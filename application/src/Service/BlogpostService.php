@@ -10,6 +10,7 @@ use App\Mapper\CommentMapper;
 use App\ValueObject\BlogpostCommentValueObject;
 use Carbon\Carbon;
 use Pimcore\Bundle\ApplicationLoggerBundle\ApplicationLogger;
+use Pimcore\Mail;
 use Pimcore\Model\DataObject;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -145,8 +146,10 @@ class BlogpostService
             }
         }
 
+        $parentId = $data['pid'] ?? $data['blogpostId'];
+
         $commentDto = new CommentDto(
-            parentId: (int) $data['pid'],
+            parentId: (int) $parentId,
             dateTime: Carbon::now(),
             name: $data['name'],
             email: $data['email'],
@@ -188,6 +191,16 @@ class BlogpostService
 
         try {
             $this->commentRepository->persist($comment);
+
+            // Send mail to admin
+            $mail = new Mail();
+            $mail->addTo('freiweg@outlook.de');
+            $mail->text(sprintf('
+                Ein neuer Kommentar wartet auf Freischaltung.: https://frei-weg.com/admin/login/deeplink?object_%s_object
+            ', $comment->getId()));
+            $mail->subject('Neuer Blog Kommentar');
+            $mail->send();
+
         } catch (Throwable $exception) {
             ApplicationLogger::getInstance()->error(
                 sprintf(

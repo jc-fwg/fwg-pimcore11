@@ -84,8 +84,8 @@ pimcore:
 #        proxy_pass: ''
     email:
         sender:
-            name: 'set name'
-            email: your@email.com
+            name: '%env(EMAIL_SENDER_NAME)%'
+            email: '%env(EMAIL_SENDER_EMAIL)%'
         return:
             name: ''
             email: ''
@@ -121,7 +121,7 @@ framework:
 #### SYMFONY MAILER TRANSPORTS
     mailer:
         transports:
-            main: "smtp://user:password@smtp.host"
+            main: 'smtp://%env(MAILER_TRANSPORTS_MAIN_USERNAME)%:%env(MAILER_TRANSPORTS_MAIN_PASSWORD)%@%env(MAILER_TRANSPORTS_MAIN_HOST)%'
 #            pimcore_newsletter: smtp://user:pass@smtp.example.com:port
 
 # pimcore_newsletter:

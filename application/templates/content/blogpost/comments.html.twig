@@ -1,16 +1,33 @@
 <div id="comments" class="mt-5">
     <h3>{{ 'blogpost.comments.headline'|trans }}</h3>
+
+    {# Comment succesfully saved #}
+    {% if commentForm.errors == null and commentForm.isHandled == true %}
+        <div class="alert alert-success">
+            <strong>{{ "blogpost.comments.form.validation.successHeadline"|trans }}</strong>
+            <br>
+            {{ "blogpost.comments.form.validation.success"|trans }}
+        </div>
+    {% endif %}
+
     {% if blogpost.comments is empty %}
-        {{ 'blogpost.comments.no-comments'|trans }}
+        {{ 'blogpost.comments.noComments'|trans }}
     {% else %}
 
-        {# comments.twig #}
         {% macro render_comments(comments, depth = 1) %}
             <ul class="list-unstyled{% if depth > 1 %} ms-4{% endif %}">
                 {% for comment in comments %}
                     <li class="my-3">
                         <small>
-                            <b>{{ comment.name }}</b> am {{ comment.dateTime|date('d.m.Y') }} um {{ comment.dateTime|date('H:i') }} Uhr
+                            <b>{{ comment.name }}</b>
+                            {% if comment.website is not empty %}
+                                (
+                                <a href="{{ comment.website }}" target="_blank" rel="noopener noreferrer">
+                                     {{ "blogpost.comments.visitWebsite"|trans }}
+                                </a>
+                                )
+                            {% endif %}
+                            am {{ comment.dateTime|date('d.m.Y') }} um {{ comment.dateTime|date('H:i') }} Uhr
                             {% if comment.referenceComment != null %}
                                 als Antwort auf den Kommentar von <b>{{ comment.referenceComment.name }}</b>
                             {% endif %}
@@ -34,19 +51,12 @@
             </ul>
         {% endmacro %}
 
-        {# Im Haupttemplate aufrufen: #}
         {{ _self.render_comments(comments) }}
     {% endif %}
 
     {# Comment Form #}
-    {% if commentForm.errors == null and commentForm.isHandled == true %}
-        <div class="alert alert-success">
-            <strong>{{ "blogpost.comments.form.validation.successHeadline"|trans }}</strong>
-            <br>
-            {{ "blogpost.comments.form.validation.success"|trans }}
-        </div>
-    {% else %}
-        <h3 id="comment-headline" class="mt-5 ">{{ "blogpost.comments.yourComment"|trans }}</h3>
+    {% if commentForm.errors != null or commentForm.isHandled == false %}
+        <h3 id="comment-headline" class="mt-5 js-toc-ignore">{{ "blogpost.comments.yourComment"|trans }}</h3>
         {% set captcha = commentForm.getCaptcha() %}
         {% set form = commentForm.getFormView() %}
 

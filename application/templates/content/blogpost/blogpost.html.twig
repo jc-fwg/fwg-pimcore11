@@ -62,8 +62,7 @@
                                     <div id="elevation" class="mt-1"></div>
                                 </div>
                             {% endif %}
-                            {# COMMENTS #}
-                            {% include 'content/blogpost/comments.html.twig' with { 'comments': blogpost.comments } %}
+
                         </div>
                         <div class="col-12 offset-lg-1 col-lg-4 asides">
                             {# ASIDES #}
@@ -72,6 +71,12 @@
                             {% endif %}
                             {% include 'content/blogpost/aside/links-downloads.html.twig' %}
                             {% include 'content/blogpost/aside/authors.html.twig' %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            {# COMMENTS #}
+                            {% include 'content/blogpost/comments.html.twig' with { 'comments': blogpost.comments } %}
                         </div>
                     </div>
                 </div>

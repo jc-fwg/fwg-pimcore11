@@ -19,7 +19,7 @@
             {% for link in blogpost.links %}
                 <tr>
                     <td><i class="bi bi-link" /></td>
-                    <td><a href="{{ link.path }}" target="{{ link.target }}">{{ link.text }}</a></td>
+                    <td><a href="{{ link.path }}" target="{{ link.target }}" rel="noopener noreferrer">{{ link.text }}</a></td>
                 </tr>
             {% endfor %}
         {% endif %}

@@ -26,10 +26,9 @@ class BlogpostController extends BaseController
 
     #[Template('content/blogpost/blogpost.html.twig')]
     #[Route(
-        '/{topic}/{slug}',
+        '/{slug}',
         name: 'blogpost-detail',
         requirements: [
-            'topic' => '[\w-]+',
             'slug'  => '[\w-]+',
         ],
     )]

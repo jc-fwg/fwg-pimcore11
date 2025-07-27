@@ -6,6 +6,7 @@
  *
  * Fields Summary:
  * - dateTime [datetime]
+ * - releasedOn [datetime]
  * - name [input]
  * - email [input]
  * - website [input]
@@ -20,7 +21,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1753389833,
+   'modificationDate' => 1753637811,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -84,11 +85,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             ),
              'defaultValue' => NULL,
              'useCurrentDate' => true,
-             'respectTimezone' => false,
+             'respectTimezone' => true,
              'columnType' => 'datetime',
              'defaultValueGenerator' => '',
           )),
           1 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Datetime::__set_state(array(
+             'name' => 'releasedOn',
+             'title' => 'app.generic.releasedOn',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => true,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'defaultValue' => NULL,
+             'useCurrentDate' => false,
+             'respectTimezone' => true,
+             'columnType' => 'datetime',
+             'defaultValueGenerator' => '',
+          )),
+          2 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
              'name' => 'name',
              'title' => 'app.generic.name',
@@ -118,7 +144,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'defaultValueGenerator' => '',
           )),
-          2 => 
+          3 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
              'name' => 'email',
              'title' => 'app.generic.email',
@@ -148,7 +174,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'defaultValueGenerator' => '',
           )),
-          3 => 
+          4 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
              'name' => 'website',
              'title' => 'app.generic.website',
@@ -178,7 +204,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'defaultValueGenerator' => '',
           )),
-          4 => 
+          5 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
              'name' => 'comment',
              'title' => 'app.generic.comment',
@@ -203,7 +229,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'height' => '',
              'width' => '100%',
           )),
-          5 => 
+          6 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
              'name' => 'referenceComment',
              'title' => 'app.generic.referenceComment',
