@@ -8,8 +8,10 @@ use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
 use Pimcore\Model\DataObject\Tour;
+use Pimcore\Model\Document\Page;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -24,25 +26,31 @@ class BlogpostController extends BaseController
     ) {
     }
 
-    #[Template('content/blogpost/blogpost.html.twig')]
-    #[Route(
-        '/{slug}',
-        name: 'blogpost-detail',
-        requirements: [
-            'slug'  => '[\w-]+',
-        ],
-    )]
-    public function blogpostAction(string $slug, Request $request): array
-    {
-        $blogpost = $this->blogpostRepository->getBySlug($slug);
-
-        $paramBag = $this->getAllParameters($request);
-
-        return array_merge($paramBag, [
-            'blogpost'    => $this->blogpostMapper->fromModel($blogpost),
-            'commentForm' => $this->blogpostService->createOrHandleCommentForm($request),
-        ]);
-    }
+//    #[Template('content/blogpost/blogpost.html.twig')]
+//    #[Route(
+//        '/{slug}',
+//        name: 'blogpost-detail',
+//        requirements: [
+//            'slug'  => '[\w-]+',
+//        ],
+//    )]
+//    public function blogpostAction(string $slug, Request $request): Response
+//    {
+//        $page = Page::getByPath('/' . $slug);
+//
+//        if ($page instanceof Page) {
+//            return $this->render($page->getTemplate());
+//        }
+//
+//        $blogpost = $this->blogpostRepository->getBySlug($slug);
+//
+//        $paramBag = $this->getAllParameters($request);
+//
+//        return array_merge($paramBag, [
+//            'blogpost'    => $this->blogpostMapper->fromModel($blogpost),
+//            'commentForm' => $this->blogpostService->createOrHandleCommentForm($request),
+//        ]);
+//    }
 
     private function fetchFacts(): array
     {
