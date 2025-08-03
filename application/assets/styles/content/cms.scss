@@ -1,0 +1,17 @@
+@use '../_base.scss' as base;
+
+.page-cms {
+
+    h1 {
+        margin: 0;
+        background-color: base.$color-cd-orange;
+        padding: 5px 11px;
+        color: #fff;
+        display: inline-block;
+    }
+
+    h2 {
+        margin-top: 15px;
+        display: inline-block;
+    }
+}

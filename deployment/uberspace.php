@@ -7,9 +7,9 @@ require 'contrib/crontab.php';
 
 // ### CONFIG ###
 
-set('repository', 'git@github.com:jc-fwg/awm-pimcore11.git');
+set('repository', 'git@github.com:jc-fwg/fwg-pimcore11.git');
 set('sub_directory', 'application');
-set('branch', 'develop'); // todo : lösung für main finden
+set('branch', 'main'); // todo : lösung für main finden
 set('keep_releases', 2);
 set('release_name', function () {
     return date('YmdHis');
@@ -21,26 +21,13 @@ set('release_name', function () {
 
 // ### HOSTS ###
 
-host('uberawmediapimcore01')
-    ->setHostname('elnath.uberspace.de')
-    ->set('remote_user', 'awmedia')
-    ->set('deploy_path', '/var/www/virtual/awmedia/awm-pimcore11')
+host('uberfwgblogpimcore01')
+    ->setHostname('corvus.uberspace.de')
+    ->set('remote_user', 'fwgblog')
+    ->set('deploy_path', '/var/www/virtual/fwgblog/fwg-pimcore11')
     ->set('update_code_strategy', 'archive')
     ->set('git_ssh_command', 'ssh -o StrictHostKeyChecking=false')
-    ->set('http_user', 'awmedia')
-    ->set('env_file', '.env.prod.local')
-    ->set('ssh_options', [
-        'StrictHostKeyChecking=no', // Akzeptiert automatisch neue Hosts
-        'UserKnownHostsFile=/dev/null', // Ignoriert die bekannte Hosts-Datei
-    ]);
-
-host('uberjochenpimcore01')
-    ->setHostname('lepus.uberspace.de')
-    ->set('remote_user', 'jochenc')
-    ->set('deploy_path', '/var/www/virtual/jochenc/awm-pimcore11')
-    ->set('update_code_strategy', 'archive')
-    ->set('git_ssh_command', 'ssh -o StrictHostKeyChecking=false')
-    ->set('http_user', 'jochenc')
+    ->set('http_user', 'fwgblog')
     ->set('env_file', '.env.prod.local')
     ->set('ssh_options', [
         'StrictHostKeyChecking=no', // Akzeptiert automatisch neue Hosts
@@ -62,7 +49,7 @@ task(
     function () {
         if (test('[ ! -f {{deploy_path}}/shared/.pimcore.installed ]')) {
             info('Installing Pimcore');
-            run('export $(cat {{release_or_current_path}}/{{env_file}} | grep -E \'PIMCORE|DATABASE|MYSQL|OPENSEARCH\') && {{release_or_current_path}}/vendor/bin/pimcore-install --no-interaction --install-bundles');
+            run('export $(cat {{release_or_current_path}}/.env | grep -E \'PIMCORE|DATABASE|MYSQL|OPENSEARCH\') && {{release_or_current_path}}/vendor/bin/pimcore-install --no-interaction --install-bundles');
             run('touch {{deploy_path}}/shared/.pimcore.installed');
         }
     }
@@ -152,7 +139,7 @@ task(
         info('PIMCORE_DEV_MODE....: ' . run("source {{release_path}}/.env && echo \$PIMCORE_DEV_MODE"));
         info('Release path........: {{release_path}}');
         info('### Current quota ###');
-        $quota = "\n" . run('du -hs /var/www/virtual/{{remote_user}}/awm-pimcore11/releases /var/www/virtual/{{remote_user}}/awm-pimcore11/shared/public /var/www/virtual/{{remote_user}}/awm-pimcore11/shared/var/log /var/www/virtual/{{remote_user}}/awm-pimcore11/shared/var/versions /var/www/virtual/{{remote_user}}/awm-pimcore11/shared/var/recyclebin 2> /dev/null');
+        $quota = "\n" . run('du -hs /var/www/virtual/{{remote_user}}/fwg-pimcore11/releases /var/www/virtual/{{remote_user}}/fwg-pimcore11/shared/public /var/www/virtual/{{remote_user}}/fwg-pimcore11/shared/var/log /var/www/virtual/{{remote_user}}/fwg-pimcore11/shared/var/versions /var/www/virtual/{{remote_user}}/fwg-pimcore11/shared/var/recyclebin 2> /dev/null');
         info($quota);
     }
 );

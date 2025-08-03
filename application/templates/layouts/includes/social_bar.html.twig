@@ -1,11 +1,13 @@
-<div id="social-bar">
-    {% for channel in socialChannels %}
-        {% if channel.bootstrapIcon is not empty %}
-            {% if channel.link %}
-                <a href="{{ channel.link.href }}" target="_blank" title="{{ channel.link.title|trans }}">
-                    <i class="bi bi-{{ channel.bootstrapIcon }}"></i>
-                </a>
+{% if socialChannels is defined %}
+    <div id="social-bar">
+        {% for channel in socialChannels %}
+            {% if channel.bootstrapIcon is not empty %}
+                {% if channel.link %}
+                    <a href="{{ channel.link.href }}" target="_blank" title="{{ channel.link.title|trans }}">
+                        <i class="bi bi-{{ channel.bootstrapIcon }}"></i>
+                    </a>
+                {% endif %}
             {% endif %}
-        {% endif %}
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
+{% endif %}

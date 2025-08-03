@@ -95,7 +95,7 @@ class BlogpostMapper
             metaDescription: $model->getMetaDescription(),
             hashtags: $model->getHashtags(),
             hashtagsCalculated: $model->getHashtagsCalculated(),
-            detailLink: $this->blogpostLinkGenerator->generate($model),
+            detailLink: sprintf('/%s', $model->getSlug()),
             comments: $commentDtos,
         );
     }

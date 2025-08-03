@@ -1,0 +1,35 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% set documentTitle = "" %}
+{% if document is not null and document.title != ""%}
+    {% do pimcore_head_title().prepend(document.title) %}
+    {% set documentTitle = document.title %}
+{% endif %}
+
+{% if document is not null and document.description != ""%}
+    {% do pimcore_head_meta().appendName("description", document.description) %}
+{% endif %}
+
+{% block content %}
+    <div class="page page-cms">
+        {# HERO #}
+        <header id="hero" class="text-center mb-5">
+            {% if editmode %}
+                {{ pimcore_image("heroImage", {
+                    "width": 400,
+                    "title": "Hero-Image",
+                }) }}
+            {% elseif document.editable("heroImage") is not null %}
+
+                {% set heroImage = document.editable("heroImage").getThumbnail("heroImage").html({
+                    'class': 'd-none',
+                    'id': 'hero-background'
+                }) %}
+                {{ heroImage|raw }}
+            {% endif %}
+        </header>
+        <div class="container-fluid">
+            {{ pimcore_areablock("cms") }}
+        </div>
+    </div>
+{% endblock %}
