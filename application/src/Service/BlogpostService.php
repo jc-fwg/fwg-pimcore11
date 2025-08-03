@@ -43,7 +43,7 @@ class BlogpostService
     public function setSlug(DataObject\Blogpost $blogpost): void
     {
         $slug   = [];
-        $slug[] = $blogpost->getHeadline();
+        $slug[] = $blogpost->getTitle();
 
         $blogpost->setSlug($this->slugger->slug(implode(' ', $slug))->toString());
     }
