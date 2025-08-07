@@ -18,7 +18,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.tagCategory.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1748893080,
+   'modificationDate' => 1754594186,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -122,7 +122,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
           \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
              'name' => 'dependendsOn',
              'title' => 'app.generic.dependsOn',
-             'tooltip' => '',
+             'tooltip' => 'app.class.tagCategory.tooltip.dependsOn',
              'mandatory' => false,
              'noteditable' => false,
              'index' => false,

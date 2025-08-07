@@ -11,7 +11,7 @@
  * - blogpostType [select]
  * - authors [multiselect]
  * - activity [manyToOneRelation]
- * - categories [manyToManyObjectRelation]
+ * - collections [manyToManyObjectRelation]
  * - imageMain [image]
  * - imageTeaser [image]
  * - assetsFolder [manyToOneRelation]
@@ -36,7 +36,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1754578438,
+   'modificationDate' => 1754596221,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -279,8 +279,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
               )),
               6 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
-                 'name' => 'categories',
-                 'title' => 'app.class.category.titlePlural',
+                 'name' => 'collections',
+                 'title' => 'app.class.collection.titlePlural',
                  'tooltip' => '',
                  'mandatory' => false,
                  'noteditable' => false,
@@ -300,7 +300,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 array (
                   0 => 
                   array (
-                    'classes' => 'Category',
+                    'classes' => 'Collection',
                   ),
                 ),
                  'displayMode' => 'grid',
@@ -1075,6 +1075,46 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
+       'name' => 'categories',
+       'title' => 'app.class.category.titlePlural',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => false,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => true,
+       'invisible' => false,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'classes' => 
+      array (
+        0 => 
+        array (
+          'classes' => 'Category',
+        ),
+      ),
+       'displayMode' => 'grid',
+       'pathFormatterClass' => '',
+       'maxItems' => NULL,
+       'visibleFields' => 'id,name',
+       'allowToCreateNewObject' => false,
+       'allowToClearRelation' => true,
+       'optimizedAdminLoading' => false,
+       'enableTextSelection' => false,
+       'visibleFieldDefinitions' => 
+      array (
+      ),
+       'width' => '',
+       'height' => '',
+    )),
   ),
    'blockedVarsForExport' => 
   array (

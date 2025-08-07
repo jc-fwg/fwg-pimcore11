@@ -16,6 +16,7 @@ class FolderConstants
     public const string OBJECT_BLOGPOSTS       = '/Blogposts';
     public const string OBJECT_CATEGORIES      = '/Categories';
     public const string OBJECT_HASHTAG_SETS    = '/Hashtag Sets';
+    public const string OBJECT_NAVIGATION       = '/Navigation';
     public const string OBJECT_SOCIAL_CHANNELS = '/Social Channels';
     public const string OBJECT_TAGS            = '/Tags';
 }

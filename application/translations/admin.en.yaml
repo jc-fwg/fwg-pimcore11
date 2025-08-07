@@ -12,12 +12,14 @@ app:
         country: 'Country'
         date: 'Date'
         dateTime: 'Date & Time'
+        dependsOn: 'Depends on'
         description: 'Description'
         difficulty: 'Difficulty'
         distance: 'Distance (km'
         downloads: 'Downloads'
         duration: 'Duration (h)'
         elevation: 'Elevation (m)'
+        excluded: 'Excluded'
         emoji: 'Emoji'
         features: 'Features'
         flag: 'Flag'
@@ -39,6 +41,7 @@ app:
         referenceComment: 'Reference Comment'
         releasedOn: 'Released on'
         seoAndMarketing: 'SEO & Marketing'
+        selected: 'Selected'
         slug: 'Slug'
         summary: 'Summary'
         surefootedness: 'Surefootedness'
@@ -50,6 +53,7 @@ app:
         typeSpecific: 'Type Specific'
         weather: 'Weather'
         weatherConditions: 'Weather Conditions'
+        weight: 'Weight'
         wordPressSlug: 'WordPress Slug'
     collection:
         activityBreak:
@@ -101,6 +105,9 @@ app:
         category:
             title: 'Category'
             titlePlural: 'Categories'
+        collection:
+            title: 'Collection'
+            titlePlural: 'Collections'
         country:
             title: 'Country'
             titlePlural: 'Countries'
@@ -122,6 +129,8 @@ app:
         tagCategory:
             title: 'Tag Category'
             titlePlural: 'Tag Categories'
+            tooltip:
+                dependsOn: 'When we add filtering in frontend, it shows what needs to be set before we can offer a filtering for this field'
     fieldCollection:
         contentGallery:
             title: 'Gallery'
