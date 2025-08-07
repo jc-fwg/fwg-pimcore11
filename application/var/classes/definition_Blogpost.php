@@ -6,12 +6,12 @@
  *
  * Fields Summary:
  * - slug [input]
+ * - wordPressSlug [input]
  * - publicationDate [date]
  * - blogpostType [select]
  * - authors [multiselect]
  * - activity [manyToOneRelation]
  * - categories [manyToManyObjectRelation]
- * - urlSlug [urlSlug]
  * - imageMain [image]
  * - imageTeaser [image]
  * - assetsFolder [manyToOneRelation]
@@ -36,7 +36,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1753975871,
+   'modificationDate' => 1754578438,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -124,6 +124,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValueGenerator' => '',
               )),
               1 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+                 'name' => 'wordPressSlug',
+                 'title' => 'app.generic.wordPressSlug',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => true,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'defaultValue' => NULL,
+                 'columnLength' => 190,
+                 'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
+                 'unique' => false,
+                 'showCharCount' => false,
+                 'width' => '100%',
+                 'defaultValueGenerator' => '',
+              )),
+              2 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Date::__set_state(array(
                  'name' => 'publicationDate',
                  'title' => 'app.generic.publicationDate',
@@ -147,7 +177,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'columnType' => 'date',
                  'defaultValueGenerator' => '',
               )),
-              2 => 
+              3 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
                  'name' => 'blogpostType',
                  'title' => 'Blogpost Type',
@@ -166,7 +196,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => '',
+                 'defaultValue' => 'tour',
                  'columnLength' => 190,
                  'dynamicOptions' => false,
                  'defaultValueGenerator' => '',
@@ -175,7 +205,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
                  'optionsProviderData' => 'BlogpostType',
               )),
-              3 => 
+              4 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
                  'name' => 'authors',
                  'title' => 'app.class.author.titlePlural',
@@ -205,7 +235,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'optionsProviderClass' => '@App\\OptionsProvider\\AuthorOptionsProvider',
                  'optionsProviderData' => '',
               )),
-              4 => 
+              5 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                  'name' => 'activity',
                  'title' => 'app.class.activity.title',
@@ -247,7 +277,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
               )),
-              5 => 
+              6 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
                  'name' => 'categories',
                  'title' => 'app.class.category.titlePlural',
@@ -286,35 +316,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
                  'height' => '',
-              )),
-              6 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\UrlSlug::__set_state(array(
-                 'name' => 'urlSlug',
-                 'title' => 'Url Slug',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'domainLabelWidth' => NULL,
-                 'action' => 'App\\Controller\\DefaultController::blogpostAction',
-                 'availableSites' => 
-                array (
-                ),
-                 'width' => '',
-                 'activeDispatchingEvents' => 
-                array (
-                ),
               )),
             ),
              'locked' => false,
@@ -640,7 +641,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'title',
                  'title' => 'app.generic.title',
                  'tooltip' => '',
-                 'mandatory' => false,
+                 'mandatory' => true,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -670,7 +671,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'subTitle',
                  'title' => 'app.generic.subTitle',
                  'tooltip' => '',
-                 'mandatory' => false,
+                 'mandatory' => true,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -700,7 +701,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'previewText',
                  'title' => 'app.generic.previewText',
                  'tooltip' => '',
-                 'mandatory' => false,
+                 'mandatory' => true,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -811,7 +812,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'name' => 'metaTitle',
                          'title' => 'app.generic.title',
                          'tooltip' => '',
-                         'mandatory' => false,
+                         'mandatory' => true,
                          'noteditable' => false,
                          'index' => false,
                          'locked' => false,
@@ -841,7 +842,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'name' => 'metaDescription',
                          'title' => 'app.generic.description',
                          'tooltip' => '',
-                         'mandatory' => false,
+                         'mandatory' => true,
                          'noteditable' => false,
                          'index' => false,
                          'locked' => false,

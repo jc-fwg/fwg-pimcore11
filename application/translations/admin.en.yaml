@@ -50,6 +50,7 @@ app:
         typeSpecific: 'Type Specific'
         weather: 'Weather'
         weatherConditions: 'Weather Conditions'
+        wordPressSlug: 'WordPress Slug'
     collection:
         activityBreak:
             none: 'none'

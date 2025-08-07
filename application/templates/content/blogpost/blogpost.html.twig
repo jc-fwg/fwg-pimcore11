@@ -1,4 +1,8 @@
 {% extends 'layouts/layout.html.twig' %}
+    {% if blogpost is defined %}
+        {% do pimcore_head_title().append(blogpost.metaTitle) %}
+        {% do pimcore_head_meta().appendName('description', blogpost.metaDescription) %}
+    {% endif %}
     {% block extra_stylesheets %}
         {{ parent() }}
         {# GPX #}

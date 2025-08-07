@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         {% block layout_head_meta %}
-            {% do pimcore_head_title().append("- Title append") %}
             {% do pimcore_head_title().setSeparator(" ") %}
             {% do pimcore_head_meta().appendName("viewport", "width=device-width, initial-scale=1, shrink-to-fit=no") %}
             {% do pimcore_head_meta().appendName("msapplication-TileColor", "#007560") %}

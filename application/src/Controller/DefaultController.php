@@ -70,8 +70,14 @@ class DefaultController extends BaseController
             return $this->render($page->getTemplate());
         }
 
-        $blogpost = $this->blogpostRepository->getBySlug($slug);
+        $blogpostByLegacySlug = $this->blogpostRepository->getByWordPressSlug($slug);
 
+        // Redirect legacy WordPress slugs to Pimcore blogpost
+        if ($blogpostByLegacySlug instanceof Blogpost) {
+            return $this->redirect($blogpostByLegacySlug->getSlug(), Response::HTTP_MOVED_PERMANENTLY);
+        }
+
+        $blogpost = $this->blogpostRepository->getBySlug($slug);
         if ($blogpost instanceof Blogpost) {
             return $this->blogpostAction($slug, $request, $blogpost);
         }

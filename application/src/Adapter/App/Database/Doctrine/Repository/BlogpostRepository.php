@@ -32,6 +32,11 @@ class BlogpostRepository extends AbstractRepository
         return DataObject\Blogpost::getBySlug($slug, 1);
     }
 
+    public function getByWordPressSlug(string $slug): ?DataObject\Blogpost
+    {
+        return DataObject\Blogpost::getByWordPressSlug($slug, 1);
+    }
+
     public function getExpectedClass(): string
     {
         return DataObject\Blogpost::class;

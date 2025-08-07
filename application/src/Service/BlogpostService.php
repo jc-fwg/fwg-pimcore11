@@ -45,7 +45,7 @@ class BlogpostService
         $slug   = [];
         $slug[] = $blogpost->getTitle();
 
-        $blogpost->setSlug($this->slugger->slug(implode(' ', $slug))->toString());
+        $blogpost->setSlug($this->slugger->slug(implode(' ', $slug))->lower()->toString());
     }
 
     public function createOrHandleCommentForm(Request $request): BlogpostCommentValueObject
