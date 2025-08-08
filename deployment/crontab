@@ -1,8 +1,8 @@
 # Run Pimcore maintenance task every hour
-*/5 * * * * /var/www/virtual/awmedia/awm-pimcore11/current/bin/console pimcore:maintenance >> /var/www/virtual/awmedia/awm-pimcore11/shared/var/log/cron.log 2>&1
+*/5 * * * * /var/www/virtual/fwgblog/fwg-pimcore11/current/bin/console pimcore:maintenance >> /var/www/virtual/fwgblog/fwg-pimcore11/shared/var/log/cron.log 2>&1
 
 # Run backend search reindexing every 60 minutes
-*/60 * * * * /var/www/virtual/awmedia/awm-pimcore11/current/bin/console pimcore:search-backend-reindex >> /var/www/virtual/awmedia/awm-pimcore11/shared/var/log/cron.log 2>&1
+*/60 * * * * /var/www/virtual/fwgblog/fwg-pimcore11/current/bin/console pimcore:search-backend-reindex >> /var/www/virtual/fwgblog/fwg-pimcore11/shared/var/log/cron.log 2>&1
 
 # Run sitemap command daily at midnight
-0 1 * * * /var/www/virtual/awmedia/awm-pimcore11/current/bin/console presta:sitemaps:dump >> /var/www/virtual/awmedia/awm-pimcore11/shared/var/log/cron.log 2>&1
+#0 1 * * * /var/www/virtual/fwgblog/fwg-pimcore11/current/bin/console presta:sitemaps:dump >> /var/www/virtual/fwgblog/fwg-pimcore11/shared/var/log/cron.log 2>&1
