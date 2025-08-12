@@ -26,6 +26,18 @@ class BlogpostController extends BaseController
     ) {
     }
 
+    public function listAction(Request $request): Response
+    {
+        $paramBag = $this->getAllParameters($request);
+
+        dd('dsfdsfds');
+
+        return $this->render('content/blogpost/list.html.twig', array_merge($paramBag, [
+            'blogposts' => [],
+        ]));
+
+    }
+
 //    #[Template('content/blogpost/blogpost.html.twig')]
 //    #[Route(
 //        '/{slug}',

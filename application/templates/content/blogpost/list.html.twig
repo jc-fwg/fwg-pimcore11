@@ -1,0 +1,64 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% set documentTitle = '' %}
+{% if document is not null and document.title != ''%}
+    {% do pimcore_head_title().prepend(document.title) %}
+    {% set documentTitle = document.title %}
+{% endif %}
+
+{% if document is not null and document.description != '' %}
+    {% do pimcore_head_meta().appendName('description', document.description) %}
+{% endif %}
+
+{% block content %}
+    <div class="page page-blogpost-list">
+        {# HERO #}
+        <header id="hero" class="text-center mb-5">
+            {% if editmode %}
+                {{ pimcore_image('heroImage', {
+                    'width': 400,
+                    'title': 'Hero-Image',
+                }) }}
+            {% elseif document.editable('heroImage') is not empty %}
+                {% set heroImage = document.editable('heroImage').getThumbnail('heroImage').html({
+                    'class': 'd-none',
+                    'id': 'hero-background'
+                }) %}
+                {{ heroImage|raw }}
+            {% endif %}
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12">
+                    {% if editmode %}
+                        {{ pimcore_relation("collection", {
+                            "types": ["object"],
+                            "subtypes": {
+                                "object": ["object"],
+                            },
+                            "classes": ["Collection"]
+                        }) }}
+                    {% elseif pimcore_relation("collection").getElement() is instanceof('\\Pimcore\\Model\\DataObject\\Collection') %}
+                        {% set collection = pimcore_relation("collection").getElement() %}
+                        <h1>{{ collection.name }}</h1>
+                        <p>Description</p>
+                        <ul class="list-unstyled">
+                            {% for blogpost in collection.blogposts %}
+                                <li>
+                                    <a href="{{ blogpost.getFullPath() }}">{{ blogpost.title }}</a>
+                                    <p>{{ blogpost.previewText|raw }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No blog posts found in this collection.</p>
+                    {% endif %}
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    Kategorien
+                    Oder so ähnlic
+                </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

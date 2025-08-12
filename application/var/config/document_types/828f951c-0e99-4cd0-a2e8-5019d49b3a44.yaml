@@ -5,10 +5,10 @@ pimcore:
                 828f951c-0e99-4cd0-a2e8-5019d49b3a44:
                     name: 'Collection List'
                     group: ''
-                    controller: null
-                    template: null
+                    controller: 'App\Controller\BlogpostController::listAction'
+                    template: content/blogpost/list.html.twig
                     type: page
                     priority: 0
                     creationDate: 1754653302
-                    modificationDate: 1754653322
+                    modificationDate: 1755026098
                     staticGeneratorEnabled: false
