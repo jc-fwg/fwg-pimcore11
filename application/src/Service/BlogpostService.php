@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Adapter\App\Database\Doctrine\Repository\CommentRepository;
+use App\Dto\BlogpostDto;
 use App\Dto\CommentDto;
+use App\Mapper\BlogpostMapper;
 use App\Mapper\CommentMapper;
 use App\ValueObject\BlogpostCommentValueObject;
 use Carbon\Carbon;
@@ -25,6 +28,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Throwable;
 
+use function in_array;
 use function sprintf;
 
 class BlogpostService
@@ -37,6 +41,8 @@ class BlogpostService
         private readonly ValidatorInterface $validator,
         private readonly CommentMapper $commentMapper,
         private readonly CommentRepository $commentRepository,
+        private readonly BlogpostRepository $blogpostRepository,
+        private readonly BlogpostMapper $blogpostMapper,
     ) {
     }
 
@@ -126,6 +132,47 @@ class BlogpostService
         );
     }
 
+    /**
+     * @return BlogpostDto[]
+     * @throws \Exception
+     */
+    public function getBlogpostsByCollection(DataObject\Collection $collection): array
+    {
+        $blogposts = [];
+
+        // Categories
+        $categories = $collection->getCategories();
+
+        if (!empty($categories)) {
+            $blogposts = array_merge($this->blogpostRepository->findAllByCategories($categories), $blogposts);
+        }
+
+        // Tags
+        $tags = $collection->getTags();
+
+        if (!empty($tags)) {
+            $blogposts = array_unique(
+                array_merge($this->blogpostRepository->findAllByTags($tags), $blogposts)
+            );
+        }
+
+        // Blogposts
+        $blogposts = array_unique(
+            array_merge($collection->getBlogposts(), $blogposts)
+        );
+
+        // Exclude blogposts
+        $blogposts =  array_filter($blogposts,
+            static fn (DataObject\Blogpost $blogpost) => !in_array($blogpost, $collection->getBlogpostsExcluded(), true)
+        );
+
+        $blogpostMapper = $this->blogpostMapper;
+        return array_map(
+            static fn (DataObject\Blogpost $blogpost) => $blogpostMapper->fromModel($blogpost),
+            $blogposts
+        );
+    }
+
     private function handleCommentForm(FormInterface $form): ?ConstraintViolationListInterface
     {
         $data = $form->getData();
@@ -200,7 +247,6 @@ class BlogpostService
             ', $comment->getId()));
             $mail->subject('Neuer Blog Kommentar');
             $mail->send();
-
         } catch (Throwable $exception) {
             ApplicationLogger::getInstance()->error(
                 sprintf(

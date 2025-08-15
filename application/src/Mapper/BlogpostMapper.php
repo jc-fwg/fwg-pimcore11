@@ -15,6 +15,7 @@ use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\Data\Link;
 
 use function count;
+use function sprintf;
 
 class BlogpostMapper
 {

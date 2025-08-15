@@ -4,12 +4,23 @@ declare(strict_types=1);
 
 namespace App\Adapter\App\Database\Doctrine\Repository;
 
+use Doctrine\DBAL\Connection;
 use Exception;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\Comment\Listing;
 
+use function sprintf;
+
 class BlogpostRepository extends AbstractRepository
 {
+    private const string TABLE_NAME_OBJECTS_QUERY_BLOGPOST = 'object_query_blogpost';
+    private const string TABLE_NAME_OBJECTS_QUERY_ACTIVITY = 'object_query_activity';
+
+    public function __construct(
+        private readonly Connection $connection,
+    ) {
+    }
+
     /**
      * @return array<int, array<string, int|string>>
      *
@@ -67,5 +78,63 @@ class BlogpostRepository extends AbstractRepository
         }
 
         return $tree;
+    }
+
+    /**
+     * @param DataObject\Category[] $categories
+     *
+     * @return DataObject\Blogpost[]
+     */
+    public function findAllByCategories(array $categories): array
+    {
+        $listing = new DataObject\Blogpost\Listing();
+
+        foreach ($categories as $key => $category) {
+            match (true) {
+                $key === 0 => $listing->setCondition("FIND_IN_SET('{$category->getId()}', categories)"),
+                default    => $listing->addConditionParam("FIND_IN_SET('{$category->getId()}', categories)", concatenator: ' OR '),
+            };
+        }
+
+        return $listing->load();
+    }
+
+    /**
+     * @param DataObject\Tag[] $tags
+     *
+     * @return DataObject\Blogpost[]
+     *
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function findAllByTags(array $tags): array
+    {
+        $tagsSetQuery = [];
+        foreach ($tags as $tag) {
+            $tagsSetQuery[] = "FIND_IN_SET('{$tag->getId()}', tags)";
+        }
+
+        $queryBuilder = $this->connection->createQueryBuilder()
+            ->select('
+                    blogposts.oo_id AS blogpost_id
+                '
+            )
+            ->from(self::TABLE_NAME_OBJECTS_QUERY_BLOGPOST, 'blogposts')
+            ->leftJoin('blogposts', self::TABLE_NAME_OBJECTS_QUERY_ACTIVITY, 'activities', 'blogposts.activity__id = activities.oo_id')
+            ->where(
+                sprintf('
+                    blogposts.activity__id > 0
+                    AND (%s)
+                    ',
+                    implode(' OR ', $tagsSetQuery)
+                )
+            )
+            ->orderBy('blogposts.publicationDate', 'DESC');
+
+        $blogpostIds = $queryBuilder->fetchFirstColumn();
+
+        $blogpostListing = new DataObject\Blogpost\Listing();
+        $blogpostListing->setCondition('oo_id IN (:ids)', ['ids' => $blogpostIds]);
+
+        return $blogpostListing->load();
     }
 }

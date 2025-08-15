@@ -10,6 +10,8 @@ use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Mail;
 use Pimcore\Model\DataObject;
 
+use function sprintf;
+
 class CommentEventSubscriber extends AbstractEventSubscriber
 {
     /** @codeCoverageIgnore  */
@@ -31,11 +33,10 @@ class CommentEventSubscriber extends AbstractEventSubscriber
         }
 
         if ($object->isPublished() === true && $object->getReleasedOn() === null) {
-
             $mail = new Mail();
             $mail->subject('Den Kommentar wurde veröffentlicht');
             $mail->text(trim(sprintf(
-                    "
+                "
                     Hallo %s!\n\n
                     Dein Kommentar wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n
                     Hier der Link zum Blogpost: %s\n\n
@@ -49,9 +50,9 @@ class CommentEventSubscriber extends AbstractEventSubscriber
                     Impressum: https://freiweg.blog/impressum\n
                     Datenschutz: https://freiweg.blog/datenschutz\n
                     ",
-                    $object->getName(),
-                    'xxx'
-                )));
+                $object->getName(),
+                'xxx'
+            )));
 
             $mail->addTo($object->getEmail());
 

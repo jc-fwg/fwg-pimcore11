@@ -60,10 +60,10 @@ class BlogpostLinkGenerator implements LinkGeneratorInterface
         return ForceInheritance::run(
             fn () => $this->pimcoreUrl->__invoke(
                 [
-                    'slug'  => $object->getSlug(),
-//                    'topic' => Text::toUrl(
-//                        'topic'
-//                    ),
+                    'slug' => $object->getSlug(),
+                    //                    'topic' => Text::toUrl(
+                    //                        'topic'
+                    //                    ),
                     //                        'topic' => Text::toUrl(
                     //                            $object->getBlogpostTopic() ?
                     //                                $this->getSanitizedUrlString($object->getBlogpostTopic()->getTopicTitle()) :

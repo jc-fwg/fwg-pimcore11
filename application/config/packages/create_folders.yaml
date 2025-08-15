@@ -3,12 +3,14 @@ parameters:
         - !php/const App\Constant\FolderConstants::ASSET_BLOGPOSTS_DELETED
         - !php/const App\Constant\FolderConstants::ASSET_WEBSITE_HERO_IMAGES
     commands.create_folders.document:
+        - !php/const App\Constant\FolderConstants::DOCUMENT_MAIN
+        - !php/const App\Constant\FolderConstants::DOCUMENT_META
     commands.create_folders.dataObject:
         - !php/const App\Constant\FolderConstants::OBJECT_ACTIVITIES
         - !php/const App\Constant\FolderConstants::OBJECT_AUTHORS
         - !php/const App\Constant\FolderConstants::OBJECT_BLOGPOSTS
         - !php/const App\Constant\FolderConstants::OBJECT_CATEGORIES
+        - !php/const App\Constant\FolderConstants::OBJECT_COLLECTIONS
         - !php/const App\Constant\FolderConstants::OBJECT_HASHTAG_SETS
-        - !php/const App\Constant\FolderConstants::OBJECT_NAVIGATION
         - !php/const App\Constant\FolderConstants::OBJECT_SOCIAL_CHANNELS
         - !php/const App\Constant\FolderConstants::OBJECT_TAGS

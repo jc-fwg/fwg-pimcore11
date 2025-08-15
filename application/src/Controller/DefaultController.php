@@ -17,8 +17,8 @@ use Pimcore\Model\Document\Page;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use Symfony\Component\Routing\Annotation\Route;
+
 use function count;
 
 class DefaultController extends BaseController
@@ -59,27 +59,27 @@ class DefaultController extends BaseController
     #[Route(
         '/{slug}',
         requirements: [
-            'slug'  => '[\w-]+',
-        ],
+            'slug' => '[\w-]+',
+        ]
     )]
     public function subAction(string $slug, Request $request): Response
     {
-        $page = Page::getByPath('/' . $slug);
+        // Forward pages to defined controller and action
+        $page = Page::getByPath('/'.$slug);
 
         if ($page instanceof Page) {
-            return $this->render($page->getTemplate());
-        }
-
-        $blogpostByLegacySlug = $this->blogpostRepository->getByWordPressSlug($slug);
-
-        // Redirect legacy WordPress slugs to Pimcore blogpost
-        if ($blogpostByLegacySlug instanceof Blogpost) {
-            return $this->redirect($blogpostByLegacySlug->getSlug(), Response::HTTP_MOVED_PERMANENTLY);
+            return $this->forward($page->getController());
         }
 
         $blogpost = $this->blogpostRepository->getBySlug($slug);
         if ($blogpost instanceof Blogpost) {
             return $this->blogpostAction($slug, $request, $blogpost);
+        }
+
+        // Redirect legacy WordPress slugs to Pimcore blogpost
+        $blogpost = $this->blogpostRepository->getByWordPressSlug($slug);
+        if ($blogpost instanceof Blogpost) {
+            return $this->redirect($blogpost->getSlug(), Response::HTTP_MOVED_PERMANENTLY);
         }
 
         return $this->notFoundAction($request);
@@ -106,12 +106,22 @@ class DefaultController extends BaseController
 
     public function notFoundAction(Request $request): Response
     {
-        $paramBag = $this->getAllParameters($request);
+        $paramBag              = $this->getAllParameters($request);
         $paramBag['headTitle'] = '404 - Seite nicht gefunden';
 
         $content = $this->renderView('error/404.html.twig', $paramBag);
 
         return new Response($content, Response::HTTP_NOT_FOUND);
+    }
+
+    public function cmsAction(Request $request): Response
+    {
+        $paramBag = $this->getAllParameters($request);
+
+        // Get the template name from the document
+        $templateName = $this->document?->getTemplate() ?? 'content/cms/1-column.html.twig';
+
+        return $this->render($templateName, $paramBag);
     }
 
     /**

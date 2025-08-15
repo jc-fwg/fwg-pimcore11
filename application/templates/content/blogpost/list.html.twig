@@ -38,18 +38,17 @@
                             },
                             "classes": ["Collection"]
                         }) }}
-                    {% elseif pimcore_relation("collection").getElement() is instanceof('\\Pimcore\\Model\\DataObject\\Collection') %}
-                        {% set collection = pimcore_relation("collection").getElement() %}
-                        <h1>{{ collection.name }}</h1>
+                    {% elseif blogposts is not empty %}
+                        <h1>Headline</h1>
                         <p>Description</p>
-                        <ul class="list-unstyled">
-                            {% for blogpost in collection.blogposts %}
-                                <li>
-                                    <a href="{{ blogpost.getFullPath() }}">{{ blogpost.title }}</a>
-                                    <p>{{ blogpost.previewText|raw }}</p>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        {% for blogpost in blogposts %}
+                            <div class="blogpost">
+                                <h2>{{ blogpost.title }}</h2>
+                            </div>
+                        {% endfor %}
+                        <div class="blogpost">
+
+                        </div>
                     {% else %}
                         <p>No blog posts found in this collection.</p>
                     {% endif %}
