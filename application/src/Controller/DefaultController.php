@@ -46,7 +46,7 @@ class DefaultController extends BaseController
         $paramBag['headTitle'] = $this->document->getTitle();
 
         $latestPosts = [];
-        foreach ($this->blogpostRepository->findLatest() as $post) {
+        foreach ($this->blogpostRepository->findLatest(4) as $post) {
             $latestPosts[] = $this->blogpostMapper->fromModel($post);
         }
 

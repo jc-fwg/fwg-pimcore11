@@ -1,9 +1,28 @@
-<div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="post-list-item shadow-sm bg-light">
-        {% if post.imageMain is not null %}
-            {{ post.imageMain.thumbnail('home-posts').html({ 'imgAttributes': { 'class': 'img-fluid mt-1 mb-1', 'alt': post.headline } })|raw }}
-        {% endif %}
-        <div class="post-list-item-content p-3">
+{% set colSetup = "col-sm-6 col-xs-12 mb-4 px-4" %}
+{% set colSetupImage = "col-5" %}
+{% set colSetupContent = "col-7" %}
+
+{% if size == "wide" %}
+    {% set colSetup = "col-11 mb-4 px-2" %}
+    {% set colSetupImage = "col-4" %}
+    {% set colSetupContent = "col-8" %}
+{% endif %}
+
+<div class="{{ colSetup }}">
+    <div class="post-list-item shadow-sm bg-light row p-2">
+        <div class="{{ colSetupImage }}">
+            {% if post.imageMain is not null %}
+                {{ post.imageMain.thumbnail('blogpost-list-thumbnail').html(
+                    {
+                        'imgAttributes': {
+                            'class': 'img-fluid mt-2',
+                            'alt': post.title
+                        }
+                    }
+                )|raw }}
+            {% endif %}
+        </div>
+        <div class="post-list-item-content {{ colSetupContent }}">
             <h3>{{ post.title }}</h3>
             <h4>{{ post.subTitle }}</h4>
             <i class="bi bi-calendar3 pr-2"></i> {{ post.publicationDate|date('d.m.Y', 'Europe/Berlin') }}, {% for author in post.authors %}{{ author.name }}{% endfor %}
@@ -12,7 +31,7 @@
                     {{ shortenByWordCount(post.previewText, 23) }}
                 {% endif %}
             </p>
-            <a href="{{ post.detailLink }}" class="btn btn-secondary btn-sm d-block pt-2 pb-2">Mehr erfahren</a>
+            <a href="{{ post.detailLink }}" class="col-4 btn btn-secondary btn-sm d-inline-block pt-2 pb-2">Mehr erfahren</a>
         </div>
     </div>
 </div>

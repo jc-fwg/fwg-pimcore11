@@ -22,19 +22,18 @@
         <section id="posts" class="container-fluid spaced">
             <div class="container">
                 <h2>{{ pimcore_input('posts_latest_headline', {'placeholder': 'Neuste Beiträge'})}}</h2>
-                <div class="row">
+                <div class="row mt-4">
                     {% for post in latestPosts %}
-                        {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post} %}
+                        {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'normal'} %}
                     {% endfor %}
                 </div>
-                <div class="divider"></div>
-                <h2>{{ pimcore_input('posts_featured_headline', {'placeholder': 'Ausgewählte Beiträge'})}}</h2>
-                <div class="row">
+                <h2 class="mt-4">{{ pimcore_input('posts_featured_headline', {'placeholder': 'Ausgewählte Beiträge'})}}</h2>
+                <div class="row mt-4">
+                    muh
 {#                    {% for post in latestPosts %}#}
 {#                        {% include 'page/_general/blogpost_list_item.html.twig' with {'post': post} %}#}
 {#                    {% endfor %}#}
                 </div>
-                <div class="divider"></div>
             </div>
         </section>
 

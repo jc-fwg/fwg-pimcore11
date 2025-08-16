@@ -41,10 +41,8 @@
                     {% elseif blogposts is not empty %}
                         <h1>Headline</h1>
                         <p>Description</p>
-                        {% for blogpost in blogposts %}
-                            <div class="blogpost">
-                                <h2>{{ blogpost.title }}</h2>
-                            </div>
+                        {% for post in blogposts %}
+                            {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
                         {% endfor %}
                         <div class="blogpost">
 
