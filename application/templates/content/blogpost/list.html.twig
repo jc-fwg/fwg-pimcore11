@@ -39,8 +39,8 @@
                             "classes": ["Collection"]
                         }) }}
                     {% elseif blogposts is not empty %}
-                        <h1>Headline</h1>
-                        <p>Description</p>
+                        <h1>{{ collection.title }}</h1>
+                        <p>{{ collection.description }}</p>
                         {% for post in blogposts %}
                             {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
                         {% endfor %}
@@ -52,7 +52,11 @@
                     {% endif %}
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
-                    Kategorien
+                    {# Collections #}
+                    <h3>{{ 'blogpostList.recommendedCollections'|trans }}</h3>
+                    {% for cellection in collections %}
+                        {{ collection.title }}
+                    {% endfor %}
                     Oder so ähnlic
                 </div>
                 </div>

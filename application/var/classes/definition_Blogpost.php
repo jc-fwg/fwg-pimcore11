@@ -11,7 +11,7 @@
  * - blogpostType [select]
  * - authors [multiselect]
  * - activity [manyToOneRelation]
- * - collections [manyToManyObjectRelation]
+ * - collections [reverseObjectRelation]
  * - categories [manyToManyObjectRelation]
  * - imageMain [image]
  * - imageTeaser [image]
@@ -37,7 +37,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1754665005,
+   'modificationDate' => 1755790097,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -279,7 +279,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '',
               )),
               6 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
+              \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
                  'name' => 'collections',
                  'title' => 'app.class.collection.titlePlural',
                  'tooltip' => '',
@@ -299,12 +299,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'classes' => 
                 array (
-                  0 => 
-                  array (
-                    'classes' => 'Collection',
-                  ),
                 ),
-                 'displayMode' => 'grid',
+                 'displayMode' => NULL,
                  'pathFormatterClass' => '',
                  'maxItems' => NULL,
                  'visibleFields' => 'id,name',
@@ -317,6 +313,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
                  'height' => '',
+                 'ownerClassName' => 'Collection',
+                 'ownerClassId' => 'collection',
+                 'ownerFieldName' => 'blogposts',
+                 'lazyLoading' => true,
               )),
               7 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
@@ -324,14 +324,14 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'title' => 'app.class.category.titlePlural',
                  'tooltip' => '',
                  'mandatory' => false,
-                 'noteditable' => false,
+                 'noteditable' => true,
                  'index' => false,
                  'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'fieldtype' => '',
                  'relationType' => true,
-                 'invisible' => false,
+                 'invisible' => true,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
                  'blockedVarsForExport' => 

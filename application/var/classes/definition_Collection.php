@@ -5,10 +5,13 @@
  * Variants: no
  *
  * Fields Summary:
- * - name [input]
+ * - title [input]
+ * - description [wysiwyg]
+ * - teaserImage [image]
+ * - additionalRecommendationEntrypoints [manyToManyRelation]
  * - categories [manyToManyObjectRelation]
  * - tags [manyToManyObjectRelation]
- * - blogposts [reverseObjectRelation]
+ * - blogposts [manyToManyObjectRelation]
  * - blogpostsExcluded [manyToManyObjectRelation]
  */
 
@@ -19,7 +22,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1755009819,
+   'modificationDate' => 1756637782,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -64,8 +67,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
         array (
           0 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-             'name' => 'name',
-             'title' => 'app.generic.name',
+             'name' => 'title',
+             'title' => 'app.generic.title',
              'tooltip' => '',
              'mandatory' => true,
              'noteditable' => false,
@@ -93,6 +96,99 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultValueGenerator' => '',
           )),
           1 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
+             'name' => 'description',
+             'title' => 'app.generic.description',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'toolbarConfig' => '',
+             'excludeFromSearchIndex' => false,
+             'maxCharacters' => '',
+             'height' => '',
+             'width' => '',
+          )),
+          2 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
+             'name' => 'teaserImage',
+             'title' => 'app.generic.teaserImage',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'uploadPath' => '',
+             'width' => '',
+             'height' => '',
+          )),
+          3 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
+             'name' => 'additionalRecommendationEntrypoints',
+             'title' => 'app.generic.additionalRecommendationEntrypoints',
+             'tooltip' => 'app.generic.additionalRecommendationEntrypointsTooltip',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => true,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'classes' => 
+            array (
+              0 => 
+              array (
+                'classes' => 'folder',
+              ),
+            ),
+             'displayMode' => NULL,
+             'pathFormatterClass' => '',
+             'maxItems' => NULL,
+             'assetInlineDownloadAllowed' => false,
+             'assetUploadPath' => '',
+             'allowToClearRelation' => true,
+             'objectsAllowed' => true,
+             'assetsAllowed' => false,
+             'assetTypes' => 
+            array (
+            ),
+             'documentsAllowed' => false,
+             'documentTypes' => 
+            array (
+            ),
+             'enableTextSelection' => false,
+             'width' => '',
+             'height' => '',
+          )),
+          4 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Included',
              'type' => NULL,
@@ -119,7 +215,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'permissions' => NULL,
                  'fieldtype' => '',
                  'relationType' => true,
-                 'invisible' => false,
+                 'invisible' => true,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
                  'blockedVarsForExport' => 
@@ -187,7 +283,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'height' => '',
               )),
               2 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
+              \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
                  'name' => 'blogposts',
                  'title' => 'app.class.blogpost.titlePlural',
                  'tooltip' => '',
@@ -208,7 +304,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'classes' => 
                 array (
                 ),
-                 'displayMode' => NULL,
+                 'displayMode' => 'grid',
                  'pathFormatterClass' => '',
                  'maxItems' => NULL,
                  'visibleFields' => 
@@ -223,10 +319,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
                  'height' => '',
-                 'ownerClassName' => 'Blogpost',
-                 'ownerClassId' => 'blogpost',
-                 'ownerFieldName' => 'collections',
-                 'lazyLoading' => true,
               )),
             ),
              'locked' => false,
@@ -237,7 +329,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'left',
           )),
-          2 => 
+          5 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Excluded',
              'type' => NULL,

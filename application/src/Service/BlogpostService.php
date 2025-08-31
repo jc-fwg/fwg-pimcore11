@@ -141,11 +141,11 @@ class BlogpostService
         $blogposts = [];
 
         // Categories
-        $categories = $collection->getCategories();
-
-        if (!empty($categories)) {
-            $blogposts = array_merge($this->blogpostRepository->findAllByCategories($categories), $blogposts);
-        }
+//        $categories = $collection->getCategories();
+//
+//        if (!empty($categories)) {
+//            $blogposts = array_merge($this->blogpostRepository->findAllByCategories($categories), $blogposts);
+//        }
 
         // Tags
         $tags = $collection->getTags();

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
-use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
+use App\Service\CollectionService;
 use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\Tour;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,12 +17,14 @@ use Symfony\Component\HttpFoundation\Response;
 class BlogpostController extends BaseController
 {
     public function __construct(
-        private readonly BlogpostRepository $blogpostRepository,
-        private readonly BlogpostMapper $blogpostMapper,
-        private readonly BlogpostService $blogpostService,
+        private readonly BlogpostService    $blogpostService,
+        private readonly CollectionService $collectionService,
     ) {
     }
 
+    /**
+     * @throws \Exception
+     */
     public function listAction(Request $request): Response
     {
         $paramBag = $this->getAllParameters($request);
@@ -34,7 +35,10 @@ class BlogpostController extends BaseController
             $blogposts = $this->blogpostService->getBlogpostsByCollection($collection);
         }
 
+
         return $this->render('content/blogpost/list.html.twig', array_merge($paramBag, [
+            'collection' => $collection,
+            'collections' => $this->collectionService->getRecommendedCollections($collection),
             'blogposts' => $blogposts ?? [],
         ]));
     }

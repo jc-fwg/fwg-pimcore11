@@ -102,3 +102,6 @@ blogpost:
                     Er wird von uns geprüft und ist nach Freigabe sichtbar.
                     Du wirst per E-Mail benachrichtigt, sobald dein Kommentar freigeschaltet ist.
                 successHeadline: 'Vielen Dank für deinen Kommentar!'
+
+blogpostList:
+    recommendedCollections: 'Auch interessant...'
