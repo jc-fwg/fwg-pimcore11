@@ -14,15 +14,12 @@
     <div class="page page-blogpost-list">
         {# HERO #}
         <header id="hero" class="text-center mb-5">
-            {% if editmode %}
-                {{ pimcore_image('heroImage', {
-                    'width': 400,
-                    'title': 'Hero-Image',
-                }) }}
-            {% elseif document.editable('heroImage') is not empty %}
-                {% set heroImage = document.editable('heroImage').getThumbnail('heroImage').html({
-                    'class': 'd-none',
-                    'id': 'hero-background'
+            {% if collection.imageTeaser is defined and collection.imageTeaser is not null %}
+                {% set heroImage = collection.imageTeaser.thumbnail('heroImage').html({
+                    'imgAttributes': {
+                        'class': 'd-none',
+                        'id': 'hero-background'
+                    },
                 }) %}
                 {{ heroImage|raw }}
             {% endif %}
@@ -30,17 +27,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-xs-12">
-                    {% if editmode %}
-                        {{ pimcore_relation("collection", {
-                            "types": ["object"],
-                            "subtypes": {
-                                "object": ["object"],
-                            },
-                            "classes": ["Collection"]
-                        }) }}
-                    {% elseif blogposts is not empty %}
+                    {% if blogposts is not empty %}
                         <h1>{{ collection.title }}</h1>
-                        <p>{{ collection.description }}</p>
+                        <p>{{ collection.description|raw }}</p>
                         {% for post in blogposts %}
                             {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
                         {% endfor %}
@@ -53,11 +42,18 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     {# Collections #}
-                    <h3>{{ 'blogpostList.recommendedCollections'|trans }}</h3>
-                    {% for cellection in collections %}
-                        {{ collection.title }}
-                    {% endfor %}
-                    Oder so ähnlic
+                    {% if collection|length > 0 %}
+                        <h3>{{ 'blogpostList.recommendedCollections'|trans }}</h3>
+                        <ul id="collections">
+                            {% for collection in collections %}
+                                <li>
+                                    <a href="/{{ collection.slug }}">{{ collection.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {# Tags #}
                 </div>
                 </div>
         </div>

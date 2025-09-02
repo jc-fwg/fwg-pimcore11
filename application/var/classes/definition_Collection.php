@@ -5,9 +5,10 @@
  * Variants: no
  *
  * Fields Summary:
+ * - slug [input]
  * - title [input]
  * - description [wysiwyg]
- * - teaserImage [image]
+ * - imageTeaser [image]
  * - additionalRecommendationEntrypoints [manyToManyRelation]
  * - categories [manyToManyObjectRelation]
  * - tags [manyToManyObjectRelation]
@@ -22,7 +23,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1756637782,
+   'modificationDate' => 1756645068,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -67,6 +68,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
         array (
           0 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+             'name' => 'slug',
+             'title' => 'app.generic.slug',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => true,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'defaultValue' => NULL,
+             'columnLength' => 190,
+             'regex' => '',
+             'regexFlags' => 
+            array (
+            ),
+             'unique' => true,
+             'showCharCount' => false,
+             'width' => '100%',
+             'defaultValueGenerator' => '',
+          )),
+          1 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
              'name' => 'title',
              'title' => 'app.generic.title',
              'tooltip' => '',
@@ -95,7 +126,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'defaultValueGenerator' => '',
           )),
-          1 => 
+          2 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
              'name' => 'description',
              'title' => 'app.generic.description',
@@ -120,10 +151,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'height' => '',
              'width' => '',
           )),
-          2 => 
+          3 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
-             'name' => 'teaserImage',
-             'title' => 'app.generic.teaserImage',
+             'name' => 'imageTeaser',
+             'title' => 'app.generic.imageTeaser',
              'tooltip' => '',
              'mandatory' => false,
              'noteditable' => false,
@@ -143,7 +174,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'height' => '',
           )),
-          3 => 
+          4 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
              'name' => 'additionalRecommendationEntrypoints',
              'title' => 'app.generic.additionalRecommendationEntrypoints',
@@ -188,7 +219,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'height' => '',
           )),
-          4 => 
+          5 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Included',
              'type' => NULL,
@@ -329,7 +360,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'left',
           )),
-          5 => 
+          6 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Excluded',
              'type' => NULL,

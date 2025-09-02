@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
+use App\Adapter\App\Database\Doctrine\Repository\CollectionRepository;
 use App\Constant\FolderConstants;
 use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
+use App\Service\CollectionService;
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
 use Pimcore\Document;
 use Pimcore\Model\Asset;
 use Pimcore\Model\DataObject\Blogpost;
+use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\SocialChannel;
 use Pimcore\Model\Document\Page;
 use Symfony\Bridge\Twig\Attribute\Template;
@@ -27,6 +30,8 @@ class DefaultController extends BaseController
         private readonly BlogpostRepository $blogpostRepository,
         private readonly BlogpostMapper $blogpostMapper,
         private readonly BlogpostService $blogpostService,
+        private readonly CollectionRepository $collectionRepository,
+        private readonly CollectionService $collectionService,
     ) {
     }
 
@@ -71,6 +76,11 @@ class DefaultController extends BaseController
             return $this->forward($page->getController());
         }
 
+        $collection = $this->collectionRepository->getBySlug($slug);
+        if ($collection instanceof Collection) {
+            return $this->collectionAction($slug, $request, $collection);
+        }
+
         $blogpost = $this->blogpostRepository->getBySlug($slug);
         if ($blogpost instanceof Blogpost) {
             return $this->blogpostAction($slug, $request, $blogpost);
@@ -102,6 +112,27 @@ class DefaultController extends BaseController
         ]);
 
         return $this->render('content/blogpost/blogpost.html.twig', $paramBag);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    #[Route(
+        name: 'collection-detail',
+    )]
+    public function collectionAction(string $slug, Request $request, ?Collection $collection): Response
+    {
+        if (!$collection instanceof Collection) {
+            $collection = $this->collectionRepository->getBySlug($slug);
+        }
+
+        $paramBag = $this->getAllParameters($request);
+
+        return $this->render('content/collection/collection.html.twig', array_merge($paramBag, [
+            'collection' => $collection,
+            'collections' => $this->collectionService->getRecommendedCollections($collection),
+            'blogposts' => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
+        ]));
     }
 
     public function notFoundAction(Request $request): Response
