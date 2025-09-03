@@ -1,0 +1,64 @@
+pimcore_custom_reports:
+    definitions:
+        NewComments:
+            name: NewComments
+            sql: ''
+            dataSourceConfig:
+                -
+                    sql: 'SELECT oo_id, creationDate, name, comment'
+                    from: 'FROM object_comment'
+                    where: 'published != 1'
+                    groupby: ''
+                    orderby: ''
+                    orderbydir: null
+                    type: sql
+            columnConfiguration:
+                -
+                    name: oo_id
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel2954-1
+                    columnAction: openObject
+                -
+                    name: creationDate
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel2954-2
+                -
+                    name: name
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel2954-3
+                -
+                    name: comment
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel2954-4
+            niceName: ''
+            group: Comments
+            groupIconClass: ''
+            iconClass: ''
+            menuShortcut: true
+            reportClass: ''
+            chartType: ''
+            pieColumn: null
+            pieLabelColumn: null
+            xAxis: null
+            yAxis: {  }
+            modificationDate: 1756834000
+            creationDate: 1756833675
+            shareGlobally: true
+            sharedUserNames: {  }
+            sharedRoleNames: {  }
