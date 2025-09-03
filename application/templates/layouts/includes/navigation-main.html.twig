@@ -21,21 +21,21 @@
             <img id="logo" src="{{ asset('static/gfx/freiweg-logo.svg') }}" alt="FreiWeg Outdoor Activity Blog">
         </a>
         <ul class="navbar-nav mr-auto">
-            {% dump(navMain) %}
-            {% for topicPage in navMain %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="drobHike" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ topicPage.getLabel()|trans }}</a>
-                    {% if topicPage.hasPages() %}
-                        <div class="dropdown-menu bg-dark" aria-labelledby="drobHike">
-                            {% for subPage in topicPage.getPages() %}
-                                {% if subPage.isVisible() %}
-                                    <a class="dropdown-item" href="{{ subPage.getHref() }}">{{ subPage.getLabel()|trans }}</a>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </li>
-            {% endfor %}
+{#            {% dump(navMain) %}#}
+{#            {% for topicPage in navMain %}#}
+{#                <li class="nav-item dropdown">#}
+{#                    <a class="nav-link dropdown-toggle" href="#" id="drobHike" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ topicPage.getLabel()|trans }}</a>#}
+{#                    {% if topicPage.hasPages() %}#}
+{#                        <div class="dropdown-menu bg-dark" aria-labelledby="drobHike">#}
+{#                            {% for subPage in topicPage.getPages() %}#}
+{#                                {% if subPage.isVisible() %}#}
+{#                                    <a class="dropdown-item" href="{{ subPage.getHref() }}">{{ subPage.getLabel()|trans }}</a>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                </li>#}
+{#            {% endfor %}#}
         </ul>
     </div>
 </nav>
