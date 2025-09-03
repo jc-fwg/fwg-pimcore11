@@ -5,8 +5,9 @@
  * Variants: no
  *
  * Fields Summary:
+ * - releaseStatus [select]
+ * - releaseStatusSetOn [datetime]
  * - dateTime [datetime]
- * - releasedOn [datetime]
  * - name [input]
  * - email [input]
  * - website [input]
@@ -21,7 +22,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1753637811,
+   'modificationDate' => 1756921997,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -65,6 +66,95 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'children' => 
         array (
           0 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
+             'name' => 'Release status',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.releaseStatus',
+             'width' => '',
+             'height' => '',
+             'collapsible' => false,
+             'collapsed' => false,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+                 'name' => 'releaseStatus',
+                 'title' => 'app.generic.releaseStatus',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'options' => 
+                array (
+                  0 => 
+                  array (
+                    'key' => 'app.generic.released',
+                    'value' => 'released',
+                  ),
+                  1 => 
+                  array (
+                    'key' => 'app.generic.declined',
+                    'value' => 'declined',
+                  ),
+                ),
+                 'defaultValue' => '',
+                 'columnLength' => 190,
+                 'dynamicOptions' => false,
+                 'defaultValueGenerator' => '',
+                 'width' => '',
+                 'optionsProviderType' => 'configure',
+                 'optionsProviderClass' => '',
+                 'optionsProviderData' => '',
+              )),
+              1 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Datetime::__set_state(array(
+                 'name' => 'releaseStatusSetOn',
+                 'title' => 'app.generic.releaseStatusSetOn',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => true,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'defaultValue' => NULL,
+                 'useCurrentDate' => false,
+                 'respectTimezone' => true,
+                 'columnType' => 'datetime',
+                 'defaultValueGenerator' => '',
+              )),
+            ),
+             'locked' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'fieldtype' => 'fieldset',
+             'labelWidth' => 100,
+             'labelAlign' => 'top',
+          )),
+          1 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Datetime::__set_state(array(
              'name' => 'dateTime',
              'title' => 'app.generic.dateTime',
@@ -85,31 +175,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             ),
              'defaultValue' => NULL,
              'useCurrentDate' => true,
-             'respectTimezone' => true,
-             'columnType' => 'datetime',
-             'defaultValueGenerator' => '',
-          )),
-          1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Datetime::__set_state(array(
-             'name' => 'releasedOn',
-             'title' => 'app.generic.releasedOn',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => true,
-             'index' => false,
-             'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => false,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
-             'blockedVarsForExport' => 
-            array (
-            ),
-             'defaultValue' => NULL,
-             'useCurrentDate' => false,
              'respectTimezone' => true,
              'columnType' => 'datetime',
              'defaultValueGenerator' => '',
@@ -328,6 +393,31 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    \Pimcore\Model\DataObject\ClassDefinition\Data\Datetime::__set_state(array(
+       'name' => 'releasedOn',
+       'title' => 'app.generic.releasedOn',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => true,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => false,
+       'invisible' => false,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'defaultValue' => NULL,
+       'useCurrentDate' => false,
+       'respectTimezone' => true,
+       'columnType' => 'datetime',
+       'defaultValueGenerator' => '',
+    )),
   ),
    'blockedVarsForExport' => 
   array (

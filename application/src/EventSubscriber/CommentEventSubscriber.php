@@ -10,6 +10,7 @@ use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Mail;
 use Pimcore\Model\DataObject;
 
+use Pimcore\Model\Element\ValidationException;
 use function sprintf;
 
 class CommentEventSubscriber extends AbstractEventSubscriber
@@ -24,15 +25,31 @@ class CommentEventSubscriber extends AbstractEventSubscriber
         ];
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function sendCommentPublishedMail(DataObjectEvent $event): void
     {
         $object = $event->getObject();
+
+        if ($this->isAutoSave($event) === true) {
+            return;
+        }
 
         if (!$object instanceof DataObject\Comment) {
             return;
         }
 
-        if ($object->isPublished() === true && $object->getReleasedOn() === null) {
+        if ($object->isPublished() && empty($object->getReleaseStatus()) === true) {
+            $object->setPublished(false);
+            throw new ValidationException('Release Status must be set if comment is published');
+        }
+
+        if (
+            $object->getReleaseStatus() === 'released' &&
+            $object->isPublished() &&
+            empty($object->getReleaseStatusSetOn()) === true
+        ) {
             $mail = new Mail();
             $mail->subject('Den Kommentar wurde veröffentlicht');
             $mail->text(trim(sprintf(
@@ -57,8 +74,8 @@ class CommentEventSubscriber extends AbstractEventSubscriber
             $mail->addTo($object->getEmail());
 
             $mail->send();
-
-            $object->setReleasedOn(Carbon::now());
         }
+
+        $object->setReleaseStatusSetOn(Carbon::now());
     }
 }
