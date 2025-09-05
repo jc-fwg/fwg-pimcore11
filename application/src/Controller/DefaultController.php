@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Adapter\App\Database\Doctrine\Repository\CollectionRepository;
+use App\Adapter\App\Database\Doctrine\Repository\TagRepository;
 use App\Constant\FolderConstants;
 use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
@@ -32,6 +33,7 @@ class DefaultController extends BaseController
         private readonly BlogpostService $blogpostService,
         private readonly CollectionRepository $collectionRepository,
         private readonly CollectionService $collectionService,
+        private readonly TagRepository $tagRepository,
     ) {
     }
 
@@ -132,6 +134,7 @@ class DefaultController extends BaseController
             'collection' => $collection,
             'collections' => $this->collectionService->getRecommendedCollections($collection),
             'blogposts' => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
+            'tags' => $this->tagRepository->findAllUsed(),
         ]));
     }
 
