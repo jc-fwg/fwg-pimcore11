@@ -12,12 +12,12 @@ use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
 use App\Service\CollectionService;
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
-use Pimcore\Document;
 use Pimcore\Model\Asset;
 use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\SocialChannel;
 use Pimcore\Model\Document\Page;
+use Pimcore\Model\Exception\NotFoundException;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,7 +42,7 @@ class DefaultController extends BaseController
         '/',
         name: 'homepage'
     )]
-    public function defaultAction(Request $request,
+    public function indexAction(Request $request,
     ): array {
         $paramBag = $this->getAllParameters($request);
 
@@ -78,11 +78,13 @@ class DefaultController extends BaseController
             return $this->forward($page->getController());
         }
 
+        // Collections
         $collection = $this->collectionRepository->getBySlug($slug);
         if ($collection instanceof Collection) {
             return $this->collectionAction($slug, $request, $collection);
         }
 
+        // Blogposts
         $blogpost = $this->blogpostRepository->getBySlug($slug);
         if ($blogpost instanceof Blogpost) {
             return $this->blogpostAction($slug, $request, $blogpost);
@@ -97,6 +99,9 @@ class DefaultController extends BaseController
         return $this->notFoundAction($request);
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route(
         name: 'blogpost-detail',
     )]
@@ -120,7 +125,7 @@ class DefaultController extends BaseController
      * @throws \Exception
      */
     #[Route(
-        name: 'collection-detail',
+        name: 'collection',
     )]
     public function collectionAction(string $slug, Request $request, ?Collection $collection): Response
     {
@@ -134,7 +139,59 @@ class DefaultController extends BaseController
             'collection' => $collection,
             'collections' => $this->collectionService->getRecommendedCollections($collection),
             'blogposts' => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
-            'tags' => $this->tagRepository->findAllUsed(),
+            'tagList' => $this->tagRepository->findAllCurrentlyRelated(),
+        ]));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    #[Route(
+        '/tags',
+        name: 'tags',
+        priority: 10
+    )]
+    public function tagListAction(Request $request): Response
+    {
+        $paramBag = $this->getAllParameters($request);
+
+        $tagPairs = [];
+
+        foreach($request->query->all() as $tagCategorySlug => $tags) {
+            $tagSlugs = explode('.', $tags);
+
+            foreach($tagSlugs as $tagSlug) {
+                $tagPairs[] = [
+                    'parentSlug' => $tagCategorySlug,
+                    'tagSlug' => $tagSlug,
+                ];
+            }
+        }
+
+        $tags = [];
+
+        foreach ($tagPairs as $tagPair) {
+            try {
+                $tags[] = $this->tagRepository->getByParentAndTagSlugs($tagPair);
+            } catch (NotFoundException) {
+            }
+        }
+
+        $blogposts = $this->blogpostRepository->findAllByTags($tags, 'AND');
+
+        $blogposts = array_map(
+            fn (Blogpost $blogpost) => $this->blogpostMapper->fromModel($blogpost),
+            $blogposts
+        );
+
+        // Random hero image
+        $blogpostTeaser = $blogposts[array_rand($blogposts)] ?? null;
+
+        return $this->render('content/tags/list.html.twig', array_merge($paramBag, [
+            'blogposts' => $blogposts,
+            'tagList' => $this->tagRepository->findAllCurrentlyRelated(),
+            'tags' => $tags,
+            'heroImage' => $blogpostTeaser?->imageMain,
         ]));
     }
 

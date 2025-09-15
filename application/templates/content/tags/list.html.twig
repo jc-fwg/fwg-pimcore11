@@ -10,12 +10,14 @@
     {% do pimcore_head_meta().appendName('description', document.description) %}
 {% endif %}
 
+{% do pimcore_head_meta().appendName('robots', 'noindex') %}
+
 {% block content %}
     <div class="page page-blogpost-list">
         {# HERO #}
         <header id="hero" class="text-center mb-5">
-            {% if collection.imageTeaser is defined and collection.imageTeaser is not null %}
-                {% set heroImage = collection.imageTeaser.thumbnail('heroImage').html({
+            {% if heroImage is defined and heroImage is not null %}
+                {% set heroImage = heroImage.thumbnail('heroImage').html({
                     'imgAttributes': {
                         'class': 'd-none',
                         'id': 'hero-background'
@@ -28,8 +30,12 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-xs-12">
                     {% if blogposts is not empty %}
-                        <h1>{{ collection.title }}</h1>
-                        <p>{{ collection.description|raw }}</p>
+                        <h1>{{ 'tagList.blogpostsHeadline'|trans }}</h1>
+                        <p class="tags mb-2">
+                            {% for tag in tags %}
+                                <p class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</p>
+                            {% endfor %}
+                        </p>
                         {% for post in blogposts %}
                             {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
                         {% endfor %}
@@ -42,7 +48,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     {# Collections #}
-                    {% if collection|length > 0 %}
+                    {% if collection is defined and collection|length > 0 %}
                         <h3>{{ 'blogpostList.recommendedCollections'|trans }}</h3>
                         <ul id="collections">
                             {% for collection in collections %}

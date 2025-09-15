@@ -7,6 +7,7 @@
  *
  * Fields Summary:
  * - name [input]
+ * - slug [input]
  * - weight [slider]
  * - dependendsOn [manyToManyObjectRelation]
  */
@@ -18,7 +19,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.tagCategory.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1754594186,
+   'modificationDate' => 1757843282,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -66,7 +67,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'name' => 'name',
              'title' => 'app.generic.name',
              'tooltip' => '',
-             'mandatory' => false,
+             'mandatory' => true,
              'noteditable' => false,
              'index' => false,
              'locked' => false,
@@ -92,6 +93,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultValueGenerator' => '',
           )),
           1 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+             'name' => 'slug',
+             'title' => 'app.generic.slug',
+             'tooltip' => '',
+             'mandatory' => true,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'defaultValue' => NULL,
+             'columnLength' => 190,
+             'regex' => '',
+             'regexFlags' => 
+            array (
+            ),
+             'unique' => false,
+             'showCharCount' => false,
+             'width' => '',
+             'defaultValueGenerator' => '',
+          )),
+          2 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Slider::__set_state(array(
              'name' => 'weight',
              'title' => 'app.generic.weight',
@@ -118,7 +149,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'height' => '',
              'width' => '',
           )),
-          2 => 
+          3 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
              'name' => 'dependendsOn',
              'title' => 'app.generic.dependsOn',

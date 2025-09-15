@@ -8,6 +8,7 @@ use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Pimcore\Model\DataObject;
+use Pimcore\Model\Exception\NotFoundException;
 
 class TagRepository extends AbstractRepository
 {
@@ -35,7 +36,9 @@ class TagRepository extends AbstractRepository
                     tags.oo_id,
                     tags.name,
                     tags.emoji,
-                    objects.parentId,
+                    tags.description,
+                    tags.slug,
+                    tagCategories.oo_id AS tagCategoryId,
                     tagCategories.weight
                 '
             )
@@ -55,23 +58,42 @@ class TagRepository extends AbstractRepository
 
     /**
      * @return array<int, array<string, mixed>>
-     *
-     * @throws Exception
      */
-    public function findAllUsed(): array
+    public function findAllCurrentlyRelated(): array
     {
-        $queryBuilder = $this->connection->createQueryBuilder()
-            ->select('*')
-            ->from(self::TABLE_NAME_OBJECTS_QUERY_TAG)
-            ->join(
-                self::TABLE_NAME_OBJECTS_QUERY_TAG,
-                self::TABLE_NAME_OBJECTS_RELATIONS_ACTIVITY,
-                'ora',
-                'object_query_tag.oo_id = ora.dest_id AND ora.fieldname = :fieldname'
-            )
-            ->groupBy('object_query_tag.oo_id')
-            ->setParameter('fieldname', 'tags');
-        return $queryBuilder->fetchAllAssociative();
+        $tags = (new DataObject\Tag\Listing())->getObjects();
+        return array_filter($tags, static fn($tag) => count($tag->getActivities()) > 0);
+    }
+
+    public function getBySlug(string $slug): DataObject\Tag
+    {
+        $tag = DataObject\Tag::getBySlug($slug, 1);
+
+        if (!$tag instanceof DataObject\Tag) {
+            throw new NotFoundException(sprintf('Tag with slug "%s" not found', $slug));
+        }
+
+        return $tag;
+    }
+
+    public function getByParentAndTagSlugs(array $tagPair): DataObject\Tag
+    {
+        $parent = DataObject\TagCategory::getBySlug($tagPair['parentSlug'], 1);
+
+        if (!$parent instanceof DataObject\TagCategory) {
+            throw new NotFoundException(sprintf('TagCategory with slug "%s" not found', $tagPair['parentSlug']));
+        }
+
+        $tag = DataObject\Tag::getBySlug($tagPair['tagSlug'], 1);
+
+        if (
+            !$tag instanceof DataObject\Tag
+            || $tag->getParentId() !== $parent->getId()
+        ) {
+            throw new NotFoundException(sprintf('Tag with slug "%s" not found in TagCategory "%s"', $tagPair['tagSlug'], $tagPair['parentSlug']));
+        }
+
+        return $tag;
     }
 
     public function getExpectedClass(): string

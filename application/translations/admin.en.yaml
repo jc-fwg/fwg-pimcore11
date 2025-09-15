@@ -45,6 +45,7 @@ app:
         previewText: 'Preview Text'
         publicationDate: 'Publication Date'
         referenceComment: 'Reference Comment'
+        relatedIn: 'Related In'
         released: 'released'
         releaseStatus: 'Release Status'
         releaseStatusSetOn: 'Released on'

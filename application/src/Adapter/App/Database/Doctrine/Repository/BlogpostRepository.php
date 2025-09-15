@@ -106,7 +106,7 @@ class BlogpostRepository extends AbstractRepository
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function findAllByTags(array $tags): array
+    public function findAllByTags(array $tags, $combine = 'OR'): array
     {
         $tagsSetQuery = [];
         foreach ($tags as $tag) {
@@ -125,7 +125,7 @@ class BlogpostRepository extends AbstractRepository
                     blogposts.activity__id > 0
                     AND (%s)
                     ',
-                    implode(' OR ', $tagsSetQuery)
+                    implode(sprintf(' %s ', $combine), $tagsSetQuery)
                 )
             )
             ->orderBy('blogposts.publicationDate', 'DESC');

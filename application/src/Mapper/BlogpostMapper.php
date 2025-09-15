@@ -8,7 +8,6 @@ use App\Adapter\App\Database\Doctrine\Repository\AuthorRepository;
 use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Dto\BlogpostDto;
 use App\Dto\LinkDto;
-use App\Website\LinkGenerator\BlogpostLinkGenerator;
 use Exception;
 use Pimcore\Model\DataObject\Author;
 use Pimcore\Model\DataObject\Blogpost;
@@ -24,7 +23,6 @@ class BlogpostMapper
         private readonly AuthorRepository $authorRepository,
         private readonly AuthorMapper $authorMapper,
         private readonly CommentMapper $commentMapper,
-        private readonly BlogpostLinkGenerator $blogpostLinkGenerator,
         private readonly BlogpostRepository $blogpostRepository,
     ) {
     }

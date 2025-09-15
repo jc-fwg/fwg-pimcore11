@@ -39,10 +39,10 @@
                     <h1>{{ blogpost.title }}</h1><br>
                     <h2 class="mb-2 js-toc-ignore">{{ blogpost.subTitle }}</h2>
                     {% if blogpost.activity is not null %}
-                        <p>
-                        {% for tag in blogpost.activity.tags %}
-                            <span class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</span>
-                        {% endfor %}
+                        <p class="tags">
+                            {% for tag in blogpost.activity.tags %}
+                                <a href="/tags?{{ tag.tagCategory.slug }}={{ tag.slug }}" class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</a>
+                            {% endfor %}
                         </p>
                     {% endif %}
                 </div>

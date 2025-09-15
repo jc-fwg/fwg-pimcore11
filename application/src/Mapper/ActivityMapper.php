@@ -17,11 +17,12 @@ use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Data\Link;
 use Pimcore\Model\DataObject\Fieldcollection\Data\Location;
 use Pimcore\Model\DataObject\SelectOptions\ActivityType;
+use Pimcore\Model\DataObject\TagCategory;
 
 class ActivityMapper
 {
     public function __construct(
-        private readonly TagMapper $tagMapper,
+        private readonly TagCategoryMapper $tagCategoryMapper,
         private readonly TagRepository $tagRepository,
     ) {
     }
@@ -63,11 +64,20 @@ class ActivityMapper
         }
         $tags = $this->tagRepository->findAllOrderedByTagCategoryWeighting($tagIds);
 
+
+
         foreach ($tags as $tag) {
+
+            $tagCategory = TagCategory::getById($tag['tagCategoryId']);
+            $tagCategoryDto = $this->tagCategoryMapper->fromModel($tagCategory);
+
             $tagDtos[] = new TagDto(
                 id: $tag['oo_id'],
+                tagCategory: $tagCategoryDto,
                 name: $tag['name'],
                 emoji: $tag['emoji'],
+                description: $tag['description'],
+                slug: $tag['slug'],
             );
         }
 
