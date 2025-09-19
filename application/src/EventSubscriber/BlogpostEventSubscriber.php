@@ -25,6 +25,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
             ],
             DataObjectEvents::PRE_UPDATE => [
                 ['setSlug'],
+                ['setAuthorTagsAtActivity']
             ],
         ];
     }
@@ -42,5 +43,75 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         }
 
         $this->blogpostService->setSlug($object);
+    }
+
+    public function setAuthorTagsAtActivity(DataObjectEvent $event): void
+    {
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
+            return;
+        }
+
+        if (empty($object->getAuthors()) === true) {
+            return;
+        }
+
+        $activity = $object->getActivity();
+        if (empty($activity) === true) {
+            return;
+        }
+
+        $authorTags = [];
+        $blogpostAuthors = $object->getAuthors() ?? [];
+        $authorTagsFromLastVersion = [];
+        $activityTags = $activity->getTags() ?? [];
+
+        foreach ($blogpostAuthors as $authorId) {
+            $author = DataObject\Author::getById($authorId);
+
+            if (!$author instanceof DataObject\Author) {
+                continue;
+            }
+
+            $authorTag = $author->getTag();
+
+            if (!$authorTag instanceof DataObject\Tag) {
+                continue;
+            }
+
+            $authorTags[] = $authorTag;
+        }
+
+        // Fetch old authors from last version and remove relations from activity
+        $versions = $object->getVersions();
+        if (count($versions) > 0) {
+            $lastVersion = end($versions);
+            $blogpostVersion = $lastVersion->getData();
+
+            $oldAuthors = $blogpostVersion?->getAuthors() ?? [];
+
+            foreach ($oldAuthors as $oldAuthor) {
+                $author = DataObject\Author::getById($oldAuthor);
+
+                if (!$author instanceof DataObject\Author) {
+                    continue;
+                }
+
+                $authorTagsFromLastVersion[] = $author->getTag();
+            }
+
+
+
+            foreach ($activityTags as $k => $tag) {
+                if (in_array($tag, $authorTagsFromLastVersion) === true) {
+                    unset($activityTags[$k]);
+                }
+            }
+        }
+
+        $activity->setTags(array_unique(array_merge($activityTags, $authorTags)));
+
+        $activity->save();
     }
 }

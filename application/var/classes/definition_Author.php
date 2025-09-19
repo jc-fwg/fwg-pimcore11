@@ -8,6 +8,7 @@
  * Fields Summary:
  * - name [input]
  * - description [wysiwyg]
+ * - tag [manyToOneRelation]
  * - imageMain [image]
  */
 
@@ -18,7 +19,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.author.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1747494353,
+   'modificationDate' => 1758202939,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -128,6 +129,48 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'excludeFromSearchIndex' => false,
                  'maxCharacters' => '',
                  'height' => '',
+                 'width' => '',
+              )),
+              2 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
+                 'name' => 'tag',
+                 'title' => 'app.class.tag.title',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => true,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'classes' => 
+                array (
+                  0 => 
+                  array (
+                    'classes' => 'Tag',
+                  ),
+                ),
+                 'displayMode' => 'grid',
+                 'pathFormatterClass' => '',
+                 'assetInlineDownloadAllowed' => false,
+                 'assetUploadPath' => '',
+                 'allowToClearRelation' => true,
+                 'objectsAllowed' => true,
+                 'assetsAllowed' => false,
+                 'assetTypes' => 
+                array (
+                ),
+                 'documentsAllowed' => false,
+                 'documentTypes' => 
+                array (
+                ),
                  'width' => '',
               )),
             ),

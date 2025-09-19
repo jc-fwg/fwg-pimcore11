@@ -1,8 +1,8 @@
 <aside class="tags mt-4">
     <h3>
-        Tags
+        {{ 'aside.tagList.headline'|trans }}
     </h3>
     {% for tag in tagList %}
-        <a href="/tags?{{ tag.parent.slug }}={{ tag.slug }}" class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</a>
+        <a href="/tags?{{ tag.parent.slug }}={{ tag.slug }}" class="badge text-bg-secondary mb-1">{{ tag.emoji }} {{ tag.name }}</a>
     {% endfor %}
 </aside>

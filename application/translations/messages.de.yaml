@@ -8,7 +8,9 @@ web:
 home:
     posts:
         latest: 'Neueste Beiträge'
-
+aside:
+    tagList:
+        headline: 'Weitere interessante Themen...'
 blogpost:
     toc:
         headline: 'Inhaltsverzeichnis'

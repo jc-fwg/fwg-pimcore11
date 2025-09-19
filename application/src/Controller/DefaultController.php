@@ -177,7 +177,7 @@ class DefaultController extends BaseController
             }
         }
 
-        $blogposts = $this->blogpostRepository->findAllByTags($tags, 'AND');
+        $blogposts = $this->blogpostRepository->findAllByTags($tags, 'AND', $request->query->has('autor'));
 
         $blogposts = array_map(
             fn (Blogpost $blogpost) => $this->blogpostMapper->fromModel($blogpost),
@@ -185,7 +185,7 @@ class DefaultController extends BaseController
         );
 
         // Random hero image
-        $blogpostTeaser = $blogposts[array_rand($blogposts)] ?? null;
+        $blogpostTeaser = empty($blogposts) === false ? $blogposts[array_rand($blogposts)] : null;
 
         return $this->render('content/tags/list.html.twig', array_merge($paramBag, [
             'blogposts' => $blogposts,

@@ -15,12 +15,12 @@ pimcore:
                         description: ''
                         group: ''
                         format: JPEG
-                        quality: 60
+                        quality: 70
                         highResolution: null
                         preserveColor: false
                         preserveMetaData: false
                         rasterizeSVG: false
                         downloadable: false
-                        modificationDate: 1748524208
+                        modificationDate: 1757963700
                         creationDate: 1748524181
                         preserveAnimation: false

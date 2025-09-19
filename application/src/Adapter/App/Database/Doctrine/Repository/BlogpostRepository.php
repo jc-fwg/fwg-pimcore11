@@ -106,7 +106,7 @@ class BlogpostRepository extends AbstractRepository
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function findAllByTags(array $tags, $combine = 'OR'): array
+    public function findAllByTags(array $tags, string $combine = 'OR'): array
     {
         $tagsSetQuery = [];
         foreach ($tags as $tag) {
@@ -129,11 +129,15 @@ class BlogpostRepository extends AbstractRepository
                 )
             )
             ->orderBy('blogposts.publicationDate', 'DESC');
-
         $blogpostIds = $queryBuilder->fetchFirstColumn();
 
         $blogpostListing = new DataObject\Blogpost\Listing();
         $blogpostListing->setCondition('oo_id IN (:ids)', ['ids' => $blogpostIds]);
+
+        // Add blogposts with author tags via array_unique?
+        // Using
+        // - existing query above
+        // - Blogpost Listing with condition for tags and array_unique
 
         return $blogpostListing->load();
     }
