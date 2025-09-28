@@ -8,30 +8,25 @@
         {% set endPoint = location %}
     {% endif %}
 {% endfor %}
-{% if startPoint is not null and endPoint is null %}
-    <tr>
-        <td>
-            {{ 'blogpost.activity.summary.location.startAndEnd'|trans }}
-        </td>
-        <td>
-            <a href="">{{ startPoint.name }}</a>
-        </td>
-    </tr>
-{% elseif startPoint is not null and endPoint is not null %}
-    <tr>
-        <td>
-            {{ 'blogpost.activity.summary.location.start'|trans }}
-        </td>
-        <td>
-            <a href="">{{ startPoint.name }}</a>
-        </td>
-    </tr>
+{% set locationText = 'blogpost.activity.summary.location.startAndEnd'|trans %}
+{% if startPoint is not null and endPoint is not null %}
+    {% set locationText = 'blogpost.activity.summary.location.start'|trans %}
+{% endif %}
+<tr>
+    <td>
+        {{ locationText }}
+    </td>
+    <td>
+        <a href="{{ startPoint.link.path }}" target="_blank">{{ startPoint.name }}</a>
+    </td>
+</tr>
+{% if startPoint is not null and endPoint is not null %}
     <tr>
         <td>
             {{ 'blogpost.activity.summary.location.end'|trans }}
         </td>
         <td>
-            <a href="">{{ endPoint.name }}</a>
+            <a href="{{ endPoint.link.path }}" target="_blank">{{ endPoint.name }}</a>
         </td>
     </tr>
 {% endif %}
