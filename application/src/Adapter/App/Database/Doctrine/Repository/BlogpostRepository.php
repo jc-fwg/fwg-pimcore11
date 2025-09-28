@@ -108,6 +108,8 @@ class BlogpostRepository extends AbstractRepository
      */
     public function findAllByTags(array $tags, string $combine = 'OR'): array
     {
+        if (empty($tags)) return [];
+
         $tagsSetQuery = [];
         foreach ($tags as $tag) {
             $tagsSetQuery[] = "FIND_IN_SET('{$tag->getId()}', tags)";

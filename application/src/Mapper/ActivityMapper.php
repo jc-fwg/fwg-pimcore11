@@ -24,6 +24,7 @@ class ActivityMapper
     public function __construct(
         private readonly TagCategoryMapper $tagCategoryMapper,
         private readonly TagRepository $tagRepository,
+        private readonly TagMapper $tagMapper,
     ) {
     }
 
@@ -64,21 +65,8 @@ class ActivityMapper
         }
         $tags = $this->tagRepository->findAllOrderedByTagCategoryWeighting($tagIds);
 
-
-
         foreach ($tags as $tag) {
-
-            $tagCategory = TagCategory::getById($tag['tagCategoryId']);
-            $tagCategoryDto = $this->tagCategoryMapper->fromModel($tagCategory);
-
-            $tagDtos[] = new TagDto(
-                id: $tag['oo_id'],
-                tagCategory: $tagCategoryDto,
-                name: $tag['name'],
-                emoji: $tag['emoji'],
-                description: $tag['description'],
-                slug: $tag['slug'],
-            );
+            $tagDtos[] = $this->tagMapper->fromModel($tag);
         }
 
         return new ActivityDto(

@@ -10,6 +10,7 @@
  * - emoji [input]
  * - description [wysiwyg]
  * - slug [input]
+ * - hideInList [checkbox]
  * - activities [reverseObjectRelation]
  */
 
@@ -20,7 +21,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.tag.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1757843294,
+   'modificationDate' => 1758918488,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -179,6 +180,28 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultValueGenerator' => '',
           )),
           4 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Checkbox::__set_state(array(
+             'name' => 'hideInList',
+             'title' => 'app.generic.hideInList',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'defaultValue' => NULL,
+             'defaultValueGenerator' => '',
+          )),
+          5 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Related in',
              'type' => NULL,

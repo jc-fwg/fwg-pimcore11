@@ -13,6 +13,7 @@ class TagDto
         public ?string $emoji = null,
         public ?string $description = null,
         public ?string $slug = null,
+        public ?bool $hideInList = null,
     ) {
     }
 }

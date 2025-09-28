@@ -57,7 +57,6 @@ class BlogpostController extends BaseController
                 'elevation'   => (int) $this->tour->getTourFactElevation(),
                 'duration'    => (float) $this->tour->getTourFactDuration(),
                 'pauses'      => (string) $this->tour->getTourFactPauses(),
-                'orientation' => (string) $this->tour->getTourFactOrientation(),
                 'start'       => $this->tour->getTourStart(),
                 'startTitle'  => $this->tour->getTourStartTitle(),
                 'end'         => $this->tour->getTourEnd(),

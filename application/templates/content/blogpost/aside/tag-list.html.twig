@@ -3,6 +3,8 @@
         {{ 'aside.tagList.headline'|trans }}
     </h3>
     {% for tag in tagList %}
-        <a href="/tags?{{ tag.parent.slug }}={{ tag.slug }}" class="badge text-bg-secondary mb-1">{{ tag.emoji }} {{ tag.name }}</a>
+        {% if tag.hideInList != true %}
+            <a href="/tags?{{ tag.parent.slug }}={{ tag.slug }}" class="badge text-bg-secondary mb-1">{{ tag.emoji }} {{ tag.name }}</a>
+        {% endif %}
     {% endfor %}
 </aside>

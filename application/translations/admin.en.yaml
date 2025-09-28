@@ -32,6 +32,7 @@ app:
         hashtags: 'Hashtags'
         headForHeights: 'Head for Heights'
         headline: 'Headline'
+        hideInList: 'Hide in List'
         icon: 'Icon'
         imageGallery: 'Image Gallery'
         imageMain: 'Main Image'

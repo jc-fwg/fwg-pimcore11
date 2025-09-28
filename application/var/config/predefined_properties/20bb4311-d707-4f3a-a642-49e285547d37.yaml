@@ -1,0 +1,15 @@
+pimcore:
+    properties:
+        predefined:
+            definitions:
+                20bb4311-d707-4f3a-a642-49e285547d37:
+                    name: Pictogram
+                    description: ''
+                    key: pictogram
+                    type: text
+                    data: ''
+                    config: ''
+                    ctype: object
+                    inheritable: false
+                    creationDate: 1758917466
+                    modificationDate: 1758917513

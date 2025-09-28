@@ -1,41 +1,29 @@
-{# get the document which should be used to start in navigation | default home #}
-{% set navStartNode = document.getProperty('navigation_main_root') %}
-{% if not navStartNode is instanceof('\\Pimcore\\Model\\Document') %}
-    {% set navStartNode = pimcore_document(1) %}
-{% endif %}
+{% set navigationMain = getMainNavigation() %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-{% set navMain =  pimcore_build_nav({
-    active: document,
-    root: navStartNode
-}) %}
-<nav id="nav-main" class="navbar navbar-dark navbar-expand-lg flex-column pt-2 fixed-top">
-    <div id="nav-main-bg-layer">
-
-    </div>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar-main">
-        <a class="navbar-brand" href="/">
-            <img id="logo" src="{{ asset('static/gfx/freiweg-logo.svg') }}" alt="FreiWeg Outdoor Activity Blog">
-        </a>
-        <ul class="navbar-nav mr-auto">
-{#            {% dump(navMain) %}#}
-{#            {% for topicPage in navMain %}#}
-{#                <li class="nav-item dropdown">#}
-{#                    <a class="nav-link dropdown-toggle" href="#" id="drobHike" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ topicPage.getLabel()|trans }}</a>#}
-{#                    {% if topicPage.hasPages() %}#}
-{#                        <div class="dropdown-menu bg-dark" aria-labelledby="drobHike">#}
-{#                            {% for subPage in topicPage.getPages() %}#}
-{#                                {% if subPage.isVisible() %}#}
-{#                                    <a class="dropdown-item" href="{{ subPage.getHref() }}">{{ subPage.getLabel()|trans }}</a>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                </li>#}
-{#            {% endfor %}#}
-        </ul>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+            <ul class="navbar-nav">
+                {% for topic in navigationMain %}
+                    <li class="nav-item dropdown">
+                        <button class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if topic.folder.getProperty("pictogram") %}
+                                <img src="{{ asset('static/gfx/picto-' ~ topic.folder.getProperty("pictogram") ~ '.svg') }}" width="50" height="50" alt="{{ topic.folder.key }}">
+                            {% endif %}
+                            <br>
+                            {{ topic.folder.key }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% for collection in topic.collections %}
+                                <li><a class="dropdown-item" href="/{{ collection.slug }}">{{ collection.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </nav>

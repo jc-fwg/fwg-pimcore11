@@ -8,6 +8,7 @@ use App\Service\BlogpostService;
 use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
+use Pimcore\Model\Element\ValidationException;
 
 class BlogpostEventSubscriber extends AbstractEventSubscriber
 {
@@ -47,13 +48,13 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
 
     public function setAuthorTagsAtActivity(DataObjectEvent $event): void
     {
-        $object = $event->getObject();
-
-        if (!$object instanceof DataObject\Blogpost) {
+        if ($this->isAutoSave($event)) {
             return;
         }
 
-        if (empty($object->getAuthors()) === true) {
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
             return;
         }
 
@@ -100,8 +101,6 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
 
                 $authorTagsFromLastVersion[] = $author->getTag();
             }
-
-
 
             foreach ($activityTags as $k => $tag) {
                 if (in_array($tag, $authorTagsFromLastVersion) === true) {

@@ -25,8 +25,7 @@ class TagRepository extends AbstractRepository
     /**
      * @param string[] $ids
      *
-     * @return array<int, array<string, mixed>>
-     *
+     * @return DataObject\Tag[]
      * @throws Exception
      */
     public function findAllOrderedByTagCategoryWeighting(array $ids = []): array
@@ -53,7 +52,10 @@ class TagRepository extends AbstractRepository
                 ->setParameter('ids', $ids, ArrayParameterType::STRING);
         }
 
-        return $queryBuilder->fetchAllAssociative();
+        $tagList = new DataObject\Tag\Listing();
+        $tagList->setCondition('oo_id IN (' . implode(',', $queryBuilder->executeQuery()->fetchFirstColumn()) . ')');
+
+        return $tagList->getObjects();
     }
 
     /**

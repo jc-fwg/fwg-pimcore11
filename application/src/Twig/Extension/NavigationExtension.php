@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Twig\Extension;
 
+use App\Service\NavigationService;
+use Pimcore\Model\DataObject\Collection;
+use Pimcore\Model\DataObject\Folder;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -11,12 +14,28 @@ use function array_slice;
 
 class NavigationExtension extends AbstractExtension
 {
+    public function __construct(
+        private readonly NavigationService $navigationService,
+    )
+    {
+    }
+
     public function getFunctions()
     {
         return [
+            new TwigFunction('getMainNavigation', [$this, 'getMainNavigation']),
             new TwigFunction('shortenByWordCount', [$this, 'shortenByWordCount']),
             new TwigFunction('emojied', [$this, 'emojied']),
         ];
+    }
+
+    /**
+     * @return array<string, Collection[]>
+     * @throws \Exception
+     */
+    public function getMainNavigation(): array
+    {
+        return $this->navigationService->getMainNavigation();
     }
 
     /**

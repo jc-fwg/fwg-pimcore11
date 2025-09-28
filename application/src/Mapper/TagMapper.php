@@ -24,15 +24,14 @@ readonly class TagMapper
             throw new \RuntimeException('Tag has no parent category');
         }
 
-        $tagCategory = $this->tagCategoryMapper->fromModel($parent);
-
         return new TagDto(
             id: $model->getId(),
-            tagCategory: $tagCategory,
+            tagCategory: $this->tagCategoryMapper->fromModel($parent),
             name: $model->getName(),
             emoji: $model->getEmoji(),
             description: $model->getDescription(),
             slug: $model->getSlug(),
+            hideInList: $model->getHideInList(),
         );
     }
 }

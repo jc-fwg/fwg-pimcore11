@@ -9,10 +9,19 @@ use Pimcore\Model\DataObject\Author;
 
 class AuthorMapper
 {
+    public function __construct(
+        private readonly TagMapper $tagMapper,
+    )
+    {
+    }
+
     public function fromModel(Author $model): AuthorDto
     {
+        $tag = $model->getTag();
+
         return new AuthorDto(
             id: $model->getId(),
+            tag: $this->tagMapper->fromModel($tag),
             name: $model->getName(),
             description: $model->getDescription(),
             image: $model->getImageMain(),

@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Service\NavigationService;
 use Pimcore\Controller\FrontendController;
 use Pimcore\Model\DataObject;
 use Pimcore\Tool;
@@ -24,6 +25,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BaseController extends FrontendController
 {
+    public function __construct(
+        private readonly NavigationService $navigationService,
+    )
+    {
+
+    }
+
     protected function verifyPreviewRequest(Request $request, DataObject $object): bool
     {
         if (Tool::isElementRequestByAdmin($request, $object)) {

@@ -10,6 +10,7 @@ class AuthorDto
 {
     public function __construct(
         public readonly int $id,
+        public TagDto $tag,
         public ?string $name = null,
         public ?string $description = null,
         public ?Image $image = null,
