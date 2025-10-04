@@ -57,8 +57,12 @@ class DefaultController extends BaseController
             $latestPosts[] = $this->blogpostMapper->fromModel($post);
         }
 
+        $collections = $this->collectionRepository->findAll();
+        shuffle($collections);
+
         return array_merge($paramBag, [
             'latestPosts'    => $latestPosts,
+            'collections'    => array_slice($collections, 0 ,4),
             'socialChannels' => (new SocialChannel\Listing())->getObjects(),
         ]);
     }
@@ -73,7 +77,6 @@ class DefaultController extends BaseController
     {
         // Forward pages to defined controller and action
         $page = Page::getByPath('/'.$slug);
-
         if ($page instanceof Page) {
             return $this->forward($page->getController());
         }

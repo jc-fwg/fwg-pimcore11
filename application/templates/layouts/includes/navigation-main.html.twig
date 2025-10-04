@@ -1,6 +1,7 @@
 {% set navigationMain = getMainNavigation() %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
+<nav id="nav-main" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
     <div class="container-fluid">
+        <div class="navbar-brand">Bitte wählen</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,11 +10,10 @@
             <ul class="navbar-nav">
                 {% for topic in navigationMain %}
                     <li class="nav-item dropdown">
-                        <button class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             {% if topic.folder.getProperty("pictogram") %}
-                                <img src="{{ asset('static/gfx/picto-' ~ topic.folder.getProperty("pictogram") ~ '.svg') }}" width="50" height="50" alt="{{ topic.folder.key }}">
+                                <img src="{{ asset('static/gfx/picto-' ~ topic.folder.getProperty("pictogram") ~ '.svg') }}" width="50" height="50" alt="{{ topic.folder.key }}" class="mx-2">
                             {% endif %}
-                            <br>
                             {{ topic.folder.key }}
                         </button>
                         <ul class="dropdown-menu">

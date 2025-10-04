@@ -10,6 +10,8 @@
  * - description [wysiwyg]
  * - imageTeaser [image]
  * - additionalRecommendationEntrypoints [manyToManyRelation]
+ * - metaTitle [input]
+ * - metaDescription [textarea]
  * - categories [manyToManyObjectRelation]
  * - tags [manyToManyObjectRelation]
  * - blogposts [manyToManyObjectRelation]
@@ -23,7 +25,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1756645068,
+   'modificationDate' => 1759433025,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -221,6 +223,84 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
           )),
           5 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
+             'name' => 'SEO & Marketing',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.seoAndMarketing',
+             'width' => '',
+             'height' => '',
+             'collapsible' => false,
+             'collapsed' => false,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+                 'name' => 'metaTitle',
+                 'title' => 'app.generic.title',
+                 'tooltip' => '',
+                 'mandatory' => true,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'defaultValue' => NULL,
+                 'columnLength' => 190,
+                 'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
+                 'unique' => false,
+                 'showCharCount' => false,
+                 'width' => '100%',
+                 'defaultValueGenerator' => '',
+              )),
+              1 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
+                 'name' => 'metaDescription',
+                 'title' => 'app.generic.description',
+                 'tooltip' => '',
+                 'mandatory' => true,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'maxLength' => 190,
+                 'showCharCount' => true,
+                 'excludeFromSearchIndex' => true,
+                 'height' => '',
+                 'width' => '100%',
+              )),
+            ),
+             'locked' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'fieldtype' => 'fieldset',
+             'labelWidth' => 100,
+             'labelAlign' => 'top',
+          )),
+          6 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Included',
              'type' => NULL,
              'region' => NULL,
@@ -360,7 +440,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'left',
           )),
-          6 => 
+          7 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Excluded',
              'type' => NULL,

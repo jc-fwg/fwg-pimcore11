@@ -44,7 +44,22 @@ h4 {
 
 a {
     color: base.$color-cd-green;
+}
 
+#nav-main {
+
+    .dropdown-menu {
+        background-color: base.$color-grey-default;
+
+        a {
+            color: #bbb;
+            background-color: base.$color-grey-default;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
 }
 
 #hero {
@@ -62,7 +77,7 @@ a {
     position: relative;
 
     #logo {
-        min-width: 100px;
+        min-width: 250px;
         width: 12vw;
     }
 

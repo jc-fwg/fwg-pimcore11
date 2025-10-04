@@ -1,0 +1,15 @@
+<div class="col-lg-3 col-sm-6 col-xs-12">
+    <a href="{{ collection.slug }}" class="collection-list-item btn btn-secondary btn-sm px-0 py-0">
+        {% if collection.imageTeaser is not null %}
+        {{ collection.imageTeaser.thumbnail('blogpost-list-thumbnail').html(
+            {
+                'imgAttributes': {
+                'class': 'img-fluid',
+                'alt': collection.title
+            }
+            }
+        )|raw }}
+        {% endif %}
+        <div class="p-1">{{ collection.title }}</div>
+    </a>
+</div>
