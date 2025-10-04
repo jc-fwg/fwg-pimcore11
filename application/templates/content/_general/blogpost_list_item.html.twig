@@ -1,6 +1,6 @@
-{% set colSetup = "col-sm-6 col-xs-12 mb-4 px-4" %}
-{% set colSetupImage = "col-5" %}
-{% set colSetupContent = "col-7" %}
+{% set colSetup = "col-lg-6 col-sm-12 col-xs-12 mb-4 px-4" %}
+{% set colSetupImage = "col-lg-5 col-sm-12" %}
+{% set colSetupContent = "col-lg-7 col-sm-12" %}
 
 {% if size == "wide" %}
     {% set colSetup = "col-11 mb-4 px-2" %}
@@ -31,7 +31,10 @@
                     {{ shortenByWordCount(post.previewText, 23) }}
                 {% endif %}
             </p>
-            <a href="{{ post.detailLink }}" class="col-4 btn btn-secondary btn-sm d-inline-block pt-2 pb-2">Mehr erfahren</a>
+            <a href="{{ post.detailLink }}"
+               class="btn btn-secondary btn-sm col-12 col-md-6 col-xs-12 pt-2 pb-2">
+                Mehr erfahren
+            </a>
         </div>
     </div>
 </div>
