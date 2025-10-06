@@ -9,6 +9,7 @@
  {% do pimcore_head_meta().appendName('description', collection.metaDescription) %}
 {% block content %}
     <div class="page page-blogpost-list">
+        {% include 'layouts/includes/navigation-main.html.twig' %}
         {# HERO #}
         <header id="hero" class="text-center mb-5">
             {% if collection.imageTeaser is defined and collection.imageTeaser is not null %}
@@ -20,6 +21,15 @@
                 }) %}
                 {{ heroImage|raw }}
             {% endif %}
+            <div class="hero-content">
+                <div class="container">
+                    <div class="row">
+                        <a href="/" class="col-12 text-center">
+                            <img id="logo" class="mb-5" src="{{ asset('static/gfx/freiweg-logo.svg') }}" alt="FreiWeg Outdoor Activity Blog">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </header>
         <div class="container">
             <div class="row">

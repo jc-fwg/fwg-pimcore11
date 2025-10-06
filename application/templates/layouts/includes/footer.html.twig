@@ -5,21 +5,16 @@
     <div class="container-fluid content pb-5 pt-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-3">
-                    <h4>{{ 'global.footer.authors'|trans }}</h4>
-{#                    <a href="#">#}
-{#                        {% for author in authors %}#}
-{#                            {% if author.authorImage is not empty %}#}
-{#                                {{ author.authorImage.thumbnail('footer-author').html({ 'imgAttributes': { 'class': 'img-fluid rounded-circle border border-cd-orange', 'alt': author.authorName }})|raw }}#}
-{#                            {% endif %}#}
-{#                        {% endfor %}#}
-{#                    </a>#}
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <h4>what ever is interesting</h4>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="#"><i class="material-icons pr-2">privacy_tip</i> Datenschutz & Impressum</a><br>
+                <div class="col-12 text-center">
+                    {% set footerNaviFoler = pimcore_website_config("footerNaviFolder") %}
+                    {% if footerNaviFoler %}
+                        {% for item in footerNaviFoler.children() %}
+                            <a href="{{ item.getHref() }}">{{ item.getTitle() }}</a>
+                            {% if loop.last == false %}
+                                <span> · </span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

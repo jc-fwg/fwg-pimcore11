@@ -3,5 +3,6 @@ parameters:
         #- !php/const App\Constant\WebsiteSettingConstants::AN_EXAMPLE
     commands.create_website_settings.checkbox:
     commands.create_website_settings.document:
+        - !php/const App\Constant\WebsiteSettingConstants::FOOTER_NAVI_FOLDER
     commands.create_website_settings.object:
     commands.create_website_settings.text:

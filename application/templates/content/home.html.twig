@@ -18,7 +18,6 @@
                 </div>
             </div>
         </section>
-
         {# Latest #}
         <section id="posts" class="container-fluid spaced">
             <div class="container">
@@ -29,9 +28,20 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="container">
-                <h2 class="mt-4">{{ pimcore_input('posts_featured_headline', {'placeholder': 'Ausgewählte Beiträge'})}}</h2>
-                <div class="row g-2 mt-4">
+            {# Tags #}
+            <section id="tagList" class="container mt-4">
+                <h2 >{{ pimcore_input('tags_headline', {'placeholder': 'Beliebte Tags'})}}</h2>
+                <div class="tags mt-3">
+                    {% for tag in tags %}
+                        {% if tag.hideInList != true %}
+                            <a href="/tags?{{ tag.parent.slug }}={{ tag.slug }}" class="badge text-bg-secondary mb-1 d-inline-block">{{ tag.emoji }} {{ tag.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+            <div class="container mt-5">
+                <h2>{{ pimcore_input('posts_featured_headline', {'placeholder': 'Ausgewählte Beiträge'})}}</h2>
+                <div class="row g-2 mt-3">
                     {% for collection in collections %}
                         {% include 'content/_general/collection_list_item.html.twig' with {'collection': collection} %}
                     {% endfor %}

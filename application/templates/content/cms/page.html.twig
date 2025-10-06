@@ -13,21 +13,24 @@
 {% block content %}
     <div class="page page-cms">
         {# HERO #}
-        <header id="hero" class="text-center mb-5">
+        <header id="hero" class="text-center">
             {% if editmode %}
                 {{ pimcore_image('heroImage', {
                     'width': 400,
                     'title': 'Hero-Image',
                 }) }}
             {% elseif document.editable('heroImage') is not null %}
-                {% set heroImage = document.editable('heroImage').getThumbnail('heroImage').html({
-                    'class': 'd-none',
-                    'id': 'hero-background'
-                }) %}
-                {{ heroImage|raw }}
+                <a href="/">
+                    {% set heroImage = document.editable('heroImage').getThumbnail('heroImage').html({
+                        'class': 'd-none',
+                        'id': 'hero-background'
+                    }) %}
+                    {{ heroImage|raw }}
+                </a>
             {% endif %}
         </header>
-        <div class="container-fluid">
+        {% include 'layouts/includes/navigation-main.html.twig' %}
+        <div class="container-fluid mt-5">
             {{ pimcore_areablock('cms') }}
         </div>
     </div>

@@ -6,5 +6,5 @@ namespace App\Constant;
 
 class WebsiteSettingConstants
 {
-    // public const string AN_EXAMPLE = 'myExample';
+    public const string FOOTER_NAVI_FOLDER = 'footerNaviFolder';
 }

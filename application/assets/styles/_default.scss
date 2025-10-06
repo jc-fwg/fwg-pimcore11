@@ -46,6 +46,18 @@ a {
     color: base.$color-cd-green;
 }
 
+.tags {
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            background-color: base.$color-cd-green !important;
+            color: #fff;
+        }
+    }
+}
+
 #nav-main {
 
     .dropdown-menu {

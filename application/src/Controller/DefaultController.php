@@ -52,17 +52,23 @@ class DefaultController extends BaseController
         $paramBag['heroImage'] = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
         $paramBag['headTitle'] = $this->document->getTitle();
 
+        // Latest blogposts
         $latestPosts = [];
         foreach ($this->blogpostRepository->findLatest(4) as $post) {
             $latestPosts[] = $this->blogpostMapper->fromModel($post);
         }
 
+        // Collections
         $collections = $this->collectionRepository->findAll();
         shuffle($collections);
+
+        // Tags
+        $tags = $this->tagRepository->findAllCurrentlyRelated();
 
         return array_merge($paramBag, [
             'latestPosts'    => $latestPosts,
             'collections'    => array_slice($collections, 0 ,4),
+            'tags'           => $tags,
             'socialChannels' => (new SocialChannel\Listing())->getObjects(),
         ]);
     }
@@ -213,7 +219,7 @@ class DefaultController extends BaseController
         $paramBag = $this->getAllParameters($request);
 
         // Get the template name from the document
-        $templateName = $this->document?->getTemplate() ?? 'content/cms/1-column.html.twig';
+        $templateName = $this->document?->getTemplate() ?? 'content/cms/page.html.twig';
 
         return $this->render($templateName, $paramBag);
     }
