@@ -23,11 +23,11 @@
             {% do pimcore_head_link().prependStylesheet(asset("build/app.css"), "screen") %}
             {% do pimcore_head_link().prependStylesheet(asset("static/css/libs/bootstrap-icons/font/bootstrap-icons.min.css"), "screen") %}
             {% do pimcore_head_link().prependStylesheet(asset("static/css/libs/bootstrap.min.css"), "screen") %}
+            {% do pimcore_head_link().prependStylesheet(asset("static/css/libs/klaro.css"), "screen") %}
 
-{#            {% do pimcore_head_script().prependFile(asset("static/js/libs/jquery.min.js")) %}#}
             {% do pimcore_head_script().appendFile(asset("static/js/libs/bootstrap.bundle.min.js")) %}
-{#            {% do pimcore_head_script().appendFile(asset("static/js/app.js")) #}
-{#            {% do pimcore_head_script().appendFile(asset("static/js/app/_default.js")) #}
+            {% do pimcore_head_script().appendFile(asset("static/js/libs/klaro-config.js")) %}
+            {% do pimcore_head_script().appendFile(asset("static/js/libs/klaro.js")) %}
             {% for js in encore_entry_js_files('app') %}
                 {% do pimcore_head_script().appendFile(js) %}
             {% endfor %}
@@ -37,6 +37,12 @@
             {{ pimcore_head_link() }}
         {% endblock %}
         {% block extra_stylesheets %}{% endblock %}
+
+        {% if app.environment == 'prod' %}
+            <meta name="msvalidate.01" content="C3C0DE72751A61AD41BB5937C6761002" />
+            <meta name="google-site-verification" content="google540a4e5e68936976" />
+            <meta name="p:domain_verify" content="693bfe78b4fb4e7a9ac1121adb29ebcc" />
+        {% endif %}
     </head>
     <body>
 
