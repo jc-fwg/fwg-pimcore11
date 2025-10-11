@@ -43,9 +43,13 @@ var klaroConfig = {
                     title: 'Website-Funktionalität'
                 }
             },
-            ok: 'Kekse! ja, da stimme ich zu!',
+            consentNotice: {
+                learnMore: 'Weitere Informationen',
+                acceptAll: 'Alle akzeptieren',
+            },
+            ok: 'Ich stimme zu, gebt mir Kekse!',
             save: 'Speichern',
-            decline: 'Ich lehne ab'
+            decline: 'Ich lehne ab. Keine Kekse für mich.',
         }
     },
 

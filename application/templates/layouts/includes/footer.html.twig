@@ -9,7 +9,12 @@
                     {% set footerNaviFoler = pimcore_website_config("footerNaviFolder") %}
                     {% if footerNaviFoler %}
                         {% for item in footerNaviFoler.children() %}
-                            <a href="{{ item.getHref() }}">{{ item.getTitle() }}</a>
+
+                            {% if item.getType() == "page" %}
+                                <a href="{{ item.getHref() }}">{{ item.getTitle() }}</a>
+                            {% elseif item.getType() == "link" %}
+                                <a href="{{ item.getHref() }}">{{ item.getKey() }}</a>
+                            {% endif %}
                             {% if loop.last == false %}
                                 <span> · </span>
                             {% endif %}
