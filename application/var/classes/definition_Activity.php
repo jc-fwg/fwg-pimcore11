@@ -11,10 +11,10 @@
  * - date [date]
  * - locations [fieldcollections]
  * - gpx [manyToOneRelation]
- * - weather [select]
- * - temperature [numeric]
  * - duration [numeric]
  * - breaks [select]
+ * - weather [select]
+ * - temperature [numeric]
  * - summary [objectbricks]
  * - tags [manyToManyObjectRelation]
  */
@@ -26,7 +26,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1750164317,
+   'modificationDate' => 1760277462,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -89,7 +89,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'type' => NULL,
                  'region' => 'west',
                  'title' => 'app.generic.baseData',
-                 'width' => '',
+                 'width' => '50%',
                  'height' => '',
                  'collapsible' => false,
                  'collapsed' => false,
@@ -152,7 +152,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     ),
                      'unique' => false,
                      'showCharCount' => false,
-                     'width' => '',
+                     'width' => '100%',
                      'defaultValueGenerator' => '',
                   )),
                   2 => 
@@ -256,7 +256,91 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     ),
                      'width' => '',
                   )),
-                  5 => 
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'panel',
+                 'layout' => NULL,
+                 'border' => false,
+                 'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/engineering.svg',
+                 'labelWidth' => 100,
+                 'labelAlign' => 'top',
+              )),
+              1 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
+                 'name' => 'Summary',
+                 'type' => NULL,
+                 'region' => 'west',
+                 'title' => 'app.generic.summary',
+                 'width' => '50%',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                  0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
+                     'name' => 'duration',
+                     'title' => 'app.generic.duration',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'defaultValue' => NULL,
+                     'integer' => false,
+                     'unsigned' => false,
+                     'minValue' => NULL,
+                     'maxValue' => NULL,
+                     'unique' => false,
+                     'decimalSize' => NULL,
+                     'decimalPrecision' => NULL,
+                     'width' => '',
+                     'defaultValueGenerator' => '',
+                  )),
+                  1 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+                     'name' => 'breaks',
+                     'title' => 'app.generic.breaks',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'defaultValue' => '',
+                     'columnLength' => 190,
+                     'dynamicOptions' => false,
+                     'defaultValueGenerator' => '',
+                     'width' => '',
+                     'optionsProviderType' => 'select_options',
+                     'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
+                     'optionsProviderData' => 'ActivityBreaks',
+                  )),
+                  2 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Weather Conditions',
                      'type' => NULL,
@@ -337,91 +421,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'labelWidth' => 100,
                      'labelAlign' => 'top',
                   )),
-                ),
-                 'locked' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'fieldtype' => 'panel',
-                 'layout' => NULL,
-                 'border' => false,
-                 'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/engineering.svg',
-                 'labelWidth' => 100,
-                 'labelAlign' => 'top',
-              )),
-              1 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
-                 'name' => 'Summary',
-                 'type' => NULL,
-                 'region' => 'west',
-                 'title' => 'app.generic.summary',
-                 'width' => '',
-                 'height' => '',
-                 'collapsible' => false,
-                 'collapsed' => false,
-                 'bodyStyle' => '',
-                 'datatype' => 'layout',
-                 'children' => 
-                array (
-                  0 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
-                     'name' => 'duration',
-                     'title' => 'app.generic.duration',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => false,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'defaultValue' => NULL,
-                     'integer' => false,
-                     'unsigned' => false,
-                     'minValue' => NULL,
-                     'maxValue' => NULL,
-                     'unique' => false,
-                     'decimalSize' => NULL,
-                     'decimalPrecision' => NULL,
-                     'width' => '',
-                     'defaultValueGenerator' => '',
-                  )),
-                  1 => 
-                  \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
-                     'name' => 'breaks',
-                     'title' => 'app.generic.breaks',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => false,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'defaultValue' => '',
-                     'columnLength' => 190,
-                     'dynamicOptions' => false,
-                     'defaultValueGenerator' => '',
-                     'width' => '',
-                     'optionsProviderType' => 'select_options',
-                     'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
-                     'optionsProviderData' => 'ActivityBreaks',
-                  )),
-                  2 => 
+                  3 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
                      'name' => 'summary',
                      'title' => 'app.generic.summary',

@@ -1,9 +1,13 @@
 <div id="blogpost-gallery-{{ item.index }}" class="blogpost-content blogpost-content-gallery js-bbx-gallery">
+    {% set alt = item.title ? item.title : blogpost.title %}
+    {% if item.title is not empty %}
+        <h2>{{ item.title }}</h2>
+    {% endif %}
     {% for image in item.imageGallery.items %}
         {% set fullImageSource = image.thumbnail('blogpost-gallery-full').path %}
         {{ image.thumbnail('blogpost-gallery-thumbnail').html({ 'imgAttributes': {
             'class': 'img-fluid p-1 border mr-2 mb-2',
-            'alt': blogpost.title,
+            'alt': alt,
             'data-fullsource': fullImageSource,
             'data-index': loop.index,
         }})|raw }}

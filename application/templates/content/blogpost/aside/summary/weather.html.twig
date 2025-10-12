@@ -3,6 +3,6 @@
         {{ 'blogpost.activity.summary.weather.title'|trans }}
     </td>
     <td>
-        {{ ('blogpost.activity.summary.weather.values.' ~ blogpost.activity.weather)|trans }}
+        {{ ('blogpost.activity.summary.weather.values.' ~ blogpost.activity.weather)|trans }}{% if blogpost.activity.temperature is defined and blogpost.activity.temperature != null %}, {{ 'blogpost.activity.summary.weather.temperature'|trans|format(blogpost.activity.temperature) }}{% endif %}
     </td>
 </tr>

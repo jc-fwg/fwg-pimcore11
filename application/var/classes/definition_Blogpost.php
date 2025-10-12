@@ -37,7 +37,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1755790097,
+   'modificationDate' => 1760276726,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -704,7 +704,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'unique' => false,
                  'showCharCount' => false,
-                 'width' => '30%',
+                 'width' => '60%',
                  'defaultValueGenerator' => '',
               )),
               1 => 
@@ -734,7 +734,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'unique' => false,
                  'showCharCount' => false,
-                 'width' => '30%',
+                 'width' => '60%',
                  'defaultValueGenerator' => '',
               )),
               2 => 
