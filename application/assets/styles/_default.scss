@@ -162,10 +162,10 @@ footer {
 
     a {
         color: #fff;
+        text-decoration: none;
 
         &:hover {
             color: base.$color-cd-green;
-            text-decoration: none;
         }
     }
 }

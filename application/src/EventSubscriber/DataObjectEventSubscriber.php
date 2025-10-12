@@ -29,10 +29,14 @@ class DataObjectEventSubscriber extends AbstractEventSubscriber
             ],
             DataObjectEvents::PRE_UPDATE => [
                 ['setAssetsFolderByObjectKey', 0],
+                ['setKeyByDateAndTitle', 0]
             ],
             DataObjectEvents::PRE_DELETE => [
                 ['moveAssetsFolderToTrash', 0],
             ],
+            DataObjectEvents::POST_ADD => [
+                ['setKeyByDateAndTitle', 0],
+            ]
         ];
     }
 

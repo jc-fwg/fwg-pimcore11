@@ -74,6 +74,7 @@ blogpost:
                     stormy: 'stürmisch'
                     sunny: 'sonnig'
                     windy: 'windig'
+                temperature: 'ca. %s Grad'
     comments:
         answer: 'Auf diesen Kommentar antworten'
         headline: 'Kommentare'
