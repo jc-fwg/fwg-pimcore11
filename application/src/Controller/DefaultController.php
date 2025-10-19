@@ -144,9 +144,21 @@ class DefaultController extends BaseController
 
         $paramBag = $this->getAllParameters($request);
 
+        $blogposts = $this->blogpostService->getBlogpostsByCollection($collection) ?? [];
+
+        // Image Teaser
+        $imageTeaser = $collection->getImageTeaser();
+        if (
+            !$imageTeaser instanceof Asset\Image
+            && count($blogposts) > 0
+        ) {
+            $imageTeaser = $blogposts[array_rand($blogposts)]->imageTeaser;
+        }
+
         return $this->render('content/collection/collection.html.twig', array_merge($paramBag, [
             'collection' => $collection,
             'collections' => $this->collectionService->getRecommendedCollections($collection),
+            'imageTeaser' => $imageTeaser,
             'blogposts' => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
             'tagList' => $this->tagRepository->findAllCurrentlyRelated(),
         ]));

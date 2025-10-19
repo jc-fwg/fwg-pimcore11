@@ -1,0 +1,26 @@
+@use '../_base.scss' as base;
+
+.page-list {
+
+    h1,
+    h2 {
+        margin: 0;
+        background-color: base.$color-cd-orange;
+        padding: 5px 11px;
+        color: #fff;
+        display: inline-block;
+    }
+
+    h1 {
+        border-bottom: 3px solid #fff;
+    }
+
+    h2 {
+        background-color: base.$color-cd-green;
+    }
+
+    h3 {
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ccc;
+    }
+}

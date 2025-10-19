@@ -8,12 +8,12 @@
 {% do pimcore_head_title().prepend(metaTitle) %}
  {% do pimcore_head_meta().appendName('description', collection.metaDescription) %}
 {% block content %}
-    <div class="page page-blogpost-list">
+    <div class="page page-list">
         {% include 'layouts/includes/navigation-main.html.twig' %}
         {# HERO #}
         <header id="hero" class="text-center mb-5">
-            {% if collection.imageTeaser is defined and collection.imageTeaser is not null %}
-                {% set heroImage = collection.imageTeaser.thumbnail('heroImage').html({
+            {% if imageTeaser is defined and imageTeaser is not null %}
+                {% set heroImage = imageTeaser.thumbnail('heroImage').html({
                     'imgAttributes': {
                         'class': 'd-none',
                         'id': 'hero-background'
