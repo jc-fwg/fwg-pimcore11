@@ -37,11 +37,10 @@
                     {% if blogposts is not empty %}
                         <h1>{{ collection.title }}</h1>
                         <p>{{ collection.description|raw }}</p>
-                        {% for post in blogposts %}
-                            {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
-                        {% endfor %}
-                        <div class="blogpost">
-
+                        <div class="blogposts mt-5">
+                            {% for post in blogposts %}
+                                {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
+                            {% endfor %}
                         </div>
                     {% else %}
                         <p>No blog posts found in this collection.</p>

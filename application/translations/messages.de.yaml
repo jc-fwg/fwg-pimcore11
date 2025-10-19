@@ -4,13 +4,14 @@ generic:
 web:
     social:
         email: 'E-Mail an uns'
+        facebook: 'FreiWeg auf Facebook'
         instagram: 'FreiWeg auf Instagram'
 home:
     posts:
         latest: 'Neueste Beiträge'
 aside:
     tagList:
-        headline: 'Weitere interessante Themen...'
+        headline: 'Weitere interessante Themen'
 blogpost:
     toc:
         headline: 'Inhaltsverzeichnis'
@@ -107,6 +108,6 @@ blogpost:
                 successHeadline: 'Vielen Dank für deinen Kommentar!'
 
 blogpostList:
-    recommendedCollections: 'Auch interessant...'
+    recommendedCollections: 'Entdecken & erkunden'
 tagList:
     blogpostsHeadline: 'Unsere Blogsposts für Deine Auswahl'
