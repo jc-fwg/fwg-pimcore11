@@ -36,8 +36,8 @@ blogpost:
                 values:
                     easy: 'leicht'
                     easyPlus: 'leicht bis mittel'
-                    medium: 'mittel'
-                    mediumPlus: 'mittel bis schwer'
+                    moderate: 'mittel'
+                    moderatePlus: 'mittel bis schwer'
                     hard: 'schwer'
             distance:
                 title: 'Distanz'
