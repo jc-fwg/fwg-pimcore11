@@ -132,6 +132,11 @@ services:
         resource: '../src/Service'
         public: true
 
+    App\Service\OpenAI\ChatService:
+        public: true
+        arguments:
+            $openAiApiKey: '%env(OPENAI_API_KEY)%'
+
     # ---------------------------------------------------------
     # Twig Extensions
     # ---------------------------------------------------------
