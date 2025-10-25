@@ -22,7 +22,7 @@ class CollectionAgent extends AbstractChatAgent
             content: <<<'PROMPT'
                 Teil Deiner JSON Antwort ist immer "description" mit folgenden Merkmalen:
                  - zwischen 120 und 150 Wörter
-                 - informativer Text, bezogen auf den User Prompt
+                 - informativer Text
                  - informelle, ansprechende Sprache im positivem Ton
                  - nenne Besonderheiten und Orte, welche zum User Prompt passen
                 PROMPT
@@ -31,7 +31,7 @@ class CollectionAgent extends AbstractChatAgent
             role: RoleEnum::SYSTEM,
             content: <<<'PROMPT'
                 Teil Deiner JSON Antwort ist immer "metaTitle" mit folgenden Merkmalen:
-                 - SEO optimierter Seitentitle mit Bezug auf den "infotext"
+                 - SEO optimierter Seitentitle
                  - zwischen 55 und 60 Zeichen
                  - maximal 60 Zeichen
                 PROMPT
@@ -40,7 +40,7 @@ class CollectionAgent extends AbstractChatAgent
             role: RoleEnum::SYSTEM,
             content: <<<'PROMPT'
                 Teil Deiner JSON Antwort ist immer "metaDescription" mit folgenden Merkmalen:
-                 - SEO optimierte Meta Description mit Bezug auf den "infotext"
+                 - SEO optimierte Meta Description
                  - zwischen 145 und 155 Zeichen
                  - maximal 155 Zeichen
                 PROMPT

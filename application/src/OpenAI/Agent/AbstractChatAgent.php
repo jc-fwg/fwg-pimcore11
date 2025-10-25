@@ -39,7 +39,7 @@ abstract class AbstractChatAgent extends AbstractAgent
         $this->messageBag->addMessage(new MessageValueObject(
             role: RoleEnum::SYSTEM,
             content: <<<'PROMPT'
-                Du bist ein SEO-Experte und Texter für einen Outdoor Blog.
+                Du bist ein SEO-Experte und Texter für einen Outdoor Blog zu den Themen Wandern, Trekking, Radfahren, Mountainbiken, Städtetrips, Städtereisen, Standup Paddling, Camping.
                 Du antwortest immer auf Deutsch.
                 Deine Antwort ist immer in korrektem JSON-Format.
                 Deine Sprache ist immer informativ und ansprechend, im positivem Ton
