@@ -3,6 +3,10 @@ imports:
 
 
 pimcore:
+    documents:
+        auto_save_interval: 0
+    objects:
+        auto_save_interval: 0
 
 # IMPORTANT Notice!
 # Following there are only some examples listed, for a full list of possible options, please run the following command:
