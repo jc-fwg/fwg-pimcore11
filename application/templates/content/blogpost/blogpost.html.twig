@@ -25,7 +25,13 @@
                 {# HERO #}
                 <header id="hero" class="text-center">
                     {% if blogpost.imageTeaser is defined and blogpost.imageTeaser is not null %}
-                        {% set heroImage = blogpost.imageTeaser.thumbnail('heroImage').html({
+                        {% set heroImage = blogpost.imageTeaser %}
+                    {% elseif blogpost.imageMain is defined and blogpost.imageMain is not null %}
+                        {% set heroImage = blogpost.imageMain %}
+                    {% endif %}
+
+                    {% if heroImage is defined %}
+                        {% set heroImage = heroImage.thumbnail('heroImage').html({
                             'imgAttributes': {
                                 'class': 'd-none',
                                 'id': 'hero-background'

@@ -56,10 +56,12 @@ class TagRepository extends AbstractRepository
                 ->setParameter('ids', $ids, ArrayParameterType::STRING);
         }
 
-        $tagList = new DataObject\Tag\Listing();
-        $tagList->setCondition('oo_id IN ('.implode(',', $queryBuilder->executeQuery()->fetchFirstColumn()).')');
+        $tagIds = $queryBuilder->executeQuery()->fetchFirstColumn();
 
-        return $tagList->getObjects();
+        return array_map(
+            static fn ($tagId) => DataObject\Tag::getById((int) $tagId),
+            $tagIds
+        );
     }
 
     /**
