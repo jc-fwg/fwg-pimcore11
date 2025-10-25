@@ -19,7 +19,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.author.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1759065009,
+   'modificationDate' => 1761401115,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -287,6 +287,46 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
+       'name' => 'blogposts',
+       'title' => 'app.class.blogpost.titlePlural',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => true,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => true,
+       'invisible' => false,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'classes' => 
+      array (
+      ),
+       'displayMode' => NULL,
+       'pathFormatterClass' => '',
+       'maxItems' => NULL,
+       'visibleFields' => 'id,key',
+       'allowToCreateNewObject' => false,
+       'allowToClearRelation' => true,
+       'optimizedAdminLoading' => false,
+       'enableTextSelection' => false,
+       'visibleFieldDefinitions' => 
+      array (
+      ),
+       'width' => '',
+       'height' => '',
+       'ownerClassName' => 'Blogpost',
+       'ownerClassId' => NULL,
+       'ownerFieldName' => 'activity',
+       'lazyLoading' => true,
+    )),
   ),
    'blockedVarsForExport' => 
   array (

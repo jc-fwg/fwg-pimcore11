@@ -9,6 +9,7 @@
  * - activityType [select]
  * - title [input]
  * - date [date]
+ * - blogposts [reverseObjectRelation]
  * - locations [fieldcollections]
  * - gpx [manyToOneRelation]
  * - duration [numeric]
@@ -26,7 +27,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1760277462,
+   'modificationDate' => 1761400992,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -180,6 +181,46 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'defaultValueGenerator' => '',
                   )),
                   3 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
+                     'name' => 'blogposts',
+                     'title' => 'app.class.blogpost.titlePlural',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => true,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => true,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'classes' => 
+                    array (
+                    ),
+                     'displayMode' => NULL,
+                     'pathFormatterClass' => '',
+                     'maxItems' => NULL,
+                     'visibleFields' => 'id,key',
+                     'allowToCreateNewObject' => false,
+                     'allowToClearRelation' => true,
+                     'optimizedAdminLoading' => false,
+                     'enableTextSelection' => false,
+                     'visibleFieldDefinitions' => 
+                    array (
+                    ),
+                     'width' => '',
+                     'height' => '',
+                     'ownerClassName' => 'Blogpost',
+                     'ownerClassId' => 'blogpost',
+                     'ownerFieldName' => 'activity',
+                     'lazyLoading' => true,
+                  )),
+                  4 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections::__set_state(array(
                      'name' => 'locations',
                      'title' => 'app.fieldCollection.location.titlePlural',
@@ -210,7 +251,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'collapsible' => false,
                      'border' => false,
                   )),
-                  4 => 
+                  5 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                      'name' => 'gpx',
                      'title' => 'app.generic.gpxFile',
