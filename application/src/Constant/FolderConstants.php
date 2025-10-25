@@ -11,8 +11,8 @@ class FolderConstants
     public const string ASSET_WEBSITE             = '/Website';
     public const string ASSET_WEBSITE_HERO_IMAGES = self::ASSET_WEBSITE.'/Hero Images';
 
-    public const string DOCUMENT_MAIN      = '/Main';
-    public const string DOCUMENT_META      = '/Meta';
+    public const string DOCUMENT_MAIN = '/Main';
+    public const string DOCUMENT_META = '/Meta';
 
     public const string OBJECT_ACTIVITIES      = '/Activities';
     public const string OBJECT_AUTHORS         = '/Authors';

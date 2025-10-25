@@ -1,0 +1,4 @@
+a.x-btn:has(.fetch_infotext_from_ai_icon) {
+    background-color: #8dc63f !important;
+    padding: 5px !important;
+}

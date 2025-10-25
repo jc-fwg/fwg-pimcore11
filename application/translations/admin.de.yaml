@@ -24,6 +24,7 @@ app:
         metrics: 'Metriken'
         name: 'Name'
         gpxFile: 'GPX-Datei'
+        subTitle: 'Untertitel'
         summary: 'Zusammenfassung'
         surefootedness: 'Trittsicherheit'
         temperature: 'Temperatur (°C)'

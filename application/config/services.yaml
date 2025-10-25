@@ -147,6 +147,19 @@ services:
         arguments:
             $location: './backup'
 
+    ### OpenAI Service
+    App\OpenAI\Service\OpenAIService:
+        public: true
+
+    App\OpenAI\Agent\:
+        resource: '../src/OpenAI/Agent'
+        public: true
+
+    App\OpenAI\Client\Client:
+        public: true
+        arguments:
+            $openAiApiKey: '%env(OPENAI_API_KEY)%'
+
 
     # Example custom templating helper
     # App\Templating\Helper\Example:

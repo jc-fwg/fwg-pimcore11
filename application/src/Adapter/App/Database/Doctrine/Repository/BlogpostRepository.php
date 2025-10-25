@@ -108,7 +108,9 @@ class BlogpostRepository extends AbstractRepository
      */
     public function findAllByTags(array $tags, string $combine = 'OR'): array
     {
-        if (empty($tags)) return [];
+        if (empty($tags)) {
+            return [];
+        }
 
         $tagsSetQuery = [];
         foreach ($tags as $tag) {

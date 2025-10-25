@@ -27,9 +27,7 @@ class BaseController extends FrontendController
 {
     public function __construct(
         private readonly NavigationService $navigationService,
-    )
-    {
-
+    ) {
     }
 
     protected function verifyPreviewRequest(Request $request, DataObject $object): bool

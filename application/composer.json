@@ -8,6 +8,7 @@
     "process-timeout": 0,
     "allow-plugins": {
       "cweagans/composer-patches": true,
+      "php-http/discovery": true,
       "symfony/runtime": true
     }
   },
@@ -16,6 +17,7 @@
     "asmblah/php-amqp-compat": "^0.4.13",
     "blackbit_digital_commerce/pimcore-backup": "dev-master",
     "cweagans/composer-patches": "^1.7",
+    "openai-php/client": "^0.17.1",
     "pimcore/admin-ui-classic-bundle": "*",
     "pimcore/pimcore": "*",
     "pimcore/platform-version": "^2024.4",

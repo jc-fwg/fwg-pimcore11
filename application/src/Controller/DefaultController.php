@@ -28,12 +28,12 @@ use function count;
 class DefaultController extends BaseController
 {
     public function __construct(
-        private readonly BlogpostRepository $blogpostRepository,
-        private readonly BlogpostMapper $blogpostMapper,
-        private readonly BlogpostService $blogpostService,
+        private readonly BlogpostRepository   $blogpostRepository,
+        private readonly BlogpostMapper       $blogpostMapper,
+        private readonly BlogpostService      $blogpostService,
         private readonly CollectionRepository $collectionRepository,
-        private readonly CollectionService $collectionService,
-        private readonly TagRepository $tagRepository,
+        private readonly CollectionService    $collectionService,
+        private readonly TagRepository        $tagRepository,
     ) {
     }
 
@@ -44,6 +44,7 @@ class DefaultController extends BaseController
     )]
     public function indexAction(Request $request,
     ): array {
+
         $paramBag = $this->getAllParameters($request);
 
         // Get random hero image

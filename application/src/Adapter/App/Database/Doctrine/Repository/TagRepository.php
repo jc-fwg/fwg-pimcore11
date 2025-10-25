@@ -10,6 +10,9 @@ use Doctrine\DBAL\Exception;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\Exception\NotFoundException;
 
+use function count;
+use function sprintf;
+
 class TagRepository extends AbstractRepository
 {
     public const string TABLE_NAME_OBJECTS                    = 'objects';
@@ -26,6 +29,7 @@ class TagRepository extends AbstractRepository
      * @param string[] $ids
      *
      * @return DataObject\Tag[]
+     *
      * @throws Exception
      */
     public function findAllOrderedByTagCategoryWeighting(array $ids = []): array
@@ -53,7 +57,7 @@ class TagRepository extends AbstractRepository
         }
 
         $tagList = new DataObject\Tag\Listing();
-        $tagList->setCondition('oo_id IN (' . implode(',', $queryBuilder->executeQuery()->fetchFirstColumn()) . ')');
+        $tagList->setCondition('oo_id IN ('.implode(',', $queryBuilder->executeQuery()->fetchFirstColumn()).')');
 
         return $tagList->getObjects();
     }
@@ -64,7 +68,8 @@ class TagRepository extends AbstractRepository
     public function findAllCurrentlyRelated(): array
     {
         $tags = (new DataObject\Tag\Listing())->getObjects();
-        return array_filter($tags, static fn($tag) => count($tag->getActivities()) > 0);
+
+        return array_filter($tags, static fn ($tag) => count($tag->getActivities()) > 0);
     }
 
     public function getBySlug(string $slug): DataObject\Tag

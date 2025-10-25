@@ -12,6 +12,7 @@ use App\Mapper\BlogpostMapper;
 use App\Mapper\CommentMapper;
 use App\ValueObject\BlogpostCommentValueObject;
 use Carbon\Carbon;
+use Exception;
 use Pimcore\Bundle\ApplicationLoggerBundle\ApplicationLogger;
 use Pimcore\Mail;
 use Pimcore\Model\DataObject;
@@ -134,18 +135,19 @@ class BlogpostService
 
     /**
      * @return BlogpostDto[]
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     public function getBlogpostsByCollection(DataObject\Collection $collection): array
     {
         $blogposts = [];
 
         // Categories
-//        $categories = $collection->getCategories();
-//
-//        if (!empty($categories)) {
-//            $blogposts = array_merge($this->blogpostRepository->findAllByCategories($categories), $blogposts);
-//        }
+        //        $categories = $collection->getCategories();
+        //
+        //        if (!empty($categories)) {
+        //            $blogposts = array_merge($this->blogpostRepository->findAllByCategories($categories), $blogposts);
+        //        }
 
         // Tags
         $tags = $collection->getTags();
@@ -162,11 +164,12 @@ class BlogpostService
         );
 
         // Exclude blogposts
-        $blogposts =  array_filter($blogposts,
+        $blogposts = array_filter($blogposts,
             static fn (DataObject\Blogpost $blogpost) => !in_array($blogpost, $collection->getBlogpostsExcluded(), true)
         );
 
         $blogpostMapper = $this->blogpostMapper;
+
         return array_map(
             static fn (DataObject\Blogpost $blogpost) => $blogpostMapper->fromModel($blogpost),
             $blogposts

@@ -53,6 +53,7 @@ app:
         seoAndMarketing: 'SEO & Marketing'
         selected: 'Selected'
         slug: 'Slug'
+        subTitle: 'Sub Title'
         summary: 'Summary'
         surefootedness: 'Surefootedness'
         temperature: 'Temperature (°C)'

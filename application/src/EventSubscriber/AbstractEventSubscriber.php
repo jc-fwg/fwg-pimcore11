@@ -11,26 +11,27 @@ use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\Service;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+use function sprintf;
+
 abstract class AbstractEventSubscriber implements EventSubscriberInterface
 {
     public const string IS_AUTO_SAVE = 'isAutoSave';
 
     public function isAutoSave(DataObjectEvent $event): bool
     {
-        return (
+        return
             $event->hasArgument(self::IS_AUTO_SAVE) === true
-            && $event->getArgument(self::IS_AUTO_SAVE) === true
-        );
+            && $event->getArgument(self::IS_AUTO_SAVE) === true;
     }
 
     public function setKeyByDateAndTitle(DataObjectEvent $event): void
     {
         $object = $event->getObject();
 
-        $date = match(true) {
+        $date = match (true) {
             $object instanceof Blogpost => $object->getPublicationDate(),
             $object instanceof Activity => $object->getDate(),
-            default => null
+            default                     => null,
         };
 
         if ($date === null) {
@@ -55,4 +56,3 @@ abstract class AbstractEventSubscriber implements EventSubscriberInterface
         $object->save();
     }
 }
-
