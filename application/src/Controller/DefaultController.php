@@ -9,6 +9,7 @@ use App\Adapter\App\Database\Doctrine\Repository\CollectionRepository;
 use App\Adapter\App\Database\Doctrine\Repository\TagRepository;
 use App\Constant\FolderConstants;
 use App\Mapper\BlogpostMapper;
+use App\OpenAI\Service\OpenAIService;
 use App\Service\BlogpostService;
 use App\Service\CollectionService;
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
@@ -28,12 +29,13 @@ use function count;
 class DefaultController extends BaseController
 {
     public function __construct(
-        private readonly BlogpostRepository $blogpostRepository,
-        private readonly BlogpostMapper $blogpostMapper,
-        private readonly BlogpostService $blogpostService,
+        private readonly BlogpostRepository   $blogpostRepository,
+        private readonly BlogpostMapper       $blogpostMapper,
+        private readonly BlogpostService      $blogpostService,
         private readonly CollectionRepository $collectionRepository,
-        private readonly CollectionService $collectionService,
-        private readonly TagRepository $tagRepository,
+        private readonly CollectionService    $collectionService,
+        private readonly TagRepository        $tagRepository,
+        private readonly OpenAIService        $openAiService,
     ) {
     }
 
@@ -44,6 +46,11 @@ class DefaultController extends BaseController
     )]
     public function indexAction(Request $request,
     ): array {
+
+        $collection = $this->openAiService->collection()->response('Wandern im Spessart');
+
+        dd($collection);
+
         $paramBag = $this->getAllParameters($request);
 
         // Get random hero image

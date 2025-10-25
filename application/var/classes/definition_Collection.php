@@ -11,7 +11,7 @@
  * - imageTeaser [image]
  * - additionalRecommendationEntrypoints [manyToManyRelation]
  * - metaTitle [input]
- * - metaDescription [textarea]
+ * - metaDescription [input]
  * - categories [manyToManyObjectRelation]
  * - tags [manyToManyObjectRelation]
  * - blogposts [manyToManyObjectRelation]
@@ -25,7 +25,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1759433025,
+   'modificationDate' => 1761381171,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -255,18 +255,18 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 array (
                 ),
                  'defaultValue' => NULL,
-                 'columnLength' => 190,
+                 'columnLength' => 60,
                  'regex' => '',
                  'regexFlags' => 
                 array (
                 ),
                  'unique' => false,
-                 'showCharCount' => false,
+                 'showCharCount' => true,
                  'width' => '100%',
                  'defaultValueGenerator' => '',
               )),
               1 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
                  'name' => 'metaDescription',
                  'title' => 'app.generic.description',
                  'tooltip' => '',
@@ -284,11 +284,16 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'maxLength' => 190,
+                 'defaultValue' => NULL,
+                 'columnLength' => 155,
+                 'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
+                 'unique' => false,
                  'showCharCount' => true,
-                 'excludeFromSearchIndex' => true,
-                 'height' => '',
                  'width' => '100%',
+                 'defaultValueGenerator' => '',
               )),
             ),
              'locked' => false,

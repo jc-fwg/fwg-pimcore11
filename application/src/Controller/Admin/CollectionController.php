@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Adapter\App\Database\Doctrine\Repository\CollectionRepository;
-use App\OpenAI\ChatService;
+use App\OpenAI\Service\OpenAIService;
 use Pimcore\Model\DataObject\Collection;
+use Pimcore\Model\Element\ValidationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class CollectionController extends AbstractController
 {
     public function __construct(
         private readonly CollectionRepository $collectionRepository,
-        private readonly ChatService $chatService,
+        private readonly OpenAIService        $chatService,
     )
     {
     }
@@ -27,6 +28,8 @@ class CollectionController extends AbstractController
     #[Route('/admin/app/collection/infotext/{collectionId}', name: 'admin_app_collection_infotext', methods: [Request::METHOD_GET])]
     public function infotextAction(string $collectionId): Response
     {
+        throw new ValidationException('Disabled for now');
+
         $collection = $this->collectionRepository->findById($collectionId);
 
         if (!$collection instanceof Collection) {
