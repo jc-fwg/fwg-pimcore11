@@ -13,6 +13,7 @@ readonly class Client
 {
     private const string MODEL_GPT4O      = 'gpt-4o';
     private const string MODEL_GPT4O_MINI = 'gpt-4o-mini';
+    private const string MODEL_GPT5_MINI  = 'gpt-5-mini';
 
     private \OpenAI\Client $client;
 
@@ -24,7 +25,7 @@ readonly class Client
     public function ask(string $prompt): CreateResponse
     {
         return $this->client->responses()->create([
-            'model' => self::MODEL_GPT4O,
+            'model' => self::MODEL_GPT5_MINI,
             'input' => $prompt,
         ]);
     }
@@ -32,7 +33,7 @@ readonly class Client
     public function chat(AbstractChatAgent $agent): ChatCreateResponse
     {
         return $this->client->chat()->create([
-            'model'           => self::MODEL_GPT4O_MINI,
+            'model'           => self::MODEL_GPT5_MINI,
             'response_format' => ['type' => 'json_object'],
             'messages'        => $agent->getMessageBag()->getMessages(),
         ]);

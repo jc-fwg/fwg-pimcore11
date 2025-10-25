@@ -24,7 +24,7 @@ class CollectionAgent extends AbstractChatAgent
                  - zwischen 120 und 150 Wörter
                  - informativer Text
                  - informelle, ansprechende Sprache im positivem Ton
-                 - nenne Besonderheiten und Orte, welche zum User Prompt passen
+                 - erkläre, warum sich die genannte Aktivität und Region lohnen
                 PROMPT
         ));
         $this->messageBag->addMessage(new MessageValueObject(
