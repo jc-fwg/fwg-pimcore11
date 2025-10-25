@@ -9,10 +9,7 @@ use Pimcore\Model\Document\Listing;
 
 class DocumentRepository extends AbstractRepository
 {
-    /**
-     * @return Listing
-     */
-    public function findChildrenByFolder(Document\Folder $folder): Document\Listing
+    public function findChildrenByFolder(Document\Folder $folder): Listing
     {
         return $folder->getChildren();
     }

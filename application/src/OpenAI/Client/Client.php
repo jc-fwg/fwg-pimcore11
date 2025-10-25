@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\OpenAI\Client;
 
 use App\OpenAI\Agent\AbstractChatAgent;
-use OpenAI\Responses\Responses\CreateResponse;
+use OpenAI;
 use OpenAI\Responses\Chat\CreateResponse as ChatCreateResponse;
+use OpenAI\Responses\Responses\CreateResponse;
 
 readonly class Client
 {
@@ -15,7 +18,7 @@ readonly class Client
 
     public function __construct(private string $openAiApiKey)
     {
-        $this->client = \OpenAI::client($this->openAiApiKey);
+        $this->client = OpenAI::client($this->openAiApiKey);
     }
 
     public function ask(string $prompt): CreateResponse
@@ -29,9 +32,9 @@ readonly class Client
     public function chat(AbstractChatAgent $agent): ChatCreateResponse
     {
         return $this->client->chat()->create([
-            'model' => self::MODEL_GPT4O_MINI,
+            'model'           => self::MODEL_GPT4O_MINI,
             'response_format' => ['type' => 'json_object'],
-            'messages' => $agent->getMessageBag()->getMessages(),
+            'messages'        => $agent->getMessageBag()->getMessages(),
         ]);
     }
 }

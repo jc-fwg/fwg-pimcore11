@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\OpenAI\Message;
 
 class MessageBag
 {
-    /** @var MessageValueObject[]  */
+    /** @var MessageValueObject[] */
     private array $messages = [];
 
     public function addMessage(MessageValueObject $message): void
@@ -16,8 +18,8 @@ class MessageBag
     public function getMessages(): array
     {
         return array_map(
-            fn ($message) => [
-                'role' => $message->role->value,
+            static fn ($message) => [
+                'role'    => $message->role->value,
                 'content' => $message->content,
             ],
             $this->messages

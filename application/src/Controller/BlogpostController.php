@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Adapter\App\Database\Doctrine\Repository\TagRepository;
 use App\Service\BlogpostService;
 use App\Service\CollectionService;
+use Exception;
 use Pimcore\Model\DataObject\Collection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +18,14 @@ use Symfony\Component\HttpFoundation\Response;
 class BlogpostController extends BaseController
 {
     public function __construct(
-        private readonly BlogpostService    $blogpostService,
+        private readonly BlogpostService $blogpostService,
         private readonly CollectionService $collectionService,
         private readonly TagRepository $tagRepository,
     ) {
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function listAction(Request $request): Response
     {
@@ -37,10 +38,10 @@ class BlogpostController extends BaseController
         }
 
         return $this->render('content/blogpost/list.html.twig', array_merge($paramBag, [
-            'collection' => $collection,
+            'collection'  => $collection,
             'collections' => $this->collectionService->getRecommendedCollections($collection),
-            'blogposts' => $blogposts ?? [],
-            'tags' => $this->tagRepository->findAllOrderedByTagCategoryWeighting(),
+            'blogposts'   => $blogposts ?? [],
+            'tags'        => $this->tagRepository->findAllOrderedByTagCategoryWeighting(),
         ]));
     }
 }

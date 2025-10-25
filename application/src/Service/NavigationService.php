@@ -6,7 +6,6 @@ namespace App\Service;
 
 use App\Constant\FolderConstants;
 use Exception;
-
 use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\Folder;
 use Pimcore\Model\DataObject\Service;
@@ -15,6 +14,7 @@ class NavigationService
 {
     /**
      * @return array<string, Collection[]>
+     *
      * @throws Exception
      */
     public function getMainNavigation(): array
@@ -33,8 +33,8 @@ class NavigationService
             $collections = $node->getChildren()?->getObjects();
 
             $mainNavigation[] = [
-                'folder' => $node,
-                'collections' => array_filter($collections, static fn($collection) => $collection instanceof Collection),
+                'folder'      => $node,
+                'collections' => array_filter($collections, static fn ($collection) => $collection instanceof Collection),
             ];
         }
 

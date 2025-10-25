@@ -9,8 +9,8 @@ use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Mail;
 use Pimcore\Model\DataObject;
-
 use Pimcore\Model\Element\ValidationException;
+
 use function sprintf;
 
 class CommentEventSubscriber extends AbstractEventSubscriber
@@ -46,9 +46,9 @@ class CommentEventSubscriber extends AbstractEventSubscriber
         }
 
         if (
-            $object->getReleaseStatus() === 'released' &&
-            $object->isPublished() &&
-            empty($object->getReleaseStatusSetOn()) === true
+            $object->getReleaseStatus() === 'released'
+            && $object->isPublished()
+            && empty($object->getReleaseStatusSetOn()) === true
         ) {
             $mail = new Mail();
             $mail->subject('Den Kommentar wurde veröffentlicht');

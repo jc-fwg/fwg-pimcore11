@@ -9,6 +9,8 @@ use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
 
+use function strlen;
+
 class CollectionEventSubscriber extends AbstractEventSubscriber
 {
     public function __construct(
@@ -21,7 +23,7 @@ class CollectionEventSubscriber extends AbstractEventSubscriber
     {
         return [
             DataObjectEvents::PRE_UPDATE => [
-                ['setOpenAiData']
+                ['setOpenAiData'],
             ],
         ];
     }
@@ -49,7 +51,6 @@ class CollectionEventSubscriber extends AbstractEventSubscriber
         }
 
         $openAiResponse = $this->openAIService->collection()->response($object->getTitle());
-
 
         if (strlen($description) <= 10 && isset($openAiResponse['description'])) {
             $object->setDescription($openAiResponse['description']);

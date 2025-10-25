@@ -11,13 +11,11 @@ use App\Dto\ActivitySummaryDto\ActivitySummaryDto;
 use App\Dto\ActivitySummaryDto\Hike;
 use App\Dto\ActivitySummaryDto\Interface\ActivitySummaryTypeInterface;
 use App\Dto\LinkDto;
-use App\Dto\TagDto;
 use Exception;
 use Pimcore\Model\DataObject\Activity;
 use Pimcore\Model\DataObject\Data\Link;
 use Pimcore\Model\DataObject\Fieldcollection\Data\Location;
 use Pimcore\Model\DataObject\SelectOptions\ActivityType;
-use Pimcore\Model\DataObject\TagCategory;
 
 class ActivityMapper
 {

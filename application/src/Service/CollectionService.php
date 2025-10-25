@@ -26,8 +26,6 @@ class CollectionService
             $collections = array_merge($collections, $parent->getChildren([DataObject\AbstractObject::OBJECT_TYPE_OBJECT])?->load());
         }
 
-        return ( array_filter($collections, function ($collection) {
-            return $collection instanceof DataObject\Collection;
-        }));
+        return  array_filter($collections, static fn ($collection) => $collection instanceof DataObject\Collection);
     }
 }

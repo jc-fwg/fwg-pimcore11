@@ -7,13 +7,13 @@ namespace App\Mapper;
 use App\Dto\TagDto;
 use Pimcore\Model\DataObject\Tag;
 use Pimcore\Model\DataObject\TagCategory;
+use RuntimeException;
 
 readonly class TagMapper
 {
     public function __construct(
         private TagCategoryMapper $tagCategoryMapper,
-    )
-    {
+    ) {
     }
 
     public function fromModel(Tag $model): TagDto
@@ -21,7 +21,7 @@ readonly class TagMapper
         $parent = $model->getParent();
 
         if (!$parent instanceof TagCategory) {
-            throw new \RuntimeException('Tag has no parent category');
+            throw new RuntimeException('Tag has no parent category');
         }
 
         return new TagDto(

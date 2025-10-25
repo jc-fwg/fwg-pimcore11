@@ -8,7 +8,9 @@ use App\Service\BlogpostService;
 use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
-use Pimcore\Model\Element\ValidationException;
+
+use function count;
+use function in_array;
 
 class BlogpostEventSubscriber extends AbstractEventSubscriber
 {
@@ -26,7 +28,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
             ],
             DataObjectEvents::PRE_UPDATE => [
                 ['setSlug'],
-                ['setAuthorTagsAtActivity']
+                ['setAuthorTagsAtActivity'],
             ],
         ];
     }
@@ -63,10 +65,10 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
             return;
         }
 
-        $authorTags = [];
-        $blogpostAuthors = $object->getAuthors() ?? [];
+        $authorTags                = [];
+        $blogpostAuthors           = $object->getAuthors() ?? [];
         $authorTagsFromLastVersion = [];
-        $activityTags = $activity->getTags() ?? [];
+        $activityTags              = $activity->getTags() ?? [];
 
         foreach ($blogpostAuthors as $authorId) {
             $author = DataObject\Author::getById($authorId);
@@ -87,7 +89,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         // Fetch old authors from last version and remove relations from activity
         $versions = $object->getVersions();
         if (count($versions) > 0) {
-            $lastVersion = end($versions);
+            $lastVersion     = end($versions);
             $blogpostVersion = $lastVersion->getData();
 
             $oldAuthors = $blogpostVersion?->getAuthors() ?? [];
@@ -103,7 +105,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
             }
 
             foreach ($activityTags as $k => $tag) {
-                if (in_array($tag, $authorTagsFromLastVersion) === true) {
+                if (in_array($tag, $authorTagsFromLastVersion, true) === true) {
                     unset($activityTags[$k]);
                 }
             }

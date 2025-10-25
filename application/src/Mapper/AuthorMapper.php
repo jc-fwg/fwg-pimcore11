@@ -11,8 +11,7 @@ class AuthorMapper
 {
     public function __construct(
         private readonly TagMapper $tagMapper,
-    )
-    {
+    ) {
     }
 
     public function fromModel(Author $model): AuthorDto

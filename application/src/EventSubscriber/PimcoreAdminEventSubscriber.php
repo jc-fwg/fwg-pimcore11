@@ -20,8 +20,8 @@ final class PimcoreAdminEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            BundleManagerEvents::JS_PATHS            => 'addJSFiles',
-            BundleManagerEvents::CSS_PATHS           => 'addCSSFiles',
+            BundleManagerEvents::JS_PATHS  => 'addJSFiles',
+            BundleManagerEvents::CSS_PATHS => 'addCSSFiles',
         ];
     }
 
