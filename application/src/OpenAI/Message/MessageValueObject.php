@@ -14,7 +14,7 @@ readonly class MessageValueObject
         public string $content = '',
     ) {
         if ($this->content === '') {
-            throw new InvalidArgumentException('Content may be empty');
+            throw new InvalidArgumentException('Content may not be empty');
         }
     }
 }

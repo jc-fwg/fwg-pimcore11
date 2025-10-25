@@ -9,10 +9,8 @@ use App\Adapter\App\Database\Doctrine\Repository\CollectionRepository;
 use App\Adapter\App\Database\Doctrine\Repository\TagRepository;
 use App\Constant\FolderConstants;
 use App\Mapper\BlogpostMapper;
-use App\OpenAI\Service\OpenAIService;
 use App\Service\BlogpostService;
 use App\Service\CollectionService;
-use Exception;
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
 use Pimcore\Model\Asset;
 use Pimcore\Model\DataObject\Blogpost;
@@ -25,19 +23,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use function array_slice;
 use function count;
 
 class DefaultController extends BaseController
 {
     public function __construct(
-        private readonly BlogpostRepository $blogpostRepository,
-        private readonly BlogpostMapper $blogpostMapper,
-        private readonly BlogpostService $blogpostService,
+        private readonly BlogpostRepository   $blogpostRepository,
+        private readonly BlogpostMapper       $blogpostMapper,
+        private readonly BlogpostService      $blogpostService,
         private readonly CollectionRepository $collectionRepository,
-        private readonly CollectionService $collectionService,
-        private readonly TagRepository $tagRepository,
-        private readonly OpenAIService $openAiService,
+        private readonly CollectionService    $collectionService,
+        private readonly TagRepository        $tagRepository,
     ) {
     }
 
@@ -48,9 +44,6 @@ class DefaultController extends BaseController
     )]
     public function indexAction(Request $request,
     ): array {
-        $collection = $this->openAiService->collection()->response('Wandern im Spessart');
-
-        dd($collection);
 
         $paramBag = $this->getAllParameters($request);
 
@@ -75,7 +68,7 @@ class DefaultController extends BaseController
 
         return array_merge($paramBag, [
             'latestPosts'    => $latestPosts,
-            'collections'    => array_slice($collections, 0, 4),
+            'collections'    => array_slice($collections, 0 ,4),
             'tags'           => $tags,
             'socialChannels' => (new SocialChannel\Listing())->getObjects(),
         ]);
@@ -117,7 +110,7 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     #[Route(
         name: 'blogpost-detail',
@@ -139,7 +132,7 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     #[Route(
         name: 'collection',
@@ -164,16 +157,16 @@ class DefaultController extends BaseController
         }
 
         return $this->render('content/collection/collection.html.twig', array_merge($paramBag, [
-            'collection'  => $collection,
+            'collection' => $collection,
             'collections' => $this->collectionService->getRecommendedCollections($collection),
             'imageTeaser' => $imageTeaser,
-            'blogposts'   => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
-            'tagList'     => $this->tagRepository->findAllCurrentlyRelated(),
+            'blogposts' => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
+            'tagList' => $this->tagRepository->findAllCurrentlyRelated(),
         ]));
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     #[Route(
         '/tags',
@@ -186,13 +179,13 @@ class DefaultController extends BaseController
 
         $tagPairs = [];
 
-        foreach ($request->query->all() as $tagCategorySlug => $tags) {
+        foreach($request->query->all() as $tagCategorySlug => $tags) {
             $tagSlugs = explode('.', $tags);
 
-            foreach ($tagSlugs as $tagSlug) {
+            foreach($tagSlugs as $tagSlug) {
                 $tagPairs[] = [
                     'parentSlug' => $tagCategorySlug,
-                    'tagSlug'    => $tagSlug,
+                    'tagSlug' => $tagSlug,
                 ];
             }
         }
@@ -218,8 +211,8 @@ class DefaultController extends BaseController
 
         return $this->render('content/tags/list.html.twig', array_merge($paramBag, [
             'blogposts' => $blogposts,
-            'tagList'   => $this->tagRepository->findAllCurrentlyRelated(),
-            'tags'      => $tags,
+            'tagList' => $this->tagRepository->findAllCurrentlyRelated(),
+            'tags' => $tags,
             'heroImage' => $blogpostTeaser?->imageMain,
         ]));
     }

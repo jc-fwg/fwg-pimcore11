@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\EventSubscriber;
 
-use Pimcore\Bundle\AdminBundle\Event\ElementAdminStyleEvent;
 use Pimcore\Event\BundleManager\PathsEvent;
 use Pimcore\Event\BundleManagerEvents;
-use Pimcore\Model\Element\AdminStyle;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -48,14 +46,5 @@ final class PimcoreAdminEventSubscriber implements EventSubscriberInterface
                 ]
             )
         );
-    }
-
-    public function onResolveElementAdminStyle(ElementAdminStyleEvent $event): void
-    {
-        $element = $event->getElement();
-
-        if ($element instanceof Attribute) {
-            $event->setAdminStyle(new AdminStyle($element));
-        }
     }
 }

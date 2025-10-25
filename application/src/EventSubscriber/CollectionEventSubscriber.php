@@ -56,11 +56,11 @@ class CollectionEventSubscriber extends AbstractEventSubscriber
             $object->setDescription($openAiResponse['description']);
         }
 
-        if (strlen((string) $object->getMetaTitle()) > 10 && isset($openAiResponse['metaTitle'])) {
+        if (strlen((string) $object->getMetaTitle()) <= 10 && isset($openAiResponse['metaTitle'])) {
             $object->setMetaTitle($openAiResponse['metaTitle']);
         }
 
-        if (strlen((string) $object->getMetaDescription()) > 10 && isset($openAiResponse['metaDescription'])) {
+        if (strlen((string) $object->getMetaDescription()) <= 10 && isset($openAiResponse['metaDescription'])) {
             $object->setMetaDescription($openAiResponse['metaDescription']);
         }
     }
