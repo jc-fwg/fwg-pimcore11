@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Exception;
 use Pimcore\Bundle\ApplicationLoggerBundle\ApplicationLogger;
 use Pimcore\Mail;
+use Pimcore\Model\Asset\Image;
 use Pimcore\Model\DataObject;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -34,6 +35,11 @@ use function sprintf;
 
 class BlogpostService
 {
+    public const string DATA_QUALITY_BASE_DATA = 'baseData';
+    public const string DATA_QUALITY_ASSETS_DOWNLOADS_LINKS = 'assetsDownloadsLinks';
+    public const string DATA_QUALITY_CONTENT = 'content';
+    public const string DATA_QUALITY_SEO = 'seo';
+
     public function __construct(
         private readonly SluggerInterface $slugger,
         private readonly FormFactoryInterface $formFactory,
@@ -272,5 +278,68 @@ class BlogpostService
         }
 
         return null;
+    }
+
+    /**
+     * @return array<string, string[]>
+     */
+    public function checkDataQuality(DataObject\Blogpost $blogpost): array
+    {
+        $issues = [];
+
+        // Base Data: Slug
+        if (trim((string) $blogpost->getSlug()) === '') {
+            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Slug missing';
+        }
+
+        // Base Data: Publication Date
+        if (!$blogpost->getPublicationDate() instanceof Carbon) {
+            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Publication date missing';
+        }
+
+        // Base Data: Blogpost Type
+        if ((string) $blogpost->getBlogpostType() === '') {
+            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Blogpost type missing';
+        }
+
+        // Base Data: Tour without Activity
+        if ($blogpost->getBlogpostType() === 'tour' && $blogpost->getActivity() === null) {
+            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Tour has no Activity related';
+        }
+
+        // Base Data: Authors
+        if ($blogpost->getAuthors() === null || count($blogpost->getAuthors()) === 0) {
+            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Authors missing';
+        }
+
+        // Assets, Downloads, Links : Image Main
+        if (!$blogpost->getImageMain() instanceof Image) {
+            $issues[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS][] = 'Main image missing';
+        }
+
+        // Assets, Downloads, Links : Teaser Main
+        if (!$blogpost->getImageTeaser() instanceof Image) {
+            $issues[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS][] = 'Teaser image missing';
+        }
+
+        // Content: Title
+        if (trim((string) $blogpost->getTitle()) === '') {
+            $issues[self::DATA_QUALITY_CONTENT][] = 'Title missing';
+        }
+
+
+        // SEO : Meta Title
+        if (trim((string) $blogpost->getMetaTitle()) === '') {
+            $issues[self::DATA_QUALITY_SEO][] = 'Meta Title missing';
+        }
+
+        // SEO : Meta Description
+        if (trim((string) $blogpost->getMetaDescription()) === '') {
+            $issues[self::DATA_QUALITY_SEO][] = 'Meta Description missing';
+        }
+
+
+
+        return $issues;
     }
 }

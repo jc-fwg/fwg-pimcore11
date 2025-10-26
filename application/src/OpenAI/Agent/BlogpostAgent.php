@@ -7,24 +7,17 @@ namespace App\OpenAI\Agent;
 use App\OpenAI\Enum\RoleEnum;
 use App\OpenAI\Message\MessageValueObject;
 
-class CollectionAgent extends AbstractChatAgent
+class BlogpostAgent extends AbstractChatAgent
 {
     protected function prepareMessages(): void
     {
         $this->messageBag->addMessage(new MessageValueObject(
             role: RoleEnum::SYSTEM,
             content: <<<'PROMPT'
+                Dein Ziel ist es, möglichst vor den Mitbewerbern in den Suchmaschinen zu ranken.
+                Das User Prompt stellt das Fokus Keyword dar.
+                Du analysierst Mitbewerber inklusive deren SEO Title und Meta Description und erstellst bessere Varianten.
                 Deine Antworten erhalten keine Aufzählungen oder Listen
-                PROMPT
-        ));
-        $this->messageBag->addMessage(new MessageValueObject(
-            role: RoleEnum::SYSTEM,
-            content: <<<'PROMPT'
-                Teil Deiner JSON Antwort ist immer "description" mit folgenden Merkmalen:
-                 - zwischen 100 und 120 Wörter
-                 - informativer Text
-                 - informelle, ansprechende Sprache im positivem Ton
-                 - erkläre, warum sich die genannte Aktivität und Region lohnen
                 PROMPT
         ));
         $this->messageBag->addMessage(new MessageValueObject(

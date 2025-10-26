@@ -116,6 +116,15 @@ services:
         resource: '../src/OptionsProvider'
         public: true
 
+
+    #
+    # Renderer
+    #
+
+    App\Renderer\:
+        resource: '../src/Renderer'
+        public: true
+
     #
     # REPOSITORIES
     #

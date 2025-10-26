@@ -18,17 +18,17 @@ class CollectionEventSubscriber extends AbstractEventSubscriber
     ) {
     }
 
-    /** @codeCoverageIgnore  */
+    /** @codeCoverageIgnore */
     public static function getSubscribedEvents(): array
     {
         return [
             DataObjectEvents::PRE_UPDATE => [
-                ['setOpenAiData'],
+                ['setSeoAndDescriptionData'],
             ],
         ];
     }
 
-    public function setOpenAiData(DataObjectEvent $event): void
+    public function setSeoAndDescriptionData(DataObjectEvent $event): void
     {
         $object = $event->getObject();
 

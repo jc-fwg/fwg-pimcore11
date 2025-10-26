@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventSubscriber;
 
+use App\OpenAI\Service\OpenAIService;
 use App\Service\BlogpostService;
 use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
@@ -16,10 +17,11 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
 {
     public function __construct(
         private readonly BlogpostService $blogpostService,
+        private readonly OpenAIService $openAIService
     ) {
     }
 
-    /** @codeCoverageIgnore  */
+    /** @codeCoverageIgnore */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -29,8 +31,40 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
             DataObjectEvents::PRE_UPDATE => [
                 ['setSlug'],
                 ['setAuthorTagsAtActivity'],
+                ['setSeoData'],
             ],
         ];
+    }
+
+    public function setSeoData(DataObjectEvent $event): void
+    {
+        return; // Disable AI SEO generation for Blogposts
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
+            return;
+        }
+
+        if ((string) $object->getFocusKeyword() === '') {
+            return;
+        }
+
+        if (
+            strlen((string) $object->getMetaTitle()) > 10
+            && strlen((string) $object->getMetaDescription()) > 10
+        ) {
+            return;
+        }
+
+        $openAiResponse = $this->openAIService->blogpost()->response($object->getFocusKeyword());
+
+        if (strlen((string) $object->getMetaTitle()) <= 10 && isset($openAiResponse['metaTitle'])) {
+            $object->setMetaTitle($openAiResponse['metaTitle']);
+        }
+
+        if (strlen((string) $object->getMetaDescription()) <= 10 && isset($openAiResponse['metaDescription'])) {
+            $object->setMetaDescription($openAiResponse['metaDescription']);
+        }
     }
 
     public function setSlug(DataObjectEvent $event): void

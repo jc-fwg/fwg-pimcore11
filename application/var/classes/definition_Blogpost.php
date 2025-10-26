@@ -23,11 +23,13 @@
  * - subTitle [input]
  * - previewText [wysiwyg]
  * - content [fieldcollections]
+ * - focusKeyword [input]
  * - metaTitle [input]
  * - metaDescription [textarea]
  * - hashtags [textarea]
  * - hashtagSets [multiselect]
  * - hashtagsCalculated [calculatedValue]
+ * - hasDataQualityIssues [checkbox]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -37,7 +39,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1760276726,
+   'modificationDate' => 1761506690,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -835,6 +837,36 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'children' => 
                 array (
                   0 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+                     'name' => 'focusKeyword',
+                     'title' => 'app.generic.focusKeyword',
+                     'tooltip' => '',
+                     'mandatory' => true,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'defaultValue' => NULL,
+                     'columnLength' => 190,
+                     'regex' => '',
+                     'regexFlags' => 
+                    array (
+                    ),
+                     'unique' => false,
+                     'showCharCount' => false,
+                     'width' => '',
+                     'defaultValueGenerator' => '',
+                  )),
+                  1 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
                      'name' => 'Meta',
                      'type' => NULL,
@@ -1061,6 +1093,154 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             ),
              'fieldtype' => 'region',
              'icon' => '/bundles/pimcoreadmin/img/twemoji/1f4e2.svg',
+          )),
+          4 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
+             'name' => 'Data Quality',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.dataQuality',
+             'width' => '',
+             'height' => '',
+             'collapsible' => false,
+             'collapsed' => false,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Checkbox::__set_state(array(
+                 'name' => 'hasDataQualityIssues',
+                 'title' => 'app.generic.hasDataQualityIssues',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => true,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => true,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'defaultValue' => NULL,
+                 'defaultValueGenerator' => '',
+              )),
+              1 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
+                 'name' => 'Base Data',
+                 'type' => NULL,
+                 'region' => NULL,
+                 'title' => 'app.generic.baseData',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'text',
+                 'html' => '<div>slug</div><div>blogpostType</div><div>authors</div><div>publicationDate​</div><div id="simple-translate" class="simple-translate-system-theme"><div><div style="background-image: url(&quot;moz-extension://f633c293-b460-4034-b48e-7cc67d443da3/icons/512.png&quot;); height: 22px; width: 22px; top: -18px; left: -82px;" class="simple-translate-button isShow"></div><div class="simple-translate-panel " style="width: 300px; height: 200px; top: 0px; left: 0px; font-size: 13px;"><div class="simple-translate-result-wrapper" style="overflow: hidden;"><div class="simple-translate-move" draggable="true"></div><div class="simple-translate-result-contents"><p class="simple-translate-result" dir="auto"></p><p class="simple-translate-candidate" dir="auto"></p></div></div></div></div></div>',
+                 'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
+                 'renderingData' => 'baseData',
+                 'border' => false,
+              )),
+              2 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
+                 'name' => 'AssetsDownloadsLinks',
+                 'type' => NULL,
+                 'region' => NULL,
+                 'title' => 'app.generic.assetsDownloadsLinks',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'text',
+                 'html' => '<div>imageMain</div><div>imageTeaser</div>',
+                 'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
+                 'renderingData' => 'assetsDownloadsLinks',
+                 'border' => false,
+              )),
+              3 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
+                 'name' => 'Contents',
+                 'type' => NULL,
+                 'region' => NULL,
+                 'title' => 'app.generic.content',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'text',
+                 'html' => '<div>title</div><div>subtitle</div><div>min 1x wysiwyg</div><div>min 1x gallery​</div>',
+                 'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
+                 'renderingData' => 'content',
+                 'border' => false,
+              )),
+              4 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
+                 'name' => 'SEO',
+                 'type' => NULL,
+                 'region' => NULL,
+                 'title' => 'app.generic.seo',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'text',
+                 'html' => '<div>focusKeyword</div><div>metaTitle</div><div>metaDescription​</div>',
+                 'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
+                 'renderingData' => 'seo',
+                 'border' => false,
+              )),
+            ),
+             'locked' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'fieldtype' => 'panel',
+             'layout' => NULL,
+             'border' => false,
+             'icon' => '/bundles/pimcoreadmin/img/twemoji/1f6a6.svg',
+             'labelWidth' => 100,
+             'labelAlign' => 'left',
           )),
         ),
          'locked' => false,
