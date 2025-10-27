@@ -30,15 +30,16 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Throwable;
 
+use function count;
 use function in_array;
 use function sprintf;
 
 class BlogpostService
 {
-    public const string DATA_QUALITY_BASE_DATA = 'baseData';
+    public const string DATA_QUALITY_BASE_DATA              = 'baseData';
     public const string DATA_QUALITY_ASSETS_DOWNLOADS_LINKS = 'assetsDownloadsLinks';
-    public const string DATA_QUALITY_CONTENT = 'content';
-    public const string DATA_QUALITY_SEO = 'seo';
+    public const string DATA_QUALITY_CONTENT                = 'content';
+    public const string DATA_QUALITY_SEO                    = 'seo';
 
     public function __construct(
         private readonly SluggerInterface $slugger,
@@ -182,6 +183,39 @@ class BlogpostService
         );
     }
 
+    /**
+     * @return array<string, ConstraintViolationList[]>
+     *
+     * @throws Exception
+     */
+    public function checkDataQuality(DataObject\Blogpost $blogpost): array
+    {
+        $blogpostDto = $this->blogpostMapper->fromModel($blogpost);
+
+        $dataQuality[self::DATA_QUALITY_BASE_DATA]              = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA]);
+        $dataQuality[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS]);
+        $dataQuality[self::DATA_QUALITY_CONTENT]                = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT]);
+        $dataQuality[self::DATA_QUALITY_SEO]                    = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO]);
+
+        $validationErrors = 0;
+        array_map(static function ($section) use (&$validationErrors): void { $validationErrors += count($section); }, $dataQuality);
+
+        return $dataQuality;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function hasDataQualityIssues(DataObject\Blogpost $blogpost): bool
+    {
+        $dataQuality = $this->checkDataQuality($blogpost);
+
+        $validationErrors = 0;
+        array_map(static function ($section) use (&$validationErrors): void { $validationErrors += count($section); }, $dataQuality);
+
+        return $validationErrors > 0;
+    }
+
     private function handleCommentForm(FormInterface $form): ?ConstraintViolationListInterface
     {
         $data = $form->getData();
@@ -278,37 +312,5 @@ class BlogpostService
         }
 
         return null;
-    }
-
-    /**
-     * @return array<string, ConstraintViolationList[]>
-     * @throws Exception
-     */
-    public function checkDataQuality(DataObject\Blogpost $blogpost): array
-    {
-        $blogpostDto = $this->blogpostMapper->fromModel($blogpost);
-
-        $dataQuality[self::DATA_QUALITY_BASE_DATA] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA]);
-        $dataQuality[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS]);
-        $dataQuality[self::DATA_QUALITY_CONTENT] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT]);
-        $dataQuality[self::DATA_QUALITY_SEO] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO]);
-
-        $validationErrors = 0;
-        array_map(static function ($section) use (&$validationErrors) { $validationErrors += count($section); }, $dataQuality);
-
-        return $dataQuality;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function hasDataQualityIssues(DataObject\Blogpost $blogpost): bool
-    {
-        $dataQuality = $this->checkDataQuality($blogpost);
-
-        $validationErrors = 0;
-        array_map(static function ($section) use (&$validationErrors) { $validationErrors += count($section); }, $dataQuality);
-
-        return $validationErrors > 0;
     }
 }

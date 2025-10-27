@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Validator;
 
 use App\Dto\BlogpostDto;
@@ -27,10 +29,10 @@ class BlogpostHasWysiwygAndGalleryContentValidator extends ConstraintValidator
         if ($contents instanceof Fieldcollection) {
             foreach ($contents->getItems() as $content) {
                 if ($content instanceof Fieldcollection\Data\ContentWysiwyg) {
-                    $contentWysiwyg++;
+                    ++$contentWysiwyg;
                 }
                 if ($content instanceof Fieldcollection\Data\ContentGallery) {
-                    $contentGallery++;
+                    ++$contentGallery;
                 }
             }
         }

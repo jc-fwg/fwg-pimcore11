@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Validator;
 
+use Attribute;
 use Symfony\Component\Validator\Constraint;
 
-#[\Attribute]
+#[Attribute]
 class BlogpostHasWysiwygAndGalleryContent extends Constraint
 {
     public string $message = 'Blogposts content has no WYSIWYG and/or Gallery content blocks';

@@ -1,12 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Renderer\Blogpost;
 
 use App\Service\BlogpostService;
+use Exception;
 use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\ClassDefinition\Layout\DynamicTextLabelInterface;
 use Pimcore\Model\DataObject\Concrete;
 use Symfony\Component\Validator\ConstraintViolationList;
+
+use function count;
+use function sprintf;
 
 class DataQualityTextRenderer implements DynamicTextLabelInterface
 {
@@ -14,12 +20,11 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
 
     public function __construct(
         private readonly BlogpostService $blogpostService,
-    )
-    {
+    ) {
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function renderLayoutText(string $data, ?Concrete $object, array $params): string
     {
@@ -37,7 +42,7 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
         }
 
         $issuesAsHtml = [];
-        foreach($issues as $issue) {
+        foreach ($issues as $issue) {
             $issuesAsHtml[] = sprintf(
                 '<li>%s : %s</li>',
                 $issue->getPropertyPath(),
@@ -46,6 +51,6 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
         }
         $issuesHtmlString = implode('', $issuesAsHtml);
 
-        return sprintf(self::HTML_WRAPPER, 'danger', '<ul style="padding-left: 10px !important; margin: 0 !important">' . $issuesHtmlString . '</ul>');
+        return sprintf(self::HTML_WRAPPER, 'danger', '<ul style="padding-left: 10px !important; margin: 0 !important">'.$issuesHtmlString.'</ul>');
     }
 }

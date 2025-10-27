@@ -15,7 +15,7 @@ readonly class Client
     private const string MODEL_GPT4O_MINI = 'gpt-4o-mini';
     private const string MODEL_GPT5_MINI  = 'gpt-5-mini';
 
-    private \OpenAI\Client $client;
+    private OpenAI\Client $client;
 
     public function __construct(private string $openAiApiKey)
     {

@@ -6,18 +6,20 @@ namespace App\EventSubscriber;
 
 use App\OpenAI\Service\OpenAIService;
 use App\Service\BlogpostService;
+use Exception;
 use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
 
 use function count;
 use function in_array;
+use function strlen;
 
 class BlogpostEventSubscriber extends AbstractEventSubscriber
 {
     public function __construct(
         private readonly BlogpostService $blogpostService,
-        private readonly OpenAIService $openAIService
+        private readonly OpenAIService $openAIService,
     ) {
     }
 
@@ -152,7 +154,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function checkDataQuality(DataObjectEvent $event): void
     {

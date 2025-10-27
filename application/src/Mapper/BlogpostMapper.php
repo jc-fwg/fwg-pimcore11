@@ -85,7 +85,7 @@ class BlogpostMapper
             categories: $model->getCategories() ?? [],
             imageMain: $model->getImageMain(),
             assetsFolder: $model->getAssetsFolder(),
-            previewText: strip_tags(($model->getPreviewText() ?? '')),
+            previewText: strip_tags($model->getPreviewText() ?? ''),
             imageTeaser: $model->getImageTeaser(),
             downloads: $model->getDownloads(),
             links: $links,

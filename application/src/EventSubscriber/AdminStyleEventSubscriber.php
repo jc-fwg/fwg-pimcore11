@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use App\Service\BlogpostService;
+use Exception;
 use Pimcore\Bundle\AdminBundle\Event\AdminEvents;
 use Pimcore\Bundle\AdminBundle\Event\ElementAdminStyleEvent;
 use Pimcore\Model\DataObject;
@@ -14,8 +15,7 @@ class AdminStyleEventSubscriber extends AbstractEventSubscriber
 {
     public function __construct(
         private readonly BlogpostService $blogpostService,
-    )
-    {
+    ) {
     }
 
     /** @codeCoverageIgnore  */
@@ -29,7 +29,7 @@ class AdminStyleEventSubscriber extends AbstractEventSubscriber
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function blogpostDataQuality(ElementAdminStyleEvent $event): void
     {
@@ -39,13 +39,13 @@ class AdminStyleEventSubscriber extends AbstractEventSubscriber
             return;
         }
 
-        if ($this->blogpostService->hasDataQualityIssues($element) === false) {;
+        if ($this->blogpostService->hasDataQualityIssues($element) === false) {
             return;
         }
 
         $adminStyle = new AdminStyle($element);
 
-        DataObject\Service::useInheritedValues(true, function () use ($element, $adminStyle,) {
+        DataObject\Service::useInheritedValues(true, static function () use ($adminStyle): void {
             $elementIcon = '/bundles/pimcoreadmin/img/twemoji/1f6a6.svg';
             $adminStyle->setElementCssClass(false);
             $adminStyle->setElementIcon($elementIcon);
