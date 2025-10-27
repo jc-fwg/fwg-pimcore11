@@ -29,7 +29,6 @@
  * - hashtags [textarea]
  * - hashtagSets [multiselect]
  * - hashtagsCalculated [calculatedValue]
- * - hasDataQualityIssues [checkbox]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -39,7 +38,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1761506690,
+   'modificationDate' => 1761602918,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -528,6 +527,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     ),
                      'classes' => 
                     array (
+                      0 => 
+                      array (
+                        'classes' => '',
+                      ),
                     ),
                      'displayMode' => NULL,
                      'pathFormatterClass' => '',
@@ -539,10 +542,18 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'assetsAllowed' => true,
                      'assetTypes' => 
                     array (
+                      0 => 
+                      array (
+                        'assetTypes' => '',
+                      ),
                     ),
                      'documentsAllowed' => false,
                      'documentTypes' => 
                     array (
+                      0 => 
+                      array (
+                        'documentTypes' => '',
+                      ),
                     ),
                      'enableTextSelection' => false,
                      'width' => '',
@@ -684,7 +695,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'title',
                  'title' => 'app.generic.title',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -714,7 +725,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'subTitle',
                  'title' => 'app.generic.subTitle',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -744,7 +755,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'previewText',
                  'title' => 'app.generic.previewText',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -841,7 +852,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'name' => 'focusKeyword',
                      'title' => 'app.generic.focusKeyword',
                      'tooltip' => '',
-                     'mandatory' => true,
+                     'mandatory' => false,
                      'noteditable' => false,
                      'index' => false,
                      'locked' => false,
@@ -885,7 +896,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'name' => 'metaTitle',
                          'title' => 'app.generic.title',
                          'tooltip' => '',
-                         'mandatory' => true,
+                         'mandatory' => false,
                          'noteditable' => false,
                          'index' => false,
                          'locked' => false,
@@ -915,7 +926,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'name' => 'metaDescription',
                          'title' => 'app.generic.description',
                          'tooltip' => '',
-                         'mandatory' => true,
+                         'mandatory' => false,
                          'noteditable' => false,
                          'index' => false,
                          'locked' => false,
@@ -1109,28 +1120,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'children' => 
             array (
               0 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\Checkbox::__set_state(array(
-                 'name' => 'hasDataQualityIssues',
-                 'title' => 'app.generic.hasDataQualityIssues',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => true,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => true,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'defaultValue' => NULL,
-                 'defaultValueGenerator' => '',
-              )),
-              1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
                  'name' => 'Base Data',
                  'type' => NULL,
@@ -1155,7 +1144,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'renderingData' => 'baseData',
                  'border' => false,
               )),
-              2 => 
+              1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
                  'name' => 'AssetsDownloadsLinks',
                  'type' => NULL,
@@ -1180,7 +1169,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'renderingData' => 'assetsDownloadsLinks',
                  'border' => false,
               )),
-              3 => 
+              2 => 
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
                  'name' => 'Contents',
                  'type' => NULL,
@@ -1205,7 +1194,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'renderingData' => 'content',
                  'border' => false,
               )),
-              4 => 
+              3 => 
               \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
                  'name' => 'SEO',
                  'type' => NULL,
@@ -1296,6 +1285,28 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    \Pimcore\Model\DataObject\ClassDefinition\Data\Checkbox::__set_state(array(
+       'name' => 'hasDataQualityIssues',
+       'title' => 'app.generic.hasDataQualityIssues',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => true,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => false,
+       'invisible' => true,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'defaultValue' => NULL,
+       'defaultValueGenerator' => '',
+    )),
   ),
    'blockedVarsForExport' => 
   array (

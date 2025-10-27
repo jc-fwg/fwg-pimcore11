@@ -32,6 +32,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
                 ['setSlug'],
                 ['setAuthorTagsAtActivity'],
                 ['setSeoData'],
+                ['checkDataQuality'],
             ],
         ];
     }
@@ -148,5 +149,27 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         $activity->setTags(array_unique(array_merge($activityTags, $authorTags)));
 
         $activity->save();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function checkDataQuality(DataObjectEvent $event): void
+    {
+        if ($this->isAutoSave($event)) {
+            return;
+        }
+
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
+            return;
+        }
+
+        if ($this->blogpostService->hasDataQualityIssues($object) === false) {
+            return;
+        }
+
+        $object->setPublished(false);
     }
 }

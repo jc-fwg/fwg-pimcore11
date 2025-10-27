@@ -2,11 +2,11 @@
 
 namespace App\Renderer\Blogpost;
 
-use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Service\BlogpostService;
 use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\ClassDefinition\Layout\DynamicTextLabelInterface;
 use Pimcore\Model\DataObject\Concrete;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class DataQualityTextRenderer implements DynamicTextLabelInterface
 {
@@ -18,6 +18,9 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
     {
     }
 
+    /**
+     * @throws \Exception
+     */
     public function renderLayoutText(string $data, ?Concrete $object, array $params): string
     {
         if (!$object instanceof Blogpost) {
@@ -26,13 +29,21 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
 
         $dataQuality = $this->blogpostService->checkDataQuality($object);
 
+        /** @var ConstraintViolationList $issues */
         $issues = $dataQuality[$data] ?? [];
 
         if (count($issues) === 0) {
             return sprintf(self::HTML_WRAPPER, 'success', 'no issues found');
         }
 
-        $issuesAsHtml = array_map(fn(string $issue) => '<li>' . $issue . '</li>', $issues);
+        $issuesAsHtml = [];
+        foreach($issues as $issue) {
+            $issuesAsHtml[] = sprintf(
+                '<li>%s : %s</li>',
+                $issue->getPropertyPath(),
+                $issue->getMessageTemplate()
+            );
+        }
         $issuesHtmlString = implode('', $issuesAsHtml);
 
         return sprintf(self::HTML_WRAPPER, 'danger', '<ul style="padding-left: 10px !important; margin: 0 !important">' . $issuesHtmlString . '</ul>');

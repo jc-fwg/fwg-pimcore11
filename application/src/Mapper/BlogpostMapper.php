@@ -76,6 +76,8 @@ class BlogpostMapper
 
         return new BlogpostDto(
             id: $model->getId(),
+            slug: $model->getSlug(),
+            wordPressSlug: $model->getWordPressSlug(),
             publicationDate: $model->getPublicationDate(),
             blogpostType: $model->getBlogpostType(),
             authors: $authors,
@@ -83,7 +85,7 @@ class BlogpostMapper
             categories: $model->getCategories() ?? [],
             imageMain: $model->getImageMain(),
             assetsFolder: $model->getAssetsFolder(),
-            previewText: $model->getPreviewText(),
+            previewText: strip_tags(($model->getPreviewText() ?? '')),
             imageTeaser: $model->getImageTeaser(),
             downloads: $model->getDownloads(),
             links: $links,

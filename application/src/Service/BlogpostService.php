@@ -15,7 +15,6 @@ use Carbon\Carbon;
 use Exception;
 use Pimcore\Bundle\ApplicationLoggerBundle\ApplicationLogger;
 use Pimcore\Mail;
-use Pimcore\Model\Asset\Image;
 use Pimcore\Model\DataObject;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,6 +24,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -281,65 +281,34 @@ class BlogpostService
     }
 
     /**
-     * @return array<string, string[]>
+     * @return array<string, ConstraintViolationList[]>
+     * @throws Exception
      */
     public function checkDataQuality(DataObject\Blogpost $blogpost): array
     {
-        $issues = [];
+        $blogpostDto = $this->blogpostMapper->fromModel($blogpost);
 
-        // Base Data: Slug
-        if (trim((string) $blogpost->getSlug()) === '') {
-            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Slug missing';
-        }
+        $dataQuality[self::DATA_QUALITY_BASE_DATA] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA]);
+        $dataQuality[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS]);
+        $dataQuality[self::DATA_QUALITY_CONTENT] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT]);
+        $dataQuality[self::DATA_QUALITY_SEO] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO]);
 
-        // Base Data: Publication Date
-        if (!$blogpost->getPublicationDate() instanceof Carbon) {
-            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Publication date missing';
-        }
+        $validationErrors = 0;
+        array_map(static function ($section) use (&$validationErrors) { $validationErrors += count($section); }, $dataQuality);
 
-        // Base Data: Blogpost Type
-        if ((string) $blogpost->getBlogpostType() === '') {
-            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Blogpost type missing';
-        }
+        return $dataQuality;
+    }
 
-        // Base Data: Tour without Activity
-        if ($blogpost->getBlogpostType() === 'tour' && $blogpost->getActivity() === null) {
-            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Tour has no Activity related';
-        }
+    /**
+     * @throws Exception
+     */
+    public function hasDataQualityIssues(DataObject\Blogpost $blogpost): bool
+    {
+        $dataQuality = $this->checkDataQuality($blogpost);
 
-        // Base Data: Authors
-        if ($blogpost->getAuthors() === null || count($blogpost->getAuthors()) === 0) {
-            $issues[self::DATA_QUALITY_BASE_DATA][] = 'Authors missing';
-        }
+        $validationErrors = 0;
+        array_map(static function ($section) use (&$validationErrors) { $validationErrors += count($section); }, $dataQuality);
 
-        // Assets, Downloads, Links : Image Main
-        if (!$blogpost->getImageMain() instanceof Image) {
-            $issues[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS][] = 'Main image missing';
-        }
-
-        // Assets, Downloads, Links : Teaser Main
-        if (!$blogpost->getImageTeaser() instanceof Image) {
-            $issues[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS][] = 'Teaser image missing';
-        }
-
-        // Content: Title
-        if (trim((string) $blogpost->getTitle()) === '') {
-            $issues[self::DATA_QUALITY_CONTENT][] = 'Title missing';
-        }
-
-
-        // SEO : Meta Title
-        if (trim((string) $blogpost->getMetaTitle()) === '') {
-            $issues[self::DATA_QUALITY_SEO][] = 'Meta Title missing';
-        }
-
-        // SEO : Meta Description
-        if (trim((string) $blogpost->getMetaDescription()) === '') {
-            $issues[self::DATA_QUALITY_SEO][] = 'Meta Description missing';
-        }
-
-
-
-        return $issues;
+        return $validationErrors > 0;
     }
 }
