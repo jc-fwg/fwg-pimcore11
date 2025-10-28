@@ -71,6 +71,9 @@ class BlogpostDto
         public ?Fieldcollection $content = null,
 
         #[Assert\NotBlank(groups: [self::VALIDATION_GROUP_DATA_QUALITY_SEO])]
+        public ?string $focusKeyword = null,
+
+        #[Assert\NotBlank(groups: [self::VALIDATION_GROUP_DATA_QUALITY_SEO])]
         public ?string $metaTitle = null,
 
         #[Assert\NotBlank(groups: [self::VALIDATION_GROUP_DATA_QUALITY_SEO])]

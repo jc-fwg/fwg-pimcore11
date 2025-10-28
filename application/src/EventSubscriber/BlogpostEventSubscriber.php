@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\EventSubscriber;
 
+use App\Dto\BlogpostDto;
+use App\Mapper\BlogpostMapper;
 use App\OpenAI\Service\OpenAIService;
 use App\Service\BlogpostService;
 use Exception;
@@ -11,6 +13,7 @@ use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
 
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use function count;
 use function in_array;
 use function strlen;
@@ -39,23 +42,25 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         ];
     }
 
+    /**
+     * @throws Exception
+     */
     public function setSeoData(DataObjectEvent $event): void
     {
-        return; // Disable AI SEO generation for Blogposts
+        return;
         $object = $event->getObject();
 
         if (!$object instanceof DataObject\Blogpost) {
             return;
         }
 
-        if ((string) $object->getFocusKeyword() === '') {
+        $hasDataQualityIssues = $this->blogpostService->hasDataQualityIssues($object, BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO);
+
+        if ($hasDataQualityIssues === false) {
             return;
         }
 
-        if (
-            strlen((string) $object->getMetaTitle()) > 10
-            && strlen((string) $object->getMetaDescription()) > 10
-        ) {
+        if ((string) $object->getFocusKeyword() === '') {
             return;
         }
 

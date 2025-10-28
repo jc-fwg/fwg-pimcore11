@@ -92,6 +92,7 @@ class BlogpostMapper
             title: $model->getTitle(),
             subTitle: $model->getSubTitle(),
             content: $model->getContent(),
+            focusKeyword: $model->getFocusKeyword(),
             metaTitle: $model->getMetaTitle(),
             metaDescription: $model->getMetaDescription(),
             hashtags: $model->getHashtags(),

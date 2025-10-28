@@ -36,11 +36,6 @@ use function sprintf;
 
 class BlogpostService
 {
-    public const string DATA_QUALITY_BASE_DATA              = 'baseData';
-    public const string DATA_QUALITY_ASSETS_DOWNLOADS_LINKS = 'assetsDownloadsLinks';
-    public const string DATA_QUALITY_CONTENT                = 'content';
-    public const string DATA_QUALITY_SEO                    = 'seo';
-
     public function __construct(
         private readonly SluggerInterface $slugger,
         private readonly FormFactoryInterface $formFactory,
@@ -192,10 +187,10 @@ class BlogpostService
     {
         $blogpostDto = $this->blogpostMapper->fromModel($blogpost);
 
-        $dataQuality[self::DATA_QUALITY_BASE_DATA]              = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA]);
-        $dataQuality[self::DATA_QUALITY_ASSETS_DOWNLOADS_LINKS] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS]);
-        $dataQuality[self::DATA_QUALITY_CONTENT]                = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT]);
-        $dataQuality[self::DATA_QUALITY_SEO]                    = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO]);
+        $dataQuality[BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA]              = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA]);
+        $dataQuality[BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS] = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS]);
+        $dataQuality[BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT]                = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT]);
+        $dataQuality[BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO]                    = $this->validator->validate($blogpostDto, groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO]);
 
         $validationErrors = 0;
         array_map(static function ($section) use (&$validationErrors): void { $validationErrors += count($section); }, $dataQuality);
@@ -206,12 +201,14 @@ class BlogpostService
     /**
      * @throws Exception
      */
-    public function hasDataQualityIssues(DataObject\Blogpost $blogpost): bool
+    public function hasDataQualityIssues(DataObject\Blogpost $blogpost, ?string $group = null): bool
     {
         $dataQuality = $this->checkDataQuality($blogpost);
 
         $validationErrors = 0;
-        array_map(static function ($section) use (&$validationErrors): void { $validationErrors += count($section); }, $dataQuality);
+        $dataQualityMap = $group !== null ? [$dataQuality[$group]] ?? [] : $dataQuality;
+
+        array_map(static function ($section) use (&$validationErrors): void { $validationErrors += count($section); }, $dataQualityMap);
 
         return $validationErrors > 0;
     }
