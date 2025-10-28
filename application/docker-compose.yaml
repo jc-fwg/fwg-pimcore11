@@ -63,6 +63,7 @@ services:
         volumes:
             - .:/var/www/html
             - ./.docker/messenger.yaml:/var/www/html/config/packages/messenger.yaml:ro
+            - ./.docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
 
     supervisord:
         user: '501:20' # set to your uid:gid

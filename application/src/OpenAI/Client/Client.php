@@ -33,7 +33,7 @@ readonly class Client
     public function chat(AbstractChatAgent $agent): ChatCreateResponse
     {
         return $this->client->chat()->create([
-            'model'           => self::MODEL_GPT5_MINI,
+            'model'           => self::MODEL_GPT4O,
             'response_format' => ['type' => 'json_object'],
             'messages'        => $agent->getMessageBag()->getMessages(),
         ]);
