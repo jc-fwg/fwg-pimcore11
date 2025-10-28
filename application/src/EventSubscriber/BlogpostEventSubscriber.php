@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use App\Dto\BlogpostDto;
-use App\Mapper\BlogpostMapper;
 use App\OpenAI\Service\OpenAIService;
 use App\Service\BlogpostService;
 use Exception;
 use Pimcore\Event\DataObjectEvents;
 use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Model\DataObject;
+use Pimcore\Model\Element\ValidationException;
+use Throwable;
 
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 use function count;
 use function in_array;
+use function sprintf;
 use function strlen;
 
 class BlogpostEventSubscriber extends AbstractEventSubscriber
@@ -37,7 +38,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
                 ['setSlug'],
                 ['setAuthorTagsAtActivity'],
                 ['setSeoData'],
-                ['checkDataQuality'],
+                ['checkDataQuality', 10],
             ],
         ];
     }
@@ -47,24 +48,41 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
      */
     public function setSeoData(DataObjectEvent $event): void
     {
-        return;
         $object = $event->getObject();
 
         if (!$object instanceof DataObject\Blogpost) {
             return;
         }
 
-        $hasDataQualityIssues = $this->blogpostService->hasDataQualityIssues($object, BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_SEO);
+        // Return on any data quality issues
+        $dataQuality = $this->blogpostService->checkDataQuality($object);
 
-        if ($hasDataQualityIssues === false) {
+        if (
+            count($dataQuality[BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA]) > 0
+            || count($dataQuality[BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT]) > 0
+            || count($dataQuality[BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS]) > 0
+        ) {
             return;
         }
 
+        // Return if both meta title and description are already set
+        if (strlen((string) $object->getMetaTitle()) > 5 && strlen((string) $object->getMetaDescription()) > 5) {
+            return;
+        }
+
+        // Return if no focus keyword is set
         if ((string) $object->getFocusKeyword() === '') {
             return;
         }
 
-        $openAiResponse = $this->openAIService->blogpost()->response($object->getFocusKeyword());
+        // Build prompt
+        $prompt = $this->fetchSeoPrompt($object);
+
+        try {
+            $openAiResponse = $this->openAIService->blogpost()->response($prompt);
+        } catch (Throwable $exception) {
+            throw new ValidationException($exception->getMessage());
+        }
 
         if (strlen((string) $object->getMetaTitle()) <= 10 && isset($openAiResponse['metaTitle'])) {
             $object->setMetaTitle($openAiResponse['metaTitle']);
@@ -178,5 +196,52 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         }
 
         $object->setPublished(false);
+    }
+
+    private function fetchSeoPrompt(DataObject\Blogpost $blogpost): string
+    {
+        $prompt = 'Die Zielgruppe des Blogposts sind: Wanderer und Outdoor Sportler allgemein.';
+        $prompt = sprintf(
+            '%s Das Fokus Keyword lautet: "%s".',
+            $prompt,
+            $blogpost->getFocusKeyword()
+        );
+        $prompt = sprintf(
+            '%s Der Titel des Blogposts lautet: "%s".',
+            $prompt,
+            $blogpost->getTitle()
+        );
+        $prompt = sprintf(
+            '%s Die Einleitung des Blogposts lautet: "%s".',
+            $prompt,
+            strip_tags($blogpost->getPreviewText())
+        );
+
+        $content = $blogpost->getContent();
+
+        /** @var ?string $contentHtml */
+        $contentHtml = '';
+
+        if ($content instanceof DataObject\Fieldcollection) {
+            $items = $content->getItems();
+
+            foreach ($items as $item) {
+                if (!$item instanceof DataObject\Fieldcollection\Data\ContentWysiwyg) {
+                    continue;
+                }
+
+                $contentHtml = sprintf(
+                    '%s %s',
+                    $contentHtml,
+                    $item->getWysiwyg()
+                );
+            }
+        }
+
+        return sprintf(
+            '%s Der Content des Blogposts als HTML lautet: "%s".',
+            $prompt,
+            $contentHtml
+        );
     }
 }

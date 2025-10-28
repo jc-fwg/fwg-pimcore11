@@ -38,7 +38,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1761602918,
+   'modificationDate' => 1761658940,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -527,10 +527,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     ),
                      'classes' => 
                     array (
-                      0 => 
-                      array (
-                        'classes' => '',
-                      ),
                     ),
                      'displayMode' => NULL,
                      'pathFormatterClass' => '',
@@ -542,18 +538,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'assetsAllowed' => true,
                      'assetTypes' => 
                     array (
-                      0 => 
-                      array (
-                        'assetTypes' => '',
-                      ),
                     ),
                      'documentsAllowed' => false,
                      'documentTypes' => 
                     array (
-                      0 => 
-                      array (
-                        'documentTypes' => '',
-                      ),
                     ),
                      'enableTextSelection' => false,
                      'width' => '',
@@ -1141,7 +1129,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'fieldtype' => 'text',
                  'html' => '<div>slug</div><div>blogpostType</div><div>authors</div><div>publicationDate​</div><div id="simple-translate" class="simple-translate-system-theme"><div><div style="background-image: url(&quot;moz-extension://f633c293-b460-4034-b48e-7cc67d443da3/icons/512.png&quot;); height: 22px; width: 22px; top: -18px; left: -82px;" class="simple-translate-button isShow"></div><div class="simple-translate-panel " style="width: 300px; height: 200px; top: 0px; left: 0px; font-size: 13px;"><div class="simple-translate-result-wrapper" style="overflow: hidden;"><div class="simple-translate-move" draggable="true"></div><div class="simple-translate-result-contents"><p class="simple-translate-result" dir="auto"></p><p class="simple-translate-candidate" dir="auto"></p></div></div></div></div></div>',
                  'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
-                 'renderingData' => 'baseData',
+                 'renderingData' => 'data-quality-base-data',
                  'border' => false,
               )),
               1 => 
@@ -1166,7 +1154,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'fieldtype' => 'text',
                  'html' => '<div>imageMain</div><div>imageTeaser</div>',
                  'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
-                 'renderingData' => 'assetsDownloadsLinks',
+                 'renderingData' => 'data-quality-assets-downloads-links',
                  'border' => false,
               )),
               2 => 
@@ -1191,7 +1179,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'fieldtype' => 'text',
                  'html' => '<div>title</div><div>subtitle</div><div>min 1x wysiwyg</div><div>min 1x gallery​</div>',
                  'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
-                 'renderingData' => 'content',
+                 'renderingData' => 'data-quality-content',
                  'border' => false,
               )),
               3 => 
@@ -1216,7 +1204,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'fieldtype' => 'text',
                  'html' => '<div>focusKeyword</div><div>metaTitle</div><div>metaDescription​</div>',
                  'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
-                 'renderingData' => 'seo',
+                 'renderingData' => 'data-quality-seo',
                  'border' => false,
               )),
             ),
@@ -1285,28 +1273,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
-    0 => 
-    \Pimcore\Model\DataObject\ClassDefinition\Data\Checkbox::__set_state(array(
-       'name' => 'hasDataQualityIssues',
-       'title' => 'app.generic.hasDataQualityIssues',
-       'tooltip' => '',
-       'mandatory' => false,
-       'noteditable' => true,
-       'index' => false,
-       'locked' => false,
-       'style' => '',
-       'permissions' => NULL,
-       'fieldtype' => '',
-       'relationType' => false,
-       'invisible' => true,
-       'visibleGridView' => false,
-       'visibleSearch' => false,
-       'blockedVarsForExport' => 
-      array (
-      ),
-       'defaultValue' => NULL,
-       'defaultValueGenerator' => '',
-    )),
   ),
    'blockedVarsForExport' => 
   array (

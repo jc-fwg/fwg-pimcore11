@@ -206,7 +206,7 @@ class BlogpostService
         $dataQuality = $this->checkDataQuality($blogpost);
 
         $validationErrors = 0;
-        $dataQualityMap = $group !== null ? [$dataQuality[$group]] ?? [] : $dataQuality;
+        $dataQualityMap   = $group !== null ? [$dataQuality[$group]] ?? [] : $dataQuality;
 
         array_map(static function ($section) use (&$validationErrors): void { $validationErrors += count($section); }, $dataQualityMap);
 
