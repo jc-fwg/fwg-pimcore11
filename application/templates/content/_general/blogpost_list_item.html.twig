@@ -1,11 +1,11 @@
-{% set colSetup = "col-lg-6 col-sm-12 col-xs-12 mb-4 px-4" %}
-{% set colSetupImage = "col-lg-5 col-sm-12" %}
-{% set colSetupContent = "col-lg-7 col-sm-12" %}
+{% set colSetup = "col-lg-6 col-xs-12 mb-4 px-4" %}
+{% set colSetupImage = "col-lg-5 col-xs-12" %}
+{% set colSetupContent = "col-lg-7 col-xs-12" %}
 
-{% if size == "wide" %}
-    {% set colSetup = "col-11 mb-4 px-2" %}
-    {% set colSetupImage = "col-4" %}
-    {% set colSetupContent = "col-8" %}
+{% if size is defined and size == "wide" %}
+    {% set colSetup = "col-xs-11 mb-4 px-2" %}
+    {% set colSetupImage = "col-lg-4 col-xs-12" %}
+    {% set colSetupContent = "col-lg-8 col-xs-12" %}
 {% endif %}
 
 <div class="{{ colSetup }}">
@@ -32,7 +32,7 @@
                 {% endif %}
             </p>
             <a href="{{ post.detailLink }}"
-               class="btn btn-secondary btn-sm col-12 col-md-6 col-xs-12 pt-2 pb-2">
+               class="btn btn-secondary btn-sm col-md-6 col-xs-12 pt-2 pb-2">
                 Mehr erfahren
             </a>
         </div>
