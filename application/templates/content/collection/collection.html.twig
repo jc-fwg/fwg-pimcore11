@@ -6,7 +6,7 @@
 {% endif %}
 
 {% do pimcore_head_title().prepend(metaTitle) %}
- {% do pimcore_head_meta().appendName('description', collection.metaDescription) %}
+{% do pimcore_head_meta().appendName('description', collection.metaDescription) %}
 {% block content %}
     <div class="page page-list">
         {% include 'layouts/includes/navigation-main.html.twig' %}

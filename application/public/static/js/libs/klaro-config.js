@@ -108,10 +108,10 @@ var klaroConfig = {
             default: true,
             translations: {
                 zz: {
-                    title: 'Leaflet Maps',
+                    title: 'Leaflet Maps mit Open Street Map',
                 },
                 de: {
-                    description: 'Leaflet ist eine Open-Source-JavaScript-Bibliothek zur Erstellung interaktiver Karten. Leaflet selbst setzt keine Cookies ein, um einzelne Nutzer zu identifizieren. Allerdings werden technische und personenbezogene Informationen – beispielsweise die IP-Adresse – vom Browser an die Server des Anbieters übermittelt, damit die Kartendarstellung funktioniert.'
+                    description: 'Leaflet ist eine Open-Source-JavaScript-Bibliothek zur Erstellung interaktiver Karten. Leaflet selbst setzt keine Cookies ein, um einzelne Nutzer zu identifizieren. Allerdings werden technische und personenbezogene Informationen – beispielsweise die IP-Adresse – vom Browser an die Server des Anbieters übermittelt, damit die Kartendarstellung funktioniert.<br><br>OpenStreetMap stellt Kartenmaterial bereit, das auf der Website eingebunden und dort angezeigt wird. Zwar werden auf dem Endgerät des Nutzers keine Cookies im eigentlichen Sinne gespeichert, jedoch werden technische und personenbezogene Informationen – beispielsweise die IP-Adresse – vom Browser an die Server des Anbieters übermittelt, damit die Kartendarstellung funktioniert.'
                 }
             },
             purposes: ['functional'],
@@ -151,55 +151,34 @@ var klaroConfig = {
             required: false,
             optOut: false,
             onlyOnce: true,
-        },
-        {
-            name: 'openstreetmap',
-            default: true,
-            translations: {
-                zz: {
-                    title: 'Open Street Map',
-                },
-                de: {
-                    description: 'OpenStreetMap stellt Kartenmaterial bereit, das auf der Website eingebunden und dort angezeigt wird. Zwar werden auf dem Endgerät des Nutzers keine Cookies im eigentlichen Sinne gespeichert, jedoch werden technische und personenbezogene Informationen – beispielsweise die IP-Adresse – vom Browser an die Server des Anbieters übermittelt, damit die Kartendarstellung funktioniert.'
+            callback: function (consent, service) {
+                if (consent) {
+                    const scriptUrls = [
+                        'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js',
+                        'https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js',
+                        'https://cdn.jsdelivr.net/npm/leaflet-gpx@1.7.0/gpx.min.js'
+                    ];
+
+                    const loadScriptSequentially = (urls, index = 0) => {
+                        if (index >= urls.length) {
+                            console.log('All Leaflet scripts loaded');
+                            leafletInit();
+                            return;
+                        }
+
+                        const script = document.createElement('script');
+                        script.src = urls[index];
+                        script.onload = () => loadScriptSequentially(urls, index + 1);
+                        script.onerror = (e) =>
+                            console.error('Fehler beim Laden von', urls[index], e);
+                        document.head.appendChild(script);
+                    };
+
+                    loadScriptSequentially(scriptUrls);
+                } else {
+                    console.log('Leaflet consent declined');
                 }
             },
-            purposes: ['functional'],
-
-            cookies: [
-                /*
-                entweder nur einen Cookie-Namen oder einen regulären Ausdruck (regex) oder eine
-                Liste bestehend aus einem Namen oder einem regulären Ausdruck, einem Pfad und
-                einer Cookie-Domäne angeben. Die Angabe eines Pfades und einer Domäne ist
-                erforderlich, wenn Sie Dienste haben, die Cookies für einen Pfad, der nicht "/"
-                ist, oder eine Domäne, die nicht die aktuelle Domäne ist, setzen. Wenn Sie diese
-                Werte nicht richtig setzen, kann das Cookie von Klaro nicht gelöscht werden, da
-                es keine Möglichkeit gibt, auf den Pfad oder die Domäne eines Cookies in JS
-                zuzugreifen. Beachten Sie, dass es nicht möglich ist, Cookies zu löschen, die
-                auf einer Domäne eines Drittanbieters gesetzt wurden, oder Cookies, die das
-                Attribut HTTPOnly haben: https://developer.mozilla.org/en-
-                US/docs/Web/API/Document/cookie#new-cookie_domain
-                */
-
-                /*
-                Diese Regel passt auf Cookies, die die Zeichenfolge '_pk_' enthalten und die auf
-                den Pfad '/' und die Domäne 'klaro.kiprotect.com' gesetzt sind.
-                */
-                [/^_pk_.*$/, '/', 'klaro.kiprotect.com'],
-
-                /*
-                Dasselbe wie oben, nur für die Domäne 'localhost'.
-                */
-                [/^_pk_.*$/, '/', 'localhost'],
-
-                /*
-                Diese Regel trifft auf alle Cookies mit dem Namen 'piwik_ignore' zu, die auf dem
-                Pfad '/' auf der aktuellen Domain gesetzt sind
-                */
-                'openstreetmap_ignore',
-            ],
-            required: false,
-            optOut: false,
-            onlyOnce: true,
         },
         {
             name: 'comments',

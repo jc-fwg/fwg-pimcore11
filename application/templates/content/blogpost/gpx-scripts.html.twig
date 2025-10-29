@@ -1,8 +1,5 @@
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    function leafletInit() {
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         });
@@ -90,5 +87,5 @@
                     elevationControl.addData(e.line);
                 }).addTo(map);
             });
-    });
+    }
 </script>
