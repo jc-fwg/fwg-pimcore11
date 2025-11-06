@@ -2,12 +2,21 @@
 
 #page-home {
 
+    h1,
     h2 {
         margin: 0;
-        padding: 5px 11px;
-        display: inline-block;
-        color: #fff;
         background-color: base.$color-cd-orange;
+        padding: 5px 11px;
+        color: #fff;
+        display: inline;
+    }
+
+    h1 {
+        border-bottom: 3px solid #fff;
+    }
+
+    h2 {
+        background-color: base.$color-cd-green;
     }
 
     #hero {

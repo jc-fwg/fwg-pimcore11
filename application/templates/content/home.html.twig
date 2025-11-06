@@ -7,13 +7,13 @@
         {# Intro #}
         <section id="intro" class="container-fluid spaced">
             <div class="container">
-                <div class="row">
-                    <h1 class="col-12">Welcome Headline</h1>
+                <h1>{{ pimcore_input('home_headline', {'placeholder': 'Homepage Headline'})}}</h1>
+                <div class="row mt-4">
                     <div class="col-12 col-md-6">
-                        Welcome Text left
+                        {{ pimcore_wysiwyg('home_intro_left', {'placeholder': 'Homepage Intro links'})}}
                     </div>
                     <div class="col-12 col-md-6">
-                        Welcome Text right
+                        {{ pimcore_wysiwyg('home_intro_right', {'placeholder': 'Homepage Intro rechts'})}}
                     </div>
                 </div>
             </div>
@@ -48,6 +48,5 @@
                 </div>
             </div>
         </section>
-
     </div>
 {%  endblock %}
