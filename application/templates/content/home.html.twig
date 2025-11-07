@@ -9,12 +9,18 @@
             <div class="container">
                 <h1>{{ pimcore_input('home_headline', {'placeholder': 'Homepage Headline'})}}</h1>
                 <div class="row mt-4">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-9">
                         {{ pimcore_wysiwyg('home_intro_left', {'placeholder': 'Homepage Intro links'})}}
                     </div>
-                    <div class="col-12 col-md-6">
-                        {{ pimcore_wysiwyg('home_intro_right', {'placeholder': 'Homepage Intro rechts'})}}
+                    <div class="col-12 col-md-auto">
+                        {% if editmode %}
+                            {{ pimcore_image("intro_author", {"thumbnail": "introAuthor"}) }}
+                        {% else %}
+                            {% set thumbnail = pimcore_image("intro_author").getThumbnail("introAuthor") %}
+                            <img src="{{ thumbnail }}" class="img-fluid rounded float-left" alt="Jochen Califice Freiweg Outdoor Blog"/>
+                        {% endif %}
                     </div>
+
                 </div>
             </div>
         </section>
