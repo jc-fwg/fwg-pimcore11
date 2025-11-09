@@ -365,7 +365,7 @@ class BlogpostService
         return new ArticleValueObject(
             title: $blogpostDto->title ?? '',
             description: $blogpostDto->metaDescription ?? '',
-            image: $request->getSchemeAndHttpHost() . $blogpostDto->socialPreviewThumbnail->getFullPath(),
+            image: $request->getSchemeAndHttpHost() . $blogpostDto->socialPreviewThumbnail?->getFullPath() ?? '',
             url: $request->getUri(),
             authors: $blogpostDto->authors,
             tags: $blogpostDto->activity?->tags,
