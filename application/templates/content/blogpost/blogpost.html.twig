@@ -2,6 +2,20 @@
     {% if blogpost is defined %}
         {% do pimcore_head_title().append(blogpost.metaTitle) %}
         {% do pimcore_head_meta().appendName('description', blogpost.metaDescription) %}
+
+        {% do pimcore_head_meta().setProperty('og:title', openGraph.title) %}
+        {% do pimcore_head_meta().setProperty('og:description', openGraph.description) %}
+        {% do pimcore_head_meta().setProperty('og:image', openGraph.image) %}
+        {% do pimcore_head_meta().setProperty('og:url', openGraph.url) %}
+        {% do pimcore_head_meta().setProperty('og:type', openGraph.type) %}
+        {% do pimcore_head_meta().setProperty('og:site_name', openGraph.siteName) %}
+        {% do pimcore_head_meta().setProperty('article:published_time', openGraph.publishedTime.format('c')) %}
+        {% for author in openGraph.authors %}
+            {% do pimcore_head_meta().appendProperty('article:author', author.name) %}
+        {% endfor %}
+        {% for tag in openGraph.tags %}
+            {% do pimcore_head_meta().appendProperty('article:tag', tag.name) %}
+        {% endfor %}
     {% endif %}
     {% block extra_stylesheets %}
         {{ parent() }}

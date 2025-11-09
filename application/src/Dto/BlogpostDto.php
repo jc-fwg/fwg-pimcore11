@@ -53,6 +53,10 @@ class BlogpostDto
 
         #[Assert\NotNull(groups: [self::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS])]
         public ?Image $imageMain = null,
+
+        #[Assert\NotNull(groups: [self::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS])]
+        public ?Image $socialPreviewThumbnail = null,
+
         public ?Folder $assetsFolder = null,
 
         #[Assert\NotBlank(groups: [self::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]

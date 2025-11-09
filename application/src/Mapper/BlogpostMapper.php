@@ -84,6 +84,7 @@ class BlogpostMapper
             activity: $model->getActivity() ? $this->activityMapper->fromModel($model->getActivity()) : null,
             categories: $model->getCategories() ?? [],
             imageMain: $model->getImageMain(),
+            socialPreviewThumbnail: $model->getSocialPreviewThumbnail(),
             assetsFolder: $model->getAssetsFolder(),
             previewText: strip_tags($model->getPreviewText() ?? ''),
             imageTeaser: $model->getImageTeaser(),

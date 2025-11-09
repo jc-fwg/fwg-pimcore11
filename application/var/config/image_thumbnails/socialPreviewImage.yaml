@@ -3,27 +3,27 @@ pimcore:
         image:
             thumbnails:
                 definitions:
-                    heroImage:
+                    socialPreviewImage:
                         items:
                             -
                                 method: cover
                                 arguments:
-                                    width: 1920
-                                    height: 1080
+                                    width: 1200
+                                    height: 630
                                     positioning: center
                                     forceResize: true
                         medias: {  }
-                        name: heroImage
+                        name: socialPreviewImage
                         description: ''
                         group: ''
                         format: JPEG
-                        quality: 70
+                        quality: 85
                         highResolution: null
                         preserveColor: false
                         forceProcessICCProfiles: false
                         preserveMetaData: false
                         rasterizeSVG: false
                         downloadable: false
-                        modificationDate: 1762708300
-                        creationDate: 1748524181
+                        modificationDate: 1762643136
+                        creationDate: 1762635656
                         preserveAnimation: false

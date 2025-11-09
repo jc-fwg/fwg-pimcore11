@@ -122,10 +122,13 @@ class DefaultController extends BaseController
             $blogpost = $this->blogpostRepository->getBySlug($slug);
         }
 
+        $blogpostDto = $this->blogpostMapper->fromModel($blogpost);
+
         $paramBag = $this->getAllParameters($request);
 
         $paramBag = array_merge($paramBag, [
-            'blogpost'    => $this->blogpostMapper->fromModel($blogpost),
+            'blogpost'    => $blogpostDto,
+            'openGraph'  => $this->blogpostService->getOpenGraphArticleData($request, $blogpostDto),
             'commentForm' => $this->blogpostService->createOrHandleCommentForm($request),
         ]);
 

@@ -38,6 +38,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
                 ['setSlug'],
                 ['setAuthorTagsAtActivity'],
                 ['setSeoData'],
+                ['generateSocialPreviewThumbnails'],
                 ['checkDataQuality', 10],
             ],
         ];
@@ -196,6 +197,21 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         }
 
         $object->setPublished(false);
+    }
+
+    public function generateSocialPreviewThumbnails(DataObjectEvent $event): void
+    {
+        if ($this->isAutoSave($event)) {
+            return;
+        }
+
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
+            return;
+        }
+
+        $this->blogpostService->generateSocialPreviewThumbnails($object);
     }
 
     private function fetchSeoPrompt(DataObject\Blogpost $blogpost): string
