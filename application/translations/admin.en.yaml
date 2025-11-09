@@ -58,6 +58,7 @@ app:
         selected: 'Selected'
         seo: 'SEO'
         slug: 'Slug'
+        socialPreviewThumbnail: 'Social Preview Thumbnail'
         subTitle: 'Sub Title'
         summary: 'Summary'
         surefootedness: 'Surefootedness'

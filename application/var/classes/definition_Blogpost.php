@@ -16,6 +16,7 @@
  * - imageMain [image]
  * - imageTeaser [image]
  * - assetsFolder [manyToOneRelation]
+ * - socialPreviewThumbnail [image]
  * - downloads [manyToManyRelation]
  * - links [block]
  * -- link [link]
@@ -38,7 +39,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1761658940,
+   'modificationDate' => 1762643699,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -482,6 +483,29 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     array (
                     ),
                      'width' => '',
+                  )),
+                  3 => 
+                  \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
+                     'name' => 'socialPreviewThumbnail',
+                     'title' => 'app.generic.socialPreviewThumbnail',
+                     'tooltip' => '',
+                     'mandatory' => false,
+                     'noteditable' => false,
+                     'index' => false,
+                     'locked' => false,
+                     'style' => '',
+                     'permissions' => NULL,
+                     'fieldtype' => '',
+                     'relationType' => false,
+                     'invisible' => false,
+                     'visibleGridView' => false,
+                     'visibleSearch' => false,
+                     'blockedVarsForExport' => 
+                    array (
+                    ),
+                     'uploadPath' => '',
+                     'width' => '',
+                     'height' => '',
                   )),
                 ),
                  'locked' => false,
