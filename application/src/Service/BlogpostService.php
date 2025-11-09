@@ -363,7 +363,7 @@ class BlogpostService
     public function getOpenGraphArticleData(Request $request, BlogpostDto $blogpostDto): ArticleValueObject
     {
         return new ArticleValueObject(
-            title: $blogpostDto->title ?? '',
+            title: sprintf('%s – %s', $blogpostDto->title ?? '', $blogpostDto->subTitle ?? ''),
             description: $blogpostDto->metaDescription ?? '',
             image: $request->getSchemeAndHttpHost() . $blogpostDto->socialPreviewThumbnail?->getFullPath() ?? '',
             url: $request->getUri(),
