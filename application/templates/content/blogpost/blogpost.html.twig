@@ -10,6 +10,7 @@
         {% do pimcore_head_meta().setProperty('og:image:height', openGraph.imageHeight) %}
         {% do pimcore_head_meta().setProperty('og:url', openGraph.url) %}
         {% do pimcore_head_meta().setProperty('og:type', openGraph.type) %}
+        {% do pimcore_head_meta().setProperty('og:locale', openGraph.locale) %}
         {% do pimcore_head_meta().setProperty('og:site_name', openGraph.siteName) %}
         {% do pimcore_head_meta().setProperty('article:published_time', openGraph.publishedTime.format('c')) %}
         {% for author in openGraph.authors %}
