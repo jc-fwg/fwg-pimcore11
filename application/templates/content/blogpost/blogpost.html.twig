@@ -6,6 +6,8 @@
         {% do pimcore_head_meta().setProperty('og:title', openGraph.title) %}
         {% do pimcore_head_meta().setProperty('og:description', openGraph.description) %}
         {% do pimcore_head_meta().setProperty('og:image', openGraph.image) %}
+        {% do pimcore_head_meta().setProperty('og:image:width', openGraph.imageWidth) %}
+        {% do pimcore_head_meta().setProperty('og:image:height', openGraph.imageHeight) %}
         {% do pimcore_head_meta().setProperty('og:url', openGraph.url) %}
         {% do pimcore_head_meta().setProperty('og:type', openGraph.type) %}
         {% do pimcore_head_meta().setProperty('og:site_name', openGraph.siteName) %}
