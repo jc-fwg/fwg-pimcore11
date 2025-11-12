@@ -52,7 +52,7 @@ class DefaultController extends BaseController
         // Get random hero image
         $heroImagesFolder      = Asset::getByPath(FolderConstants::ASSET_WEBSITE_HERO_IMAGES);
         $heroImages            = $heroImagesFolder?->getChildren()?->getAssets();
-        $heroImage              = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
+        $heroImage             = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
         $paramBag['heroImage'] = $heroImage;
         $paramBag['headTitle'] = $this->document->getTitle();
 
@@ -79,7 +79,7 @@ class DefaultController extends BaseController
                 description: $this->document->getDescription(),
                 image: $heroImage ? $request->getSchemeAndHttpHost().$heroImage->getFullPath() : '',
                 url: $request->getUri(),
-            )
+            ),
         ]);
     }
 
