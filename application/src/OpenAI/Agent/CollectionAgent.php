@@ -45,5 +45,13 @@ class CollectionAgent extends AbstractChatAgent
                  - maximal 155 Zeichen
                 PROMPT
         ));
+        $this->messageBag->addMessage(new MessageValueObject(
+            role: RoleEnum::SYSTEM,
+            content: <<<'PROMPT'
+                Teil Deiner JSON Antwort ist immer "ogDescription" mit folgenden Merkmalen:
+                - kurze natürliche Social-Media Teaser Texte für Open Graph Meta Descriptions. Immer als Plain Text, kein Markdown, keine Emojis, keine Hashtags
+                - 120 and 200 Zeichen lang
+                PROMPT
+        ));
     }
 }

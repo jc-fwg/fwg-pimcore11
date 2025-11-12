@@ -128,7 +128,7 @@ class DefaultController extends BaseController
 
         $paramBag = array_merge($paramBag, [
             'blogpost'    => $blogpostDto,
-            'openGraph'  => $this->blogpostService->getOpenGraphArticleData($request, $blogpostDto),
+            'openGraph'   => $this->blogpostService->getOpenGraphData($request, $blogpostDto),
             'commentForm' => $this->blogpostService->createOrHandleCommentForm($request),
         ]);
 
@@ -166,6 +166,7 @@ class DefaultController extends BaseController
             'imageTeaser' => $imageTeaser,
             'blogposts'   => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
             'tagList'     => $this->tagRepository->findAllCurrentlyRelated(),
+            'openGraph'   => $this->collectionService->getOpenGraphData($request, $collection),
         ]));
     }
 

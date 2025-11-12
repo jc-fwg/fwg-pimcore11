@@ -9,9 +9,11 @@
  * - title [input]
  * - description [wysiwyg]
  * - imageTeaser [image]
+ * - socialPreviewThumbnail [image]
  * - additionalRecommendationEntrypoints [manyToManyRelation]
  * - metaTitle [input]
  * - metaDescription [input]
+ * - ogDescription [input]
  * - categories [manyToManyObjectRelation]
  * - tags [manyToManyObjectRelation]
  * - blogposts [manyToManyObjectRelation]
@@ -25,7 +27,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1761392863,
+   'modificationDate' => 1762965676,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -177,6 +179,29 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'height' => '',
           )),
           4 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
+             'name' => 'socialPreviewThumbnail',
+             'title' => 'app.generic.socialPreviewThumbnail',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'uploadPath' => '',
+             'width' => '',
+             'height' => '',
+          )),
+          5 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
              'name' => 'additionalRecommendationEntrypoints',
              'title' => 'app.generic.additionalRecommendationEntrypoints',
@@ -221,7 +246,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'width' => '',
              'height' => '',
           )),
-          5 => 
+          6 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'SEO & Marketing',
              'type' => NULL,
@@ -304,7 +329,60 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'top',
           )),
-          6 => 
+          7 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
+             'name' => 'Open Graph',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.openGraph',
+             'width' => '',
+             'height' => '',
+             'collapsible' => false,
+             'collapsed' => false,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+                 'name' => 'ogDescription',
+                 'title' => 'app.generic.description',
+                 'tooltip' => '',
+                 'mandatory' => true,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'defaultValue' => NULL,
+                 'columnLength' => 190,
+                 'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
+                 'unique' => false,
+                 'showCharCount' => true,
+                 'width' => '100%',
+                 'defaultValueGenerator' => '',
+              )),
+            ),
+             'locked' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'fieldtype' => 'fieldset',
+             'labelWidth' => 100,
+             'labelAlign' => 'top',
+          )),
+          8 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Included',
              'type' => NULL,
@@ -445,7 +523,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'labelWidth' => 100,
              'labelAlign' => 'left',
           )),
-          7 => 
+          9 => 
           \Pimcore\Model\DataObject\ClassDefinition\Layout\Fieldset::__set_state(array(
              'name' => 'Excluded',
              'type' => NULL,

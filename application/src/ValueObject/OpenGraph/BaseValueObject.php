@@ -6,12 +6,12 @@ namespace App\ValueObject\OpenGraph;
 
 abstract readonly class BaseValueObject
 {
-    protected const string TYP_ARTICLE = 'article';
-    protected const string TYP_WEBSITE = 'website';
-    protected const string SITE_NAME   = 'FreiWeg Outdoor Activity Blog';
-    protected const string IMAGE_WIDTH   = '1200';
-    protected const string IMAGE_HEIGHT   = '630';
-    protected const string LOCALE   = 'de_DE';
+    protected const string TYPE_ARTICLE = 'article';
+    protected const string TYPE_WEBSITE = 'website';
+    protected const string SITE_NAME    = 'FreiWeg Outdoor Activity Blog';
+    protected const string IMAGE_WIDTH  = '1200';
+    protected const string IMAGE_HEIGHT = '630';
+    protected const string LOCALE       = 'de_DE';
 
     public function __construct(
         public string $title,

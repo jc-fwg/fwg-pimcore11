@@ -10,6 +10,7 @@ use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Service;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\AbstractObject;
+use Pimcore\Model\Element\DuplicateFullPathException;
 
 use function sprintf;
 
@@ -48,7 +49,7 @@ class DataObjectService
     }
 
     /**
-     * @throws \Pimcore\Model\Element\DuplicateFullPathException
+     * @throws DuplicateFullPathException
      */
     public function moveAssetsFolderToTrash(DataObject $object): void
     {

@@ -43,6 +43,7 @@ abstract class AbstractChatAgent extends AbstractAgent
                 Du antwortest immer auf Deutsch.
                 Deine Antwort ist immer in korrektem JSON-Format.
                 Deine Sprache ist immer informativ und ansprechend, im positivem Ton
+                Du sprichst die Leute immer in Du-Form an, wirst sie nicht siezen
                 PROMPT
         ));
 
