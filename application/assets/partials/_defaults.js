@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Handler when the DOM is fully loaded
     setHeroBackground();
+    initToTopLink();
 
     //initNavbarScrollSpy();
 });
@@ -45,6 +46,29 @@ function initNavbarScrollSpy() {
             navigationMainBgLayer.classList.remove("nav-main-bg-layer-animate-in");
            // navigationMainBgLayer.classList.add("nav-main-bg-layer-animate-out");
             isFixed = false;
+        }
+    });
+}
+
+function initToTopLink() {
+    let toTopElement = document.getElementById("to-top");
+
+    if (toTopElement === null) {
+        return;
+    }
+
+    // toTopElement.addEventListener("click", function() {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     })
+    // });
+
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 400) {
+            toTopElement.classList.replace('fade-hide', 'fade-show');
+        } else {
+            toTopElement.classList.replace('fade-show', 'fade-hide');
         }
     });
 }

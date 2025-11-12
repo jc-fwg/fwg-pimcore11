@@ -8,6 +8,13 @@ body {
     font-size: 16px;
     background-color: #fff;
 }
+h1,
+h2,
+h3,
+h4 {
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
 
 h1 {
     @media (max-width: 767.98px) {
@@ -246,4 +253,30 @@ footer {
 
 .material-icons {
     vertical-align: bottom;
+}
+
+#to-top {
+    bottom: 25px;
+    height: 35px;
+    left: 50%;
+    margin-left: -17px;
+    position: fixed;
+    width: 35px;
+    z-index: 150;
+    cursor: pointer;
+
+    img {
+        width: 35px;
+        height: auto;
+    }
+}
+
+.fade-show {
+    opacity: 1;
+    transition: opacity 400ms;
+}
+
+.fade-hide {
+    opacity: 0;
+    transition: opacity 400ms;
 }

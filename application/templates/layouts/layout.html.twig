@@ -48,7 +48,7 @@
         {% endif %}
     </head>
     <body>
-
+        <a id="top"></a>
         {% block editmodeSetups %}
         {% endblock %}
 
@@ -65,5 +65,11 @@
             {{ pimcore_head_script() }}
         {% endblock %}
         {% block extra_scripts %}{% endblock %}
+
+        <div id="to-top" class="fade-hide">
+            <a href="#top" aria-label="Zum Seitenanfang">
+                <img src="{{ asset("static/gfx/to-top.png") }}" alt="To Top" />
+            </a>
+        </div>
     </body>
 </html>
