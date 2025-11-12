@@ -47,6 +47,7 @@ app:
         media: 'Media'
         metrics: 'Metrics'
         name: 'Name'
+        openGraph: 'Open Graph'
         previewText: 'Preview Text'
         publicationDate: 'Publication Date'
         referenceComment: 'Reference Comment'

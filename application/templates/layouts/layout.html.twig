@@ -7,6 +7,9 @@
             {% do pimcore_head_meta().appendName("viewport", "width=device-width, initial-scale=1, shrink-to-fit=no") %}
             {% do pimcore_head_meta().appendName("msapplication-TileColor", "#007560") %}
             {% do pimcore_head_meta().appendName("theme-color", "#ffffff") %}
+            {% if openGraph is defined %}
+                {% include 'content/_general/openGraph.html.twig' with { 'openGraph' : openGraph } %}
+            {% endif %}
             {{ pimcore_head_title() }}
             {{ pimcore_head_meta() }}
         {% endblock %}

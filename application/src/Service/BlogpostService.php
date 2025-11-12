@@ -216,6 +216,65 @@ class BlogpostService
         return $validationErrors > 0;
     }
 
+    public function generateSocialPreviewThumbnails(DataObject\Blogpost $object): void
+    {
+        $existingSocialMediaImage = $object->getSocialPreviewThumbnail();
+        if ($existingSocialMediaImage instanceof Image) {
+            return;
+        }
+
+        $mainImage = $object->getImageMain();
+
+        if (!$mainImage instanceof Image) {
+            return;
+        }
+
+        $assetsFolder = $object->getAssetsFolder();
+        if (!$assetsFolder instanceof Asset) {
+            return;
+        }
+
+        $name = sprintf(
+            'socialPreviewThumbnail_%s.jpg',
+            $object->getId()
+        );
+
+        $socialPreviewThumbnail = $mainImage->getThumbnail('socialPreviewImage', false);
+
+        $stream    = $socialPreviewThumbnail->getStream();
+        $imageData = stream_get_contents($stream);
+
+        // Delete existing asset
+        $asset = Asset::getByPath($assetsFolder->getFullPath().'/'.$name);
+        if ($asset instanceof Image) {
+            $asset->delete();
+        }
+
+        $asset = new Image();
+        $asset->setData($imageData);
+        $asset->setKey($name);
+        $asset->setParent($assetsFolder);
+        $asset->setFilename($name);
+        $asset->save();
+
+        $object->setSocialPreviewThumbnail($asset);
+
+        $this->blogpostRepository->persist($object);
+    }
+
+    public function getOpenGraphData(Request $request, BlogpostDto $blogpostDto): ArticleValueObject
+    {
+        return new ArticleValueObject(
+            title: sprintf('%s – %s', $blogpostDto->title ?? '', $blogpostDto->subTitle ?? ''),
+            description: $blogpostDto->metaDescription ?? '',
+            image: $request->getSchemeAndHttpHost().$blogpostDto->socialPreviewThumbnail?->getFullPath() ?? '',
+            url: $request->getUri(),
+            authors: $blogpostDto->authors,
+            tags: $blogpostDto->activity?->tags,
+            publishedTime: $blogpostDto->publicationDate ?? Carbon::now(),
+        );
+    }
+
     private function handleCommentForm(FormInterface $form): ?ConstraintViolationListInterface
     {
         $data = $form->getData();
@@ -312,64 +371,5 @@ class BlogpostService
         }
 
         return null;
-    }
-
-    public function generateSocialPreviewThumbnails(DataObject\Blogpost $object): void
-    {
-        $existingSocialMediaImage = $object->getSocialPreviewThumbnail();
-        if ($existingSocialMediaImage instanceof Image) {
-            return;
-        }
-
-        $mainImage = $object->getImageMain();
-
-        if (!$mainImage instanceof Image) {
-            return;
-        }
-
-        $assetsFolder = $object->getAssetsFolder();
-        if (!$assetsFolder instanceof Asset) {
-            return;
-        }
-
-        $name = sprintf(
-            'socialPreviewThumbnail_%s.jpg',
-            $object->getId()
-        );
-
-        $socialPreviewThumbnail = $mainImage->getThumbnail('socialPreviewImage', false);
-
-        $stream = $socialPreviewThumbnail->getStream();
-        $imageData = stream_get_contents($stream);
-
-        // Delete existing asset
-        $asset = Asset::getByPath($assetsFolder->getFullPath() . '/' . $name);
-        if ($asset instanceof Image) {
-            $asset->delete();
-        }
-
-        $asset = new Image();
-        $asset->setData($imageData);
-        $asset->setKey($name);
-        $asset->setParent($assetsFolder);
-        $asset->setFilename($name);
-        $asset->save();
-
-        $object->setSocialPreviewThumbnail($asset);
-
-        $this->blogpostRepository->persist($object);
-    }
-
-    public function getOpenGraphArticleData(Request $request, BlogpostDto $blogpostDto): ArticleValueObject
-    {
-        return new ArticleValueObject(
-            title: sprintf('%s – %s', $blogpostDto->title ?? '', $blogpostDto->subTitle ?? ''),
-            description: $blogpostDto->metaDescription ?? '',
-            image: $request->getSchemeAndHttpHost() . $blogpostDto->socialPreviewThumbnail?->getFullPath() ?? '',
-            url: $request->getUri(),
-            authors: $blogpostDto->authors,
-            tags: $blogpostDto->activity?->tags,
-            publishedTime: $blogpostDto->publicationDate ?? Carbon::now(),
-        );
     }
 }

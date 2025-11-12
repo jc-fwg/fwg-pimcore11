@@ -11,6 +11,7 @@ use App\Constant\FolderConstants;
 use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
 use App\Service\CollectionService;
+use App\ValueObject\OpenGraph\WebsiteValueObject;
 use Exception;
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
 use Pimcore\Model\Asset;
@@ -51,7 +52,8 @@ class DefaultController extends BaseController
         // Get random hero image
         $heroImagesFolder      = Asset::getByPath(FolderConstants::ASSET_WEBSITE_HERO_IMAGES);
         $heroImages            = $heroImagesFolder?->getChildren()?->getAssets();
-        $paramBag['heroImage'] = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
+        $heroImage             = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
+        $paramBag['heroImage'] = $heroImage;
         $paramBag['headTitle'] = $this->document->getTitle();
 
         // Latest blogposts
@@ -72,6 +74,12 @@ class DefaultController extends BaseController
             'collections'    => array_slice($collections, 0, 4),
             'tags'           => $tags,
             'socialChannels' => (new SocialChannel\Listing())->getObjects(),
+            'openGraph'      => new WebsiteValueObject(
+                title: $this->document->getTitle(),
+                description: $this->document->getDescription(),
+                image: $heroImage ? $request->getSchemeAndHttpHost().$heroImage->getFullPath() : '',
+                url: $request->getUri(),
+            ),
         ]);
     }
 
@@ -128,7 +136,7 @@ class DefaultController extends BaseController
 
         $paramBag = array_merge($paramBag, [
             'blogpost'    => $blogpostDto,
-            'openGraph'  => $this->blogpostService->getOpenGraphArticleData($request, $blogpostDto),
+            'openGraph'   => $this->blogpostService->getOpenGraphData($request, $blogpostDto),
             'commentForm' => $this->blogpostService->createOrHandleCommentForm($request),
         ]);
 
@@ -166,6 +174,7 @@ class DefaultController extends BaseController
             'imageTeaser' => $imageTeaser,
             'blogposts'   => $this->blogpostService->getBlogpostsByCollection($collection) ?? [],
             'tagList'     => $this->tagRepository->findAllCurrentlyRelated(),
+            'openGraph'   => $this->collectionService->getOpenGraphData($request, $collection),
         ]));
     }
 
