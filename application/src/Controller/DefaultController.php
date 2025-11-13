@@ -243,6 +243,7 @@ class DefaultController extends BaseController
             $websiteSetting = null;
         }
 
+        $teaserImage = null;
         if ($websiteSetting instanceof WebsiteSetting) {
             $teaserImage = $websiteSetting->getData();
         }
