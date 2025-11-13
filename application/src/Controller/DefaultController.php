@@ -234,7 +234,7 @@ class DefaultController extends BaseController
 
     public function notFoundAction(Request $request): Response
     {
-        $paramBag              = $this->getAllParameters($request);
+        $paramBag = $this->getAllParameters($request);
 
         // Hero image
         try {
@@ -258,10 +258,10 @@ class DefaultController extends BaseController
         shuffle($collections);
 
         $content = $this->renderView('error/404.html.twig', array_merge($paramBag, [
-            'headTitle' => '404 - Seite nicht gefunden',
-            'heroImage' => $teaserImage instanceof Asset\Image ? $teaserImage : null,
-            'latestPosts'    => $latestPosts,
-            'collections'    => array_slice($collections, 0, 4),
+            'headTitle'   => '404 - Seite nicht gefunden',
+            'heroImage'   => $teaserImage instanceof Asset\Image ? $teaserImage : null,
+            'latestPosts' => $latestPosts,
+            'collections' => array_slice($collections, 0, 4),
         ]));
 
         return new Response($content, Response::HTTP_NOT_FOUND);
