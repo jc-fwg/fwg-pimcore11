@@ -1,6 +1,7 @@
 @use '../_base.scss' as base;
 
-#page-home {
+#page-home,
+#page-404 {
 
     h1,
     h2 {
@@ -41,11 +42,6 @@
                 color: base.$color-cd-green;
             }
         }
-    }
-
-    #posts {
-
-
     }
 
     #sets {

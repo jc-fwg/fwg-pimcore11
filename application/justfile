@@ -14,6 +14,9 @@ cache-clear-full:
 create-folders:
     bin/console cache:clear; bin/console app:build:create-folders
 
+create-website-settings:
+    bin/console cache:clear; bin/console app:build:create-website-settings
+
 ## Linting
 _create-cache-dir:
     mkdir -p cache

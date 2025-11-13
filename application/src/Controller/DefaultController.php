@@ -8,6 +8,7 @@ use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Adapter\App\Database\Doctrine\Repository\CollectionRepository;
 use App\Adapter\App\Database\Doctrine\Repository\TagRepository;
 use App\Constant\FolderConstants;
+use App\Constant\WebsiteSettingConstants;
 use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
 use App\Service\CollectionService;
@@ -20,6 +21,7 @@ use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\SocialChannel;
 use Pimcore\Model\Document\Page;
 use Pimcore\Model\Exception\NotFoundException;
+use Pimcore\Model\WebsiteSetting;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -233,9 +235,34 @@ class DefaultController extends BaseController
     public function notFoundAction(Request $request): Response
     {
         $paramBag              = $this->getAllParameters($request);
-        $paramBag['headTitle'] = '404 - Seite nicht gefunden';
 
-        $content = $this->renderView('error/404.html.twig', $paramBag);
+        // Hero image
+        try {
+            $websiteSetting = WebsiteSetting::getByName(WebsiteSettingConstants::ERROR_TEASER_IMAGE);
+        } catch (NotFoundException) {
+            $websiteSetting = null;
+        }
+
+        if ($websiteSetting instanceof WebsiteSetting) {
+            $teaserImage = $websiteSetting->getData();
+        }
+
+        // Latest blogposts
+        $latestPosts = [];
+        foreach ($this->blogpostRepository->findLatest(4) as $post) {
+            $latestPosts[] = $this->blogpostMapper->fromModel($post);
+        }
+
+        // Collections
+        $collections = $this->collectionRepository->findAll();
+        shuffle($collections);
+
+        $content = $this->renderView('error/404.html.twig', array_merge($paramBag, [
+            'headTitle' => '404 - Seite nicht gefunden',
+            'heroImage' => $teaserImage instanceof Asset\Image ? $teaserImage : null,
+            'latestPosts'    => $latestPosts,
+            'collections'    => array_slice($collections, 0, 4),
+        ]));
 
         return new Response($content, Response::HTTP_NOT_FOUND);
     }

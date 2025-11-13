@@ -14,8 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
 function setHeroBackground() {
     // Update background image
     let heroContainer = document.getElementById("hero");
-    let imageSource = document.querySelector('#hero picture img').src;
+    if (!heroContainer) return;
+
+    let imageSource = document.querySelector('#hero picture img')?.src;
+    if (!imageSource) return;
+
     let pictureElement = document.querySelector('#hero picture');
+    if (!pictureElement) return;
+
     heroContainer.style.backgroundImage = "url(" + imageSource + ")";
     pictureElement.parentNode.removeChild(pictureElement);
     // Remove element from DOM

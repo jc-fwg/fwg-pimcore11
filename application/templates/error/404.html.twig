@@ -2,27 +2,28 @@
 
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="container page-404">
-            {{ pimcore_wysiwyg("wysiwyg") }}
-            <h1>Immer auf em Weg bleiben, keine Abkürzungen nehmen!</h1>
-            Es scheint, als hättest Du irgndwo die falsche Abbiegung erwischt. Hier geht es auf jeden Fall nicht weiter.<br>
-            Keine Sorge. Wir bringen Dich gerne zurück auf den passenden Pfad!
-            <div class="mt-3">
-                Entscheide Dich enfach für eine Richtung auf unserem Wegweiser und entdecke
-                <ul>
-                    <li class="mt-2">
-                        <a href="#">Wanderungen für große und kleine Zwei- und Vierpfoter, entspannt bis schweißtreibend</a>
-                    </li>
-                    <li class="mt-2">
-                        <a href="#">Städtetrips zu wunderschönen Locations in Europa</a>
-                    </li>
-                    <li class="mt-2">
-                        <a href="#">hilfreiche und interessante Information zum Thema Camping und Caravan</a>
-                    </li>
-                </ul>
+    <div id="page-404" class="page page-404">
+        {% include 'content/home/hero.html.twig' %}
+        {% include 'layouts/includes/navigation-main.html.twig' %}
+
+        <section id="intro" class="container-fluid spaced">
+            <div class="container">
+                <h1>Bitte keine Abkürzungen nutzen</h1>
+                <p class="mt-3">
+                    Es scheint, als hättest Du irgendwo die falsche Abbiegung erwischt. Hier geht es auf jeden Fall nicht weiter.<br>
+                    Keine Sorge. Wir bringen Dich gerne zurück auf den passenden Weg!
+                </p>
+                <p class="mb-5">
+                    Auf <a href="/">unserer Startseite</a> findest Du aktuelle Blogposts und beliebte Themen. 🙂
+                </p>
+
+                <h2>Oder entdecke gleich spannende Themen:</h2>
+                <div class="row g-2 mt-3">
+                    {% for collection in collections %}
+                        {% include 'content/_general/collection_list_item.html.twig' with {'collection': collection} %}
+                    {% endfor %}
+                </div>
             </div>
-            Oder <a href="/">besuche unsere Startseite</a> mit aktuellen Blogposts und finde von hier Deine nrue Route durch unsere Website.
-        </div>
+        </section>
     </div>
 {% endblock %}

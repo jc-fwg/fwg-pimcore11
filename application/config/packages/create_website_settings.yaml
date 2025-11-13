@@ -1,6 +1,6 @@
 parameters:
     commands.create_website_settings.asset:
-        #- !php/const App\Constant\WebsiteSettingConstants::AN_EXAMPLE
+        - !php/const App\Constant\WebsiteSettingConstants::ERROR_TEASER_IMAGE
     commands.create_website_settings.checkbox:
     commands.create_website_settings.document:
         - !php/const App\Constant\WebsiteSettingConstants::FOOTER_NAVI_FOLDER
