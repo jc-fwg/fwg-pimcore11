@@ -247,12 +247,6 @@ class DefaultController extends BaseController
             $teaserImage = $websiteSetting->getData();
         }
 
-        // Latest blogposts
-        $latestPosts = [];
-        foreach ($this->blogpostRepository->findLatest(4) as $post) {
-            $latestPosts[] = $this->blogpostMapper->fromModel($post);
-        }
-
         // Collections
         $collections = $this->collectionRepository->findAll();
         shuffle($collections);
@@ -260,7 +254,6 @@ class DefaultController extends BaseController
         $content = $this->renderView('error/404.html.twig', array_merge($paramBag, [
             'headTitle'   => '404 - Seite nicht gefunden',
             'heroImage'   => $teaserImage instanceof Asset\Image ? $teaserImage : null,
-            'latestPosts' => $latestPosts,
             'collections' => array_slice($collections, 0, 4),
         ]));
 
