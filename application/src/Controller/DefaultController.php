@@ -55,8 +55,6 @@ class DefaultController extends BaseController
         $heroImagesFolder      = Asset::getByPath(FolderConstants::ASSET_WEBSITE_HERO_IMAGES);
         $heroImages            = $heroImagesFolder?->getChildren()?->getAssets();
         $heroImage             = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
-        $paramBag['heroImage'] = $heroImage;
-        $paramBag['headTitle'] = $this->document->getTitle();
 
         // Latest blogposts
         $latestPosts = [];
@@ -72,6 +70,8 @@ class DefaultController extends BaseController
         $tags = $this->tagRepository->findAllCurrentlyRelated();
 
         return array_merge($paramBag, [
+            'heroImage'      => $heroImage,
+            'headTitle'      => $this->document->getTitle(),
             'latestPosts'    => $latestPosts,
             'collections'    => array_slice($collections, 0, 4),
             'tags'           => $tags,
