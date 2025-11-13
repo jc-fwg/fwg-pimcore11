@@ -51,24 +51,25 @@ function initNavbarScrollSpy() {
 }
 
 function initToTopLink() {
-    let toTopElement = document.getElementById("to-top");
+    const toTopElement = document.getElementById("to-top");
 
-    if (toTopElement === null) {
-        return;
-    }
+    if (!toTopElement) return;
 
-    // toTopElement.addEventListener("click", function() {
-    //     window.scrollTo({
-    //         top: 0,
-    //         behavior: 'smooth'
-    //     })
-    // });
+    // Klickverhalten: immer sanft nach oben scrollen
+    toTopElement.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 
-    window.addEventListener("scroll", function() {
+    // Sichtbarkeit je nach Scrollposition steuern
+    window.addEventListener("scroll", () => {
         if (window.scrollY > 400) {
-            toTopElement.classList.replace('fade-hide', 'fade-show');
+            toTopElement.classList.replace("fade-hide", "fade-show");
         } else {
-            toTopElement.classList.replace('fade-show', 'fade-hide');
+            toTopElement.classList.replace("fade-show", "fade-hide");
         }
     });
 }
