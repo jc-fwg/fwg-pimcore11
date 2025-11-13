@@ -55,7 +55,6 @@ function initToTopLink() {
 
     if (!toTopElement) return;
 
-    // Klickverhalten: immer sanft nach oben scrollen
     toTopElement.addEventListener("click", (e) => {
         e.preventDefault();
         window.scrollTo({
@@ -64,7 +63,6 @@ function initToTopLink() {
         });
     });
 
-    // Sichtbarkeit je nach Scrollposition steuern
     window.addEventListener("scroll", () => {
         if (window.scrollY > 400) {
             toTopElement.classList.replace("fade-hide", "fade-show");
