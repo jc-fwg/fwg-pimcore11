@@ -270,7 +270,7 @@ class BlogpostService
             image: $request->getSchemeAndHttpHost().$blogpostDto->socialPreviewThumbnail?->getFullPath() ?? '',
             url: $request->getUri(),
             authors: $blogpostDto->authors,
-            tags: $blogpostDto->activity?->tags,
+            tags: $blogpostDto->activity?->tags ?? [],
             publishedTime: $blogpostDto->publicationDate ?? Carbon::now(),
         );
     }

@@ -25,7 +25,10 @@ class DataObjectService
 
         $assetsFolder = $object->getAssetsFolder();
 
-        if ($assetsFolder instanceof Folder) {
+        if (
+            $assetsFolder instanceof Folder
+            && $assetsFolder->getKey() !== $key
+        ) {
             $assetsFolder->setKey($key);
             $assetsFolder->save();
 
