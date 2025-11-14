@@ -37,7 +37,10 @@ function buildTableOfContent() {
 
         // Add class on H3 for show mobile only
         let classAdditon = "";
-        if (headline.tagName.toLowerCase() === "h3") {
+        if (
+            headline.tagName.toLowerCase() === "h3"
+            && headline.parentElement.classList.contains("blogpost-content") === false
+        ) {
             classAdditon = ' class="d-lg-none"';
         }
 
