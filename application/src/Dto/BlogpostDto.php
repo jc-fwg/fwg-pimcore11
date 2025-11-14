@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class BlogpostDto
 {
     public const string VALIDATION_GROUP_DATA_QUALITY_BASE_DATA              = 'data-quality-base-data';
-    public const string VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS = 'data-quality-asset-downloads-links';
+    public const string VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS = 'data-quality-assets-downloads-links';
     public const string VALIDATION_GROUP_DATA_QUALITY_CONTENT                = 'data-quality-content';
     public const string VALIDATION_GROUP_DATA_QUALITY_SEO                    = 'data-quality-seo';
 

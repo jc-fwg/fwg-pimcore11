@@ -3,7 +3,27 @@
 
 {% block content %}
     <div id="page-404" class="page page-404">
-        {% include 'content/home/hero.html.twig' %}
+        {# HERO #}
+        <header id="hero" class="text-center">
+            {% if heroImage is defined and heroImage is not null %}
+                {% set heroImage = heroImage.thumbnail('heroImage').html({
+                    'imgAttributes': {
+                        'class': 'd-none',
+                        'id': 'hero-background'
+                    },
+                }) %}
+                {{ heroImage|raw }}
+            {% endif %}
+            <div class="hero-content">
+                <div class="container">
+                    <div class="row">
+                        <a href="/" class="col-12 text-center">
+                            <img id="logo" class="mb-5" src="{{ asset('static/gfx/freiweg-logo.svg') }}" alt="FreiWeg Outdoor Activity Blog">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
         {% include 'layouts/includes/navigation-main.html.twig' %}
 
         <section id="intro" class="container-fluid spaced">
