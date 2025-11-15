@@ -19,7 +19,7 @@
                     🔗
                 {% endif %}
             {% endif %}
-            <a href="{{ link.linkUrl.data }}" target="_blank" rel="noopener noreferrer">{{ link.linkTitle.data }}</a>
+            <a href="{{ link.linkUrl.data }}" target="_blank" rel="noopener noreferrer">{{ link.linkTitle.data }}</a>{% if not loop.last %}<br>{% endif %}
         {% endfor %}
     </p>
 </div>
