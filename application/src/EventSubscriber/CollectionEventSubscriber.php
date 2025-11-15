@@ -58,7 +58,7 @@ class CollectionEventSubscriber extends AbstractEventSubscriber
 
         $prompt = 'Generiere mir bitte SEO freundliche description, meta title, meta description und eine natürlich wirkende Open Graph description (og:description) für meine Listenseite mit folgendem Titel: '.$object->getTitle();
 
-        $openAiResponse = $this->openAIService->collection()->response($prompt);
+        $openAiResponse = $this->openAIService->collectionChat()->response($prompt);
 
         if (strlen($description) <= 10 && isset($openAiResponse['description'])) {
             $object->setDescription($openAiResponse['description']);

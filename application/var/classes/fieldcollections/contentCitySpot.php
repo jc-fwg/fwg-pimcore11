@@ -11,6 +11,7 @@
  * -- linkTitle [input]
  * -- linkUrl [input]
  * - facts [wysiwyg]
+ * - actions [multiselect]
  */
 
 return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
@@ -410,6 +411,70 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
              'icon' => '',
              'labelWidth' => 100,
              'labelAlign' => 'left',
+          )),
+          4 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
+             'name' => 'Actions',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.actions',
+             'width' => '',
+             'height' => '',
+             'collapsible' => false,
+             'collapsed' => false,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
+                 'name' => 'actions',
+                 'title' => 'app.generic.actions',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'options' => 
+                array (
+                  0 => 
+                  array (
+                    'key' => 'AI Facts Update',
+                    'value' => 'aiFactsUpdate',
+                  ),
+                ),
+                 'maxItems' => NULL,
+                 'renderType' => 'tags',
+                 'dynamicOptions' => false,
+                 'defaultValue' => NULL,
+                 'height' => '',
+                 'width' => '',
+                 'defaultValueGenerator' => '',
+                 'optionsProviderType' => 'configure',
+                 'optionsProviderClass' => '',
+                 'optionsProviderData' => '',
+              )),
+            ),
+             'locked' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'fieldtype' => 'panel',
+             'layout' => NULL,
+             'border' => false,
+             'icon' => '',
+             'labelWidth' => 100,
+             'labelAlign' => 'top',
           )),
         ),
          'locked' => false,

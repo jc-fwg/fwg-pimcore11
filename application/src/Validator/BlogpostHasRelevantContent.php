@@ -8,9 +8,9 @@ use Attribute;
 use Symfony\Component\Validator\Constraint;
 
 #[Attribute]
-class BlogpostHasWysiwygAndGalleryContent extends Constraint
+class BlogpostHasRelevantContent extends Constraint
 {
-    public string $message = 'Blogposts content has no WYSIWYG and/or Gallery content blocks';
+    public string $message = 'Blogposts content has no WYSIWYG and/or Gallery nor CitySpots content';
 
     public function getTargets(): string
     {

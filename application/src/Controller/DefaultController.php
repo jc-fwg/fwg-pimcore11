@@ -52,9 +52,9 @@ class DefaultController extends BaseController
         $paramBag = $this->getAllParameters($request);
 
         // Get random hero image
-        $heroImagesFolder      = Asset::getByPath(FolderConstants::ASSET_WEBSITE_HERO_IMAGES);
-        $heroImages            = $heroImagesFolder?->getChildren()?->getAssets();
-        $heroImage             = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
+        $heroImagesFolder = Asset::getByPath(FolderConstants::ASSET_WEBSITE_HERO_IMAGES);
+        $heroImages       = $heroImagesFolder?->getChildren()?->getAssets();
+        $heroImage        = $heroImages ? $heroImages[random_int(0, count($heroImages) - 1)] : null;
 
         // Latest blogposts
         $latestPosts = [];

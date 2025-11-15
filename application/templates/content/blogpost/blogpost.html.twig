@@ -90,7 +90,16 @@
                             {% if blogpost.activity is not null  and blogpost.activity.summary is not null %}
                                 {% include 'content/blogpost/aside/summary.html.twig' %}
                             {% endif %}
-                            {% include 'content/blogpost/aside/links-downloads.html.twig' %}
+                            {% if
+                                (blogpost.activity.gpx is defined and blogpost.activity.gpx is not null)
+                                or (blogpost.downloads is defined and blogpost.downloads|length > 0)
+                                or (blogpost.links is defined and blogpost.links|length > 0)
+                            %}
+                                {% include 'content/blogpost/aside/links-downloads.html.twig' %}
+                            {% endif %}
+                            {% if tagList is defined and tagList|length > 0 %}
+                                {% include 'content/blogpost/aside/tag-list.html.twig' %}
+                            {% endif %}
                             {% include 'content/blogpost/aside/authors.html.twig' %}
                         </div>
                     </div>

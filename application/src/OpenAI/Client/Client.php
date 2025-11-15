@@ -25,7 +25,7 @@ readonly class Client
     public function ask(string $prompt): CreateResponse
     {
         return $this->client->responses()->create([
-            'model' => self::MODEL_GPT5_MINI,
+            'model' => self::MODEL_GPT4O,
             'input' => $prompt,
         ]);
     }

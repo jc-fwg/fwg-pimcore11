@@ -40,6 +40,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
                 ['setSeoData'],
                 ['generateSocialPreviewThumbnails'],
                 ['checkDataQuality', 10],
+                ['processCitySpotActions'],
             ],
         ];
     }
@@ -80,7 +81,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         $prompt = $this->fetchSeoPrompt($object);
 
         try {
-            $openAiResponse = $this->openAIService->blogpost()->response($prompt);
+            $openAiResponse = $this->openAIService->blogpostChat()->response($prompt);
         } catch (Throwable $exception) {
             throw new ValidationException($exception->getMessage());
         }
@@ -212,6 +213,21 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         }
 
         $this->blogpostService->generateSocialPreviewThumbnails($object);
+    }
+
+    public function processCitySpotActions(DataObjectEvent $event): void
+    {
+        if ($this->isAutoSave($event)) {
+            return;
+        }
+
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
+            return;
+        }
+
+        $this->blogpostService->processCitySpotActions($object);
     }
 
     private function fetchSeoPrompt(DataObject\Blogpost $blogpost): string

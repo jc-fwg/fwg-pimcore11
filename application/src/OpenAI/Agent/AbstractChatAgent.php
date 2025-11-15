@@ -12,13 +12,13 @@ abstract class AbstractChatAgent extends AbstractAgent
 {
     protected readonly MessageBag $messageBag;
 
-    public function response(string $userPrompt = ''): array
+    public function response(string $prompt = ''): array
     {
-        parent::response($userPrompt);
+        parent::response($prompt);
 
         $this->messageBag->addMessage(new MessageValueObject(
             role: RoleEnum::USER,
-            content: $userPrompt
+            content: $prompt
         ));
 
         $response = $this->client->chat($this);

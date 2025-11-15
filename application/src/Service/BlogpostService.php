@@ -10,6 +10,7 @@ use App\Dto\BlogpostDto;
 use App\Dto\CommentDto;
 use App\Mapper\BlogpostMapper;
 use App\Mapper\CommentMapper;
+use App\OpenAI\Service\OpenAIService;
 use App\ValueObject\BlogpostCommentValueObject;
 use App\ValueObject\OpenGraph\ArticleValueObject;
 use Carbon\Carbon;
@@ -49,6 +50,7 @@ class BlogpostService
         private readonly CommentRepository $commentRepository,
         private readonly BlogpostRepository $blogpostRepository,
         private readonly BlogpostMapper $blogpostMapper,
+        private readonly OpenAIService $openAIService,
     ) {
     }
 
@@ -273,6 +275,41 @@ class BlogpostService
             tags: $blogpostDto->activity?->tags ?? [],
             publishedTime: $blogpostDto->publicationDate ?? Carbon::now(),
         );
+    }
+
+    public function processCitySpotActions(DataObject\Blogpost $object): void
+    {
+        $fieldCollection = $object->getContent();
+
+        if (!$fieldCollection instanceof DataObject\Fieldcollection) {
+            return;
+        }
+
+        $contents = $fieldCollection->getItems();
+
+        foreach ($contents as $content) {
+            if (!$content instanceof DataObject\Fieldcollection\Data\ContentCitySpot) {
+                continue;
+            }
+
+            $actions = $content->getActions();
+
+            foreach ($actions as $k => $action) {
+                if ($action !== 'aiFactsUpdate') {
+                    continue;
+                }
+
+                $prompt = 'Erstelle mir eine Liste mit den wichtigsten 5-7 Kurzfakten über folgende Location meines %s. Ohne Headlines. Kurze, knackige Aussagen zu: %s. Die einzelnen Fakten sollen ohne Punkt am Ende und eineleitenden Bindestrich sein. Jeder Fakt soll am Ende ein <br> angefügt bekommen';
+                $prompt = sprintf($prompt, $object->getTitle(), $content->getTitle());
+
+                $response = $this->openAIService->blogpost()->response($prompt);
+
+                $content->setFacts($response->outputText);
+
+                unset($actions[$k]);
+                $content->setActions($actions);
+            }
+        }
     }
 
     private function handleCommentForm(FormInterface $form): ?ConstraintViolationListInterface

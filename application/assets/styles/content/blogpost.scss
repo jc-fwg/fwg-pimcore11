@@ -102,5 +102,12 @@
             font-size: 2rem;
             font-weight: 600;
         }
+
+        &.blogpost-content-city-spot {
+
+            .alert {
+                padding: 0 !important;
+            }
+        }
     }
 }

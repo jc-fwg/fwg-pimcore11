@@ -10,6 +10,7 @@ use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\ClassDefinition\Layout\DynamicTextLabelInterface;
 use Pimcore\Model\DataObject\Concrete;
 use Symfony\Component\Validator\ConstraintViolationList;
+
 use function count;
 use function sprintf;
 

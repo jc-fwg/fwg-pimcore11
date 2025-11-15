@@ -3,18 +3,24 @@
     {% if item.subTitle != "" %}
         <h4>{{ item.subTitle|raw }}</h4>
     {% endif %}
+    {% if item.facts|striptags != "" %}
+        <div class="alert alert-light">
+            <p>{{ item.facts|raw }}</p>
+        </div>
+    {% endif %}
     {{ item.conclusion|raw }}
+
     <p>
-    {% for link in item.links %}
-        {% if link.linkTitle.data != "" and link.linkUrl.data != "" %}
-            {% if link.linkType.data == "location" %}
-                📍
-            {% else %}
-                🔗
+        {% for link in item.links %}
+            {% if link.linkTitle.data != "" and link.linkUrl.data != "" %}
+                {% if link.linkType.data == "location" %}
+                    📍
+                {% else %}
+                    🔗
+                {% endif %}
             {% endif %}
-        {% endif %}
-        <a href="{{ link.linkUrl.data }}" target="_blank" rel="noopener noreferrer">{{ link.linkTitle.data }}</a>
-    {% endfor %}
+            <a href="{{ link.linkUrl.data }}" target="_blank" rel="noopener noreferrer">{{ link.linkTitle.data }}</a>
+        {% endfor %}
     </p>
 </div>
 <div id="blogpost-gallery-{{ item.index }}" class="blogpost-content blogpost-content-gallery js-bbx-gallery">

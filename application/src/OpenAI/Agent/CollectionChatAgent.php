@@ -7,7 +7,7 @@ namespace App\OpenAI\Agent;
 use App\OpenAI\Enum\RoleEnum;
 use App\OpenAI\Message\MessageValueObject;
 
-class CollectionAgent extends AbstractChatAgent
+class CollectionChatAgent extends AbstractChatAgent
 {
     protected function prepareMessages(): void
     {

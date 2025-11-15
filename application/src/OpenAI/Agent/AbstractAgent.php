@@ -14,9 +14,9 @@ abstract class AbstractAgent
         $this->initialize();
     }
 
-    protected function response(string $userPrompt): mixed
+    protected function response(string $prompt): mixed
     {
-        if ($userPrompt === '') {
+        if ($prompt === '') {
             throw new RuntimeException('UserPrompt may not be empty');
         }
 

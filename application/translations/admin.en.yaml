@@ -1,5 +1,6 @@
 app:
     generic:
+        actions: 'Actions'
         activityType: 'Activity Type'
         additionalRecommendationEntrypoints: 'Additional Recommendation Entrypoints'
         additionalRecommendationEntrypointsTooltip: "By default, recommended collections are taken from the same parent folder of the collection. You can add more folders in here, so it's direct Collection children are added as recommendations."

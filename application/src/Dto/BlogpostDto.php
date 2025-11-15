@@ -15,7 +15,7 @@ use Pimcore\Model\DataObject\Fieldcollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[AppAssert\TourHasActivity(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA])]
-#[AppAssert\BlogpostHasWysiwygAndGalleryContent(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
+#[AppAssert\BlogpostHasRelevantContent(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
 class BlogpostDto
 {
     public const string VALIDATION_GROUP_DATA_QUALITY_BASE_DATA              = 'data-quality-base-data';
