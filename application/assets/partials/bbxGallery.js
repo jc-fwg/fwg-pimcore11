@@ -94,6 +94,8 @@ function buildSlideOut(images, thumbnailClicked) {
         // Setup full image, add listener to append it into image wrapper after it's loaded
         let imageElement = document.createElement("img");
         imageElement.classList.add("full");
+        imageElement.alt = imageTitle;
+        imageElement.title = imageTitle;
         imageElement.dataset.index = index.toString();
         imageElement.addEventListener ("load", function () {
             imageLoaderElement.parentNode.removeChild(imageLoaderElement);
