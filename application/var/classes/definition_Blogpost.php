@@ -39,7 +39,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1763132373,
+   'modificationDate' => 1763158897,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -810,6 +810,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 array (
                   0 => 'contentWysiwyg',
                   1 => 'contentGallery',
+                  2 => 'contentCitySpot',
                 ),
                  'lazyLoading' => true,
                  'maxItems' => NULL,

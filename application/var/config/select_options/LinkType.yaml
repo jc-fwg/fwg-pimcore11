@@ -1,0 +1,18 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                LinkType:
+                    id: LinkType
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: location
+                            label: app.collection.linkType.location
+                            name: location
+                        -
+                            value: website
+                            label: app.collection.linkType.website
+                            name: website

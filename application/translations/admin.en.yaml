@@ -11,6 +11,7 @@ app:
         breaks: 'Breaks'
         bootstrapIcon: 'Bootstrap Icon'
         comment: 'Comment'
+        conclusion: 'Conclusion'
         content: 'Content'
         country: 'Country'
         dataQuality: 'Data Quality'
@@ -27,6 +28,7 @@ app:
         excluded: 'Excluded'
         email: 'Email'
         emoji: 'Emoji'
+        facts: 'Facts'
         features: 'Features'
         flag: 'Flag'
         focusKeyword: 'Focus Keyword'
@@ -66,9 +68,11 @@ app:
         temperature: 'Temperature (°C)'
         title: 'Title'
         titleAndDescription: 'Title and Description'
+        titlesAndConclusion: 'Titles and Conclusion'
         tour: 'Tour'
         type: 'Type'
         typeSpecific: 'Type Specific'
+        url: 'URL'
         weather: 'Weather'
         weatherConditions: 'Weather Conditions'
         website: 'Website'
@@ -94,6 +98,9 @@ app:
         locationType:
             endPoint: 'End Point'
             startPoint: 'Start Point'
+        linkType:
+            location: 'Location'
+            website: 'Website'
         ratingOfNecessity:
             none: 'none'
             partially: 'partially'
@@ -155,6 +162,8 @@ app:
             title: 'Gallery'
         contentWysiwyg:
             title: 'WYSIWYG'
+        contentCitySpot:
+            title: 'City Spot'
         location:
             title: 'Location'
             titlePlural: 'Locations'

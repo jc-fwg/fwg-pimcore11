@@ -1,0 +1,31 @@
+<div id="content-{{ item.index }}" class="blogpost-content blogpost-content-city-spot">
+    <h3>{{ item.title|raw }}</h3>
+    {% if item.subTitle != "" %}
+        <h4>{{ item.subTitle|raw }}</h4>
+    {% endif %}
+    {{ item.conclusion|raw }}
+    <p>
+    {% for link in item.links %}
+        {% if link.linkTitle.data != "" and link.linkUrl.data != "" %}
+            {% if link.linkType.data == "location" %}
+                📍
+            {% else %}
+                🔗
+            {% endif %}
+        {% endif %}
+        <a href="{{ link.linkUrl.data }}" target="_blank" rel="noopener noreferrer">{{ link.linkTitle.data }}</a>
+    {% endfor %}
+    </p>
+</div>
+<div id="blogpost-gallery-{{ item.index }}" class="blogpost-content blogpost-content-gallery js-bbx-gallery">
+    {% set alt = item.title ? item.title : blogpost.title %}
+    {% for image in item.imageGallery.items %}
+        {% set fullImageSource = image.thumbnail('blogpost-gallery-full').path %}
+        {{ image.thumbnail('blogpost-gallery-thumbnail').html({ 'imgAttributes': {
+            'class': 'img-fluid p-1 border mr-2 mb-2',
+            'alt': alt,
+            'data-fullsource': fullImageSource,
+            'data-index': loop.index,
+        }})|raw }}
+    {% endfor %}
+</div>
