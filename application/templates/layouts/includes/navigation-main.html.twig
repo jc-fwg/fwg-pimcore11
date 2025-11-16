@@ -17,8 +17,12 @@
                             {{ topic.folder.key }}
                         </button>
                         <ul class="dropdown-menu">
-                            {% for collection in topic.collections %}
-                                <li><a class="dropdown-item" href="/{{ collection.slug }}">{{ collection.title }}</a></li>
+                            {% for item in topic.items %}
+                                {% if item.className == "Collection"%}
+                                    <li><a class="dropdown-item" href="/{{ item.slug }}">{{ item.title }}</a></li>
+                                {% elseif item.className == "Link"%}
+                                    <li><a class="dropdown-item" href="/{{ item.blogpost.slug }}">{{ item.title }}</a></li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </li>

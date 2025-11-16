@@ -8,6 +8,7 @@ use App\Constant\FolderConstants;
 use Exception;
 use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\Folder;
+use Pimcore\Model\DataObject\Link;
 use Pimcore\Model\DataObject\Service;
 
 class NavigationService
@@ -30,11 +31,11 @@ class NavigationService
                 continue;
             }
 
-            $collections = $node->getChildren()?->getObjects();
+            $items = $node->getChildren()?->getObjects();
 
             $mainNavigation[] = [
                 'folder'      => $node,
-                'collections' => array_filter($collections, static fn ($collection) => $collection instanceof Collection),
+                'items' => array_filter($items, static fn ($item) => $item instanceof Collection || $item instanceof Link),
             ];
         }
 
