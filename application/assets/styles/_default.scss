@@ -97,13 +97,17 @@ a {
 
     /* Set a specific height */
     height: 50vh;
-    max-height: 450px;
+    max-height: 650px;
 
     /* Position and center the image to scale nicely on all screens */
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+
+    @media (max-width: 767.98px) {
+        max-height: 400px;
+    }
 
     #logo {
         min-width: 250px;
