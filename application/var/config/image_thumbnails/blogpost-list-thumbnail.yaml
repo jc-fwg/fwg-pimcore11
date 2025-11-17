@@ -6,10 +6,12 @@ pimcore:
                     blogpost-list-thumbnail:
                         items:
                             -
-                                method: scaleByWidth
+                                method: cover
                                 arguments:
                                     width: 480
-                                    forceResize: false
+                                    height: 320
+                                    positioning: center
+                                    forceResize: true
                         medias: {  }
                         name: blogpost-list-thumbnail
                         description: ''
@@ -18,9 +20,10 @@ pimcore:
                         quality: 70
                         highResolution: null
                         preserveColor: false
+                        forceProcessICCProfiles: false
                         preserveMetaData: false
                         rasterizeSVG: false
                         downloadable: false
-                        modificationDate: 1755348226
+                        modificationDate: 1763401268
                         creationDate: 1755348069
                         preserveAnimation: false

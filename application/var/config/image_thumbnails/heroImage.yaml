@@ -17,13 +17,13 @@ pimcore:
                         description: ''
                         group: ''
                         format: JPEG
-                        quality: 70
+                        quality: 75
                         highResolution: null
                         preserveColor: false
                         forceProcessICCProfiles: false
                         preserveMetaData: false
                         rasterizeSVG: false
                         downloadable: false
-                        modificationDate: 1762708300
+                        modificationDate: 1763401319
                         creationDate: 1748524181
                         preserveAnimation: false
