@@ -1,0 +1,64 @@
+pimcore_custom_reports:
+    definitions:
+        CollectionsWithoutTeaserImage:
+            name: CollectionsWithoutTeaserImage
+            sql: ''
+            dataSourceConfig:
+                -
+                    sql: 'oo_id, title, imageTeaser, socialPreviewThumbnail'
+                    from: object_query_collection
+                    where: 'imageTeaser is null or socialPreviewThumbnail is null'
+                    groupby: ''
+                    orderby: ''
+                    orderbydir: null
+                    type: sql
+            columnConfiguration:
+                -
+                    name: oo_id
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    columnAction: openObject
+                    id: extModel1330-1
+                -
+                    name: title
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel1330-2
+                -
+                    name: socialPreviewThumbnail
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel1330-3
+                -
+                    name: imageTeaser
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel1330-4
+            niceName: 'Collections without teaser image'
+            group: Collections
+            groupIconClass: ''
+            iconClass: ''
+            menuShortcut: true
+            reportClass: ''
+            chartType: ''
+            pieColumn: null
+            pieLabelColumn: null
+            xAxis: null
+            yAxis: {  }
+            modificationDate: 1763402213
+            creationDate: 1763401923
+            shareGlobally: true
+            sharedUserNames: {  }
+            sharedRoleNames: {  }
