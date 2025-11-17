@@ -39,6 +39,7 @@ app:
         headForHeights: 'Head for Heights'
         headline: 'Headline'
         hideInList: 'Hide in List'
+        html: 'HTML'
         icon: 'Icon'
         imageGallery: 'Image Gallery'
         imageMain: 'Main Image'
@@ -165,6 +166,8 @@ app:
             title: 'WYSIWYG'
         contentCitySpot:
             title: 'City Spot'
+        contentHtml:
+            title: 'HTML'
         location:
             title: 'Location'
             titlePlural: 'Locations'
