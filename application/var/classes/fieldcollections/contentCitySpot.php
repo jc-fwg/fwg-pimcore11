@@ -5,6 +5,7 @@
  * - title [input]
  * - subTitle [input]
  * - conclusion [wysiwyg]
+ * - imageCredits [wysiwyg]
  * - imageGallery [imageGallery]
  * - links [block]
  * -- linkType [select]
@@ -175,6 +176,31 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
              'children' => 
             array (
               0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
+                 'name' => 'imageCredits',
+                 'title' => 'app.generic.imageCredits',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'toolbarConfig' => '',
+                 'excludeFromSearchIndex' => false,
+                 'maxCharacters' => '',
+                 'height' => '',
+                 'width' => '',
+              )),
+              1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ImageGallery::__set_state(array(
                  'name' => 'imageGallery',
                  'title' => 'app.generic.imageGallery',
@@ -273,6 +299,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                      'blockedVarsForExport' => 
                     array (
                     ),
+                     'options' => NULL,
                      'defaultValue' => '',
                      'columnLength' => 190,
                      'dynamicOptions' => false,

@@ -12,4 +12,9 @@
             'data-index': loop.index,
         }})|raw }}
     {% endfor %}
+    {% if item.imageCredits|striptags != "" %}
+        <div class="credits mb-2">
+            {{ item.imageCredits|raw }}
+        </div>
+    {% endif %}
 </div>
