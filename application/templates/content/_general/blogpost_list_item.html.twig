@@ -9,7 +9,7 @@
 {% endif %}
 
 <div class="{{ colSetup }}">
-    <div class="post-list-item shadow-sm bg-light row p-2">
+    <a href="{{ post.detailLink }}" class="post-list-item shadow-sm bg-light row p-2">
         <div class="{{ colSetupImage }}">
             {% if post.imageMain is not null %}
                 {{ post.imageMain.thumbnail('blogpost-list-thumbnail').html(
@@ -36,5 +36,5 @@
                 Mehr erfahren
             </a>
         </div>
-    </div>
+    </a>
 </div>
