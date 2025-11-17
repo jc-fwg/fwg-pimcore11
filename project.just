@@ -9,3 +9,6 @@ ssh-uberspace:
 
 deploy-uberspace:
     export PATH="$HOME/.composer/vendor/bin:$PATH"; cd ./deployment; dep --file=uberspace.php deploy
+
+deploy-unlock:
+    export PATH="$HOME/.composer/vendor/bin:$PATH"; cd ./deployment; dep --file=uberspace.php deploy:unlock
