@@ -99,8 +99,11 @@
 
         h3 {
             padding-top: 1rem;
-            font-size: 2rem;
             font-weight: 600;
+
+            @media (min-width: 768px) {
+                font-size: 2rem;
+            }
         }
 
         &.blogpost-content-city-spot {

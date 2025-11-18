@@ -35,8 +35,8 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-xs-12">
                     {% if blogposts is not empty %}
-                        <h1>{{ collection.title }}</h1>
-                        <p>{{ collection.description|raw }}</p>
+                        <h1 class="mb-3">{{ collection.title }}</h1>
+                        {{ collection.description|raw }}
                         <div class="blogposts mt-5">
                             {% for post in blogposts %}
                                 {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
