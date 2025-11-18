@@ -209,11 +209,14 @@ class DefaultController extends BaseController
             }
         }
 
-        $tags = [];
+        $tags     = [];
+        $tagNames = [];
 
         foreach ($tagPairs as $tagPair) {
             try {
-                $tags[] = $this->tagRepository->getByParentAndTagSlugs($tagPair);
+                $tag        = $this->tagRepository->getByParentAndTagSlugs($tagPair);
+                $tags[]     = $tag;
+                $tagNames[] = $tag->getName() ?? $tag->getKey();
             } catch (NotFoundException) {
             }
         }
@@ -226,13 +229,23 @@ class DefaultController extends BaseController
         );
 
         // Random hero image
-        $blogpostTeaser = empty($blogposts) === false ? $blogposts[array_rand($blogposts)] : null;
+        $blogpost = empty($blogposts) === false ? $blogposts[array_rand($blogposts)] : null;
+
+        // Open Graph
+        $tagNames  = implode(', ', $tagNames);
+        $openGraph = new WebsiteValueObject(
+            title: 'Spannende Outdoor Berichte zum den Themen wie '.$tagNames,
+            description: 'Entdecke unsere Blogposts zu ausgewählten Themen wie '.$tagNames,
+            image: $blogpost?->socialPreviewThumbnail ? $request->getSchemeAndHttpHost().$blogpost->socialPreviewThumbnail->getFullPath() : '',
+            url: $request->getUri(),
+        );
 
         return $this->render('content/tags/list.html.twig', array_merge($paramBag, [
             'blogposts' => $blogposts,
             'tagList'   => $this->tagRepository->findAllCurrentlyRelated(),
             'tags'      => $tags,
-            'heroImage' => $blogpostTeaser?->imageMain,
+            'heroImage' => $blogpost?->imageTeaser,
+            'openGraph' => $openGraph,
         ]));
     }
 
