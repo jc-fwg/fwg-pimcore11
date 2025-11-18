@@ -77,8 +77,8 @@ class DefaultController extends BaseController
             'tags'           => $tags,
             'socialChannels' => (new SocialChannel\Listing())->getObjects(),
             'openGraph'      => new WebsiteValueObject(
-                title: $this->document->getTitle(),
-                description: $this->document->getDescription(),
+                title: 'FreiWeg Blog für Outdoor Abenteuer – Wandern, Städtetrips, MTB, Gravel, Camping und mehr',
+                description: 'Erkunde unseren Blog und entdecke Wanderrouten, inspirierende Städtetrips, Mountainbike- und Gravel-Tipps, Camping-Abenteuer und viel mehr.',
                 image: $heroImage ? $request->getSchemeAndHttpHost().$heroImage->getFullPath() : '',
                 url: $request->getUri(),
             ),
@@ -239,7 +239,7 @@ class DefaultController extends BaseController
         // Hero image
         try {
             $websiteSetting = WebsiteSetting::getByName(WebsiteSettingConstants::ERROR_TEASER_IMAGE);
-        } catch (NotFoundException) {
+        } catch (\Throwable $exception) {
             $websiteSetting = null;
         }
 

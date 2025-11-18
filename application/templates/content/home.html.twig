@@ -1,5 +1,15 @@
 {% extends 'layouts/layout.html.twig' %}
 
+{% set documentTitle = '' %}
+{% if document is not null and document.title != ''%}
+    {% do pimcore_head_title().prepend(document.title) %}
+    {% set documentTitle = document.title %}
+{% endif %}
+
+{% if document is not null and document.description != '' %}
+    {% do pimcore_head_meta().appendName('description', document.description) %}
+{% endif %}
+
 {% block content %}
     <div id="page-home">
         {% include 'content/home/hero.html.twig' %}
