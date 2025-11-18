@@ -12,6 +12,7 @@ use App\Constant\WebsiteSettingConstants;
 use App\Mapper\BlogpostMapper;
 use App\Service\BlogpostService;
 use App\Service\CollectionService;
+use App\Service\DocumentService;
 use App\ValueObject\OpenGraph\WebsiteValueObject;
 use Exception;
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
@@ -20,12 +21,14 @@ use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\SocialChannel;
 use Pimcore\Model\Document\Page;
+use Pimcore\Model\Element\DuplicateFullPathException;
 use Pimcore\Model\Exception\NotFoundException;
 use Pimcore\Model\WebsiteSetting;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Throwable;
 
 use function array_slice;
 use function count;
@@ -38,6 +41,7 @@ class DefaultController extends BaseController
         private readonly BlogpostService $blogpostService,
         private readonly CollectionRepository $collectionRepository,
         private readonly CollectionService $collectionService,
+        private readonly DocumentService $documentService,
         private readonly TagRepository $tagRepository,
     ) {
     }
@@ -77,8 +81,8 @@ class DefaultController extends BaseController
             'tags'           => $tags,
             'socialChannels' => (new SocialChannel\Listing())->getObjects(),
             'openGraph'      => new WebsiteValueObject(
-                title: $this->document->getTitle(),
-                description: $this->document->getDescription(),
+                title: 'FreiWeg Blog für Outdoor Abenteuer – Wandern, Städtetrips, MTB, Gravel, Camping und mehr',
+                description: 'Erkunde unseren Blog und entdecke Wanderrouten, inspirierende Städtetrips, Mountainbike- und Gravel-Tipps, Camping-Abenteuer und viel mehr.',
                 image: $heroImage ? $request->getSchemeAndHttpHost().$heroImage->getFullPath() : '',
                 url: $request->getUri(),
             ),
@@ -239,7 +243,7 @@ class DefaultController extends BaseController
         // Hero image
         try {
             $websiteSetting = WebsiteSetting::getByName(WebsiteSettingConstants::ERROR_TEASER_IMAGE);
-        } catch (NotFoundException) {
+        } catch (Throwable $exception) {
             $websiteSetting = null;
         }
 
@@ -261,12 +265,20 @@ class DefaultController extends BaseController
         return new Response($content, Response::HTTP_NOT_FOUND);
     }
 
+    /**
+     * @throws DuplicateFullPathException
+     */
     public function cmsAction(Request $request): Response
     {
         $paramBag = $this->getAllParameters($request);
 
         // Get the template name from the document
         $templateName = $this->document?->getTemplate() ?? 'content/cms/page.html.twig';
+
+        // OpenGraph
+        if ($this->editmode === false) {
+            $paramBag['openGraph'] = $this->documentService->getOpenGraphData($request, $this->document);
+        }
 
         return $this->render($templateName, $paramBag);
     }

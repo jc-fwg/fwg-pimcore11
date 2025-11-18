@@ -31,6 +31,27 @@
         </header>
         {% include 'layouts/includes/navigation-main.html.twig' %}
         <div class="container-fluid mt-5">
+            {% if editmode %}
+                <strong>Authors</strong><br>
+                {{ pimcore_relations("authors", {
+                    'placeholder': 'Authors',
+                    "types": ["object"],
+                    "subtypes": {
+                        "object": ["object"]
+                    },
+                    "classes": ["Author"]
+                }) }}
+                <br>
+                <strong>Tags</strong><br>
+                {{ pimcore_relations("tags", {
+                    "placeholder": "tags",
+                    "types": ["object"],
+                    "subtypes": {
+                        "object": ["object"]
+                    },
+                    "classes": ["Tag"]
+                }) }}
+            {% endif %}
             {{ pimcore_areablock('cms') }}
         </div>
     </div>
