@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command\Build;
 
+use Exception;
 use Pimcore\Console\AbstractCommand;
 use Pimcore\Model\Asset\Service as AssetService;
 use Pimcore\Model\DataObject\Service as DataObjectService;
@@ -29,6 +30,9 @@ class CreateFoldersCommand extends AbstractCommand
         parent::__construct($name);
     }
 
+    /**
+     * @throws Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (is_array($this->assetFolders)) {

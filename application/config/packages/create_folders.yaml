@@ -2,6 +2,7 @@ parameters:
     commands.create_folders.asset:
         - !php/const App\Constant\FolderConstants::ASSET_BLOGPOSTS_DELETED
         - !php/const App\Constant\FolderConstants::ASSET_COLLECTIONS
+        - !php/const App\Constant\FolderConstants::ASSET_WEBSITE_DOCUMENTS
         - !php/const App\Constant\FolderConstants::ASSET_WEBSITE_HERO_IMAGES
     commands.create_folders.document:
         - !php/const App\Constant\FolderConstants::DOCUMENT_MAIN

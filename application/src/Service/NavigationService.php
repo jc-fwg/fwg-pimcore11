@@ -34,8 +34,8 @@ class NavigationService
             $items = $node->getChildren()?->getObjects();
 
             $mainNavigation[] = [
-                'folder'      => $node,
-                'items' => array_filter($items, static fn ($item) => $item instanceof Collection || $item instanceof Link),
+                'folder' => $node,
+                'items'  => array_filter($items, static fn ($item) => $item instanceof Collection || $item instanceof Link),
             ];
         }
 

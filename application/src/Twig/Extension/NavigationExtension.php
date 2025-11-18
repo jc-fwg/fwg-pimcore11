@@ -40,11 +40,6 @@ class NavigationExtension extends AbstractExtension
 
     /**
      * Returns shorten version of preview text. Tags need to be stripped because they are incomplete when sliced.
-     *
-     * @param string $content
-     * @param int $size
-     *
-     * @return string
      */
     public function shortenByWordCount(string $content, int $size = 25): string
     {
