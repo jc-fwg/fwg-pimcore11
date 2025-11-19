@@ -383,7 +383,7 @@ class BlogpostService
             $mail->addTo('freiweg@outlook.de');
             $mail->text(sprintf('
                 Ein neuer Kommentar wartet auf Freischaltung.: %s/admin/login/deeplink?object_%s_object
-            ', $request->getHttpHost(), $request->getSchemeAndHttpHost(), $comment->getId()));
+            ', $request->getSchemeAndHttpHost(), $comment->getId() ?? ''));
             $mail->subject('Neuer Blog Kommentar');
             $mail->send();
         } catch (Throwable $exception) {
