@@ -76,19 +76,19 @@ class CommentEventSubscriber extends AbstractEventSubscriber
             $mail = new Mail();
             $mail->subject('Dein Kommentar wurde veröffentlicht');
             $mail->text(trim(sprintf(
-                "
-                    Hallo %s!\n\n
-                    Dein Kommentar zum Blogpost \"%s\"wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n\n‚
-                    Hier der Link zum Blogpost: %s\n\n
-                    Du erhältst diese E-Mail, weil du einen Kommentar auf unserem Blog hinterlassen hast und dieser jetzt freigeschaltet wurde.\n\n
-                    Viele Grüße\n\n
-                    Jochen vom FreiWeg Blog\n\n
-                    ––––––––––––––––––––––––––––––––––––––––––
-                    Jochen Califice\n
-                    FreiwWeg Outdoor Activity Blog – {$schemaAndHost}\n
-                    freiweg@outlook.de\n
-                    Impressum & Datenschutz: {$schemaAndHost}/impressum-und-datenschutz\n
-                    ",
+"
+Hallo %s!\n\n
+Dein Kommentar zum Blogpost \"%s\"wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n\n‚
+Hier der Link zum Blogpost: %s\n\n
+Du erhältst diese E-Mail, weil du einen Kommentar auf unserem Blog hinterlassen hast und dieser jetzt freigeschaltet wurde.\n\n
+Viele Grüße\n\n
+Jochen vom FreiWeg Blog\n\n
+––––––––––––––––––––––––––––––––––––––––––
+Jochen Califice\n
+FreiwWeg Outdoor Activity Blog – {$schemaAndHost}\n
+freiweg@outlook.de\n
+Impressum & Datenschutz: {$schemaAndHost}/impressum-und-datenschutz\n
+",
                 $object->getName(),
                 $blogpostTitle,
                 $blogpostLink
