@@ -10,11 +10,16 @@ use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Mail;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\Element\ValidationException;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 use function sprintf;
 
 class CommentEventSubscriber extends AbstractEventSubscriber
 {
+    public function __construct(private readonly RequestStack $requestStack)
+    {
+    }
+
     /** @codeCoverageIgnore  */
     public static function getSubscribedEvents(): array
     {
@@ -50,25 +55,43 @@ class CommentEventSubscriber extends AbstractEventSubscriber
             && $object->isPublished()
             && empty($object->getReleaseStatusSetOn()) === true
         ) {
+            $blogpost = $object;
+            while (!$blogpost instanceof DataObject\Blogpost) {
+                $blogpost = $blogpost->getParent();
+
+                if ($blogpost->getId() === 1) {
+                    break;
+                }
+            }
+
+            $schemaAndHost = $this->requestStack->getMainRequest()->getSchemeAndHttpHost();
+
+            $blogpostTitle = '';
+            $blogpostLink  = '';
+            if ($blogpost instanceof DataObject\Blogpost) {
+                $blogpostTitle = $blogpost->getTitle();
+                $blogpostLink  = $schemaAndHost.'/'.$blogpost->getSlug();
+            }
+
             $mail = new Mail();
-            $mail->subject('Den Kommentar wurde veröffentlicht');
+            $mail->subject('Dein Kommentar wurde veröffentlicht');
             $mail->text(trim(sprintf(
                 "
                     Hallo %s!\n\n
-                    Dein Kommentar wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n
+                    Dein Kommentar zum Blogpost \"%s\"wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n\n‚
                     Hier der Link zum Blogpost: %s\n\n
                     Du erhältst diese E-Mail, weil du einen Kommentar auf unserem Blog hinterlassen hast und dieser jetzt freigeschaltet wurde.\n\n
                     Viele Grüße\n\n
-                    Jochen vom Freiweg Blog\n\n
+                    Jochen vom FreiWeg Blog\n\n
                     ––––––––––––––––––––––––––––––––––––––––––
                     Jochen Califice\n
-                    Freiweg Blog – https://freiweg.blog\n
-                    kontakt@freiweg.blog\n
-                    Impressum: https://freiweg.blog/impressum\n
-                    Datenschutz: https://freiweg.blog/datenschutz\n
+                    FreiwWeg Outdoor Activity Blog – {$schemaAndHost}\n
+                    freiweg@outlook.de\n
+                    Impressum & Datenschutz: {$schemaAndHost}/impressum-und-datenschutz\n
                     ",
                 $object->getName(),
-                'xxx'
+                $blogpostTitle,
+                $blogpostLink
             )));
 
             $mail->addTo($object->getEmail());

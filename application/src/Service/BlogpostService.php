@@ -124,7 +124,7 @@ class BlogpostService
         $errors = null;
 
         if ($form->isSubmitted()) {
-            $errors = $this->handleCommentForm($form);
+            $errors = $this->handleCommentForm($form, $request);
         }
 
         $formView      = $form->createView();
@@ -292,7 +292,7 @@ class BlogpostService
                 continue;
             }
 
-            $actions = $content->getActions();
+            $actions = $content->getActions() ?? [];
 
             foreach ($actions as $k => $action) {
                 if ($action !== 'aiFactsUpdate') {
@@ -312,7 +312,7 @@ class BlogpostService
         }
     }
 
-    private function handleCommentForm(FormInterface $form): ?ConstraintViolationListInterface
+    private function handleCommentForm(FormInterface $form, Request $request): ?ConstraintViolationListInterface
     {
         $data = $form->getData();
 
@@ -382,8 +382,8 @@ class BlogpostService
             $mail = new Mail();
             $mail->addTo('freiweg@outlook.de');
             $mail->text(sprintf('
-                Ein neuer Kommentar wartet auf Freischaltung.: https://frei-weg.com/admin/login/deeplink?object_%s_object
-            ', $comment->getId()));
+                Ein neuer Kommentar wartet auf Freischaltung.: %s/admin/login/deeplink?object_%s_object
+            ', $request->getHttpHost(), $request->getSchemeAndHttpHost(), $comment->getId()));
             $mail->subject('Neuer Blog Kommentar');
             $mail->send();
         } catch (Throwable $exception) {
