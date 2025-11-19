@@ -76,7 +76,7 @@ class CommentEventSubscriber extends AbstractEventSubscriber
             $mail = new Mail();
             $mail->subject('Dein Kommentar wurde veröffentlicht');
             $mail->text(trim(sprintf(
-"
+                "
 Hallo %s!\n
 Dein Kommentar zum Blogpost \"%s\"wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n
 Hier der Link zum Blogpost: %s\n
