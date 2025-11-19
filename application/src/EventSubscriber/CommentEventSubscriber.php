@@ -10,8 +10,8 @@ use Pimcore\Event\Model\DataObjectEvent;
 use Pimcore\Mail;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\Element\ValidationException;
-
 use Symfony\Component\HttpFoundation\RequestStack;
+
 use function sprintf;
 
 class CommentEventSubscriber extends AbstractEventSubscriber
@@ -67,10 +67,10 @@ class CommentEventSubscriber extends AbstractEventSubscriber
             $schemaAndHost = $this->requestStack->getMainRequest()->getSchemeAndHttpHost();
 
             $blogpostTitle = '';
-            $blogpostLink = '';
+            $blogpostLink  = '';
             if ($blogpost instanceof DataObject\Blogpost) {
                 $blogpostTitle = $blogpost->getTitle();
-                $blogpostLink = $schemaAndHost . '/' . $blogpost->getSlug();
+                $blogpostLink  = $schemaAndHost.'/'.$blogpost->getSlug();
             }
 
             $mail = new Mail();
