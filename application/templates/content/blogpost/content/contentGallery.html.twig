@@ -1,7 +1,7 @@
 <div id="blogpost-gallery-{{ item.index }}" class="blogpost-content blogpost-content-gallery js-bbx-gallery">
     {% set alt = item.title ? item.title : blogpost.title %}
     {% if item.title is not empty %}
-        <h2>{{ item.title }}</h2>
+        <h3>{{ item.title }}</h3>
     {% endif %}
     {% for image in item.imageGallery.items %}
         {% set fullImageSource = image.thumbnail('blogpost-gallery-full').path %}
