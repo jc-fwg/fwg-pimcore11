@@ -77,11 +77,11 @@ class CommentEventSubscriber extends AbstractEventSubscriber
             $mail->subject('Dein Kommentar wurde veröffentlicht');
             $mail->text(trim(sprintf(
 "
-Hallo %s!\n\n
-Dein Kommentar zum Blogpost \"%s\"wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n\n‚
-Hier der Link zum Blogpost: %s\n\n
-Du erhältst diese E-Mail, weil du einen Kommentar auf unserem Blog hinterlassen hast und dieser jetzt freigeschaltet wurde.\n\n
-Viele Grüße\n\n
+Hallo %s!\n
+Dein Kommentar zum Blogpost \"%s\"wurde veröffentlicht. Vielen Dank für Deinen Beitrag!\n
+Hier der Link zum Blogpost: %s\n
+Du erhältst diese E-Mail, weil du einen Kommentar auf unserem Blog hinterlassen hast und dieser jetzt freigeschaltet wurde.\n
+Viele Grüße\n
 Jochen vom FreiWeg Blog\n\n
 ––––––––––––––––––––––––––––––––––––––––––
 Jochen Califice\n
