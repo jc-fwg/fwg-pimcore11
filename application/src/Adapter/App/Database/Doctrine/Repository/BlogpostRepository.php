@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Adapter\App\Database\Doctrine\Repository;
 
+use App\Model\Paginator;
 use Doctrine\DBAL\Connection;
 use Exception;
 use Pimcore\Model\DataObject;
@@ -112,9 +113,37 @@ class BlogpostRepository extends AbstractRepository
             return [];
         }
 
+        $listing = $this->getBlogpostListingByTags($tags, $combine);
+
+        return $listing->load();
+    }
+
+    /**
+     * @param DataObject\Tag[] $tags
+     *
+     * @return Paginator|null
+     *
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function findAllByTagsPaginated(array $tags, string $combine = 'OR', int $itemsPerPage = null, int $currentPage = null): ?Paginator
+    {
+        if (empty($tags)) {
+            return null;
+        }
+
+        $listing = $this->getBlogpostListingByTags($tags, $combine);
+
+        return new Paginator($listing, itemsPerPage: $itemsPerPage, currentPage: $currentPage);
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
+    private function getBlogpostListingByTags(array $tags, string $combine = 'OR'): DataObject\Listing
+    {
         $tagsSetQuery = [];
         foreach ($tags as $tag) {
-            $tagsSetQuery[] = "FIND_IN_SET('{$tag->getId()}', tags)";
+            $tagsSetQuery[] = "FIND_IN_SET('{$tag->getId()}', activities.tags)";
         }
 
         $queryBuilder = $this->connection->createQueryBuilder()
@@ -133,16 +162,29 @@ class BlogpostRepository extends AbstractRepository
                 )
             )
             ->orderBy('blogposts.publicationDate', 'DESC');
+
         $blogpostIds = $queryBuilder->fetchFirstColumn();
 
         $blogpostListing = new DataObject\Blogpost\Listing();
         $blogpostListing->setCondition('oo_id IN (:ids)', ['ids' => $blogpostIds]);
 
-        // Add blogposts with author tags via array_unique?
-        // Using
-        // - existing query above
-        // - Blogpost Listing with condition for tags and array_unique
+        return $blogpostListing;
+    }
 
-        return $blogpostListing->load();
+    /**
+     * @return DataObject\Blogpost[]
+     */
+    public function findAll(): array
+    {
+        $listing = new DataObject\Blogpost\Listing();
+
+        return $listing->load();
+    }
+
+    public function findAllPaginated(): Paginator
+    {
+        $listing = new DataObject\Blogpost\Listing();
+
+        return new Paginator($listing);
     }
 }

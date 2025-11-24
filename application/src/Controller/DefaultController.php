@@ -188,11 +188,11 @@ class DefaultController extends BaseController
      * @throws Exception
      */
     #[Route(
-        '/tags',
-        name: 'tags',
+        '/blogposts',
+        name: 'blogposts',
         priority: 10
     )]
-    public function tagListAction(Request $request): Response
+    public function blogpostsAction(Request $request): Response
     {
         $paramBag = $this->getAllParameters($request);
 
@@ -221,11 +221,14 @@ class DefaultController extends BaseController
             }
         }
 
-        $blogposts = $this->blogpostRepository->findAllByTags($tags, 'AND', $request->query->has('autor'));
+        $blogposts = match(true) {
+            count($tags) > 0 => $this->blogpostRepository->findAllByTagsPaginated($tags, 'AND', itemsPerPage: 1, currentPage: 2),
+            default => $this->blogpostRepository->findAllPaginated(),
+        };
 
         $blogposts = array_map(
             fn (Blogpost $blogpost) => $this->blogpostMapper->fromModel($blogpost),
-            $blogposts
+            $blogposts->getPagination()->items
         );
 
         // Random hero image

@@ -57,7 +57,7 @@
                         <p class="tags">
                             {% for tag in blogpost.activity.tags %}
                                 {% if tag.hideInList == false %}
-                                    <a href="/tags?{{ tag.tagCategory.slug }}={{ tag.slug }}" class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</a>
+                                    <a href="/blogposts?{{ tag.tagCategory.slug }}={{ tag.slug }}" class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</a>
                                 {% endif %}
                             {% endfor %}
                         </p>
