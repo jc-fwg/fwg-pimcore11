@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Adapter\App\Database\Doctrine\Repository;
 
-use App\Model\Paginator;
+use App\Service\Paginator;
+use App\ValueObject\Paginator\PaginationValueObject;
 use Doctrine\DBAL\Connection;
 use Exception;
 use Pimcore\Model\DataObject;
@@ -19,6 +20,7 @@ class BlogpostRepository extends AbstractRepository
 
     public function __construct(
         private readonly Connection $connection,
+        private readonly Paginator $paginator,
     ) {
     }
 
@@ -125,7 +127,7 @@ class BlogpostRepository extends AbstractRepository
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function findAllByTagsPaginated(array $tags, string $combine = 'OR', int $itemsPerPage = null, int $currentPage = null): ?Paginator
+    public function findAllByTagsPaginated(array $tags, string $combine = 'OR', ?int $itemsPerPage = null, ?int $currentPage = null): ?PaginationValueObject
     {
         if (empty($tags)) {
             return null;
@@ -133,7 +135,24 @@ class BlogpostRepository extends AbstractRepository
 
         $listing = $this->getBlogpostListingByTags($tags, $combine);
 
-        return new Paginator($listing, itemsPerPage: $itemsPerPage, currentPage: $currentPage);
+        return $this->paginator->getPagination($listing, $itemsPerPage, $currentPage);
+    }
+
+    /**
+     * @return DataObject\Blogpost[]
+     */
+    public function findAll(): array
+    {
+        $listing = new DataObject\Blogpost\Listing();
+
+        return $listing->load();
+    }
+
+    public function findAllPaginated(?int $itemsPerPage = null, ?int $currentPage = null): PaginationValueObject
+    {
+        $listing = new DataObject\Blogpost\Listing();
+
+        return $this->paginator->getPagination($listing, $itemsPerPage, $currentPage);
     }
 
     /**
@@ -169,22 +188,5 @@ class BlogpostRepository extends AbstractRepository
         $blogpostListing->setCondition('oo_id IN (:ids)', ['ids' => $blogpostIds]);
 
         return $blogpostListing;
-    }
-
-    /**
-     * @return DataObject\Blogpost[]
-     */
-    public function findAll(): array
-    {
-        $listing = new DataObject\Blogpost\Listing();
-
-        return $listing->load();
-    }
-
-    public function findAllPaginated(): Paginator
-    {
-        $listing = new DataObject\Blogpost\Listing();
-
-        return new Paginator($listing);
     }
 }

@@ -221,14 +221,16 @@ class DefaultController extends BaseController
             }
         }
 
-        $blogposts = match(true) {
-            count($tags) > 0 => $this->blogpostRepository->findAllByTagsPaginated($tags, 'AND', itemsPerPage: 1, currentPage: 2),
-            default => $this->blogpostRepository->findAllPaginated(),
+        $currentPage = $request->query->getInt('page', 1);
+
+        $pagination = match (true) {
+            count($tags) > 0 => $this->blogpostRepository->findAllByTagsPaginated($tags, 'AND', currentPage: $currentPage),
+            default          => $this->blogpostRepository->findAllPaginated(currentPage: $currentPage),
         };
 
         $blogposts = array_map(
             fn (Blogpost $blogpost) => $this->blogpostMapper->fromModel($blogpost),
-            $blogposts->getPagination()->items
+            $pagination->items
         );
 
         // Random hero image
@@ -244,11 +246,12 @@ class DefaultController extends BaseController
         );
 
         return $this->render('content/tags/list.html.twig', array_merge($paramBag, [
-            'blogposts' => $blogposts,
-            'tagList'   => $this->tagRepository->findAllCurrentlyRelated(),
-            'tags'      => $tags,
-            'heroImage' => $blogpost?->imageTeaser,
-            'openGraph' => $openGraph,
+            'blogposts'  => $blogposts,
+            'tagList'    => $this->tagRepository->findAllCurrentlyRelated(),
+            'tags'       => $tags,
+            'heroImage'  => $blogpost?->imageTeaser,
+            'openGraph'  => $openGraph,
+            'pagination' => $pagination,
         ]));
     }
 

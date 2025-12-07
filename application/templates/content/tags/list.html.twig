@@ -38,6 +38,7 @@
         </header>
         <div class="container">
             <div class="row">
+                {{ dump(pagination) }}
                 <div class="col-lg-8 col-md-8 col-xs-12">
                     {% if blogposts is not empty %}
                         <h1>{{ 'tagList.blogpostsHeadline'|trans }}</h1>
@@ -49,9 +50,49 @@
                         {% for post in blogposts %}
                             {% include 'content/_general/blogpost_list_item.html.twig' with {'post': post, 'size': 'wide' } %}
                         {% endfor %}
-                        <div class="blogpost">
 
-                        </div>
+
+                        <nav aria-label="pagination">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item{% if pagination.currentPage == 1 %} disabled{% endif %}">
+                                    <a class="page-link" href="{{ pagination.queryString ~ (pagination.currentPage - 1) }}">Vorherige Seite</a>
+                                </li>
+                                <li class="page-item{% if pagination.currentPage == 1 %} active{% endif %}">
+                                    <a class="page-link" href="{{ pagination.queryString }}1">1</a>
+                                </li>
+
+                                {% if pagination.currentPage > 1 and pagination.rangeStart > 2 %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link">...</a>
+                                    </li>
+                                {% endif %}
+
+                                {% for page in 1..pagination.totalPages %}
+                                    {% if
+                                        not loop.first and not loop.last and
+                                        (loop.index >= pagination.rangeStart and loop.index <= pagination.rangeEnd)
+                                    %}
+                                        <li class="page-item{% if loop.index == pagination.currentPage %} active{% endif %}"><a class="page-link" href="{{ pagination.queryString ~ loop.index }}">{{ loop.index }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if pagination.currentPage < pagination.totalPages and pagination.rangeEnd < (pagination.totalPages - 1) %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link">...</a>
+                                    </li>
+                                {% endif %}
+
+                                <li class="page-item{% if pagination.currentPage == pagination.totalPages %} active{% endif %}">
+                                    <a class="page-link" href="{{ pagination.queryString ~ pagination.totalPages }}">{{ pagination.totalPages }}</a>
+                                </li>
+
+                                <li class="page-item{% if pagination.currentPage == pagination.totalPages %} disabled{% endif %}">
+                                    <a class="page-link" href="{{ pagination.queryString ~ (pagination.currentPage + 1) }}">Nächste Seite</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+
                     {% else %}
                         <p>No blog posts found in this collection.</p>
                     {% endif %}

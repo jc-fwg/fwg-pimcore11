@@ -248,10 +248,10 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
             return;
         }
 
-        $activityTags    = $activity->getTags() ?? [];
-        $blogpostTags    = $object->getTags() ?? [];
+        $activityTags = $activity->getTags() ?? [];
+        $blogpostTags = $object->getTags() ?? [];
 
-        $blogpostTags = array_merge($blogpostTags, array_filter($activityTags, fn($tag) => !in_array($tag, $blogpostTags, true)));
+        $blogpostTags = array_merge($blogpostTags, array_filter($activityTags, static fn ($tag) => !in_array($tag, $blogpostTags, true)));
 
         $object->setTags($blogpostTags);
     }
