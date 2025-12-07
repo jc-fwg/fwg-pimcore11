@@ -23,4 +23,34 @@
         padding-bottom: 8px;
         border-bottom: 1px solid #ccc;
     }
+
+    .pagination {
+        .page-item {
+            .page-link {
+                color: base.$color-grey-default;
+                background-color: base.$color-grey-light;
+
+                &:hover {
+                    background-color: base.$color-cd-green;
+                    color: #fff;
+                }
+            }
+
+            &.active {
+                .page-link {
+                    background-color: base.$color-cd-orange;
+                    border-color: base.$color-cd-orange;
+                    color: #fff;
+                }
+            }
+
+            &.disabled {
+                .page-link {
+                    pointer-events: none;
+                    color: #aaa;
+                    background-color: base.$color-grey-light;
+                }
+            }
+        }
+    }
 }

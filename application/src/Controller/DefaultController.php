@@ -188,11 +188,11 @@ class DefaultController extends BaseController
      * @throws Exception
      */
     #[Route(
-        '/tags',
-        name: 'tags',
+        '/blogposts',
+        name: 'blogposts',
         priority: 10
     )]
-    public function tagListAction(Request $request): Response
+    public function blogpostsAction(Request $request): Response
     {
         $paramBag = $this->getAllParameters($request);
 
@@ -221,11 +221,16 @@ class DefaultController extends BaseController
             }
         }
 
-        $blogposts = $this->blogpostRepository->findAllByTags($tags, 'AND', $request->query->has('autor'));
+        $currentPage = $request->query->getInt('page', 1);
+
+        $pagination = match (true) {
+            count($tags) > 0 => $this->blogpostRepository->findAllByTagsPaginated($tags, 'AND', currentPage: $currentPage),
+            default          => $this->blogpostRepository->findAllPaginated(currentPage: $currentPage),
+        };
 
         $blogposts = array_map(
             fn (Blogpost $blogpost) => $this->blogpostMapper->fromModel($blogpost),
-            $blogposts
+            $pagination->items
         );
 
         // Random hero image
@@ -241,11 +246,12 @@ class DefaultController extends BaseController
         );
 
         return $this->render('content/tags/list.html.twig', array_merge($paramBag, [
-            'blogposts' => $blogposts,
-            'tagList'   => $this->tagRepository->findAllCurrentlyRelated(),
-            'tags'      => $tags,
-            'heroImage' => $blogpost?->imageTeaser,
-            'openGraph' => $openGraph,
+            'blogposts'  => $blogposts,
+            'tagList'    => $this->tagRepository->findAllCurrentlyRelated(),
+            'tags'       => $tags,
+            'heroImage'  => $blogpost?->imageTeaser,
+            'openGraph'  => $openGraph,
+            'pagination' => $pagination,
         ]));
     }
 

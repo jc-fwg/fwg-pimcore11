@@ -35,12 +35,13 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
                 ['setSlug'],
             ],
             DataObjectEvents::PRE_UPDATE => [
-                ['setSlug'],
-                ['setAuthorTagsAtActivity'],
-                ['setSeoData'],
-                ['generateSocialPreviewThumbnails'],
+                ['setSlug', 0],
+                ['setAuthorTagsAtActivity', 2],
+                ['setSeoData', 4],
+                ['updateBlogpostTagsByActivityTags', 4],
+                ['generateSocialPreviewThumbnails', 6],
+                ['processCitySpotActions', 6],
                 ['checkDataQuality', 10],
-                ['processCitySpotActions'],
             ],
         ];
     }
@@ -228,6 +229,31 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         }
 
         $this->blogpostService->processCitySpotActions($object);
+    }
+
+    public function updateBlogpostTagsByActivityTags(DataObjectEvent $event): void
+    {
+        if ($this->isAutoSave($event)) {
+            return;
+        }
+
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
+            return;
+        }
+
+        $activity = $object->getActivity();
+        if (!$activity instanceof DataObject\Activity) {
+            return;
+        }
+
+        $activityTags = $activity->getTags() ?? [];
+        $blogpostTags = $object->getTags() ?? [];
+
+        $blogpostTags = array_merge($blogpostTags, array_filter($activityTags, static fn ($tag) => !in_array($tag, $blogpostTags, true)));
+
+        $object->setTags($blogpostTags);
     }
 
     private function fetchSeoPrompt(DataObject\Blogpost $blogpost): string

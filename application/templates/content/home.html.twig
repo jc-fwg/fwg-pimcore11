@@ -50,7 +50,7 @@
                 <div class="tags mt-3">
                     {% for tag in tags %}
                         {% if tag.hideInList != true %}
-                            <a href="/tags?{{ tag.parent.slug }}={{ tag.slug }}" class="badge text-bg-secondary mb-1 d-inline-block">{{ tag.emoji }} {{ tag.name }}</a>
+                            <a href="/blogposts?{{ tag.parent.slug }}={{ tag.slug }}" class="badge text-bg-secondary mb-1 d-inline-block">{{ tag.emoji }} {{ tag.name }}</a>
                         {% endif %}
                     {% endfor %}
                 </div>
