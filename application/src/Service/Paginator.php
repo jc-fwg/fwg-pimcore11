@@ -35,20 +35,6 @@ class Paginator
         $totalPages = (int) ceil($totalItems / $itemsPerPage);
         $startIndex = ($currentPage - 1) * $itemsPerPage;
 
-        // Generate previous and next page URLs, add current request parameters if available
-        $previousPageUrl = $currentPage > 1
-            ? $this->urlGenerator->generate($this->requestStack->getCurrentRequest()->attributes->get('_route'), array_merge(
-                $this->requestStack->getCurrentRequest()?->query->all() ?? [],
-                ['page' => $currentPage - 1]
-            ))
-            : null;
-        $nextPageUrl = $currentPage < $totalPages
-            ? $this->urlGenerator->generate($this->requestStack->getCurrentRequest()->attributes->get('_route'), array_merge(
-                $this->requestStack->getCurrentRequest()?->query->all() ?? [],
-                ['page' => $currentPage + 1]
-            ))
-            : null;
-
         $rangeStart = max(1, $currentPage - $range);
         $rangeEnd   = min($totalPages, $currentPage + $range);
 
