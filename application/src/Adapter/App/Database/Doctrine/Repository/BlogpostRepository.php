@@ -135,7 +135,7 @@ class BlogpostRepository extends AbstractRepository
 
         $listing = $this->getBlogpostListingByTags($tags, $combine);
 
-        return $this->paginator->getPagination($listing, $itemsPerPage, $currentPage);
+        return $this->paginator->getPagination($listing, 1, $currentPage);
     }
 
     /**
