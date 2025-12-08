@@ -41,10 +41,22 @@
                 <div class="col-lg-8 col-md-8 col-xs-12">
                     {% if collections is not empty %}
                         <h1 class="mb-5">{{ 'collectionsList.headline'|trans }}</h1>
-                        {% for collection in collections %}
-                            {% include 'content/_general/collection_list_item.html.twig' with {'collection': collection} %}
-                        {% endfor %}
+                        <p>
+                            Entdecke unsere Sammlungen mit Inspirationen und Geschichten rund zu verschiedensten Outdoor Themen. Ob du dich für gemütliche Wanderwege, spannende Radrouten, besondere Naturmomente abseits der bekannten Pfade oder wunderschöne Städte interessierst – jede Sammlung nimmt dich mit auf eine kleine Entdeckungsreise.
+                        </p>
+                        <p>
+                            Stöbere durch die unterschiedlichen Themenwelten, lass dich inspirieren und finde genau die Touren und Ideen, die zu deinem nächsten Abenteuer passen. Jede Sammlung öffnet ein neues Kapitel voller frischer Eindrücke, praktischer Tipps und persönlicher Empfehlungen.
+                        </p>
+                        <p>
+                            Mach’s dir gemütlich, klick dich durch – und finde deinen nächsten Lieblingsplatz draußen in der Natur.
+                        </p>
+                            <div class="row g-2 mt-3">
+                                {% for collection in collections %}
+                                    {% include 'content/_general/collection_list_item.html.twig' with {'collection': collection, 'pageType': 'collectionsList'} %}
+                                {% endfor %}
+                            </div>
                         {% include 'content/_general/pagination.html.twig' %}
+
                     {% else %}
                         <p>Leider konnten wir zu dieser Auswahl keine Sammlungen finden.</p>
                     {% endif %}
