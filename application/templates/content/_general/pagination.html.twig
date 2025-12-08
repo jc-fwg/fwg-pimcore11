@@ -1,8 +1,8 @@
 {% if pagination is defined and pagination.totalPages > 1 %}
     <nav aria-label="pagination">
         <ul class="pagination justify-content-center mt-5">
-            <li class="page-item{% if pagination.currentPage == 1 %} disabled{% endif %}">
-                <a class="page-link" href="{{ pagination.queryString ~ (pagination.currentPage - 1) }}">Vorherige Seite</a>
+            <li class="page-item{% if pagination.currentPage == 1 %} disabled{% endif %} d-none d-sm-inline">
+                <a class="page-link" href="{{ pagination.queryString ~ (pagination.currentPage - 1) }}"><<</a>
             </li>
             <li class="page-item{% if pagination.currentPage == 1 %} active{% endif %}">
                 <a class="page-link" href="{{ pagination.queryString }}1">1</a>
@@ -33,8 +33,8 @@
                 <a class="page-link" href="{{ pagination.queryString ~ pagination.totalPages }}">{{ pagination.totalPages }}</a>
             </li>
 
-            <li class="page-item{% if pagination.currentPage == pagination.totalPages %} disabled{% endif %}">
-                <a class="page-link" href="{{ pagination.queryString ~ (pagination.currentPage + 1) }}">Nächste Seite</a>
+            <li class="page-item{% if pagination.currentPage == pagination.totalPages %} disabled{% endif %} d-none d-sm-inline"">
+                <a class="page-link" href="{{ pagination.queryString ~ (pagination.currentPage + 1) }}">>></a>
             </li>
         </ul>
     </nav>

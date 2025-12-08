@@ -255,6 +255,50 @@ class DefaultController extends BaseController
         ]));
     }
 
+    /**
+     * @throws Exception
+     */
+    #[Route(
+        '/collections',
+        name: 'collections',
+        priority: 10
+    )]
+    public function collectionsAction(Request $request): Response
+    {
+        $paramBag = $this->getAllParameters($request);
+
+        $currentPage = $request->query->getInt('page', 1);
+
+        $pagination = $this->collectionRepository->findAllPaginated(itemsPerPage: 1, currentPage: $currentPage);
+
+        $collections = $pagination->items;
+
+        // Random hero image
+        $randomCollection = empty($collections) === false ? $collections[array_rand($collections)] : null;
+
+        if ($randomCollection instanceof Collection === false) {
+            throw new Exception('No collections found for hero image');
+        }
+
+        $socialPreview = $randomCollection?->getSocialPreviewThumbnail();
+
+        // Open Graph
+        $openGraph = new WebsiteValueObject(
+            title: 'Entdecke interessante Sammlungen rund ums Wandern, Mountainbiken, Graveln, Städtetrips und Camping',
+            description: 'Entdecke interessante Sammlungen rund ums Wandern, Mountainbiken, Graveln, Städtetrips und Camping',
+            image: $socialPreview ? $request->getSchemeAndHttpHost().$socialPreview->getFullPath() : '',
+            url: $request->getUri(),
+        );
+
+        return $this->render('content/collection/list.html.twig', array_merge($paramBag, [
+            'collections'  => $pagination->items,
+            'heroImage'  => $randomCollection?->getImageTeaser(),
+            'openGraph'  => $openGraph,
+            'pagination' => $pagination,
+            'tagList'     => $this->tagRepository->findAllCurrentlyRelated(),
+        ]));
+    }
+
     public function notFoundAction(Request $request): Response
     {
         $paramBag = $this->getAllParameters($request);
