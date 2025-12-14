@@ -44,9 +44,7 @@
                         {% for collection in collections %}
                             {% include 'content/_general/collection_list_item.html.twig' with {'collection': collection} %}
                         {% endfor %}
-{% dump(pagination) %}
                         {% include 'content/_general/pagination.html.twig' %}
-
                     {% else %}
                         <p>Leider konnten wir zu dieser Auswahl keine Sammlungen finden.</p>
                     {% endif %}

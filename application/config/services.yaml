@@ -141,6 +141,18 @@ services:
         resource: '../src/Service'
         public: true
 
+    #
+    # SEO Sitemaps
+    #
+
+    App\Sitemap\:
+        resource: '../src/Sitemap'
+
+    App\Sitemap\BlogpostGenerator:
+        arguments:
+            $filters:
+                - '@Pimcore\Bundle\SeoBundle\Sitemap\Element\Filter\PublishedFilter'
+
     # ---------------------------------------------------------
     # Twig Extensions
     # ---------------------------------------------------------
