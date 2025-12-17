@@ -2,18 +2,23 @@
 
 namespace App\Sitemap;
 
-use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use Pimcore\Bundle\SeoBundle\Sitemap\Element\AbstractElementGenerator;
 use Pimcore\Bundle\SeoBundle\Sitemap\Element\GeneratorContext;
 use Pimcore\Model\DataObject\Blogpost;
+use Pimcore\Model\DataObject\Fieldcollection;
 use Presta\SitemapBundle\Service\UrlContainerInterface;
 use Presta\SitemapBundle\Sitemap\Url\Url;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use function Sabre\Event\Loop\instance;
+use Symfony\Component\Routing\RouterInterface;
 
 class BlogpostGenerator extends AbstractElementGenerator
 {
+    public function __construct(array $filters = [], array $processors = [], private readonly RouterInterface $router)
+    {
+        parent::__construct($filters, $processors);
+    }
+
     public function populate(UrlContainerInterface $urlContainer, string $section = null): void
     {
         if ($section !== null && $section !== 'blog') {
@@ -31,7 +36,10 @@ class BlogpostGenerator extends AbstractElementGenerator
                 continue;
             }
 
-            $linkGenerator = $blogpost->getClass()->getLinkGenerator();
+            $images = $this->getGalleryImages($blogpost);
+
+            // todo: Decorate images
+
             $link = $blogpost->getClass()->getLinkGenerator()->generate($blogpost, ['referenceType' => UrlGeneratorInterface::ABSOLUTE_URL]);
 
             $url = new UrlConcrete($link);
@@ -44,5 +52,40 @@ class BlogpostGenerator extends AbstractElementGenerator
 
             $urlContainer->addUrl($url, $section ?? 'blogposts');
         }
+    }
+
+    private function getGalleryImages(Blogpost $blogpost): array
+    {
+        $imageUrls = [];
+
+        $contents = $blogpost->getContent();
+        if (!$contents instanceof Fieldcollection) {
+            return [];
+        }
+
+        foreach ($contents as $content) {
+            if (!$content instanceof Fieldcollection\Data\ContentGallery) {
+                continue;
+            }
+
+            $images = $content->getImageGallery()?->getItems();
+
+            foreach ($images as $image) {
+
+                $frontendPath = $image->getImage()?->getFrontendPath();
+                if ($frontendPath === null) {
+                    continue;
+                }
+
+                $imageUrls[] = sprintf(
+                    '%s://%s%s',
+                    $this->router->getContext()->getScheme(),
+                    $this->router->getContext()->getHost(),
+                    $frontendPath
+                );
+            }
+        }
+
+        return $imageUrls;
     }
 }

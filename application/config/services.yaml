@@ -97,7 +97,8 @@ services:
     #
 
     # auto-register all link generators as services
-    App\Website\LinkGenerator\BlogpostLinkGenerator:
+    App\Website\LinkGenerator\:
+        resource: '../src/Website/LinkGenerator'
         public: true
 
     #
@@ -152,6 +153,23 @@ services:
         arguments:
             $filters:
                 - '@Pimcore\Bundle\SeoBundle\Sitemap\Element\Filter\PublishedFilter'
+            $processors:
+                -
+            $router: '@router'
+
+    App\Sitemap\CollectionGenerator:
+        arguments:
+            $filters:
+                - '@Pimcore\Bundle\SeoBundle\Sitemap\Element\Filter\PublishedFilter'
+
+    App\Sitemap\DocumentGenerator:
+        arguments:
+            $filters:
+                - '@Pimcore\Bundle\SeoBundle\Sitemap\Element\Filter\PublishedFilter'
+                - '@App\Sitemap\Filter\DocumentIsSitemapQualified'
+            $processors:
+                -
+            $router: '@router'
 
     # ---------------------------------------------------------
     # Twig Extensions
