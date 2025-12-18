@@ -269,7 +269,7 @@ class DefaultController extends BaseController
 
         $currentPage = $request->query->getInt('page', 1);
 
-        $pagination = $this->collectionRepository->findAllPaginated(itemsPerPage: 1, currentPage: $currentPage);
+        $pagination = $this->collectionRepository->findAllPaginated(currentPage: $currentPage);
 
         $collections = $pagination->items;
 

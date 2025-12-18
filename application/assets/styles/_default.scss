@@ -47,6 +47,18 @@ h4 {
 .btn-secondary {
     background-color: base.$color-cd-green;
     border-color: base.$color-cd-green;
+
+    &.reset {
+        background-color: #888;
+        border: none;
+        width: auto;
+        margin: 0 auto;
+
+        &:hover {
+            background-color: base.$color-cd-orange;
+            color: #fff;
+        }
+    }
 }
 
 .spaced {
@@ -262,3 +274,4 @@ footer {
 .fade-hide {
     opacity: 0;
 }
+

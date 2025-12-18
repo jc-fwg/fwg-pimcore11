@@ -1,4 +1,9 @@
-<div class="col-lg-3 col-sm-6 col-xs-12">
+{% set colSetup = "col-lg-3 col-sm-6 col-xs-12" %}
+{% if pageType is defined and pageType == "collectionsList" %}
+    {% set colSetup = "col-lg-6 col-sm-12" %}
+{% endif %}
+
+<div class="{{ colSetup }}">
     <a href="{{ collection.slug }}" class="collection-list-item btn btn-secondary btn-sm px-0 py-0">
         {% if collection.imageTeaser is not null %}
         {{ collection.imageTeaser.thumbnail('blogpost-list-thumbnail').html(

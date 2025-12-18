@@ -9,6 +9,9 @@ web:
 home:
     posts:
         latest: 'Neueste Beiträge'
+        showAll: 'Mehr Beiträge anzeigen'
+    collections:
+        showAll: 'Mehr Sammlungen entdecken'
 aside:
     tagList:
         headline: 'Weitere interessante Themen'
@@ -109,5 +112,7 @@ blogpost:
 
 blogpostList:
     recommendedCollections: 'Entdecken & erkunden'
+collectionsList:
+    headline: 'Entdecke unsere Sammlungen'
 tagList:
     blogpostsHeadline: 'Unsere Blogsposts für Deine Auswahl'
