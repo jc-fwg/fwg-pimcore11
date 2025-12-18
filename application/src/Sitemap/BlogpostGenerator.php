@@ -7,7 +7,8 @@ use Pimcore\Bundle\SeoBundle\Sitemap\Element\GeneratorContext;
 use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\Fieldcollection;
 use Presta\SitemapBundle\Service\UrlContainerInterface;
-use Presta\SitemapBundle\Sitemap\Url\Url;
+use Presta\SitemapBundle\Sitemap\Url\GoogleImage;
+use Presta\SitemapBundle\Sitemap\Url\GoogleImageUrlDecorator;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -36,21 +37,19 @@ class BlogpostGenerator extends AbstractElementGenerator
                 continue;
             }
 
-            $images = $this->getGalleryImages($blogpost);
-
-            // todo: Decorate images
-
             $link = $blogpost->getClass()->getLinkGenerator()->generate($blogpost, ['referenceType' => UrlGeneratorInterface::ABSOLUTE_URL]);
 
             $url = new UrlConcrete($link);
 
-            $url = $this->process($url, $blogpost, $context);
+            // Add gallery images
+            $images = $this->getGalleryImages($blogpost);
 
-            if (!$url instanceof Url) {
-                continue;
+            $decorator = new GoogleImageUrlDecorator($url);
+            foreach ($images as $imageUrl) {
+                $decorator->addImage(new GoogleImage($imageUrl));
             }
 
-            $urlContainer->addUrl($url, $section ?? 'blogposts');
+            $urlContainer->addUrl($decorator, $section ?? 'blogposts');
         }
     }
 

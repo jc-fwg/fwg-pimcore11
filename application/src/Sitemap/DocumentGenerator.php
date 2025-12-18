@@ -34,7 +34,6 @@ class DocumentGenerator extends AbstractElementGenerator
                 continue;
             }
 
-
             /** @var \Pimcore\Model\Document\Page $document */
             $link = sprintf(
                 '%s://%s%s',

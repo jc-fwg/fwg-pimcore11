@@ -6,12 +6,20 @@ use Pimcore\Bundle\SeoBundle\Sitemap\Element\AbstractElementGenerator;
 use Pimcore\Bundle\SeoBundle\Sitemap\Element\GeneratorContext;
 use Pimcore\Model\DataObject\Collection\Listing;
 use Presta\SitemapBundle\Service\UrlContainerInterface;
+use Presta\SitemapBundle\Sitemap\Url\GoogleImage;
+use Presta\SitemapBundle\Sitemap\Url\GoogleImageUrlDecorator;
 use Presta\SitemapBundle\Sitemap\Url\Url;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 class CollectionGenerator extends AbstractElementGenerator
 {
+    public function __construct(array $filters = [], array $processors = [], private readonly RouterInterface $router)
+    {
+        parent::__construct($filters, $processors);
+    }
+
     public function populate(UrlContainerInterface $urlContainer, string $section = null): void
     {
         if ($section !== null && $section !== 'collection') {
@@ -33,13 +41,25 @@ class CollectionGenerator extends AbstractElementGenerator
 
             $url = new UrlConcrete($link);
 
-            $url = $this->process($url, $collection, $context);
+            $decorator = new GoogleImageUrlDecorator($url);
 
-            if (!$url instanceof Url) {
-                continue;
+            // Add teaser image
+            $frontendPath = $collection->getImageTeaser()?->getFrontendPath();
+            if ($frontendPath !== null) {
+
+
+
+                $imageUrl = sprintf(
+                    '%s://%s%s',
+                    $this->router->getContext()->getScheme(),
+                    $this->router->getContext()->getHost(),
+                    $frontendPath
+                );
+
+                $decorator->addImage(new GoogleImage($imageUrl));
             }
 
-            $urlContainer->addUrl($url, $section ?? 'collections');
+            $urlContainer->addUrl($decorator, $section ?? 'collections');
         }
     }
 }
