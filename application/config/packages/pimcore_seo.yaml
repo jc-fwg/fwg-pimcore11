@@ -1,0 +1,20 @@
+pimcore_seo:
+    sitemaps:
+        generators:
+            app_blogposts:
+                enabled: true
+                priority: 50
+                generator_id: App\Sitemap\BlogpostGenerator
+            app_collections:
+                enabled: true
+                priority: 50
+                generator_id: App\Sitemap\CollectionGenerator
+            app_documents:
+                enabled: true
+                priority: 50
+                generator_id: App\Sitemap\DocumentGenerator
+
+            # Pimcore ships a default document tree generator which is enabled by default
+            # but you can easily disable it here.
+            pimcore_documents:
+                enabled: false

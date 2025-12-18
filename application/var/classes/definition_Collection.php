@@ -27,7 +27,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1762965676,
+   'modificationDate' => 1765781056,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -613,7 +613,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'icon' => '/bundles/pimcoreadmin/img/flat-color-icons/bricks.svg',
    'group' => 'Blogpost',
    'showAppLoggerTab' => false,
-   'linkGeneratorReference' => '',
+   'linkGeneratorReference' => '@App\\Website\\LinkGenerator\\CollectionLinkGenerator',
    'previewGeneratorReference' => '',
    'compositeIndices' => 
   array (

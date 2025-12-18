@@ -14,6 +14,7 @@ class CollectionRepository extends AbstractRepository
         private readonly Paginator $paginator,
     ) {
     }
+
     public function getBySlug(string $slug): ?DataObject\Collection
     {
         return DataObject\Collection::getBySlug($slug, 1);

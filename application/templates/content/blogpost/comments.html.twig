@@ -57,8 +57,8 @@
     {# Comment Form #}
     {% if commentForm.errors != null or commentForm.isHandled == false %}
         <h3 id="comment-headline" class="mt-5 js-toc-ignore">{{ "blogpost.comments.yourComment"|trans }}</h3>
-        {% set captcha = commentForm.getCaptcha() %}
-        {% set form = commentForm.getFormView() %}
+        {% set captcha = commentForm.captcha %}
+        {% set form = commentForm.formView %}
 
         {% if commentForm.errors|length > 0 %}
             <div class="alert alert-danger">

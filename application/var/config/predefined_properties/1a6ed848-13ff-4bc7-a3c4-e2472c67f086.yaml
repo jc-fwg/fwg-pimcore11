@@ -1,0 +1,15 @@
+pimcore:
+    properties:
+        predefined:
+            definitions:
+                1a6ed848-13ff-4bc7-a3c4-e2472c67f086:
+                    name: 'Add to Sitemap'
+                    description: ''
+                    key: addToSitemap
+                    type: bool
+                    data: 'true'
+                    config: ''
+                    ctype: document
+                    inheritable: false
+                    creationDate: 1766005095
+                    modificationDate: 1766005166
