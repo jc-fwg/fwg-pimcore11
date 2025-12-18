@@ -291,10 +291,10 @@ class DefaultController extends BaseController
         );
 
         return $this->render('content/collection/list.html.twig', array_merge($paramBag, [
-            'collections'  => $pagination->items,
-            'heroImage'  => $randomCollection?->getImageTeaser(),
-            'openGraph'  => $openGraph,
-            'pagination' => $pagination,
+            'collections' => $pagination->items,
+            'heroImage'   => $randomCollection?->getImageTeaser(),
+            'openGraph'   => $openGraph,
+            'pagination'  => $pagination,
             'tagList'     => $this->tagRepository->findAllCurrentlyRelated(),
         ]));
     }

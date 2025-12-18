@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Sitemap\Filter;
 
 use Pimcore\Bundle\SeoBundle\Sitemap\Element\FilterInterface;

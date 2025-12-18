@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Sitemap;
 
 use Pimcore\Bundle\SeoBundle\Sitemap\Element\AbstractElementGenerator;
@@ -13,14 +15,16 @@ use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
+use function sprintf;
+
 class BlogpostGenerator extends AbstractElementGenerator
 {
-    public function __construct(array $filters = [], array $processors = [], private readonly RouterInterface $router)
+    public function __construct(array $filters, array $processors, private readonly RouterInterface $router)
     {
         parent::__construct($filters, $processors);
     }
 
-    public function populate(UrlContainerInterface $urlContainer, string $section = null): void
+    public function populate(UrlContainerInterface $urlContainer, ?string $section = null): void
     {
         if ($section !== null && $section !== 'blog') {
             // do not add entries if section doesn't match
@@ -32,7 +36,6 @@ class BlogpostGenerator extends AbstractElementGenerator
         $context = new GeneratorContext($urlContainer, $section);
 
         foreach ($blogpostsListing as $blogpost) {
-
             if (!$this->canBeAdded($blogpost, $context)) {
                 continue;
             }
@@ -70,7 +73,6 @@ class BlogpostGenerator extends AbstractElementGenerator
             $images = $content->getImageGallery()?->getItems();
 
             foreach ($images as $image) {
-
                 $frontendPath = $image->getImage()?->getFrontendPath();
                 if ($frontendPath === null) {
                     continue;

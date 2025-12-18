@@ -14,8 +14,7 @@ readonly class BlogpostLinkGenerator implements LinkGeneratorInterface
 {
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
-    )
-    {
+    ) {
     }
 
     public function generate(object $object, array $params = []): string
@@ -24,8 +23,6 @@ readonly class BlogpostLinkGenerator implements LinkGeneratorInterface
             throw new InvalidArgumentException('Given object is not an blogpost instance');
         }
 
-        return Service::useInheritedValues(true, function () use ($object, $params) {
-            return $this->urlGenerator->generateUrl($object->getSlug());
-        });
+        return Service::useInheritedValues(true, fn () => $this->urlGenerator->generateUrl($object->getSlug()));
     }
 }
