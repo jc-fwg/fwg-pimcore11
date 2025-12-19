@@ -6,11 +6,11 @@ namespace App\Website\LinkGenerator;
 
 use InvalidArgumentException;
 use Pimcore\Bundle\SeoBundle\Sitemap\UrlGeneratorInterface;
-use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\ClassDefinition\LinkGeneratorInterface;
+use Pimcore\Model\DataObject\Collection;
 use Pimcore\Model\DataObject\Service;
 
-readonly class BlogpostLinkGenerator implements LinkGeneratorInterface
+readonly class CollectionLinkGenerator implements LinkGeneratorInterface
 {
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
@@ -19,8 +19,8 @@ readonly class BlogpostLinkGenerator implements LinkGeneratorInterface
 
     public function generate(object $object, array $params = []): string
     {
-        if (!($object instanceof Blogpost)) {
-            throw new InvalidArgumentException('Given object is not an blogpost instance');
+        if (!($object instanceof Collection)) {
+            throw new InvalidArgumentException('Given object is not an collection instance');
         }
 
         return Service::useInheritedValues(true, fn () => $this->urlGenerator->generateUrl($object->getSlug()));
