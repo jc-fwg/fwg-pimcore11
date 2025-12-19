@@ -1,4 +1,4 @@
-import 'project.just'
+import 'justfile_project.just'
 
 set dotenv-filename := "application/.env"
 
@@ -43,4 +43,11 @@ pim-install:
 # Remove all volumes
 remove-volumes:
   cd ./application; docker compose down --volumes
+
+npm-run-dev:
+    cd application/; npm run dev
+
+npm-run-watch:
+    cd application/; npm run watch
+
 

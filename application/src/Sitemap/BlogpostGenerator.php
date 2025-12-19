@@ -44,8 +44,8 @@ class BlogpostGenerator extends AbstractElementGenerator
 
             $url = new UrlConcrete($link);
 
-            // Add gallery images
-            $images = $this->getGalleryImages($blogpost);
+            // Add images
+            $images = $this->getImagesFromContent($blogpost);
 
             $decorator = new GoogleImageUrlDecorator($url);
             foreach ($images as $imageUrl) {
@@ -56,7 +56,7 @@ class BlogpostGenerator extends AbstractElementGenerator
         }
     }
 
-    private function getGalleryImages(Blogpost $blogpost): array
+    private function getImagesFromContent(Blogpost $blogpost): array
     {
         $imageUrls = [];
 
@@ -66,7 +66,11 @@ class BlogpostGenerator extends AbstractElementGenerator
         }
 
         foreach ($contents as $content) {
-            if (!$content instanceof Fieldcollection\Data\ContentGallery) {
+
+            if (
+                !$content instanceof Fieldcollection\Data\ContentGallery
+                && !$content instanceof Fieldcollection\Data\ContentCitySpot
+            ) {
                 continue;
             }
 
