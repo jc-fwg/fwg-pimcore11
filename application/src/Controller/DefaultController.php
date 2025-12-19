@@ -237,7 +237,11 @@ class DefaultController extends BaseController
         $blogpost = empty($blogposts) === false ? $blogposts[array_rand($blogposts)] : null;
 
         // Open Graph
-        $tagNames  = implode(', ', $tagNames);
+        $tagNames = match (true) {
+            count($tagNames) > 0 => implode(', ', $tagNames),
+            default          => 'Wandern, Mountainbiken, Graveln, Städtetrips, Camping',
+        };
+
         $openGraph = new WebsiteValueObject(
             title: 'Spannende Outdoor Berichte zum den Themen wie '.$tagNames,
             description: 'Entdecke unsere Blogposts zu ausgewählten Themen wie '.$tagNames,
