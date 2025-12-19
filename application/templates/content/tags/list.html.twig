@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-xs-12">
                     {% if blogposts is not empty %}
-                        <h1>{{ 'tagList.blogpostsHeadline'|trans }}</h1>
+                        <h1>{% if tags|length > 0 %}{{ 'tagList.blogpostsHeadline'|trans }}{% else %}{{ 'tagList.blogpostsHeadlineNoTags'|trans }}{% endif %}</h1>
                         <p class="tags mb-2">
                             {% for tag in tags %}
                                 <p class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</p>

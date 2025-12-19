@@ -116,3 +116,4 @@ collectionsList:
     headline: 'Entdecke unsere Sammlungen'
 tagList:
     blogpostsHeadline: 'Unsere Blogsposts für Deine Auswahl'
+    blogpostsHeadlineNoTags: 'Unsere Blogsposts zu den Themen wie Wandern, Mountainbiken, Graveln, Städtetrips, Camping'
