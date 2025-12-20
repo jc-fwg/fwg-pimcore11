@@ -20,6 +20,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[AppAssert\GalleryFieldCollectionsHaveImages(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
 #[AppAssert\CitySpotFieldCollectionsHaveTitle(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
 #[AppAssert\CitySpotFieldCollectionsHaveImages(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
+#[AppAssert\CitySpotFieldCollectionsContainValidHeadlines(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
+#[AppAssert\WysiwygFieldCollectionsContainValidHeadlines(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
 class BlogpostDto
 {
     public const string VALIDATION_GROUP_DATA_QUALITY_BASE_DATA              = 'data-quality-base-data';

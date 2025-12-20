@@ -10,12 +10,12 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class GalleryFieldCollectionsHaveTitleValidator extends ConstraintValidator
+class WysiwygFieldCollectionsContainValidHeadlinesValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint): void
     {
-        if (!$constraint instanceof GalleryFieldCollectionsHaveTitle) {
-            throw new UnexpectedTypeException($constraint, GalleryFieldCollectionsHaveTitle::class);
+        if (!$constraint instanceof WysiwygFieldCollectionsContainValidHeadlines) {
+            throw new UnexpectedTypeException($constraint, WysiwygFieldCollectionsContainValidHeadlines::class);
         }
 
         if (!$value instanceof BlogpostDto) {
@@ -29,15 +29,14 @@ class GalleryFieldCollectionsHaveTitleValidator extends ConstraintValidator
         }
 
         foreach ($contents->getItems() as $content) {
-            if (!$content instanceof Fieldcollection\Data\ContentGallery) {
+            if (!$content instanceof Fieldcollection\Data\ContentWysiwyg) {
                 continue;
             }
 
-            $title = $content->getTitle() ?? '';
-            if (trim($title) === '') {
+            if ((bool) preg_match('/<h1>.*<\/h1>|<h2>.*<\/h2>/', $content->getWysiwyg() ?? '') === true) {
                 $this->context
-                    ->buildViolation($constraint->message)
-                    ->atPath('Gallery')
+                    ->buildViolation(sprintf($constraint->message, substr(strip_tags($content->getWysiwyg()), 0, 20)))
+                    ->atPath('WYSIWYG')
                     ->addViolation();
             }
         }

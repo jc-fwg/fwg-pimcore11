@@ -23,7 +23,7 @@
  * -- link [link]
  * - title [input]
  * - subTitle [input]
- * - previewText [wysiwyg]
+ * - previewText [textarea]
  * - content [fieldcollections]
  * - focusKeyword [input]
  * - metaTitle [input]
@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1765738363,
+   'modificationDate' => 1766229674,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -809,7 +809,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValueGenerator' => '',
               )),
               2 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
                  'name' => 'previewText',
                  'title' => 'app.generic.previewText',
                  'tooltip' => '',
@@ -827,9 +827,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'toolbarConfig' => '',
+                 'maxLength' => NULL,
+                 'showCharCount' => false,
                  'excludeFromSearchIndex' => false,
-                 'maxCharacters' => '',
                  'height' => '',
                  'width' => '',
               )),
@@ -1345,6 +1345,31 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
+       'name' => 'previewText1',
+       'title' => 'app.generic.previewText',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => false,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => false,
+       'invisible' => false,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'maxLength' => NULL,
+       'showCharCount' => false,
+       'excludeFromSearchIndex' => false,
+       'height' => '',
+       'width' => '',
+    )),
   ),
    'blockedVarsForExport' => 
   array (
