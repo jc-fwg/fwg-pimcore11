@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+use function sprintf;
+
 class WysiwygFieldCollectionsContainValidHeadlinesValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint): void

@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+use function sprintf;
+
 class CitySpotFieldCollectionsContainValidHeadlinesValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint): void
@@ -34,7 +36,6 @@ class CitySpotFieldCollectionsContainValidHeadlinesValidator extends ConstraintV
             }
 
             if ((bool) preg_match('/<h1>.*<\/h1>|<h2>.*<\/h2>/', $content->getConclusion() ?? '') === true) {
-
                 $title = $content->getTitle() ?? '';
                 if (trim($title) === '') {
                     $title = 'NO TITLE SET';

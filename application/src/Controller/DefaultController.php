@@ -239,7 +239,7 @@ class DefaultController extends BaseController
         // Open Graph
         $tagNames = match (true) {
             count($tagNames) > 0 => implode(', ', $tagNames),
-            default          => 'Wandern, Mountainbiken, Graveln, Städtetrips, Camping',
+            default              => 'Wandern, Mountainbiken, Graveln, Städtetrips, Camping',
         };
 
         $openGraph = new WebsiteValueObject(

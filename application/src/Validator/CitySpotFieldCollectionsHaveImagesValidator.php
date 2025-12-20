@@ -10,12 +10,15 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+use function count;
+use function is_array;
+
 class CitySpotFieldCollectionsHaveImagesValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof CitySpotFieldCollectionsHaveImages) {
-            throw new UnexpectedTypeException($constraint, CitySpotFieldCollectionsHaveImagesValidator::class);
+            throw new UnexpectedTypeException($constraint, self::class);
         }
 
         if (!$value instanceof BlogpostDto) {
@@ -37,9 +40,9 @@ class CitySpotFieldCollectionsHaveImagesValidator extends ConstraintValidator
 
             if (is_array($images) === false || count($images) === 0) {
                 $this->context
-                ->buildViolation($constraint->message)
-                ->atPath('CitySpot')
-                ->addViolation();
+                    ->buildViolation($constraint->message)
+                    ->atPath('CitySpot')
+                    ->addViolation();
             }
         }
     }
