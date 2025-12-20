@@ -8,9 +8,9 @@ use Attribute;
 use Symfony\Component\Validator\Constraint;
 
 #[Attribute]
-class GalleryFieldCollectionsHaveTitles extends Constraint
+class CitySpotFieldCollectionsHaveTitle extends Constraint
 {
-    public string $message = 'One ore more Gallery content elements are missing titles';
+    public string $message = 'One ore more CitySpot content elements are missing title';
 
     public function getTargets(): string
     {

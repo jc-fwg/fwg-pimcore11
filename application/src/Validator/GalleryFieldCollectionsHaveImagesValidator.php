@@ -10,12 +10,12 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class GalleryFieldCollectionsHaveTitlesValidator extends ConstraintValidator
+class GalleryFieldCollectionsHaveImagesValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint): void
     {
-        if (!$constraint instanceof GalleryFieldCollectionsHaveTitles) {
-            throw new UnexpectedTypeException($constraint, GalleryFieldCollectionsHaveTitles::class);
+        if (!$constraint instanceof GalleryFieldCollectionsHaveImages) {
+            throw new UnexpectedTypeException($constraint, GalleryFieldCollectionsHaveImages::class);
         }
 
         if (!$value instanceof BlogpostDto) {
@@ -33,13 +33,13 @@ class GalleryFieldCollectionsHaveTitlesValidator extends ConstraintValidator
                 continue;
             }
 
-            $title = $content->getTitle() ?? '';
-            if (trim($title) === '') {
+            $images = $content->getImageGallery()?->getItems();
+
+            if (is_array($images) === false || count($images) === 0) {
                 $this->context
-                    ->buildViolation($constraint->message)
-                    ->atPath('content')
-                    ->addViolation();
-                break;
+                ->buildViolation($constraint->message)
+                ->atPath('Gallery')
+                ->addViolation();
             }
         }
     }

@@ -25,7 +25,7 @@ class TourHasActivityValidator extends ConstraintValidator
         if ($value->blogpostType === 'tour' && !$value->activity instanceof ActivityDto) {
             $this->context
                 ->buildViolation($constraint->message)
-                ->atPath('activity')
+                ->atPath('Activity')
                 ->addViolation();
         }
     }

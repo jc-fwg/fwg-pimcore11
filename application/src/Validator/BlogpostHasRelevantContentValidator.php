@@ -50,7 +50,7 @@ class BlogpostHasRelevantContentValidator extends ConstraintValidator
 
         $this->context
             ->buildViolation($constraint->message)
-            ->atPath('content')
+            ->atPath('Content')
             ->addViolation();
     }
 }
