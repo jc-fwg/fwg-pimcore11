@@ -39,7 +39,6 @@ class CitySpotFieldCollectionsHaveTitleValidator extends ConstraintValidator
                     ->buildViolation($constraint->message)
                     ->atPath('CitySpot')
                     ->addViolation();
-                break;
             }
         }
     }

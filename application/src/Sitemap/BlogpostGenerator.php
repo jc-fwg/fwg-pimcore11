@@ -66,7 +66,6 @@ class BlogpostGenerator extends AbstractElementGenerator
         }
 
         foreach ($contents as $content) {
-
             if (
                 !$content instanceof Fieldcollection\Data\ContentGallery
                 && !$content instanceof Fieldcollection\Data\ContentCitySpot

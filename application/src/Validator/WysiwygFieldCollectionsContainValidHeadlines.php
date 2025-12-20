@@ -8,9 +8,9 @@ use Attribute;
 use Symfony\Component\Validator\Constraint;
 
 #[Attribute]
-class CitySpotFieldCollectionsHaveImages extends Constraint
+class WysiwygFieldCollectionsContainValidHeadlines extends Constraint
 {
-    public string $message = 'One ore more CitySpot content elements are missing images';
+    public string $message = 'WYSIWYG content element contains H1 or H2 headlines. Content: "%s..."';
 
     public function getTargets(): string
     {
