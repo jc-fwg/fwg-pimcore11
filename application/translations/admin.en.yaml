@@ -69,6 +69,7 @@ app:
         summary: 'Summary'
         surefootedness: 'Surefootedness'
         temperature: 'Temperature (°C)'
+        text: 'Text'
         title: 'Title'
         titleAndDescription: 'Title and Description'
         titlesAndConclusion: 'Titles and Conclusion'

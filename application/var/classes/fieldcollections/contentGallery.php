@@ -3,6 +3,7 @@
 /**
  * Fields Summary:
  * - title [input]
+ * - text [wysiwyg]
  * - imageCredits [wysiwyg]
  * - imageGallery [imageGallery]
  */
@@ -61,7 +62,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
              'blockedVarsForExport' => 
             array (
             ),
-             'defaultValue' => NULL,
+             'defaultValue' => '',
              'columnLength' => 190,
              'regex' => '',
              'regexFlags' => 
@@ -69,35 +70,112 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
             ),
              'unique' => false,
              'showCharCount' => false,
-             'width' => '',
+             'width' => '80%',
              'defaultValueGenerator' => '',
           )),
           1 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
-             'name' => 'imageCredits',
-             'title' => 'app.generic.imageCredits',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => false,
-             'index' => false,
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
+             'name' => 'Text',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.text',
+             'width' => '',
+             'height' => '',
+             'collapsible' => true,
+             'collapsed' => true,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
+                 'name' => 'text',
+                 'title' => 'app.generic.text',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'toolbarConfig' => '',
+                 'excludeFromSearchIndex' => false,
+                 'maxCharacters' => '',
+                 'height' => '',
+                 'width' => '80%',
+              )),
+            ),
              'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => false,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
              'blockedVarsForExport' => 
             array (
             ),
-             'toolbarConfig' => '',
-             'excludeFromSearchIndex' => false,
-             'maxCharacters' => '',
-             'height' => '',
-             'width' => '',
+             'fieldtype' => 'panel',
+             'layout' => NULL,
+             'border' => false,
+             'icon' => '',
+             'labelWidth' => 100,
+             'labelAlign' => 'left',
           )),
           2 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Layout\Panel::__set_state(array(
+             'name' => 'Image Credits',
+             'type' => NULL,
+             'region' => NULL,
+             'title' => 'app.generic.imageCredits',
+             'width' => '',
+             'height' => '',
+             'collapsible' => true,
+             'collapsed' => true,
+             'bodyStyle' => '',
+             'datatype' => 'layout',
+             'children' => 
+            array (
+              0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
+                 'name' => 'imageCredits',
+                 'title' => 'app.generic.imageCredits',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'toolbarConfig' => '',
+                 'excludeFromSearchIndex' => false,
+                 'maxCharacters' => '',
+                 'height' => '',
+                 'width' => '80%',
+              )),
+            ),
+             'locked' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'fieldtype' => 'panel',
+             'layout' => NULL,
+             'border' => false,
+             'icon' => '',
+             'labelWidth' => 100,
+             'labelAlign' => 'left',
+          )),
+          3 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\ImageGallery::__set_state(array(
              'name' => 'imageGallery',
              'title' => 'app.generic.imageGallery',

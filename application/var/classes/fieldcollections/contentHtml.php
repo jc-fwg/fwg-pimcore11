@@ -63,7 +63,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
              'showCharCount' => false,
              'excludeFromSearchIndex' => false,
              'height' => 60,
-             'width' => '90%',
+             'width' => '80%',
           )),
         ),
          'locked' => false,
