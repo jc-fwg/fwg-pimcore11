@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1766229674,
+   'modificationDate' => 1766323325,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -527,7 +527,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     array (
                     ),
                      'uploadPath' => '',
-                     'width' => '30%',
+                     'width' => '',
                      'height' => '',
                   )),
                   3 => 
@@ -767,7 +767,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => NULL,
+                 'defaultValue' => '',
                  'columnLength' => 190,
                  'regex' => '',
                  'regexFlags' => 
@@ -1345,31 +1345,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
-    0 => 
-    \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
-       'name' => 'previewText1',
-       'title' => 'app.generic.previewText',
-       'tooltip' => '',
-       'mandatory' => false,
-       'noteditable' => false,
-       'index' => false,
-       'locked' => false,
-       'style' => '',
-       'permissions' => NULL,
-       'fieldtype' => '',
-       'relationType' => false,
-       'invisible' => false,
-       'visibleGridView' => false,
-       'visibleSearch' => false,
-       'blockedVarsForExport' => 
-      array (
-      ),
-       'maxLength' => NULL,
-       'showCharCount' => false,
-       'excludeFromSearchIndex' => false,
-       'height' => '',
-       'width' => '',
-    )),
   ),
    'blockedVarsForExport' => 
   array (

@@ -83,7 +83,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => NULL,
+                 'defaultValue' => '',
                  'columnLength' => 190,
                  'regex' => '',
                  'regexFlags' => 
@@ -91,7 +91,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                 ),
                  'unique' => false,
                  'showCharCount' => false,
-                 'width' => 500,
+                 'width' => '80%',
                  'defaultValueGenerator' => '',
               )),
               1 => 
@@ -113,7 +113,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => NULL,
+                 'defaultValue' => '',
                  'columnLength' => 190,
                  'regex' => '',
                  'regexFlags' => 
@@ -121,7 +121,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                 ),
                  'unique' => false,
                  'showCharCount' => false,
-                 'width' => 500,
+                 'width' => '80%',
                  'defaultValueGenerator' => '',
               )),
               2 => 
@@ -198,7 +198,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                  'excludeFromSearchIndex' => false,
                  'maxCharacters' => '',
                  'height' => '',
-                 'width' => '',
+                 'width' => '80%',
               )),
               1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ImageGallery::__set_state(array(

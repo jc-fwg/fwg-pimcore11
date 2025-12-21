@@ -60,7 +60,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
              'blockedVarsForExport' => 
             array (
             ),
-             'defaultValue' => NULL,
+             'defaultValue' => '',
              'columnLength' => 190,
              'regex' => '',
              'regexFlags' => 
@@ -68,7 +68,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
             ),
              'unique' => false,
              'showCharCount' => false,
-             'width' => '',
+             'width' => '80%',
              'defaultValueGenerator' => '',
           )),
           1 => 
@@ -94,7 +94,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
              'excludeFromSearchIndex' => true,
              'maxCharacters' => '',
              'height' => '',
-             'width' => '',
+             'width' => '80%',
           )),
         ),
          'locked' => false,
