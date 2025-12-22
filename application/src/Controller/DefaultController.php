@@ -15,7 +15,6 @@ use App\Service\CollectionService;
 use App\Service\DocumentService;
 use App\ValueObject\OpenGraph\WebsiteValueObject;
 use Exception;
-use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
 use Pimcore\Model\Asset;
 use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\DataObject\Collection;
@@ -32,6 +31,7 @@ use Throwable;
 
 use function array_slice;
 use function count;
+use function is_string;
 
 class DefaultController extends BaseController
 {
@@ -110,7 +110,13 @@ class DefaultController extends BaseController
         }
 
         // Blogposts
-        $blogpost = $this->blogpostRepository->getBySlug($slug);
+        $previewUuid = $request->query->get('preview');
+
+        $blogpost = match (true) {
+            is_string($previewUuid) => $this->blogpostRepository->getByPreviewUuid($previewUuid),
+            default                 => $this->blogpostRepository->getBySlug($slug),
+        };
+
         if ($blogpost instanceof Blogpost) {
             return $this->blogpostAction($slug, $request, $blogpost);
         }
