@@ -8,6 +8,7 @@ use App\Service\Paginator;
 use App\ValueObject\Paginator\PaginationValueObject;
 use Doctrine\DBAL\Connection;
 use Exception;
+use Pimcore\Bundle\UuidBundle\Model\Tool\UUID;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\Comment\Listing;
 
@@ -44,6 +45,23 @@ class BlogpostRepository extends AbstractRepository
     public function getBySlug(string $slug): ?DataObject\Blogpost
     {
         return DataObject\Blogpost::getBySlug($slug, 1);
+    }
+
+    public function getByPreviewUuid(string $uuid): ?DataObject\Blogpost
+    {
+        try {
+            $uuidObject = UUID::getByUuid($uuid);
+
+            $listing = new DataObject\Blogpost\Listing();
+            $listing->setCondition('oo_id = ?', $uuidObject->getItemId());
+            $listing->setUnpublished(true);
+
+            return $listing->current();
+        } catch (Exception) {
+            return null;
+        }
+
+        return $blogpost;
     }
 
     public function getByWordPressSlug(string $slug): ?DataObject\Blogpost
