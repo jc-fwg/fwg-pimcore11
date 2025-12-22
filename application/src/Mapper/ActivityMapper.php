@@ -81,32 +81,26 @@ class ActivityMapper
         );
     }
 
-    private function getSummary(Activity $model): ActivitySummaryTypeInterface
+    private function getSummary(Activity $activity): ActivitySummaryTypeInterface
     {
         $summaryDto = new ActivitySummaryDto(
-            duration: $model->getDuration(),
-            breaks: $model->getBreaks(),
+            duration: $activity->getDuration(),
+            breaks: $activity->getBreaks(),
         );
 
-        $summaryDto = match ($model->getActivityType()) {
-            ActivityType::hike->value => $this->mapHike($model),
+        return match ($activity->getActivityType()) {
+            ActivityType::hike->value => $this->mapHike($activity),
+            default                   => $summaryDto,
         };
-
-        // Type dependent summary
-        match ($model->getActivityType()) {
-            ActivityType::hike->value => $this->mapHike($model, $summaryDto),
-        };
-
-        return $summaryDto;
     }
 
-    private function mapHike(Activity $model): ActivitySummaryTypeInterface
+    private function mapHike(Activity $activity): ActivitySummaryTypeInterface
     {
-        $summary = $model->getSummary()->getActivityHike();
+        $summary = $activity->getSummary()->getActivityHike();
 
         return new Hike(
-            duration: $model->getDuration(),
-            breaks: $model->getBreaks(),
+            duration: $activity->getDuration(),
+            breaks: $activity->getBreaks(),
             distance: $summary->getDistance(),
             elevation: $summary->getElevation(),
             difficulty: $summary->getDifficulty(),
