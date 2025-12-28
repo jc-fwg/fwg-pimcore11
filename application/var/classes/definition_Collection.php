@@ -14,7 +14,6 @@
  * - metaTitle [input]
  * - metaDescription [input]
  * - ogDescription [input]
- * - categories [manyToManyObjectRelation]
  * - tags [manyToManyObjectRelation]
  * - blogposts [manyToManyObjectRelation]
  * - blogpostsExcluded [manyToManyObjectRelation]
@@ -27,7 +26,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1765781056,
+   'modificationDate' => 1766909790,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -398,46 +397,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             array (
               0 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
-                 'name' => 'categories',
-                 'title' => 'app.class.category.titlePlural',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => true,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => true,
-                 'invisible' => true,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'classes' => 
-                array (
-                  0 => 
-                  array (
-                    'classes' => 'Category',
-                  ),
-                ),
-                 'displayMode' => 'grid',
-                 'pathFormatterClass' => '',
-                 'maxItems' => NULL,
-                 'visibleFields' => 'id,fullpath',
-                 'allowToCreateNewObject' => false,
-                 'allowToClearRelation' => true,
-                 'optimizedAdminLoading' => false,
-                 'enableTextSelection' => false,
-                 'visibleFieldDefinitions' => 
-                array (
-                ),
-                 'width' => '',
-                 'height' => '',
-              )),
-              1 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
                  'name' => 'tags',
                  'title' => 'app.class.tag.titlePlural',
                  'tooltip' => '',
@@ -476,7 +435,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '',
                  'height' => '',
               )),
-              2 => 
+              1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
                  'name' => 'blogposts',
                  'title' => 'app.class.blogpost.titlePlural',
@@ -643,6 +602,46 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
+       'name' => 'categories',
+       'title' => 'app.class.category.titlePlural',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => true,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => true,
+       'invisible' => true,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'classes' => 
+      array (
+        0 => 
+        array (
+          'classes' => 'Category',
+        ),
+      ),
+       'displayMode' => 'grid',
+       'pathFormatterClass' => '',
+       'maxItems' => NULL,
+       'visibleFields' => 'id,fullpath',
+       'allowToCreateNewObject' => false,
+       'allowToClearRelation' => true,
+       'optimizedAdminLoading' => false,
+       'enableTextSelection' => false,
+       'visibleFieldDefinitions' => 
+      array (
+      ),
+       'width' => '',
+       'height' => '',
+    )),
   ),
    'blockedVarsForExport' => 
   array (

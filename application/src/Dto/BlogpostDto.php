@@ -55,7 +55,6 @@ class BlogpostDto
         #[Assert\NotBlank(groups: [self::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA])]
         public array $authors = [],
         public ?ActivityDto $activity = null,
-        public array $categories = [],
 
         #[Assert\NotNull(groups: [self::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS])]
         public ?Image $imageMain = null,

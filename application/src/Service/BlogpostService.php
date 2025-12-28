@@ -8,6 +8,7 @@ use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Adapter\App\Database\Doctrine\Repository\CommentRepository;
 use App\Dto\BlogpostDto;
 use App\Dto\CommentDto;
+use App\Handler\BlogpostActionsHandler;
 use App\Mapper\BlogpostMapper;
 use App\Mapper\CommentMapper;
 use App\OpenAI\Service\OpenAIService;
@@ -41,16 +42,17 @@ use function sprintf;
 class BlogpostService
 {
     public function __construct(
-        private readonly SluggerInterface $slugger,
-        private readonly FormFactoryInterface $formFactory,
-        private readonly CaptchaService $captchaService,
-        private readonly TranslatorInterface $translator,
-        private readonly ValidatorInterface $validator,
-        private readonly CommentMapper $commentMapper,
-        private readonly CommentRepository $commentRepository,
-        private readonly BlogpostRepository $blogpostRepository,
-        private readonly BlogpostMapper $blogpostMapper,
-        private readonly OpenAIService $openAIService,
+        private readonly SluggerInterface        $slugger,
+        private readonly FormFactoryInterface    $formFactory,
+        private readonly CaptchaService          $captchaService,
+        private readonly TranslatorInterface     $translator,
+        private readonly ValidatorInterface      $validator,
+        private readonly CommentMapper           $commentMapper,
+        private readonly CommentRepository       $commentRepository,
+        private readonly BlogpostRepository      $blogpostRepository,
+        private readonly BlogpostMapper          $blogpostMapper,
+        private readonly OpenAIService           $openAIService,
+        private readonly WordpressCrawlerService $wordpressCrawlerService,
     ) {
     }
 
@@ -295,7 +297,7 @@ class BlogpostService
             $actions = $content->getActions() ?? [];
 
             foreach ($actions as $k => $action) {
-                if ($action !== 'aiFactsUpdate') {
+                if ($action !== BlogpostActionsHandler::ACTION_AI_CITY_SPORT_FACTS_UPDATE) {
                     continue;
                 }
 
@@ -408,5 +410,25 @@ class BlogpostService
         }
 
         return null;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function processBlogpostActions(DataObject\Blogpost $object)
+    {
+        $actions = $object->getActions() ?? [];
+
+        // 2025-12-28 : We currently only use one action here. Needs implementation idea if we have multiple
+        foreach ($actions as $k => $action) {
+            if ($action != BlogpostActionsHandler::ACTION_CRAWL_WORDPRESS_CITY_TRIP_CONTENTS) {
+                continue;
+            }
+
+            $contents = $this->wordpressCrawlerService->crawlCityTrip('https://frei-weg.com/' . $object->getWordPressSlug());
+
+            unset($actions[$k]);
+            $object->setActions($actions);
+        }
     }
 }

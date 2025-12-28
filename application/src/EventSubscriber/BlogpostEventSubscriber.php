@@ -41,6 +41,7 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
                 ['updateBlogpostTagsByActivityTags', 4],
                 ['generateSocialPreviewThumbnails', 6],
                 ['processCitySpotActions', 6],
+                ['processBlogpostActions', 6],
                 ['checkDataQuality', 10],
             ],
         ];
@@ -229,6 +230,21 @@ class BlogpostEventSubscriber extends AbstractEventSubscriber
         }
 
         $this->blogpostService->processCitySpotActions($object);
+    }
+
+    public function processBlogpostActions(DataObjectEvent $event): void
+    {
+        if ($this->isAutoSave($event)) {
+            return;
+        }
+
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Blogpost) {
+            return;
+        }
+
+        $this->blogpostService->processBlogpostActions($object);
     }
 
     public function updateBlogpostTagsByActivityTags(DataObjectEvent $event): void

@@ -93,6 +93,14 @@ services:
         public: true
 
     #
+    # HANDLERS
+    #
+
+    App\Handler\:
+        resource: '../src/Handler'
+        public: true
+
+    #
     # LINK GENERATORS
     #
 
