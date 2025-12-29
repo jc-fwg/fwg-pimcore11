@@ -82,7 +82,6 @@ class BlogpostMapper
             blogpostType: $model->getBlogpostType(),
             authors: $authors,
             activity: $model->getActivity() ? $this->activityMapper->fromModel($model->getActivity()) : null,
-            categories: $model->getCategories() ?? [],
             imageMain: $model->getImageMain(),
             socialPreviewThumbnail: $model->getSocialPreviewThumbnail(),
             assetsFolder: $model->getAssetsFolder(),

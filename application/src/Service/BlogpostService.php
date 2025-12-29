@@ -8,6 +8,7 @@ use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Adapter\App\Database\Doctrine\Repository\CommentRepository;
 use App\Dto\BlogpostDto;
 use App\Dto\CommentDto;
+use App\Handler\BlogpostActionsHandler;
 use App\Mapper\BlogpostMapper;
 use App\Mapper\CommentMapper;
 use App\OpenAI\Service\OpenAIService;
@@ -51,6 +52,7 @@ class BlogpostService
         private readonly BlogpostRepository $blogpostRepository,
         private readonly BlogpostMapper $blogpostMapper,
         private readonly OpenAIService $openAIService,
+        private readonly BlogpostActionsHandler $blogpostActionsHandler,
     ) {
     }
 
@@ -148,13 +150,6 @@ class BlogpostService
     public function getBlogpostsByCollection(DataObject\Collection $collection): array
     {
         $blogposts = [];
-
-        // Categories
-        //        $categories = $collection->getCategories();
-        //
-        //        if (!empty($categories)) {
-        //            $blogposts = array_merge($this->blogpostRepository->findAllByCategories($categories), $blogposts);
-        //        }
 
         // Tags
         $tags = $collection->getTags();
@@ -295,7 +290,7 @@ class BlogpostService
             $actions = $content->getActions() ?? [];
 
             foreach ($actions as $k => $action) {
-                if ($action !== 'aiFactsUpdate') {
+                if ($action !== BlogpostActionsHandler::ACTION_AI_CITY_SPORT_FACTS_UPDATE) {
                     continue;
                 }
 
@@ -309,6 +304,26 @@ class BlogpostService
                 unset($actions[$k]);
                 $content->setActions($actions);
             }
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function processBlogpostActions(DataObject\Blogpost $blogpost): void
+    {
+        $actions = $blogpost->getActions() ?? [];
+
+        // 2025-12-28 : We currently only use one action here. Needs implementation idea if we have multiple
+        foreach ($actions as $k => $action) {
+            match (true) {
+                $action === BlogpostActionsHandler::ACTION_CRAWL_WORDPRESS_CITY_TRIP_CONTENTS => $this->blogpostActionsHandler->importCityTripContents($blogpost),
+                $action === BlogpostActionsHandler::ACTION_CRAWL_LEGACY_TOUR_CONTENTS         => $this->blogpostActionsHandler->importLegacyTourContents($blogpost),
+                default                                                                       => null,
+            };
+
+            unset($actions[$k]);
+            $blogpost->setActions($actions);
         }
     }
 

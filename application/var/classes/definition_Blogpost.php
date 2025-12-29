@@ -13,7 +13,6 @@
  * - activity [manyToOneRelation]
  * - tags [manyToManyRelation]
  * - collections [reverseObjectRelation]
- * - categories [manyToManyObjectRelation]
  * - assetsFolder [manyToOneRelation]
  * - imageMain [image]
  * - imageTeaser [image]
@@ -21,6 +20,7 @@
  * - downloads [manyToManyRelation]
  * - links [block]
  * -- link [link]
+ * - actions [multiselect]
  * - title [input]
  * - subTitle [input]
  * - previewText [textarea]
@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1766323325,
+   'modificationDate' => 1767009866,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -365,46 +365,6 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'ownerClassId' => 'collection',
                  'ownerFieldName' => 'blogposts',
                  'lazyLoading' => true,
-              )),
-              8 => 
-              \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation::__set_state(array(
-                 'name' => 'categories',
-                 'title' => 'app.class.category.titlePlural',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => true,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => true,
-                 'invisible' => true,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'classes' => 
-                array (
-                  0 => 
-                  array (
-                    'classes' => 'Category',
-                  ),
-                ),
-                 'displayMode' => 'grid',
-                 'pathFormatterClass' => '',
-                 'maxItems' => NULL,
-                 'visibleFields' => 'id,name',
-                 'allowToCreateNewObject' => false,
-                 'allowToClearRelation' => true,
-                 'optimizedAdminLoading' => false,
-                 'enableTextSelection' => false,
-                 'visibleFieldDefinitions' => 
-                array (
-                ),
-                 'width' => '',
-                 'height' => '',
               )),
             ),
              'locked' => false,
@@ -749,6 +709,49 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'children' => 
             array (
               0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Multiselect::__set_state(array(
+                 'name' => 'actions',
+                 'title' => 'app.generic.actions',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'options' => 
+                array (
+                  0 => 
+                  array (
+                    'key' => 'Crawl WordPress CityTrip contents ',
+                    'value' => 'crawlWordpressCityTripContents',
+                  ),
+                  1 => 
+                  array (
+                    'key' => 'Crawl Legacy Tour contents',
+                    'value' => 'crawlLegacyTourContents',
+                  ),
+                ),
+                 'maxItems' => NULL,
+                 'renderType' => 'tags',
+                 'dynamicOptions' => false,
+                 'defaultValue' => NULL,
+                 'height' => '',
+                 'width' => '',
+                 'defaultValueGenerator' => '',
+                 'optionsProviderType' => 'configure',
+                 'optionsProviderClass' => '',
+                 'optionsProviderData' => '',
+              )),
+              1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
                  'name' => 'title',
                  'title' => 'app.generic.title',
@@ -778,7 +781,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '60%',
                  'defaultValueGenerator' => '',
               )),
-              1 => 
+              2 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
                  'name' => 'subTitle',
                  'title' => 'app.generic.subTitle',
@@ -797,7 +800,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => NULL,
+                 'defaultValue' => '',
                  'columnLength' => 190,
                  'regex' => '',
                  'regexFlags' => 
@@ -808,7 +811,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '60%',
                  'defaultValueGenerator' => '',
               )),
-              2 => 
+              3 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
                  'name' => 'previewText',
                  'title' => 'app.generic.previewText',
@@ -831,9 +834,9 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'showCharCount' => false,
                  'excludeFromSearchIndex' => false,
                  'height' => '',
-                 'width' => '',
+                 'width' => '60%',
               )),
-              3 => 
+              4 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections::__set_state(array(
                  'name' => 'content',
                  'title' => '',

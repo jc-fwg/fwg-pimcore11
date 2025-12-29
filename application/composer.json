@@ -24,6 +24,7 @@
     "pimcore/quill-bundle": "^1.0",
     "presta/sitemap-bundle": "^3.3",
     "symfony/amqp-messenger": "^6.2",
+    "symfony/dom-crawler": "^6.4",
     "symfony/dotenv": "^6.2",
     "symfony/form": "^7.1",
     "symfony/http-client": "^7.1",
