@@ -299,7 +299,6 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                      'blockedVarsForExport' => 
                     array (
                     ),
-                     'options' => NULL,
                      'defaultValue' => '',
                      'columnLength' => 190,
                      'dynamicOptions' => false,
@@ -477,7 +476,7 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
                   0 => 
                   array (
                     'key' => 'AI Facts Update',
-                    'value' => 'aiFactsUpdate',
+                    'value' => 'aiCitySpotFactsUpdate',
                   ),
                 ),
                  'maxItems' => NULL,
