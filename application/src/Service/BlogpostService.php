@@ -42,17 +42,17 @@ use function sprintf;
 class BlogpostService
 {
     public function __construct(
-        private readonly SluggerInterface        $slugger,
-        private readonly FormFactoryInterface    $formFactory,
-        private readonly CaptchaService          $captchaService,
-        private readonly TranslatorInterface     $translator,
-        private readonly ValidatorInterface      $validator,
-        private readonly CommentMapper           $commentMapper,
-        private readonly CommentRepository       $commentRepository,
-        private readonly BlogpostRepository      $blogpostRepository,
-        private readonly BlogpostMapper          $blogpostMapper,
-        private readonly OpenAIService           $openAIService,
-        private readonly WordpressCrawlerService $wordpressCrawlerService,
+        private readonly SluggerInterface $slugger,
+        private readonly FormFactoryInterface $formFactory,
+        private readonly CaptchaService $captchaService,
+        private readonly TranslatorInterface $translator,
+        private readonly ValidatorInterface $validator,
+        private readonly CommentMapper $commentMapper,
+        private readonly CommentRepository $commentRepository,
+        private readonly BlogpostRepository $blogpostRepository,
+        private readonly BlogpostMapper $blogpostMapper,
+        private readonly OpenAIService $openAIService,
+        private readonly BlogpostActionsHandler $blogpostActionsHandler,
     ) {
     }
 
@@ -150,13 +150,6 @@ class BlogpostService
     public function getBlogpostsByCollection(DataObject\Collection $collection): array
     {
         $blogposts = [];
-
-        // Categories
-        //        $categories = $collection->getCategories();
-        //
-        //        if (!empty($categories)) {
-        //            $blogposts = array_merge($this->blogpostRepository->findAllByCategories($categories), $blogposts);
-        //        }
 
         // Tags
         $tags = $collection->getTags();
@@ -314,6 +307,26 @@ class BlogpostService
         }
     }
 
+    /**
+     * @throws Exception
+     */
+    public function processBlogpostActions(DataObject\Blogpost $blogpost): void
+    {
+        $actions = $blogpost->getActions() ?? [];
+
+        // 2025-12-28 : We currently only use one action here. Needs implementation idea if we have multiple
+        foreach ($actions as $k => $action) {
+            match (true) {
+                $action === BlogpostActionsHandler::ACTION_CRAWL_WORDPRESS_CITY_TRIP_CONTENTS => $this->blogpostActionsHandler->importCityTripContents($blogpost),
+                $action === BlogpostActionsHandler::ACTION_CRAWL_LEGACY_TOUR_CONTENTS         => $this->blogpostActionsHandler->importLegacyTourContents($blogpost),
+                default                                                                       => null,
+            };
+
+            unset($actions[$k]);
+            $blogpost->setActions($actions);
+        }
+    }
+
     private function handleCommentForm(FormInterface $form, Request $request): ?ConstraintViolationListInterface
     {
         $data = $form->getData();
@@ -410,25 +423,5 @@ class BlogpostService
         }
 
         return null;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function processBlogpostActions(DataObject\Blogpost $object)
-    {
-        $actions = $object->getActions() ?? [];
-
-        // 2025-12-28 : We currently only use one action here. Needs implementation idea if we have multiple
-        foreach ($actions as $k => $action) {
-            if ($action != BlogpostActionsHandler::ACTION_CRAWL_WORDPRESS_CITY_TRIP_CONTENTS) {
-                continue;
-            }
-
-            $contents = $this->wordpressCrawlerService->crawlCityTrip('https://frei-weg.com/' . $object->getWordPressSlug());
-
-            unset($actions[$k]);
-            $object->setActions($actions);
-        }
     }
 }

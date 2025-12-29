@@ -9,7 +9,6 @@ use Carbon\Carbon;
 use Pimcore\Model\Asset;
 use Pimcore\Model\Asset\Folder;
 use Pimcore\Model\Asset\Image;
-use Pimcore\Model\DataObject\Category;
 use Pimcore\Model\DataObject\Comment;
 use Pimcore\Model\DataObject\Fieldcollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -31,7 +30,6 @@ class BlogpostDto
 
     /**
      * @param AuthorDto[] $authors
-     * @param Category[]  $categories
      * @param Asset[]     $downloads
      * @param LinkDto[]   $links
      * @param Comment[]   $comments

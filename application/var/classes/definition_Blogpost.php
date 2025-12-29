@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1766926524,
+   'modificationDate' => 1767009866,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -734,6 +734,11 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                     'key' => 'Crawl WordPress CityTrip contents ',
                     'value' => 'crawlWordpressCityTripContents',
                   ),
+                  1 => 
+                  array (
+                    'key' => 'Crawl Legacy Tour contents',
+                    'value' => 'crawlLegacyTourContents',
+                  ),
                 ),
                  'maxItems' => NULL,
                  'renderType' => 'tags',
@@ -795,7 +800,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => NULL,
+                 'defaultValue' => '',
                  'columnLength' => 190,
                  'regex' => '',
                  'regexFlags' => 
@@ -829,7 +834,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'showCharCount' => false,
                  'excludeFromSearchIndex' => false,
                  'height' => '',
-                 'width' => '',
+                 'width' => '60%',
               )),
               4 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections::__set_state(array(
