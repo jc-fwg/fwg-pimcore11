@@ -11,6 +11,7 @@ class Bike extends ActivitySummaryDto
         public ?string $breaks = null,
         public ?float $distance = null,
         public ?int $elevation = null,
+        public ?string $difficulty = null,
         public ?string $stsFrom = null,
         public ?string $stsTo = null,
     ) {

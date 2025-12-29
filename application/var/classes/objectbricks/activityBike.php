@@ -4,6 +4,7 @@
  * Fields Summary:
  * - distance [numeric]
  * - elevation [numeric]
+ * - difficulty [select]
  * - stsFrom [select]
  * - stsTo [select]
  */
@@ -128,6 +129,34 @@ return \Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
           )),
           1 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+             'name' => 'difficulty',
+             'title' => 'app.generic.difficulty',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'defaultValue' => '',
+             'columnLength' => 190,
+             'dynamicOptions' => false,
+             'defaultValueGenerator' => '',
+             'width' => '',
+             'optionsProviderType' => 'select_options',
+             'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
+             'optionsProviderData' => 'DifficultyHike',
+          )),
+          2 => 
+          \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
              'name' => 'stsFrom',
              'title' => 'app.objectBrick.activityHike.stsFrom',
              'tooltip' => '',
@@ -187,7 +216,7 @@ return \Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
              'optionsProviderClass' => '',
              'optionsProviderData' => '',
           )),
-          2 => 
+          3 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
              'name' => 'stsTo',
              'title' => 'app.objectBrick.activityHike.stsTo',

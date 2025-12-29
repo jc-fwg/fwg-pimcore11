@@ -120,6 +120,7 @@ class ActivityMapper
             breaks: $activity->getBreaks(),
             distance: $summary->getDistance(),
             elevation: $summary->getElevation(),
+            difficulty: $summary->getDifficulty(),
             stsFrom: $summary->getStsFrom(),
             stsTo: $summary->getStsTo(),
         );

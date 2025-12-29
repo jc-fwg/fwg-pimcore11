@@ -71,7 +71,6 @@ readonly class WordpressCrawlerService
             }
 
             if ($headline && ($textParts || $links)) {
-
                 $text = implode('<p></p>', $textParts);
                 $text = str_replace('<p></p><p class="tiled-gallery__row"></p><p></p>', '', $text);
 
@@ -100,7 +99,7 @@ readonly class WordpressCrawlerService
         $title = $crawler->filter('h1.entry-title')->first()->text();
 
         $introductionElements = [];
-        $crawler->filter('#ez-toc-container')->previousAll()->each(function (Crawler $node) use (&$introductionElements): void {
+        $crawler->filter('#ez-toc-container')->previousAll()->each(static function (Crawler $node) use (&$introductionElements): void {
             $introductionElements[] = $node->text();
         });
 

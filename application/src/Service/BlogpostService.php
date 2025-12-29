@@ -273,7 +273,7 @@ class BlogpostService
     }
 
     /**
-     * $forceUpdates: If true, will process even if no action is set, for example during Blogpost "aiCitySpotFactsUpdate" action processing
+     * $forceUpdates: If true, will process even if no action is set, for example during Blogpost "aiCitySpotFactsUpdate" action processing.
      */
     public function processCitySpotActions(DataObject\Blogpost $object, bool $forceUpdates = false): void
     {
