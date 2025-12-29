@@ -34,7 +34,7 @@ readonly class WordpressCrawlerService
         });
 
         $sections = [];
-        $crawler->filter('h2')->each(static function (Crawler $h2) use (&$sections): void {
+        $crawler->filter('h2')->each(function (Crawler $h2) use (&$sections): void {
             $headline  = trim($h2->text());
             $textParts = [];
             $links     = [];
@@ -45,9 +45,9 @@ readonly class WordpressCrawlerService
             while ($node && !($node->nodeName === 'h2')) {
                 // Text sammeln
                 if (in_array($node->nodeName, ['p', 'div', 'span'], true)) {
-                    $text = trim($node->textContent);
+                    $text = $this->getInnerHtml($node);
                     if ($text !== '') {
-                        $textParts[] = $text;
+                        $textParts[] = trim($text);
                     }
                 }
 
@@ -71,9 +71,13 @@ readonly class WordpressCrawlerService
             }
 
             if ($headline && ($textParts || $links)) {
+
+                $text = implode('<p></p>', $textParts);
+                $text = str_replace('<p></p><p class="tiled-gallery__row"></p><p></p>', '', $text);
+
                 $sections[] = [
                     'headline' => $headline,
-                    'text'     => implode("\n\n", $textParts),
+                    'text'     => $text,
                     'links'    => $links,
                 ];
             }
@@ -96,7 +100,7 @@ readonly class WordpressCrawlerService
         $title = $crawler->filter('h1.entry-title')->first()->text();
 
         $introductionElements = [];
-        $crawler->filter('#ez-toc-container')->previousAll()->each(static function (Crawler $node) use (&$introductionElements): void {
+        $crawler->filter('#ez-toc-container')->previousAll()->each(function (Crawler $node) use (&$introductionElements): void {
             $introductionElements[] = $node->text();
         });
 
