@@ -1,0 +1,8 @@
+<tr>
+    <td>
+        {{ 'blogpost.activity.summary.difficulty.title'|trans }}
+    </td>
+    <td>
+        {{ blogpost.activity.summary.stsFrom|upper }}{% if blogpost.activity.summary.stsTo is not empty %} - {{ blogpost.activity.summary.stsTo|upper }}{% endif %}
+    </td>
+</tr>

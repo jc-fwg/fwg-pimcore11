@@ -8,6 +8,7 @@ use App\Adapter\App\Database\Doctrine\Repository\TagRepository;
 use App\Dto\ActivityDto;
 use App\Dto\ActivityLocationDto;
 use App\Dto\ActivitySummaryDto\ActivitySummaryDto;
+use App\Dto\ActivitySummaryDto\Bike;
 use App\Dto\ActivitySummaryDto\Hike;
 use App\Dto\ActivitySummaryDto\Interface\ActivitySummaryTypeInterface;
 use App\Dto\LinkDto;
@@ -90,6 +91,7 @@ class ActivityMapper
 
         return match ($activity->getActivityType()) {
             ActivityType::hike->value => $this->mapHike($activity),
+            ActivityType::bike->value => $this->mapBike($activity),
             default                   => $summaryDto,
         };
     }
@@ -106,6 +108,20 @@ class ActivityMapper
             difficulty: $summary->getDifficulty(),
             headForHeights: $summary->getHeadForHeights(),
             sureFootness: $summary->getSurefootedness(),
+        );
+    }
+
+    private function mapBike(Activity $activity): ActivitySummaryTypeInterface
+    {
+        $summary = $activity->getSummary()->getActivityBike();
+
+        return new Bike(
+            duration: $activity->getDuration(),
+            breaks: $activity->getBreaks(),
+            distance: $summary->getDistance(),
+            elevation: $summary->getElevation(),
+            stsFrom: $summary->getStsFrom(),
+            stsTo: $summary->getStsTo(),
         );
     }
 }

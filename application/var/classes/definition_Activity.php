@@ -27,7 +27,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.activity.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1761400992,
+   'modificationDate' => 1767033303,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -484,6 +484,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'allowedTypes' => 
                     array (
                       0 => 'activityHike',
+                      1 => 'activityBike',
                     ),
                      'maxItems' => NULL,
                      'border' => false,
