@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1767009866,
+   'modificationDate' => 1767019633,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -738,6 +738,11 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                   array (
                     'key' => 'Crawl Legacy Tour contents',
                     'value' => 'crawlLegacyTourContents',
+                  ),
+                  2 => 
+                  array (
+                    'key' => 'Update all CitySpots facts using AI',
+                    'value' => 'aiCitySpotFactsUpdate',
                   ),
                 ),
                  'maxItems' => NULL,

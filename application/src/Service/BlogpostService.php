@@ -272,7 +272,10 @@ class BlogpostService
         );
     }
 
-    public function processCitySpotActions(DataObject\Blogpost $object): void
+    /**
+     * $forceUpdates: If true, will process even if no action is set, for example during Blogpost "aiCitySpotFactsUpdate" action processing
+     */
+    public function processCitySpotActions(DataObject\Blogpost $object, bool $forceUpdates = false): void
     {
         $fieldCollection = $object->getContent();
 
@@ -289,12 +292,19 @@ class BlogpostService
 
             $actions = $content->getActions() ?? [];
 
+            // Add action if forced so each CitySpot gets facts updated
+            if ($forceUpdates === true) {
+                $actions = array_unique(array_merge($actions, [BlogpostActionsHandler::ACTION_AI_CITY_SPORT_FACTS_UPDATE]));
+            }
+
             foreach ($actions as $k => $action) {
-                if ($action !== BlogpostActionsHandler::ACTION_AI_CITY_SPORT_FACTS_UPDATE) {
+                if (
+                    $action !== BlogpostActionsHandler::ACTION_AI_CITY_SPORT_FACTS_UPDATE
+                ) {
                     continue;
                 }
 
-                $prompt = 'Erstelle mir eine Liste mit den wichtigsten 5-7 Kurzfakten über folgende Location meines %s. Ohne Headlines. Kurze, knackige Aussagen zu: %s. Die einzelnen Fakten sollen ohne Punkt am Ende und eineleitenden Bindestrich sein. Jeder Fakt soll am Ende ein <br> angefügt bekommen';
+                $prompt = 'Erstelle mir eine Liste mit den wichtigsten 5-7 Kurzfakten über folgende Location meines %s. Ohne Headlines. Kurze, knackige Aussagen zu: %s. Die einzelnen Fakten sollen ohne Punkt am Ende und eineleitenden Zeichen oder Leerzeichen sein. Jeder Fakt soll am Ende ein <br> angefügt bekommen';
                 $prompt = sprintf($prompt, $object->getTitle(), $content->getTitle());
 
                 $response = $this->openAIService->blogpost()->response($prompt);
@@ -319,6 +329,7 @@ class BlogpostService
             match (true) {
                 $action === BlogpostActionsHandler::ACTION_CRAWL_WORDPRESS_CITY_TRIP_CONTENTS => $this->blogpostActionsHandler->importCityTripContents($blogpost),
                 $action === BlogpostActionsHandler::ACTION_CRAWL_LEGACY_TOUR_CONTENTS         => $this->blogpostActionsHandler->importLegacyTourContents($blogpost),
+                $action === BlogpostActionsHandler::ACTION_AI_CITY_SPORT_FACTS_UPDATE         => $this->processCitySpotActions($blogpost, true),
                 default                                                                       => null,
             };
 
