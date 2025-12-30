@@ -70,7 +70,7 @@
                     {% endif %}
 
                     {# Tags #}
-                    {% include 'content/blogpost/aside/tag-list.html.twig' %}
+                    {% include 'content/blogpost/aside/tag-list.html.twig' with { 'filteredTags' : tags } %}
                 </div>
                 </div>
         </div>

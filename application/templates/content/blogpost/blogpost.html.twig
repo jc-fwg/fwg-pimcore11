@@ -53,9 +53,9 @@
                 <div id="title" class="container mt-5 mb-5 text-left">
                     <h1>{{ blogpost.title }}</h1><br>
                     <h2 class="mb-2 js-toc-ignore">{{ blogpost.subTitle }}</h2>
-                    {% if blogpost.activity is not null %}
+                    {% if blogpost.tags is not empty %}
                         <p class="tags">
-                            {% for tag in blogpost.activity.tags %}
+                            {% for tag in blogpost.tags %}
                                 {% if tag.hideInList == false %}
                                     <a href="/blogposts?{{ tag.tagCategory.slug }}={{ tag.slug }}" class="badge text-bg-secondary">{{ tag.emoji }} {{ tag.name }}</a>
                                 {% endif %}

@@ -23,6 +23,7 @@ class BlogpostMapper
         private readonly AuthorRepository $authorRepository,
         private readonly AuthorMapper $authorMapper,
         private readonly CommentMapper $commentMapper,
+        private readonly TagMapper $tagMapper,
         private readonly BlogpostRepository $blogpostRepository,
     ) {
     }
@@ -43,6 +44,12 @@ class BlogpostMapper
             }
 
             $authors[] = $this->authorMapper->fromModel($author);
+        }
+
+        // Tags
+        $tags = [];
+        foreach ($model->getTags() as $tag) {
+            $tags[] = $this->tagMapper->fromModel($tag);
         }
 
         // Links
@@ -81,6 +88,7 @@ class BlogpostMapper
             publicationDate: $model->getPublicationDate(),
             blogpostType: $model->getBlogpostType(),
             authors: $authors,
+            tags: $tags,
             activity: $model->getActivity() ? $this->activityMapper->fromModel($model->getActivity()) : null,
             imageMain: $model->getImageMain(),
             socialPreviewThumbnail: $model->getSocialPreviewThumbnail(),

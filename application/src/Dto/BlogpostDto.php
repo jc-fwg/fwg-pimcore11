@@ -30,6 +30,7 @@ class BlogpostDto
 
     /**
      * @param AuthorDto[] $authors
+     * @param TagDto[]    $tags
      * @param Asset[]     $downloads
      * @param LinkDto[]   $links
      * @param Comment[]   $comments
@@ -52,6 +53,8 @@ class BlogpostDto
         #[Assert\NotNull(groups: [self::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA])]
         #[Assert\NotBlank(groups: [self::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA])]
         public array $authors = [],
+
+        public array $tags = [],
         public ?ActivityDto $activity = null,
 
         #[Assert\NotNull(groups: [self::VALIDATION_GROUP_DATA_QUALITY_ASSETS_DOWNLOADS_LINKS])]
