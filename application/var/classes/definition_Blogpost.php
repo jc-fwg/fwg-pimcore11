@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1767106892,
+   'modificationDate' => 1767118909,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -317,18 +317,10 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'assetsAllowed' => false,
                  'assetTypes' => 
                 array (
-                  0 => 
-                  array (
-                    'assetTypes' => '',
-                  ),
                 ),
                  'documentsAllowed' => false,
                  'documentTypes' => 
                 array (
-                  0 => 
-                  array (
-                    'documentTypes' => '',
-                  ),
                 ),
                  'enableTextSelection' => false,
                  'width' => '',
@@ -874,6 +866,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                   1 => 'contentGallery',
                   2 => 'contentCitySpot',
                   3 => 'contentHtml',
+                  4 => 'contentInfobox',
                 ),
                  'lazyLoading' => true,
                  'maxItems' => NULL,

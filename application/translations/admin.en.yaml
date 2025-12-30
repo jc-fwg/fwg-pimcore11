@@ -99,6 +99,11 @@ app:
             moderate: 'moderate'
             moderatePlus: 'moderate to hard'
             hard: 'hard'
+        infoboxType:
+            notice: 'Notice'
+            warning: 'Warning'
+            danger: 'Danger'
+            success: 'Success'
         locationType:
             endPoint: 'End Point'
             startPoint: 'Start Point'
@@ -170,6 +175,8 @@ app:
             title: 'City Spot'
         contentHtml:
             title: 'HTML'
+        contentInfobox:
+            title: 'Infobox'
         location:
             title: 'Location'
             titlePlural: 'Locations'

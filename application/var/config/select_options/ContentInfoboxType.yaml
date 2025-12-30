@@ -1,0 +1,26 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                ContentInfoboxType:
+                    id: ContentInfoboxType
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: light
+                            label: app.collection.infoboxType.notice
+                            name: ''
+                        -
+                            value: warning
+                            label: app.collection.infoboxType.warning
+                            name: ''
+                        -
+                            value: danger
+                            label: app.collection.infoboxType.danger
+                            name: ''
+                        -
+                            value: success
+                            label: app.collection.infoboxType.success
+                            name: ''
