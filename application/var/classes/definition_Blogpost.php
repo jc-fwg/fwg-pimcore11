@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1767019633,
+   'modificationDate' => 1767106892,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -284,7 +284,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
               6 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
                  'name' => 'tags',
-                 'title' => 'app.classes.tags.title',
+                 'title' => 'app.class.tag.titlePlural',
                  'tooltip' => '',
                  'mandatory' => false,
                  'noteditable' => false,
@@ -317,10 +317,18 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'assetsAllowed' => false,
                  'assetTypes' => 
                 array (
+                  0 => 
+                  array (
+                    'assetTypes' => '',
+                  ),
                 ),
                  'documentsAllowed' => false,
                  'documentTypes' => 
                 array (
+                  0 => 
+                  array (
+                    'documentTypes' => '',
+                  ),
                 ),
                  'enableTextSelection' => false,
                  'width' => '',
