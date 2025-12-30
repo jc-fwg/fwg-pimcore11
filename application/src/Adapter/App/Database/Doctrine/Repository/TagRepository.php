@@ -71,7 +71,7 @@ class TagRepository extends AbstractRepository
     {
         $tags = (new DataObject\Tag\Listing())->getObjects();
 
-        return array_filter($tags, static fn ($tag) => count($tag->getActivities()) > 0);
+        return array_filter($tags, static fn ($tag) => count($tag->getBlogposts()) > 0);
     }
 
     public function getBySlug(string $slug): DataObject\Tag
