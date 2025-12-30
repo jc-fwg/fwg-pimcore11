@@ -11,6 +11,7 @@
  * - description [wysiwyg]
  * - slug [input]
  * - hideInList [checkbox]
+ * - blogposts [reverseObjectRelation]
  * - activities [reverseObjectRelation]
  */
 
@@ -21,7 +22,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'app.class.tag.title',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1758918488,
+   'modificationDate' => 1767043642,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -216,6 +217,46 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'children' => 
             array (
               0 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
+                 'name' => 'blogposts',
+                 'title' => 'app.class.blogpost.titlePlural',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => true,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => true,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'classes' => 
+                array (
+                ),
+                 'displayMode' => NULL,
+                 'pathFormatterClass' => '',
+                 'maxItems' => NULL,
+                 'visibleFields' => 'id,title',
+                 'allowToCreateNewObject' => false,
+                 'allowToClearRelation' => true,
+                 'optimizedAdminLoading' => false,
+                 'enableTextSelection' => false,
+                 'visibleFieldDefinitions' => 
+                array (
+                ),
+                 'width' => '',
+                 'height' => '',
+                 'ownerClassName' => 'Blogpost',
+                 'ownerClassId' => 'blogpost',
+                 'ownerFieldName' => 'tags',
+                 'lazyLoading' => true,
+              )),
+              1 => 
               \Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation::__set_state(array(
                  'name' => 'activities',
                  'title' => 'app.class.activity.titlePlural',

@@ -8,6 +8,7 @@ use App\Service\Paginator;
 use App\ValueObject\Paginator\PaginationValueObject;
 use Doctrine\DBAL\Connection;
 use Exception;
+use InvalidArgumentException;
 use Pimcore\Bundle\UuidBundle\Model\Tool\UUID;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\Comment\Listing;
@@ -102,25 +103,6 @@ class BlogpostRepository extends AbstractRepository
     }
 
     /**
-     * @param DataObject\Category[] $categories
-     *
-     * @return DataObject\Blogpost[]
-     */
-    public function findAllByCategories(array $categories): array
-    {
-        $listing = new DataObject\Blogpost\Listing();
-
-        foreach ($categories as $key => $category) {
-            match (true) {
-                $key === 0 => $listing->setCondition("FIND_IN_SET('{$category->getId()}', categories)"),
-                default    => $listing->addConditionParam("FIND_IN_SET('{$category->getId()}', categories)", concatenator: ' OR '),
-            };
-        }
-
-        return $listing->load();
-    }
-
-    /**
      * @param DataObject\Tag[] $tags
      *
      * @return DataObject\Blogpost[]
@@ -174,9 +156,34 @@ class BlogpostRepository extends AbstractRepository
     }
 
     /**
-     * @throws \Doctrine\DBAL\Exception
+     * @param DataObject\Tag[] $tags
      */
     private function getBlogpostListingByTags(array $tags, string $combine = 'OR'): DataObject\Listing
+    {
+        $blogpostIds = [];
+        foreach ($tags as $tag) {
+            $blogpostIdsFromActivities = array_map(
+                static fn ($blogpost) => $blogpost->getId(),
+                $tag->getBlogposts()
+            );
+
+            $blogpostIds = match ($combine) {
+                'AND'   => $blogpostIds === [] ? $blogpostIdsFromActivities : array_intersect($blogpostIds, $blogpostIdsFromActivities),
+                'OR'    => array_unique(array_merge($blogpostIds, $blogpostIdsFromActivities)),
+                default => throw new InvalidArgumentException('Invalid combine operator. Use "AND" or "OR".'),
+            };
+        }
+
+        $blogpostListing = new DataObject\Blogpost\Listing();
+        $blogpostListing->setCondition('oo_id IN (:ids)', ['ids' => $blogpostIds]);
+
+        return $blogpostListing;
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
+    private function getBlogpostListingByTagsFromActivities(array $tags, string $combine = 'OR'): DataObject\Listing
     {
         $tagsSetQuery = [];
         foreach ($tags as $tag) {
