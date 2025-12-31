@@ -13,6 +13,7 @@ app:
         bootstrapIcon: 'Bootstrap Icon'
         comment: 'Comment'
         conclusion: 'Conclusion'
+        configuration: 'Configuration'
         content: 'Content'
         country: 'Country'
         dataQuality: 'Data Quality'
@@ -143,6 +144,8 @@ app:
         collection:
             title: 'Collection'
             titlePlural: 'Collections'
+            tooltip:
+                tags: 'Multiple Tags are handle like an OR. Means it finds any Blogpost with Tag A or Tag B etc'
         country:
             title: 'Country'
             titlePlural: 'Countries'

@@ -153,19 +153,31 @@ class BlogpostService
 
         // Tags
         $tags = $collection->getTags();
-
         if (!empty($tags)) {
             $blogposts = array_unique(
                 array_merge($this->blogpostRepository->findAllByTags($tags), $blogposts)
             );
         }
 
+        // Excluded Tags
+        $blogposts = array_filter($blogposts,
+            static function (DataObject\Blogpost $blogpost) use ($collection) {
+                foreach ($blogpost->getTags() as $tag) {
+                    if (in_array($tag, $collection->getTagsExcluded(), true)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        );
+
         // Blogposts
         $blogposts = array_unique(
             array_merge($collection->getBlogposts(), $blogposts)
         );
 
-        // Exclude blogposts
+        // Exclude Blogposts
         $blogposts = array_filter($blogposts,
             static fn (DataObject\Blogpost $blogpost) => !in_array($blogpost, $collection->getBlogpostsExcluded(), true)
         );
