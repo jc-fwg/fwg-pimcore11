@@ -79,9 +79,23 @@ class BlogpostActionsHandler
 
         $fieldCollection = new DataObject\Fieldcollection();
         foreach ($contents['sections'] as $section) {
-            $fieldCollectionItem = new DataObject\Fieldcollection\Data\ContentGallery();
-            $fieldCollectionItem->setTitle($section['headline'] ?? '');
-            $fieldCollectionItem->setText($section['text'] ?? '');
+
+            $headline = $section['headline'] ?? '';
+            $fieldCollectionItem = match(true) {
+                preg_match('/^Fazit/', $headline) === 1 => new DataObject\Fieldcollection\Data\ContentWysiwyg(),
+                default => new DataObject\Fieldcollection\Data\ContentGallery()
+            };
+
+            // WYSIWYG Content Field Collection does not have title field so we need to set the headline as text
+            switch ($fieldCollectionItem::class) {
+                case DataObject\Fieldcollection\Data\ContentWysiwyg::class:
+                    $text = sprintf('<h3>%s</h3>%s', $headline, $section['text'] ?? '');
+                    $fieldCollectionItem->setWysiwyg($text);
+                    break;
+                default:
+                    $fieldCollectionItem->setTitle($section['headline'] ?? '');
+                    $fieldCollectionItem->setText($section['text'] ?? '');
+            };
 
             $fieldCollection->add($fieldCollectionItem);
         }
