@@ -2,7 +2,6 @@
 
 /**
  * Fields Summary:
- * - anchorTitle [input]
  * - wysiwyg [wysiwyg]
  */
 
@@ -42,36 +41,6 @@ return \Pimcore\Model\DataObject\Fieldcollection\Definition::__set_state(array(
          'children' => 
         array (
           0 => 
-          \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-             'name' => 'anchorTitle',
-             'title' => 'app.generic.anchorTitle',
-             'tooltip' => '',
-             'mandatory' => false,
-             'noteditable' => false,
-             'index' => false,
-             'locked' => false,
-             'style' => '',
-             'permissions' => NULL,
-             'fieldtype' => '',
-             'relationType' => false,
-             'invisible' => false,
-             'visibleGridView' => false,
-             'visibleSearch' => false,
-             'blockedVarsForExport' => 
-            array (
-            ),
-             'defaultValue' => '',
-             'columnLength' => 190,
-             'regex' => '',
-             'regexFlags' => 
-            array (
-            ),
-             'unique' => false,
-             'showCharCount' => false,
-             'width' => '80%',
-             'defaultValueGenerator' => '',
-          )),
-          1 => 
           \Pimcore\Model\DataObject\ClassDefinition\Data\Wysiwyg::__set_state(array(
              'name' => 'wysiwyg',
              'title' => '',

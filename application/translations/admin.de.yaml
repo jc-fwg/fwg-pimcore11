@@ -1,7 +1,6 @@
 app:
     generic:
         activityType: 'Aktivitätstyp'
-        anchorTitle: 'Anker-Titel'
         baseData: 'Basisdaten'
         breaks: 'Pausen'
         content: 'Inhalt'

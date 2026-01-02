@@ -4,7 +4,6 @@ app:
         activityType: 'Activity Type'
         additionalRecommendationEntrypoints: 'Additional Recommendation Entrypoints'
         additionalRecommendationEntrypointsTooltip: "By default, recommended collections are taken from the same parent folder of the collection. You can add more folders in here, so it's direct Collection children are added as recommendations."
-        anchorTitle: 'Anchor Title'
         assets: 'Assets'
         assetsDownloadsLinks: 'Assets, Downloads & Links'
         assetsFolder: 'Assets Folder'

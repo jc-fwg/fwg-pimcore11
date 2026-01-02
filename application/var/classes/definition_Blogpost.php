@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1767118909,
+   'modificationDate' => 1767354804,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -103,7 +103,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'title' => 'app.generic.slug',
                  'tooltip' => '',
                  'mandatory' => false,
-                 'noteditable' => true,
+                 'noteditable' => false,
                  'index' => false,
                  'locked' => false,
                  'style' => '',
@@ -116,7 +116,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => NULL,
+                 'defaultValue' => '',
                  'columnLength' => 190,
                  'regex' => '',
                  'regexFlags' => 
@@ -133,7 +133,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'title' => 'app.generic.wordPressSlug',
                  'tooltip' => '',
                  'mandatory' => false,
-                 'noteditable' => true,
+                 'noteditable' => false,
                  'index' => false,
                  'locked' => false,
                  'style' => '',
@@ -146,7 +146,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'defaultValue' => NULL,
+                 'defaultValue' => '',
                  'columnLength' => 190,
                  'regex' => '',
                  'regexFlags' => 

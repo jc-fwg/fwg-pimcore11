@@ -11,16 +11,36 @@ use Pimcore\Model\Asset;
 use Pimcore\Model\Asset\Image;
 use Pimcore\Model\DataObject;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 use function count;
 use function sprintf;
 
-class CollectionService
+readonly class CollectionService
 {
     public function __construct(
-        private readonly CollectionRepository $collectionRepository,
-        private readonly BlogpostService $blogpostService,
+        private CollectionRepository $collectionRepository,
+        private BlogpostService $blogpostService,
+        private SluggerInterface $slugger,
     ) {
+    }
+
+    public function setTitleAndSlugByKey(DataObject\Collection $collection): void
+    {
+        if (trim($collection->getTitle() ?? '') !== '') {
+            return;
+        }
+
+        $collection->setTitle($collection->getKey());
+
+        if (trim($collection->getSlug() ?? '') !== '') {
+            return;
+        }
+
+        $slug   = [];
+        $slug[] = $collection->getTitle();
+
+        $collection->setSlug($this->slugger->slug(implode(' ', $slug))->lower()->toString());
     }
 
     /**

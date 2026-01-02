@@ -25,12 +25,27 @@ class CollectionEventSubscriber extends AbstractEventSubscriber
     public static function getSubscribedEvents(): array
     {
         return [
+            DataObjectEvents::PRE_ADD => [
+                ['setTitleAndSlugByKey', 20],
+            ],
+
             DataObjectEvents::PRE_UPDATE => [
                 ['setSeoAndDescriptionData', 20],
                 ['setTeaserImageIfMissing', 10],
                 ['generateSocialPreviewThumbnails', 5],
             ],
         ];
+    }
+
+    public function setTitleAndSlugByKey(DataObjectEvent $event): void
+    {
+        $object = $event->getObject();
+
+        if (!$object instanceof DataObject\Collection) {
+            return;
+        }
+
+        $this->collectionService->setTitleAndSlugByKey($object);
     }
 
     public function setSeoAndDescriptionData(DataObjectEvent $event): void
