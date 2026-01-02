@@ -40,7 +40,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1767354804,
+   'modificationDate' => 1767358412,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -177,7 +177,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 array (
                 ),
                  'defaultValue' => NULL,
-                 'useCurrentDate' => false,
+                 'useCurrentDate' => true,
                  'columnType' => 'date',
                  'defaultValueGenerator' => '',
               )),
