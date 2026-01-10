@@ -361,12 +361,10 @@ class BlogpostService
             $this->router->getContext()->getHost()
         );
 
-        $blogpostUrl = match (true) {
-            preg_match('/^http(s{,1}):\/\/localhost/', $schemeAndHost) !== false => 'https://fwgblog.uber.space/staedtetrip-heidelberg',
-            default                                                              => sprintf('%s/%s', $schemeAndHost, $blogpost->getSlug()),
+        $blogpostUrl = match ($_ENV['APP_ENV']) {
+            'dev'   => 'https://fwgblog.uber.space/staedtetrip-heidelberg',
+            default => sprintf('%s/%s', $schemeAndHost, $blogpost->getSlug()),
         };
-
-        echo 'Crawling Blogpost URL: '.$blogpostUrl.PHP_EOL;
 
         return $this->crawlerService->crawlExternalUrl($blogpostUrl, $schemeAndHost);
     }
