@@ -89,7 +89,7 @@ class DocumentService
             description: $document->getDescription(),
             image: $socialPreviewThumbnail instanceof Image ? $request->getSchemeAndHttpHost().$socialPreviewThumbnail->getFullPath() : '',
             url: $request->getUri(),
-            authors: $document->getEditable('authors')?->getData() ?? [],
+            authors: $document->getEditable('authors')?->getData() ?? [], // todo: make sure this is an array of AuthorDto
             tags: $document->getEditable('tags')?->getData() ?? [],
             publishedTime: Carbon::createFromTimestamp($document->getModificationDate()) ?? Carbon::now(),
         );

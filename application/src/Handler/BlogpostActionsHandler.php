@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
-use App\Service\WordpressCrawlerService;
+use App\Service\CrawlerService;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\Blogpost;
 use Pimcore\Model\Element\ValidationException;
 
+use function sprintf;
 use function strlen;
 
 class BlogpostActionsHandler
@@ -18,7 +19,7 @@ class BlogpostActionsHandler
     public const string ACTION_CRAWL_LEGACY_TOUR_CONTENTS         = 'crawlLegacyTourContents';
 
     public function __construct(
-        private readonly WordpressCrawlerService $wordpressCrawlerService,
+        private readonly CrawlerService $wordpressCrawlerService,
     ) {
     }
 
@@ -33,7 +34,7 @@ class BlogpostActionsHandler
             throw new ValidationException('No valid WordPress slug set for crawling.');
         }
 
-        $contents = $this->wordpressCrawlerService->crawlCityTrip('https://frei-weg.com/'.$wordpressSlug);
+        $contents = $this->wordpressCrawlerService->crawlWordpressCityTrip('https://frei-weg.com/'.$wordpressSlug);
 
         $blogpost->setTitle($contents['title'] ?? '');
         $blogpost->setPreviewText($contents['introduction'] ?? '');
@@ -72,18 +73,17 @@ class BlogpostActionsHandler
             throw new ValidationException('No valid WordPress slug set for crawling.');
         }
 
-        $contents = $this->wordpressCrawlerService->crawlLegacyTour('https://frei-weg.com/'.$wordpressSlug);
+        $contents = $this->wordpressCrawlerService->crawlWordpressLegacyTour('https://frei-weg.com/'.$wordpressSlug);
 
         $blogpost->setTitle($contents['title'] ?? '');
         $blogpost->setPreviewText($contents['introduction'] ?? '');
 
         $fieldCollection = new DataObject\Fieldcollection();
         foreach ($contents['sections'] as $section) {
-
-            $headline = $section['headline'] ?? '';
-            $fieldCollectionItem = match(true) {
+            $headline            = $section['headline'] ?? '';
+            $fieldCollectionItem = match (true) {
                 preg_match('/^Fazit/', $headline) === 1 => new DataObject\Fieldcollection\Data\ContentWysiwyg(),
-                default => new DataObject\Fieldcollection\Data\ContentGallery()
+                default                                 => new DataObject\Fieldcollection\Data\ContentGallery(),
             };
 
             // WYSIWYG Content Field Collection does not have title field so we need to set the headline as text
@@ -95,7 +95,7 @@ class BlogpostActionsHandler
                 default:
                     $fieldCollectionItem->setTitle($section['headline'] ?? '');
                     $fieldCollectionItem->setText($section['text'] ?? '');
-            };
+            }
 
             $fieldCollection->add($fieldCollectionItem);
         }

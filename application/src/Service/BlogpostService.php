@@ -27,6 +27,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -53,6 +54,8 @@ class BlogpostService
         private readonly BlogpostMapper $blogpostMapper,
         private readonly OpenAIService $openAIService,
         private readonly BlogpostActionsHandler $blogpostActionsHandler,
+        private readonly CrawlerService $crawlerService,
+        private readonly RouterInterface $router,
     ) {
     }
 
@@ -348,6 +351,22 @@ class BlogpostService
             unset($actions[$k]);
             $blogpost->setActions($actions);
         }
+    }
+
+    public function getExternalLinksStatus(DataObject\Blogpost $blogpost): array
+    {
+        $schemeAndHost = sprintf(
+            '%s://%s',
+            $this->router->getContext()->getScheme(),
+            $this->router->getContext()->getHost()
+        );
+
+        $blogpostUrl = match (true) {
+            preg_match('/^http(s{,1}):\/\/localhost/', $schemeAndHost) !== false => 'https://fwgblog.uber.space/staedtetrip-heidelberg',
+            default                                                              => sprintf('%s/%s', $schemeAndHost, $blogpost->getSlug()),
+        };
+
+        return $this->crawlerService->crawlExternalUrl($blogpostUrl, $schemeAndHost);
     }
 
     private function handleCommentForm(FormInterface $form, Request $request): ?ConstraintViolationListInterface
