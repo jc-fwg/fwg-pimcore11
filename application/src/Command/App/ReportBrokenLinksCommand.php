@@ -64,8 +64,9 @@ class ReportBrokenLinksCommand extends AbstractCommand
                 }
             }
 
-            $this->writeComment('All Blogposts processed.');
         }
+
+        $this->writeComment('All Blogposts processed.');
 
         return self::SUCCESS;
     }

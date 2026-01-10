@@ -366,6 +366,8 @@ class BlogpostService
             default                                                              => sprintf('%s/%s', $schemeAndHost, $blogpost->getSlug()),
         };
 
+        echo 'Crawling Blogpost URL: '.$blogpostUrl.PHP_EOL;
+
         return $this->crawlerService->crawlExternalUrl($blogpostUrl, $schemeAndHost);
     }
 
