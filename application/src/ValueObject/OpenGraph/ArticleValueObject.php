@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ValueObject\OpenGraph;
 
+use App\Dto\AuthorDto;
 use App\Dto\TagDto;
 use Carbon\Carbon;
 
@@ -15,7 +16,7 @@ final readonly class ArticleValueObject extends BaseValueObject
         string $image,
         string $url,
 
-        /** @var string[] */
+        /** @var AuthorDto[] */
         public array $authors,
 
         /** @var TagDto[] */

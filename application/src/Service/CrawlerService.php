@@ -7,12 +7,13 @@ namespace App\Service;
 use DOMNode;
 use Pimcore\Model\Element\ValidationException;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Throwable;
 
 use function in_array;
 
-readonly class WordpressCrawlerService
+readonly class CrawlerService
 {
     public function __construct(
         private HttpClientInterface $httpClient,
@@ -22,7 +23,7 @@ readonly class WordpressCrawlerService
     /**
      * @throws ValidationException
      */
-    public function crawlCityTrip($url): array
+    public function crawlWordpressCityTrip($url): array
     {
         $crawler = new Crawler($this->getHtml($url));
 
@@ -92,7 +93,7 @@ readonly class WordpressCrawlerService
     /**
      * @throws ValidationException
      */
-    public function crawlLegacyTour($url): array
+    public function crawlWordpressLegacyTour($url): array
     {
         $crawler = new Crawler($this->getHtml($url));
 
@@ -144,6 +145,36 @@ readonly class WordpressCrawlerService
             'introduction' => implode("\n\n", array_reverse($introductionElements)),
             'sections'     => $sections,
         ];
+    }
+
+    public function crawlExternalUrl(string $url, string $schemeAndHost): array
+    {
+        $crawler = new Crawler($this->getHtml($url));
+
+        $externalUrls = [];
+
+        $crawler->filter('a[href]')->each(function (Crawler $node) use (&$externalUrls, $schemeAndHost): void {
+            $url = $node->attr('href');
+
+            if (
+                str_starts_with($url, $schemeAndHost)
+                || str_starts_with($url, '/')
+                || str_starts_with($url, '#')
+            ) {
+                return;
+            }
+
+            try {
+                $externalUrls[$this->httpClient->request(Request::METHOD_HEAD, $url)->getStatusCode()][] = [
+                    'url'  => $url,
+                    'text' => $node->text(),
+                ];
+            } catch (Throwable) {
+                return;
+            }
+        });
+
+        return $externalUrls;
     }
 
     /**
