@@ -63,7 +63,6 @@ class ReportBrokenLinksCommand extends AbstractCommand
                     $this->output->writeln('...'.$logMessage);
                 }
             }
-
         }
 
         $this->writeComment('All Blogposts processed.');
