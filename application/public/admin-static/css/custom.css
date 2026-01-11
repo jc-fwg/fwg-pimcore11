@@ -3,8 +3,8 @@ a.x-btn:has(.fetch_infotext_from_ai_icon) {
     padding: 5px !important;
 }
 
-a.x-btn:has(.check_broken_links_icon) {
-    background: url(/bundles/pimcoreadmin/img/flat-white-icons/broken_link.svg) center left 8px no-repeat !important;
+a.x-btn:has(.update_external_links_icon) {
+    background: url(/bundles/pimcoreadmin/img/flat-white-icons/link.svg) center left 8px no-repeat !important;
     background-color: #ec7959 !important;
     color: #fff !important;
     padding: 5px !important;

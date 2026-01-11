@@ -6,12 +6,12 @@ document.addEventListener(pimcore.events.postOpenObject, (e) => {
     }
 
     const button = new Ext.Button({
-        text: 'Check broken links',
-        iconCls: 'check_broken_links_icon',
+        text: 'Update external links check',
+        iconCls: 'update_external_links_icon',
         handler: () => {
             const blogppostId = object.data.general.id;
 
-            const url = `/admin/app/blogpost/broken-links/${blogppostId}`;
+            const url = `/admin/app/blogpost/update-external-links-check/${blogppostId}`;
 
             pimcore.helpers.loadingShow();
 
@@ -23,20 +23,19 @@ document.addEventListener(pimcore.events.postOpenObject, (e) => {
                     Ext.Msg.hide();
                     pimcore.helpers.loadingHide();
 
-                    pimcore.helpers.closeObject(object.id, 'object');
-                    pimcore.helpers.openObject(object.id, 'object');
+                    let msg =
+                        response.responseText ||
+                        response.statusText ||
+                        'HTTP ' + response.status;
+                    try {
+                        const json = JSON.parse(response.responseText);
+                        msg = json.message || msg;
+                    } catch (_) {}
 
                     Ext.Msg.alert(
                         'Success',
-                        'Infotext fetched successfully.',
+                        msg,
                     );
-
-                    if (blogppostId !== null) {
-                        pimcore.treenodelocator.showInTree(blogppostId, 'object');
-                        return;
-                    }
-
-                    pimcore.elementservice.refreshRootNodeAllTrees('object');
                 },
                 failure: function (response) {
                     Ext.Msg.hide();

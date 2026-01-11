@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Service\BlogpostService;
+use Carbon\Carbon;
 use Exception;
 use Pimcore\Model\DataObject\Blogpost;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,8 +27,8 @@ class BlogpostController extends AbstractController
     /**
      * @throws Exception
      */
-    #[Route('/admin/app/blogpost/broken-links/{blogpostId}', name: 'admin_app_blogpost_broken_links', methods: [Request::METHOD_GET])]
-    public function infotextAction(string $blogpostId): Response
+    #[Route('/admin/app/blogpost/update-external-links-check/{blogpostId}', name: 'admin_app_update_external_links_check', methods: [Request::METHOD_GET])]
+    public function updateExternalLinksCheckAction(string $blogpostId): Response
     {
         $blogpost = $this->blogpostRepository->findById($blogpostId);
 
@@ -40,6 +41,11 @@ class BlogpostController extends AbstractController
 
         $externalLinks = $this->blogpostService->getExternalLinksStatus($blogpost);
 
+        $jsonData['checkedAt'] = Carbon::now()->format('Y-m-d H:i:s');
+        $jsonData['links'] = $externalLinks;
+
+        $externalLinksJson = json_encode($jsonData);
+
         /**
          * @todo
          * - Blogpost DO : Data quality externalLinksLastChecked
@@ -50,8 +56,12 @@ class BlogpostController extends AbstractController
          * - Validation to inform that check is done with "No broken links found" or "Broken links found" and "Reload object to recheck"
          */
 
+        $blogpost->setExternalLinksCheck($externalLinksJson);
+
+        $this->blogpostRepository->persist($blogpost);
+
         return new Response(
-            'Broken links check successful',
+            'External links check successfully executed.',
             Response::HTTP_OK,
         );
     }

@@ -31,6 +31,7 @@
  * - hashtags [textarea]
  * - hashtagSets [multiselect]
  * - hashtagsCalculated [calculatedValue]
+ * - externalLinksCheck [textarea]
  */
 
 return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -40,7 +41,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1767358412,
+   'modificationDate' => 1768158624,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -1286,6 +1287,56 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'html' => '<div>focusKeyword</div><div>metaTitle</div><div>metaDescription​</div>',
                  'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
                  'renderingData' => 'data-quality-seo',
+                 'border' => false,
+              )),
+              4 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Data\Textarea::__set_state(array(
+                 'name' => 'externalLinksCheck',
+                 'title' => 'app.generic.externalLinksCheck',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => true,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => true,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'maxLength' => NULL,
+                 'showCharCount' => false,
+                 'excludeFromSearchIndex' => false,
+                 'height' => '',
+                 'width' => '',
+              )),
+              5 => 
+              \Pimcore\Model\DataObject\ClassDefinition\Layout\Text::__set_state(array(
+                 'name' => 'External Links',
+                 'type' => NULL,
+                 'region' => NULL,
+                 'title' => 'app.generic.externalLinksCheck',
+                 'width' => '',
+                 'height' => '',
+                 'collapsible' => false,
+                 'collapsed' => false,
+                 'bodyStyle' => '',
+                 'datatype' => 'layout',
+                 'children' => 
+                array (
+                ),
+                 'locked' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'fieldtype' => 'text',
+                 'html' => '',
+                 'renderingClass' => '@App\\Renderer\\Blogpost\\DataQualityTextRenderer',
+                 'renderingData' => 'data-quality-external-links',
                  'border' => false,
               )),
             ),

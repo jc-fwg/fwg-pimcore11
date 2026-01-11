@@ -11,6 +11,7 @@ use Pimcore\Model\DataObject\ClassDefinition\Layout\DynamicTextLabelInterface;
 use Pimcore\Model\DataObject\Concrete;
 use Symfony\Component\Validator\ConstraintViolationList;
 
+use Twig\Environment;
 use function count;
 use function sprintf;
 
@@ -20,6 +21,7 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
 
     public function __construct(
         private readonly BlogpostService $blogpostService,
+        private readonly Environment $twig,
     ) {
     }
 
@@ -32,6 +34,14 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
             return '';
         }
 
+        return match(true) {
+            $data === 'data-quality-external-links' => $this->renderExternalLinksCheck($object),
+            default                                 => $this->renderValidationData($object, $data),
+        };
+    }
+
+    private function renderValidationData(Concrete $object, string $data): string
+    {
         $dataQuality = $this->blogpostService->checkDataQuality($object);
 
         /** @var ConstraintViolationList $issues */
@@ -52,5 +62,14 @@ class DataQualityTextRenderer implements DynamicTextLabelInterface
         $issuesHtmlString = implode('', $issuesAsHtml);
 
         return sprintf(self::HTML_WRAPPER, 'danger', '<ul style="padding-left: 10px !important; margin: 0 !important">'.$issuesHtmlString.'</ul>');
+    }
+
+    private function renderExternalLinksCheck(Blogpost $blogpost): string
+    {
+        $externalLinksCheck = $blogpost->getExternalLinksCheck() ?? '';
+
+        return $this->twig->render('admin/data-quality/external-links-check.html.twig', [
+            'externalLinksCheck' => json_decode($externalLinksCheck, true) ?? [],
+        ]);
     }
 }

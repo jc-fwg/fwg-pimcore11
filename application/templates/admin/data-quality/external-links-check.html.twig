@@ -1,0 +1,19 @@
+<div style="padding:5px">
+    <span style="padding:2px; font-weight: bold">Checked at:</span> {{ externalLinksCheck.checkedAt }}
+    <table style="margin-top:10px">
+        <tr>
+            <th>STATUS</th>
+            <th style="padding-left:10px; text-align:left">LINK</th>
+        </tr>
+        {% for status, links in externalLinksCheck.links %}
+            {% for link in links %}
+                <tr>
+                    <td style="text-align:center; color: #fff; background-color:{{ status == 200 ? "#28a050" : "#f00" }}">{{ status }}</td>
+                    <td style="padding-left:10px">
+                        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+</div>

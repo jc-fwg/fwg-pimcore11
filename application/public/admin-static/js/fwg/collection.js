@@ -26,9 +26,18 @@ document.addEventListener(pimcore.events.postOpenObject, (e) => {
                     pimcore.helpers.closeObject(object.id, 'object');
                     pimcore.helpers.openObject(object.id, 'object');
 
+                    let msg =
+                        response.responseText ||
+                        response.statusText ||
+                        'HTTP ' + response.status;
+                    try {
+                        const json = JSON.parse(response.responseText);
+                        msg = json.message || msg;
+                    } catch (_) {}
+
                     Ext.Msg.alert(
                         'Success',
-                        'Infotext fetched successfully.',
+                        msg,
                     );
 
                     if (collectionId !== null) {

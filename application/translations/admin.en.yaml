@@ -27,6 +27,7 @@ app:
         duration: 'Duration (h)'
         elevation: 'Elevation (m)'
         excluded: 'Excluded'
+        externalLinksCheck: 'External Links Check'
         email: 'Email'
         emoji: 'Emoji'
         facts: 'Facts'
