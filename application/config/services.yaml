@@ -182,6 +182,17 @@ services:
                 -
             $router: '@router'
 
+
+    #
+    # VALIDATION
+    #
+    App\Validator\BlogpostExternalUrlsAreValidValidator:
+        arguments:
+            $blogpostRepository: '@App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository'
+            $blogpostService: '@App\Service\BlogpostService'
+        tags:
+            - { name: validator.constraint_validator }
+
     # ---------------------------------------------------------
     # Twig Extensions
     # ---------------------------------------------------------
