@@ -8,8 +8,6 @@ use App\Adapter\App\Database\Doctrine\Repository\BlogpostRepository;
 use App\Service\BlogpostService;
 use Exception;
 use Pimcore\Model\DataObject\Blogpost;
-use Pimcore\Model\DataObject\Collection;
-use Pimcore\Model\Element\ValidationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
