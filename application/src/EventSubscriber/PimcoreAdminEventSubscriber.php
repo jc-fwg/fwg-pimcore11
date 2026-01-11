@@ -29,6 +29,7 @@ final class PimcoreAdminEventSubscriber implements EventSubscriberInterface
             array_merge(
                 $event->getPaths(),
                 [
+                    '/admin-static/js/fwg/blogpost.js',
                     '/admin-static/js/fwg/collection.js',
                 ]
             )

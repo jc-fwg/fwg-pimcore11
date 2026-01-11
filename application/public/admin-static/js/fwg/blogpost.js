@@ -1,17 +1,17 @@
 document.addEventListener(pimcore.events.postOpenObject, (e) => {
     const object = e.detail.object;
 
-    if (object.data.general.className !== 'Collection') {
+    if (object.data.general.className !== 'Blogpost') {
         return;
     }
 
     const button = new Ext.Button({
-        text: 'Fetch infotext from AI',
-        iconCls: 'fetch_infotext_from_ai_icon',
+        text: 'Check broken links',
+        iconCls: 'check_broken_links_icon',
         handler: () => {
-            const collectionId = object.data.general.id;
+            const blogppostId = object.data.general.id;
 
-            const url = `/admin/app/collection/infotext/${collectionId}`;
+            const url = `/admin/app/blogpost/broken-links/${blogppostId}`;
 
             pimcore.helpers.loadingShow();
 
@@ -31,8 +31,8 @@ document.addEventListener(pimcore.events.postOpenObject, (e) => {
                         'Infotext fetched successfully.',
                     );
 
-                    if (collectionId !== null) {
-                        pimcore.treenodelocator.showInTree(collectionId, 'object');
+                    if (blogppostId !== null) {
+                        pimcore.treenodelocator.showInTree(blogppostId, 'object');
                         return;
                     }
 
