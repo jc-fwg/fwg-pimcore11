@@ -149,7 +149,11 @@ readonly class CrawlerService
 
     public function crawlExternalUrl(string $url, string $schemeAndHost): array
     {
-        $crawler = new Crawler($this->getHtml($url));
+        try {
+            $crawler = new Crawler($this->getHtml($url));
+        } catch (Throwable $e) {
+            return [];
+        }
 
         $externalUrls = [];
 
