@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[AppAssert\TourHasActivity(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_BASE_DATA])]
 #[AppAssert\BlogpostHasRelevantContent(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
-#[AppAssert\BlogpostExternalUrlsAreValid(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
+//#[AppAssert\BlogpostExternalUrlsAreValid(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
 #[AppAssert\GalleryFieldCollectionsHaveTitle(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
 #[AppAssert\GalleryFieldCollectionsHaveImages(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
 #[AppAssert\CitySpotFieldCollectionsHaveTitle(groups: [BlogpostDto::VALIDATION_GROUP_DATA_QUALITY_CONTENT])]
